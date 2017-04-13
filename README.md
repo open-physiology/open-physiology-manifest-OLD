@@ -31,3 +31,4 @@ To use this template for a new project, it's best to [duplicate it](https://help
 * Replace the example code, example documentation and example tests with real code, real documentation and real tests.
 * Run the `init-repo.js` script from the [open-physiology/open-physiology-scripts](https://github.com/open-physiology/open-physiology-scripts) to add the proper labels and milestones.
 * Go to the [ZenHub Board](https://github.com/open-physiology/open-physiology#boards) and [merge the new repo](https://www.zenhub.com/blog/multi-repo-boards-have-arrived#mergingrepositories) into the board.
+* [Add the new repo to the list at the central hub.](https://github.com/open-physiology/open-physiology/edit/master/README.md)
