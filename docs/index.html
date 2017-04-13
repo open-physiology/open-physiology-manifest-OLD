@@ -40,21 +40,25 @@
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="project-template">project-template</h1>
 <p><a href="https://travis-ci.org/open-physiology/project-template?branch=master"><img src="http://img.shields.io/travis/open-physiology/project-template.svg" alt="Build Status"></a></p>
 <p>This is a project template used for creating new JavaScript based projects under the open-physiology organisation.</p>
-<p>To use it for a new project, it&apos;s best to <a href="https://help.github.com/articles/duplicating-a-repository">duplicate it</a>, rather than just copy the files. That way, the original git history is preserved, and changes made to this template can be merged into derived projects at a later stage:</p>
+<p><strong>Note:</strong> This is the base template. Check out the branches of this repository to see if there are any more specific templates you should be using. </p>
+<p>To use this template for a new project, it&apos;s best to <a href="https://help.github.com/articles/duplicating-a-repository">duplicate it</a>, rather than just copy the files. That way, the original git history is preserved, and changes made to this template can be merged into derived projects at a later stage:</p>
 <ul>
 <li><a href="https://github.com/organizations/open-physiology/repositories/new">Create the new repository on GitHub</a></li>
 <li>In a terminal, create a bare clone of this template repository:<pre><code class="lang-shell"><code class="source-code prettyprint">  $ git clone --bare --single-branch --branch master https://github.com/open-physiology/project-template.git</code>
 </code></pre>
 </li>
-<li>In a terminal, create a bare clone of this template repository:<pre><code class="lang-shell"><code class="source-code prettyprint">  $ cd project-template.git
+<li>Then push it to the new repository as follows (replace <code>&lt;new-repo&gt;</code> with the name of the new repo):<pre><code class="lang-shell"><code class="source-code prettyprint">  $ cd project-template.git
   $ git push https://github.com/open-physiology/&lt;new-repo&gt;.git master:master</code>
 </code></pre>
 </li>
-<li>You can now remove the temporary local clone:<pre><code class="lang-shell"><code class="source-code prettyprint">  $ rm -rf project-template.git</code>
+<li>You can now remove the temporary local clone:<pre><code class="lang-shell"><code class="source-code prettyprint">  $ cd ..
+  $ rm -rf project-template.git</code>
 </code></pre>
 </li>
-<li>Make a working copy of the new repo to start working on it.</li>
-<li>Do a search/replace across the whole project to replace <code>project-template</code> with the name of the new repo.</li>
+<li>Make a working copy of the new repo to actually start working on it (replace <code>&lt;new-repo&gt;</code>) (alternatively, use your IDE):<pre><code class="lang-shell"><code class="source-code prettyprint">  $ git clone https://github.com/open-physiology/&lt;new-repo&gt;.git</code>
+</code></pre>
+</li>
+<li>Do a search/replace across the whole project (not just <code>src</code>) to replace <code>project-template</code> with the name of the new repo.</li>
 <li>Replace the example code, example documentation and example tests with real code, real documentation and real tests.</li>
 <li>Run the <code>init-repo.js</code> script from the <a href="https://github.com/open-physiology/open-physiology-scripts">open-physiology/open-physiology-scripts</a> to add the proper labels and milestones.</li>
 <li>Go to the <a href="https://github.com/open-physiology/open-physiology#boards">ZenHub Board</a> and <a href="https://www.zenhub.com/blog/multi-repo-boards-have-arrived#mergingrepositories">merge the new repo</a> into the board.</li>
