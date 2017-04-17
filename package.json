@@ -1,23 +1,23 @@
 {
-  "name": "project-template",
+  "name": "open-physiology-manifest",
   "version": "0.1.0",
   "description": "Templates for starting new open-physiology projects",
   "main": "dist/index.js",
   "scripts": {
-    "test":       "mocha-webpack --opts mocha-webpack.opts",
-    "build":      "cross-env BABEL_ENV=production webpack",
-    "docs":       "esdoc",
+    "test": "mocha-webpack --opts mocha-webpack.opts",
+    "build": "cross-env BABEL_ENV=production webpack",
+    "docs": "esdoc",
     "everything": "npm test && npm run build && npm run docs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/open-physiology/project-template.git"
+    "url": "git+https://github.com/open-physiology/open-physiology-manifest.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/open-physiology/project-template/issues"
+    "url": "https://github.com/open-physiology/open-physiology-manifest/issues"
   },
-  "homepage": "https://github.com/open-physiology/project-template#readme",
+  "homepage": "https://github.com/open-physiology/open-physiology-manifest#readme",
   "devDependencies": {
     "babel-cli": "6",
     "babel-core": "6",
@@ -25,6 +25,7 @@
     "babel-plugin-espower": "2",
     "babel-plugin-syntax-flow": "6",
     "babel-plugin-transform-async-to-generator": "6",
+    "babel-plugin-transform-builtin-extend": "1",
     "babel-plugin-transform-class-properties": "6",
     "babel-plugin-transform-decorators-legacy": "1",
     "babel-plugin-transform-es2015-instanceof": "6",
@@ -48,8 +49,9 @@
     "json-stringify-safe": "5",
     "mocha": "2",
     "mocha-webpack": "0.5",
+    "node-noop": "1",
     "npm-cli": "0.1",
-    "polyfill-function-prototype-bind": "0.0.1",
+    "polyfill-function-prototype-bind": "0.0",
     "power-assert": "1",
     "sinon": "1",
     "sinon-chai": "2",
@@ -59,10 +61,15 @@
     "webpack-node-externals": "1.5"
   },
   "dependencies": {
-    "utilities": "open-physiology/utilities",
     "bound-native-methods": "0.1",
     "deep-freeze-strict": "1",
+    "fraction.js": "3",
+    "graph.js": "1",
+    "lodash": "4",
     "lodash-bound": "1",
-    "rxjs": "5"
+    "rearg": "0.0",
+    "rxjs": "5",
+    "utilities": "open-physiology/utilities#v0.1.0",
+    "wu": "2"
   }
 }

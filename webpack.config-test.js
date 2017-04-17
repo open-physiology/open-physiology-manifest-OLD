@@ -12,5 +12,10 @@ module.exports = {
 		devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
 	},
 	target: 'node',
-	externals: [require('webpack-node-externals')()]
+	externals: [require('webpack-node-externals')({
+		whitelist: ['utilities']
+	})],
+	plugins: [
+		new webpack.NormalModuleReplacementPlugin(/\.(gif|png|scss|css)$/, 'node-noop')
+	]
 };

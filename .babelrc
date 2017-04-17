@@ -26,5 +26,6 @@
       ]
     }
   },
-  "sourceMaps": true
+  "sourceMaps": true,
+  "ignore": ["*.png"]
 }

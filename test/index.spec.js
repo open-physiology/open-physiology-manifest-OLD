@@ -8,30 +8,15 @@ import {
 	expect,
 } from './test.helper';
 
-import {plus} from '../src/index.js';
+// import  from '../src/index.js';
 
 /** @test */
-describe("the project-template", () => {
+describe("the open-physiology-manifest", () => {
 	
 	beforeEach(() => {
 		// setup
 	});
 	
-	it("can test things", () => {
-		
-		expect(true).to.be.truthy;
-		
-	});
 	
-	/** @test {plus} */
-	it("can add two numbers", () => {
-		
-		expect(plus(1, 2)).to.equal(3);
-		
-	});
-	
-	afterEach(() => {
-		// teardown
-	});
 	
 });
