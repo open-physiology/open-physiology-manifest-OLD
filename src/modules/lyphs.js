@@ -90,16 +90,14 @@ export default TypedModule.create('lyphs', [
 		},
 		
 		behavior: {
-			new(command) {
-				let {initialValues = {}, options = {}} = command;
-				initialValues = { ...initialValues };
+			new(initialValues, options = {}) {
 				initialValues::defaults({
 					longitudinalBorders: [],
 					radialBorders:       [],
 					axis:              null
 				});
 				if (options.createAxis) {
-					const axis = Border.new({}, { forcedDependencies: [command] });
+					const axis = new Border();
 					initialValues::assign({ axis });
 				}
 				if (initialValues.axis) {
@@ -114,14 +112,12 @@ export default TypedModule.create('lyphs', [
 					}
 					const nr = Math.min(options.createRadialBorders , 2);
 					for (let i = initialValues.radialBorders.length; i < nr; ++i) {
-						initialValues.radialBorders.push(
-							Border.new({}, { forcedDependencies: [command] })
-						);
+						initialValues.radialBorders.push(new Border());
 					}
 				}
 				return new Lyph(
 					initialValues,
-					{ ...options, allowInvokingConstructor: true }
+					{ allowInvokingConstructor: true }
 				);
 			}
 		}

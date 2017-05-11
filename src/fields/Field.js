@@ -1,20 +1,10 @@
-import {Observable, Subject} from '../libs/rxjs.js';
-// TODO: make sure we don't need to import this anymore: map;
-// TODO: make sure we don't need to import anymore: concat
-// import 'rxjs/add/operator/do';
-
-import pick        from 'lodash-bound/pick';
-import isFunction  from 'lodash-bound/isFunction';
-import isUndefined from 'lodash-bound/isUndefined';
-import values      from 'lodash-bound/values';
-import entries     from 'lodash-bound/entries';
-import defaults    from 'lodash-bound/defaults';
+import {pick, isFunction, isUndefined, values} from 'lodash-bound';
 
 import {defineProperties, defineProperty} from 'bound-native-methods';
 
 import assert from 'power-assert';
 
-import {ValueTracker, event, property} from 'utilities';
+import {ValueTracker, event, property, flag, callOrReturn} from 'utilities';
 import {humanMsg, assign} from "../util/misc";
 
 import {
@@ -24,16 +14,17 @@ import {
 	$$key,
 	$$desc,
 	$$value,
-	// $$pristine, // TODO: remove all 'pristine' related stuff from the field classes
 	$$initSet,
 	$$entriesIn,
 	$$initialized,
 	$$destruct,
 	$$id
 } from './symbols';
+const $$fieldsInitialized = Symbol('$$fieldsInitialized');
+const $$aliases           = Symbol('$$aliases');
+
 import {constraint} from "../util/misc";
 
-const $$fieldsInitialized = Symbol('$$fieldsInitialized');
 
 export class Field extends ValueTracker {
 	
@@ -51,46 +42,33 @@ export class Field extends ValueTracker {
 		
 		/* allow each kind of field to perform its initializations */
 		for (let FieldClass of this[$$fieldClasses]) {
-			for (let {key, desc} of FieldClass[$$entriesIn](cls)) {
+			for (let {key, desc, aliases} of FieldClass[$$entriesIn](cls)) {
 				if (!onlyForKey || onlyForKey === key) {
-					FieldClass.initClass({ cls, key, desc });
+					FieldClass.initClass({ cls, key, aliases, desc });
 				}
 			}
 		}
-		
-		/* only initialize a class once */
-		if (cls[$$initialized]) { return }
-		cls[$$initialized] = true;
-		
 	}
 	
-	/** only use for Entity instances when they are not placeholders (anymore) */
 	static initializeEntity(owner, initialValues) {
 		if (owner.fields) { return }
 		owner::defineProperty('fields', { value: {} });
-		
-		/* allow specific field-init code to wait until all fields are initialized */
-		const constructingOwner = new Subject(); // TODO: remove; obsolete
-		const waitUntilConstructed = function (entity = owner) {
-			if (entity === owner) { // TODO: remove; obsolete
-				return Observable.concat(constructingOwner, this);
-			} else {
-				return Observable.concat(entity.p('fieldsInitialized'), this);
-			}
-		};
 		
 		/* initialize all fields */
 		const keyDescs = {};
 		for (let FieldClass of this[$$fieldClasses]) {
 			for (let entry of FieldClass[$$entriesIn](owner.constructor)) {
-				const {key} = entry;
+				const {key, aliases = []} = entry;
+				const candidateKeys = [key, ...aliases].filter(v=>!initialValues[v]::isUndefined());
+				constraint(candidateKeys.length <= 1, humanMsg`
+					You cannot set the fields '${candidateKeys.join("', '")}'
+					at the same time for a ${owner.constructor.singular}.
+				`);
 				keyDescs[key] = {
 					...entry,
-					waitUntilConstructed,
-					constructingOwner,
 					owner,
 					key,
-					initialValue: initialValues[key],
+					initialValue: initialValues[candidateKeys[0]],
 					FieldClass
 				};
 			}
@@ -105,12 +83,11 @@ export class Field extends ValueTracker {
 		for (let entry of keyDescs::values()) {
 			let {FieldClass} = entry;
 			delete entry.FieldClass;
-			delete entry.relatedKeys;
+			delete entry.relatedKeys; // TODO (MANIFEST): still need this?
 			new FieldClass(entry);
 		}
 		
 		/* notify completion of field initialization */
-		constructingOwner.complete(); // TODO: remove; obsolete
 		owner.pSubject('fieldsInitialized').next(true);
 	}
 	
@@ -127,9 +104,8 @@ export class Field extends ValueTracker {
 	// events & properties //
 	/////////////////////////
 	
-	@event()    commitEvent;
-	@event()    rollbackEvent;
-	@property() value;
+	@property()              value;
+	@flag({ initial: true }) isPlaceholder;
 	
 	
 	//////////////
@@ -141,21 +117,23 @@ export class Field extends ValueTracker {
 		return `Field: ${this[$$owner].constructor.name}#${this[$$key]}`;
 	}
 	
-	constructor({ owner, key, desc, setValueThroughSignal = true }) {
+	constructor({ owner, key, desc, aliases = [], setValueThroughSignal = true, isPlaceholder = false }) {
 		super();
 		owner.fields[key] = this;
-		this[$$owner] = owner;
-		this[$$key]   = key;
-		this[$$desc]  = desc;
+		for (let alias of aliases) {
+			owner.fields[alias] = this;
+		}
+		this[$$owner]   = owner;
+		this[$$key]     = key;
+		this[$$desc]    = desc;
+		this[$$aliases] = aliases;
 		if (setValueThroughSignal) {
 			// allow signal-push to change value
 			this.p('value').subscribe((v) => {
-				this.set(v, { createEditCommand: false });
+				this.set(v);
 			});
 		}
-		// this.p('value') // TODO: remove all 'pristine' related stuff from the field classes
-		// 	.map(v => this.constructor.isEqual(v, this[$$pristine]))
-		// 	.subscribe( this.pSubject('isPristine') );
+		this.isPlaceholder = isPlaceholder;
 	}
 	
 	static valueToJSON() { assert(false, humanMsg`Field.valueToJSON must be implemented in subclasses.`) }
@@ -166,32 +144,21 @@ export class Field extends ValueTracker {
 	get() { return this[$$value] }
 	
 	set(newValue, options = {}) {
-		options::defaults({ createEditCommand: true });
-		
-		if (options.createEditCommand) {
-			
-			this[$$owner].edit({ [this[$$key]]: newValue }, options);
-			
-		} else if (!this.constructor.isEqual(this[$$value], newValue)) {
-			
+		if (!this.constructor.isEqual(this[$$value], newValue)) {
 			const {
 				ignoreReadonly    = false,
-				ignoreValidation  = false,
-				createEditCommand = true
+				ignoreValidation  = false
 			} = options;
-			
 			constraint(ignoreReadonly || !this[$$desc].readonly, humanMsg`
 				Tried to set the readonly field
 				'${this[$$owner].constructor.name}#${this[$$key]}'.
 			`);
 			if (this.jsonToValue::isFunction()) {
-				// TODO: should we check whether newValue is plain before converting?
 				newValue = this.jsonToValue(newValue, options);
 			}
 			if (!ignoreValidation) { this.validate(newValue, ['set']) }
 			this[$$value] = newValue;
 			this.pSubject('value').next(newValue);
-			
 		}
 	}
 	
@@ -201,15 +168,13 @@ export class Field extends ValueTracker {
 	
 	[$$initSet](...alternatives) {
 		for (let [guard, value] of alternatives) {
-			if (guard::isFunction() ? guard() : guard) {
+			if (guard::callOrReturn(this)) {
 				if (value::isUndefined()) { return }
-				let val = value::isFunction() ? value() : value;
-				if (this.constructor.isEqual(this[$$value], val)) { return }
-				this.validate(val, ['initialize', 'set']);
-				this.set(val, {
+				value = value::callOrReturn();
+				this.validate(value, ['initialize', 'set']);
+				this.set(value, {
 					ignoreReadonly:    true,
-					ignoreValidation:  true,
-					createEditCommand: false
+					ignoreValidation:  true
 				});
 				return;
 			}
@@ -219,7 +184,7 @@ export class Field extends ValueTracker {
 	isInvalid(val) {
 		try {
 			let valueToValidate = val::isUndefined() ? this[$$value] : val;
-			this.validate(valueToValidate, ['set', 'commit']);
+			this.validate(valueToValidate, ['set']);
 			return false;
 		} catch (err) {
 			return err;
@@ -228,40 +193,26 @@ export class Field extends ValueTracker {
 	
 	validate(val, stages = []) {}
 	
-	// async commit() {
-	// 	this.validate(this[$$value], ['commit']);
-	// 	this[$$pristine] = this[$$value];
-	// 	this.pSubject('isPristine').next(true);
-	// }
-	//
-	// rollback() {
-	// 	this.set(this[$$pristine]);
-	// 	this.pSubject('isPristine').next(true);
-	// }
-	
 }
 
 export class RelField extends Field {
 	
-	/////////////////////////
-	// events & properties //
-	/////////////////////////
+	getAll() {
+		// to be implemented in subclasses
+	}
 	
-	@property({ readonly: true }) possibleValues;
+	add(newValue, options) {
+		// to be implemented in subclasses
+	}
 	
+	delete(oldValue, options) {
+		// to be implemented in subclasses
+	}
 	
-	//////////////
-	// instance //
-	//////////////
-	
-	constructor(options) {
-		super(options);
-		const { desc } = options;
-		
-		/* manage the 'possibleValues' property */
-		desc.codomain.resourceClass.p('all')
-		    .subscribe(this.pSubject('possibleValues'));
-		// TODO: use smarter filtering for the possible values
+	validateElement(element, options) {
+		// to be implemented in subclasses
 	}
 	
 }
+
+// TODO (MANIFEST): ^ a way for the model library to add 'possibleValues' property to RelField instances

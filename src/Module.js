@@ -29,8 +29,6 @@ import {
 
 import entityClassFactory  from './Entity';
 import {Field}             from './fields/fields';
-import commandClassFactory from './commands/Command';
-
 
 const $$processedFor              = Symbol('$$processedFor');
 const $$relationshipSpecs         = Symbol('$$relationshipSpecs');
@@ -48,116 +46,11 @@ class Environment {
 	// edges:    [superclass, subclass] -> undefined
 	classes : Graph;
 	
-	Command : Class;
-	Entity  : Class;
+	Entity: Class;
 	
-	constructor(envOrBackend) {
+	constructor(env) {
 		/* if the passed object is already an environment, return it now */
-		if (envOrBackend instanceof Environment) { return envOrBackend }
-		
-		/* initialize commit and load implementations */
-		/* issue an error if/when commit or load were called but not provided */
-		const noOpMsg = (op) => async () => { console.error(humanMsg`No '${op}' behavior was specified to the module.`) };
-		const thisEnvironment = this;
-		
-		
-		
-		/* a function to replace temporary id with new id */
-		function replaceTemporaryIds({futureCommand, temporaryId, newId}) {
-			let idObjects = [];
-			switch (futureCommand.commandType) {
-				case 'new': {
-					const cls = thisEnvironment.classes[futureCommand.values.class];
-					const fieldKeys = cls.isResource
-						? [...cls.relationships::keys(), ...cls.relationshipShortcuts::keys()]
-						: [1, 2];
-					for (let key of fieldKeys) {
-						if (futureCommand.values[key]::isArray()) {
-							idObjects.push(...futureCommand.values[key]);
-						} else {
-							idObjects.push(futureCommand.values[key]);
-						}
-					}
-				} break;
-				case 'edit': {
-					idObjects.push(futureCommand.entity);
-					const cls = thisEnvironment.classes[futureCommand.entity.class];
-					const fieldKeys = cls.isResource
-						? [...cls.relationships::keys(), ...cls.relationshipShortcuts::keys()]
-						: [1, 2];
-					for (let key of fieldKeys) {
-						if (futureCommand.newValues[key]::isArray()) {
-							idObjects.push(...futureCommand.newValues[key]);
-						} else {
-							idObjects.push(futureCommand.newValues[key]);
-						}
-					}
-				} break;
-				case 'delete': {
-					idObjects.push(futureCommand.entity);
-				} break;
-			}
-			for (let idObject of idObjects) {
-				if (idObject && idObject.id === temporaryId) {
-					idObject.id = newId;
-				}
-			}
-		}
-		
-		async function defaultBatchCommitter({temporaryIds, commands}) {
-			
-			/* get unfrozen version */
-			commands = commands::cloneDeep();
-			
-			/* prepare response object */
-			let response = {
-				temporaryIds: {},
-				commands: []
-			};
-			
-			/* handle all commands in order */
-			for (let i = 0; i < commands.length; ++i) {
-				const localCommand = commands[i];
-				let localResponse;
-				switch(localCommand.commandType) {
-					case 'new': {
-						localResponse = await this.commit_new(localCommand);
-						if (temporaryIds.includes(localCommand.values.id)) {
-							const temporaryId = localCommand.values.id;
-							const newId       = localResponse.id;
-							response.temporaryIds[temporaryId] = newId;
-							for (let j = i+1; j < commands.length; ++j) {
-								const futureCommand = commands[j];
-								replaceTemporaryIds({futureCommand, temporaryId, newId});
-							}
-						}
-					} break;
-					case 'edit': {
-						localResponse = await this.commit_edit(localCommand);
-					} break;
-					case 'delete': {
-						localResponse = await this.commit_delete(localCommand);
-					} break;
-					default: assert(false)
-				}
-				response.commands.push(localResponse);
-			}
-			
-			/***/
-			return response::cloneDeep();
-		}
-		this.backend = {};
-		for (let [op,         defaultOp] of [
-	        ['commit_new',    noOpMsg('commit_new')   ],
-	        ['commit_edit',   noOpMsg('commit_edit')  ],
-	        ['commit_delete', noOpMsg('commit_delete')],
-	        ['commit_batch',  defaultBatchCommitter   ],
-	        ['load',          noOpMsg('load')         ],
-	        ['loadAll',       noOpMsg('loadAll')      ],
-		]) {
-			this.backend[op] = this[op] =
-				envOrBackend[op] ? ::envOrBackend[op] : defaultOp;
-		}
+		if (env instanceof Environment) { return env }
 		
 		/* start tracking modules and classes */
 		this::definePropertiesByValue({
@@ -165,12 +58,8 @@ class Environment {
 			classes: new Graph
 		});
 		
-		/* create a version of the Command and Entity classes */
-		const {Command, TrackedCommand, Command_batch} = commandClassFactory(this);
-		this::definePropertyByValue('Command',        Command                 );
-		this::definePropertyByValue('TrackedCommand', TrackedCommand          );
-		this::definePropertyByValue('Command_batch',  Command_batch           );
-		this::definePropertyByValue('Entity',         entityClassFactory(this));
+		/* create a version of the Entity class */
+		this::definePropertyByValue('Entity', entityClassFactory(this));
 		
 		/* make Entity behave more like all its subclasses */
 		this.classes.ensureVertex('Entity', this.Entity);
@@ -188,8 +77,7 @@ class Environment {
 		module::definePropertiesByValue({
 			environment: this,
 			classes:     this.classes,
-			Entity:      this.Entity,
-			Command:     this.Command
+			Entity:      this.Entity
 		});
 		/* creating dependency modules */
 		for (let dep of dependencies) { dep(this) }
@@ -227,7 +115,6 @@ export default class Module {
 		let constructor = this.mergeSameNameResources(this.Entity.createClass(config));
 		this.register                                (constructor                    );
 		this.mergeSuperclassFields                   (constructor                    );
-		// jsonSchemaConfig                          (constructor                    ); // TODO
 		Field.augmentClass                           (constructor                    );
 		return constructor;
 	}
@@ -240,7 +127,6 @@ export default class Module {
 		constructor = this.mergeSameNameRelationships(constructor);
 		this.register                                (constructor);
 		this.mergeSuperclassFields                   (constructor);
-		// jsonSchemaConfig                          (constructor); // TODO
 		this.resolveRelationshipDomains              (constructor);
 		Field.augmentClass                           (constructor);
 		return constructor;
@@ -387,8 +273,6 @@ export default class Module {
 	[$$processRelationshipDomain](referenceDomain) {
 		const {
 			resourceClass,
-			relationshipClass,
-			keyInRelationship,
 			keyInResource,
 			shortcutKey
 		} = referenceDomain;
@@ -445,7 +329,6 @@ export default class Module {
 		//
 		// hierarchy = hierarchy.transitiveReduction();
 		
-		
 		// TODO: fix bug in the code below (the commented code above already works)
 		/* from the graph of relevant domains for this field (domain), craft one specifically for each ResourceClass */
 		// let resourceHasField = (resCls) => (!!resCls.properties[referenceDomain.keyInResource]);
@@ -476,6 +359,7 @@ export default class Module {
 		resourceClass.relationships[keyInResource] = referenceDomain;
 		Field.augmentClass(resourceClass, keyInResource);
 		if (shortcutKey) {
+			// TODO (MANIFEST): remove 'relationshipShortcuts' altogether?
 			resourceClass.relationshipShortcuts[shortcutKey] = referenceDomain;
 			Field.augmentClass(resourceClass, shortcutKey);
 		}
@@ -586,9 +470,6 @@ export default class Module {
 			assert(superDesc.resourceClass.hasSubclass(subDesc.resourceClass));
 			return subDesc;
 		});
-		
-		// TODO: for sides of a relationship (after splitting / merging all relevant domainPairs)
-		
 	}
 	
 	mergeSameNameResources(NewClass) : Class {

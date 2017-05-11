@@ -1,6 +1,6 @@
 import {describe, it, expect} from '../test.helper';
 
-import moduleFactory from '../../src/modules/visualisations';
+import moduleFactory from '../../src/modules/OLD_visualisations';
 import {simpleMockHandlers} from "../mock-handlers.helper";
 
 

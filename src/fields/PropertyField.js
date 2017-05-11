@@ -20,12 +20,14 @@ import {
 } from './symbols';
 import {constraint} from "../util/misc";
 
+const $$ignoreReadonly = Symbol('$$ignoreReadonly');
+
 
 Field[$$registerFieldClass](class PropertyField extends Field {
 	
-	// this[$$owner] instanceof RelatedTo | Resource
-	// this[$$key]   instanceof "name" | "class" | "id" | ...
-	// this[$$value] instanceof any
+	// this[$$owner]   instanceof   RelatedTo | Resource
+	// this[$$key]     instanceof   "name" | "class" | "id" | ...
+	// this[$$value]   instanceof   any
 	
 	////////////
 	// static //
@@ -67,36 +69,17 @@ Field[$$registerFieldClass](class PropertyField extends Field {
 			to ${owner.constructor.name}#${key},
 			but it already has a fixed value of ${JSON.stringify(desc.value)}.
 		`);
+		// TODO (MANIFEST): make 'value' imply 'readonly', so the above constraint won't be explicitly needed anymore
 		
 		/* set the initial value */
-		owner.p('isPlaceholder').filter(v=>!v).take(1).subscribe(() => {
-			// this[$$initSet](
-			// 	[!initialValue::isUndefined(), initialValue::callOrReturn(owner)::cloneDeep()],
-			// 	['default' in desc,            desc.default::callOrReturn(owner)::cloneDeep()],
-			// 	['value'   in desc,            desc.value  ::callOrReturn(owner)::cloneDeep()],
-			// 	[!desc.required]
-			// );
+		this.p('isPlaceholder').filter(v=>!v).take(1).subscribe(() => {
 			this[$$initSet](
-				[!initialValue::isUndefined(), initialValue::callOrReturn(owner)::cloneDeep()],
-				['default' in desc],
-				['value'   in desc],
-				[!desc.required   ]
+				[!initialValue::isUndefined(), () => initialValue::callOrReturn(owner)::cloneDeep()],
+				['default' in desc,            () => desc.default::callOrReturn(owner)::cloneDeep()],
+				['value'   in desc,            () => desc.value  ::callOrReturn(owner)::cloneDeep()],
+				[!desc.required]
 			);
 		});
-	}
-	
-	get() {
-		/* lazy loading of default or constant value */
-		// TODO: also lazy-load when subscription is taken
-		let value = super.get();
-		if (value::isUndefined()) {
-			if ('default' in this[$$desc]) {
-				this.set(this[$$desc].default::callOrReturn(this[$$owner])::cloneDeep(), {createEditCommand: false});
-			} else if ('value' in this[$$desc]) {
-				this.set(this[$$desc].value::callOrReturn(this[$$owner])::cloneDeep(), {createEditCommand: false});
-			}
-		}
-		return super.get();
 	}
 	
 	static valueToJSON(value, {flattenFieldValues = false} = {}) {
