@@ -17,7 +17,6 @@ describe("'resources' Module", () => {
 		);
 		expect(environment.classes).to.contain.relationships(
 			'IsRelatedTo',
-			'IsExternallyRelatedTo',
 			'CorrespondsTo'
 		);
 		

@@ -31,14 +31,10 @@ export default Module.create('resources', [], (M) => {
 		abstract: true,
 		
 		singular: "is related to",
+		plural: "are related to",
 		
 		1: [Resource, '0..*'],
-		2: [Resource, '0..*'],
-		
-		properties: {
-			'id':    { ...idSchema,         readonly: true }, // TODO: id will disappear from relationships in future refactoring
-			'class': { ...identifierSchema, readonly: true }
-		}
+		2: [Resource, '0..*']
 		
 	});
 	
@@ -60,25 +56,6 @@ export default Module.create('resources', [], (M) => {
 		
 	});/////////////////////////////////////////////////////////////////////////
 	
-	
-	const IsExternallyRelatedTo = M.RELATIONSHIP({
-		
-		name: 'IsExternallyRelatedTo',
-		
-		extends: IsRelatedTo,
-		
-		singular: "is externally related to",
-		
-		1: [ExternalResource, '0..*'],
-		2: [ExternalResource, '0..*'],
-		
-		properties: {
-			'type': { type: 'string', required: true }
-		}
-		
-	});
-	
-	
 	const CorrespondsTo = M.RELATIONSHIP({
 		
 		name: 'CorrespondsTo',
@@ -86,6 +63,7 @@ export default Module.create('resources', [], (M) => {
 		extends: IsRelatedTo,
 		
 		singular: "corresponds to",
+		plural: "correspond to",
 		
 		1: [Resource,         '0..*', { anchors: true, key: 'externals' }],
 		2: [ExternalResource, '0..*', {                key: 'locals'    }],

@@ -32,6 +32,7 @@ export default Module.create('typed', [
 		extends: IsRelatedTo,
 		
 		singular: "is subtype of",
+		plural:   "are subtype of",
 		
 		1: [Type, '0..*', {                key: 'subtypes'   }],
 		2: [Type, '0..*', { anchors: true, key: 'supertypes' }],
@@ -77,6 +78,7 @@ export default Module.create('typed', [
 		extends: IsRelatedTo,
 		
 		singular: "has cardinality multiplied by that of",
+		plural:   "have cardinality multiplied by that of",
 		
 		1: [Template, '0..*', { anchors: true, key: 'cardinalityMultipliers' }],
 		2: [Template, '0..*',                                                 ],
@@ -93,6 +95,7 @@ export default Module.create('typed', [
 		extends: IsRelatedTo,
 		
 		singular: "has type",
+		plural:   "have type",
 		
 		1: [Template, '0..*', { anchors: true, key: 'types' }],
 		2: [Type,     '0..*',                                ]
@@ -106,7 +109,8 @@ export default Module.create('typed', [
 		
 		extends: HasType,
 		
-		singular: "defines type",
+		singular: "defines",
+		plural:   "define",
 		
 		1: [Template, '0..1', { anchors: true, key: 'definedType' }],
 		2: [Type,     '1..1', { anchors: true, key: 'definition'  }]

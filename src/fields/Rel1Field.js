@@ -1,16 +1,8 @@
-// TODO: make sure we don't need to import this anymore: map;
-// TODO: make sure we don't need to import this anymore: filter;
-// TODO: make sure we don't need to import this anymore: pairwise;
-// TODO: make sure we don't need to import this anymore: switchMap;
-// TODO: make sure we don't need to import this anymore: startWith;
-// import 'rxjs/add/operator/do';
-
 import get         from 'lodash-bound/get';
 import isUndefined from 'lodash-bound/isUndefined';
 import isNull      from 'lodash-bound/isNull';
 import entries     from 'lodash-bound/entries';
-
-import _isObject from 'lodash/isObject';
+import isFunction  from 'lodash-bound/isFunction';
 
 import {defineProperty} from 'bound-native-methods';
 
@@ -18,10 +10,9 @@ import assert from 'power-assert';
 
 import {humanMsg, callOrReturn, constraint} from "../util/misc";
 
-import {Field, RelField} from './Field';
+import RelField_factory from './RelField.js';
 
 import {
-	$$registerFieldClass,
 	$$owner,
 	$$key,
 	$$desc,
@@ -31,7 +22,7 @@ import {
 } from './symbols';
 
 
-Field[$$registerFieldClass](class Rel1Field extends RelField {
+export default (env) => env.registerFieldClass('Rel1Field', class Rel1Field extends RelField_factory(env) {
 	
 	// this[$$owner] instanceof Resource
 	// this[$$key]   instanceof "-->HasInnerBorder" | "<--HasPlusBorder" | ...
@@ -63,8 +54,7 @@ Field[$$registerFieldClass](class Rel1Field extends RelField {
              .map(([key, desc]) => ({
                  key,
                  desc,
-	             aliases:     desc.shortcutKey ? [desc.shortcutKey] : [],
-                 relatedKeys: desc.shortcutKey ? [desc.shortcutKey] : [] // TODO (MANIFEST): still need this?
+	             aliases: desc.shortcutKey ? [desc.shortcutKey] : []
              }));
 	}
 	
@@ -113,17 +103,18 @@ Field[$$registerFieldClass](class Rel1Field extends RelField {
 	static valueToJSON(value, {requireClass, ...options} = {}) {
 		if (!value) { return value }
 		if (requireClass && requireClass !== value.class) { return undefined }
-		const Entity = value.constructor.Entity;
-		return Entity.normalizeAddress(value, options);
+		return env.Entity.normalizeAddress(value, options);
 	}
 	
-	// jsonToValue(json, options = {}) { // TODO (MANIFEST): We're not keeping track of entities in the manifest; do this in the model library
-	// 	if (json === null) { return null }
-	// 	const Entity = this[$$owner].constructor.Entity;
-	// 	let result = Entity.getLocal(json, options);
-	// 	if (!result) { result = Entity.setPlaceholder(json, options) }
-	// 	return result;
-	// }
+	static jsonToValue(json, options = {}) {
+		if (json === null) { return null }
+		const {getEntity} = options;
+		if (json instanceof env.Entity) {
+			return json;
+		} else if (getEntity::isFunction()) {
+			return getEntity(json);
+		}
+	}
 	
 	[$$destruct]() {
 		this.set(null, {

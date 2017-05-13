@@ -55,9 +55,8 @@ export default class TypedModule extends Module {
 				
 			});
 			
-			// TODO: figure out if we still want to set
-			//     : a property `Type` on each template class,
-			//     : since a module now only has one Type class.
+			// TODO: go back to a specific Type class for each Template Class
+			// -- for now, all Template subclasses have a reference to the only Type class
 			const Type = this.classes.vertexValue('Type');
 			newTemplateClass::definePropertyByValue('Type', Type);
 			

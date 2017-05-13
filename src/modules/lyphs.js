@@ -48,7 +48,8 @@ export default TypedModule.create('lyphs', [
 		
 		extends: IsRelatedTo,
 		
-		singular: "has material",
+		singular: "contains",
+		plural:   "contain",
 		
 		1: [Material,      '0..*', { anchors: true, key: 'materials' }],
 		2: [Material.Type, '0..*'                                     ],
@@ -87,39 +88,6 @@ export default TypedModule.create('lyphs', [
 					return a.min <= b.min && b.max <= a.max;
 				}
 			}
-		},
-		
-		behavior: {
-			new(initialValues, options = {}) {
-				initialValues::defaults({
-					longitudinalBorders: [],
-					radialBorders:       [],
-					axis:              null
-				});
-				if (options.createAxis) {
-					const axis = new Border();
-					initialValues::assign({ axis });
-				}
-				if (initialValues.axis) {
-					initialValues.longitudinalBorders = _union(
-						[...initialValues.longitudinalBorders],
-						[initialValues.axis]
-					);
-				}
-				if (options.createRadialBorders) {
-					if (options.createRadialBorders === true) {
-						options.createRadialBorders = 2;
-					}
-					const nr = Math.min(options.createRadialBorders , 2);
-					for (let i = initialValues.radialBorders.length; i < nr; ++i) {
-						initialValues.radialBorders.push(new Border());
-					}
-				}
-				return new Lyph(
-					initialValues,
-					{ allowInvokingConstructor: true }
-				);
-			}
 		}
 		
 	});/////////////////////////////////////////////////////////////////////////
@@ -130,8 +98,6 @@ export default TypedModule.create('lyphs', [
 		name: 'HasPart',
 		
 		extends: Has,
-		
-		singular: "has part",
 		
 		1: [Lyph, '0..*', { anchors: true, key: 'parts' }],
 		2: [Lyph, '0..*',                                ],
@@ -146,28 +112,8 @@ export default TypedModule.create('lyphs', [
 		
 		extends: Has,
 		
-		singular: "has layer",
-		
 		1: [Lyph, '0..*', { anchors: true, key: 'layers' }],
 		2: [Lyph, '0..*'                                  ],
-		
-		properties: {
-			'relativePosition': {
-				type: 'number',
-				required: true,
-				default() { return [...this[1]['-->HasLayer']]::map((hasLayerRel) => {
-					let pos = hasLayerRel.fields.relativePosition[$$value];
-					if (pos::isUndefined()) { pos = -Infinity }
-					return pos;
-					// TODO: Having to reference $$value here to avoid getting
-					//     : a stack-overflow by using .get() (which would call this default function again)
-					//     : Not a very nice solution.
-					// TODO: go back to explicitly setting the default value at initialization,
-					//     : but time it right, so that this[1] above is already defined
-				}).concat([0])::max() + 1 }
-			}
-			// TODO: CONSTRAINT - two layers of the same lyph cannot have the same relativePosition
-		},
 		
 		noCycles: true,
 		
@@ -179,14 +125,8 @@ export default TypedModule.create('lyphs', [
 		
 		extends: HasPart,
 		
-		singular: "has part",
-		
 		1: [Lyph, '0..*', { anchors: true, key: 'patches' }],
 		2: [Lyph, '0..*'                                   ],
-		
-		properties: {
-			'patchMap': { type: 'string' }
-		},
 		
 		noCycles: true,
 		
@@ -198,29 +138,13 @@ export default TypedModule.create('lyphs', [
 
 		extends: HasPatch,
 
-		singular: "has segment",
-
 		1: [Lyph, '0..*', { anchors: true, key: 'segments' }],
 		2: [Lyph, '0..*'                                    ],
 		
-		properties: {
-			'relativePosition': {
-				type: 'number',
-				required: true,
-				default() { return [...this[1]['-->HasSegment']]::map((hasLayerRel) => {
-					let pos = hasLayerRel.fields.relativePosition[$$value];
-					if (pos::isUndefined()) { pos = -Infinity }
-					return pos;
-					// TODO: See layer relativePosition above
-				}).concat([0])::max() + 1 }
-			}
-			// TODO: CONSTRAINT - two segments of the same lyph cannot have the same relativePosition
-		},
-
 		noCycles: true
 		
 		// Note that two segments can only be formally adjacent if they share
-		// a radial border (which must therefore exist; used to be enforced with the Cylindrical)
+		// a radial border (which must therefore exist)
 
 	});
 	
@@ -252,37 +176,46 @@ export default TypedModule.create('lyphs', [
 	});/////////////////////////////////////////////////////////////////////////
 	
 	const borderRel = (name, Superclass, c1, c2, key, singular, flags = {}, options = {}) => M.RELATIONSHIP({
-			 
-			name: name,
-			
-			extends: Superclass,
-			
-			singular: singular,
+		 
+		name: name,
 		
-			...flags,
-			
-			1: [Lyph,   c1, { ...options, sustains: true, anchors: true, expand: true, key }],
-			2: [Border, c2                                                                  ],
-			
-			// Two lyphs never share the same border, formally speaking.
-			// The degree to which two borders overlap can be controlled through
-			// the existence of shared nodes on those borders.
-			// (1) Simply a single shared node between two borders indicates that they overlap anywhere.
-			// (2) If a node is on, e.g., the minus and top borders, it is in the corner, with all meaning it implies.
-			// (3) In the strictest case, two nodes could be used to connect four corners and perfectly align two lyphs.
-			
-			// TODO: CONSTRAINT: Outer border                 always has `nature: 'closed'`.
-			//     :             Inner border of position = 0 always has `nature: 'open'  `.
-			//     :             Inner border of position > 0 always has `nature: 'closed'`.
-			//     : Plus border and minus border can be either.
-			
-			// TODO: CONSTRAINT - a lyph can only have a non-infinite thickness
-			//     :              if it has two longitudinal borders
-			
-			// TODO: CONSTRAINT - a lyph can only have a non-infinite length
-			//     :              if it has two radial borders
+		extends: Superclass,
 		
-		});
+		singular: `has ${singular}`,
+		plural:   `have ${singular}`,
+	
+		...flags,
+		
+		1: [Lyph,   c1, { ...options, sustains: true, anchors: true, expand: true, key }],
+		2: [Border, c2                                                                  ],
+		
+		// Two lyphs never share the same border, formally speaking.
+		// The degree to which two borders overlap can be controlled through
+		// the existence of shared nodes on those borders.
+		// (1) Simply a single shared node between two borders indicates that they overlap anywhere.
+		// (2) If a node is on, e.g., the minus and top borders, it is in the corner, with all meaning it implies.
+		// (3) In the strictest case, two nodes could be used to connect four corners and perfectly align two lyphs.
+		
+		// TODO: CONSTRAINT: Outer border                 always has `nature: 'closed'`.
+		//     :             Inner border of position = 0 always has `nature: 'open'  `.
+		//     :             Inner border of position > 0 always has `nature: 'closed'`.
+		//     : Plus border and minus border can be either.
+		
+		// TODO: CONSTRAINT - a lyph can only have a non-infinite thickness
+		//     :              if it has two longitudinal borders
+		
+		// TODO: CONSTRAINT - a lyph can only have a non-infinite length
+		//     :              if it has two radial borders
+	
+	});
+	
+	/* 4 borders maximum; at least two longitudinal borders; optionally one or two radial borders */
+	const HasBorder             = borderRel('HasBorder',             Has,       '0..4', '1..1', 'borders',             'border', { abstract: true });
+	const HasLongitudinalBorder = borderRel('HasLongitudinalBorder', HasBorder, '2..2', '0..1', 'longitudinalBorders', 'longitudinal border', {}, {});
+	const HasRadialBorder       = borderRel('HasRadialBorder',       HasBorder, '0..2', '0..1', 'radialBorders',       'radial border');
+	
+	/* one of the longitudinal borders can be an axis */
+	const HasAxis = borderRel('HasAxis', HasLongitudinalBorder, '0..1', '0..1', 'axis', 'has axis');
 	
 	//// //// //// //// ////
 	// We're using a cylindrical coordinate system:
@@ -292,14 +225,6 @@ export default TypedModule.create('lyphs', [
 	// + radial dimension       = 'thickness' dimension
 	// +        borders         = minus & plus borders
 	//// //// //// //// ////
-	
-	/* 4 borders maximum; at least two longitudinal borders; optionally one or two radial borders */
-	const HasBorder             = borderRel('HasBorder',             Has,       '0..4', '1..1', 'borders',             'has border', { abstract: true });
-	const HasLongitudinalBorder = borderRel('HasLongitudinalBorder', HasBorder, '2..2', '0..1', 'longitudinalBorders', 'has longitudinal border', {}, {});
-	const HasRadialBorder       = borderRel('HasRadialBorder',       HasBorder, '0..2', '0..1', 'radialBorders',       'has radial border');
-	
-	/* one of the longitudinal borders can be an axis */
-	const HasAxis = borderRel('HasAxis', HasLongitudinalBorder, '0..1', '0..1', 'axis', 'has axis');
 	
 	
 	const CoalescenceScenario = M.TYPED_RESOURCE({//////////////////////////////
@@ -321,7 +246,8 @@ export default TypedModule.create('lyphs', [
 		
 		extends: PullsIntoTypeDefinition,
 		
-		singular: "joins lyph",
+		singular: "joins",
+		plural:   "join",
 		
 		1: [CoalescenceScenario, '2..2', { anchors: true, key: 'lyphs' }],
 		2: [Lyph,                '0..*'                                 ],
@@ -358,6 +284,7 @@ export default TypedModule.create('lyphs', [
 		extends: IsRelatedTo,
 		
 		singular: "coalesces",
+		plural:   "coalesce",
 		
 		1: [Coalescence, '2..2', { anchors: true, key: 'lyphs'        }],
 		2: [Lyph,        '0..*', {                key: 'coalescences' }],
@@ -373,7 +300,8 @@ export default TypedModule.create('lyphs', [
 		
 		extends: IsRelatedTo,
 		
-		singular: "coalesces through",
+		singular: "coalesces like",
+		plural:   "coalesce like",
 		
 		1: [Coalescence,         '0..*', { anchors: true, key: 'scenarios' }],
 		2: [CoalescenceScenario, '0..*',                                    ],
@@ -415,7 +343,8 @@ export default TypedModule.create('lyphs', [
 		
 		name: 'ContainsNode',
 		
-		singular: "contains node",
+		singular: "contains",
+		plural:   "contain",
 		
 		extends: PullsIntoTypeDefinition,
 		

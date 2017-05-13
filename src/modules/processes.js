@@ -10,7 +10,7 @@ import {wrapInArray} from "../util/misc";
 export default TypedModule.create('processes', [
 	resources, typed, lyphs
 ], (M, {
-	IsRelatedTo, Template, Material, Lyph, Node,
+	Template, Material, Lyph, Node,
 	Has, PullsIntoTypeDefinition
 }) => {
 	
@@ -50,6 +50,7 @@ export default TypedModule.create('processes', [
 		extends: PullsIntoTypeDefinition,
 		
 		singular: "is source for",
+		plural:   "are source for",
 		
 		1: [Node,    '0..*', {                key: 'outgoingProcesses' }],
 		2: [Process, '0..1', { anchors: true, key: 'source'            }],
@@ -63,6 +64,7 @@ export default TypedModule.create('processes', [
 		extends: PullsIntoTypeDefinition,
 		
 		singular: "has target",
+		plural:   "have target",
 		
 		1: [Process, '0..1', { anchors: true, key: 'target'            }],
 		2: [Node,    '0..*', {                key: 'incomingProcesses' }],
@@ -76,7 +78,8 @@ export default TypedModule.create('processes', [
 		
 		extends: Has,
 		
-		singular: "conveys process",
+		singular: "conveys",
+		plural: "convey",
 		
 		1: [Lyph,    '0..*', { anchors: true, key: 'processes'     }],
 		2: [Process, '0..*', {                key: 'conveyingLyph' }],
@@ -90,7 +93,8 @@ export default TypedModule.create('processes', [
 		
 		extends: Has,
 		
-		singular: "transports material",
+		singular: "transports",
+		plural: "transport",
 		
 		1: [Process,       '0..*', { anchors: true, key: 'materials' }],
 		2: [Material.Type, '0..*',                                    ],
@@ -104,14 +108,10 @@ export default TypedModule.create('processes', [
 		extends: Has,
 		
 		singular: "has segment",
+		plural:   "have segment",
 		
 		1: [Process, '0..*', { anchors: true, key: 'segments' }],
 		2: [Process, '0..*',                                   ],
-		
-		// TODO: CONSTRAINT: segments are connected in a straight line
-		//     : through nodes, starting and ending with the same nodes
-		//     : as this process; all of those nodes have to be children
-		//     : of this process too
 		
 	});
 	
@@ -122,7 +122,8 @@ export default TypedModule.create('processes', [
 		
 		extends: Has,
 		
-		singular: "has process-channel",
+		singular: "has channel",
+		plural:   "have channel",
 		
 		1: [Process, '0..*', { anchors: true, key: 'channels' }],
 		2: [Process, '0..*',                                   ],
@@ -136,7 +137,8 @@ export default TypedModule.create('processes', [
 		
 		extends: Has,
 		
-		singular: "has node-channel",
+		singular: "has channel",
+		plural:   "have channel",
 		
 		1: [Node, '0..*', { anchors: true, key: 'channels' }],
 		2: [Node, '0..*',                                   ],

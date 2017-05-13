@@ -1,29 +1,21 @@
-import isUndefined from 'lodash-bound/isUndefined';
-import entries     from 'lodash-bound/entries';
-import cloneDeep   from 'lodash-bound/cloneDeep';
+import {isUndefined, entries, cloneDeep} from 'lodash-bound';
+import {defineProperty}                  from 'bound-native-methods';
+import {humanMsg, assign, callOrReturn, constraint} from "../util/misc";
 
-import {defineProperty} from 'bound-native-methods';
-// TODO: make sure we don't need to import this anymore: take;
-
-import {humanMsg, assign, callOrReturn} from "../util/misc";
-
-import {Field} from './Field';
+import Field_factory from './Field.js';
 
 import {
-	$$registerFieldClass,
 	$$owner,
 	$$key,
 	$$desc,
 	$$initSet,
-	$$entriesIn,
-	$$id
+	$$entriesIn
 } from './symbols';
-import {constraint} from "../util/misc";
 
 const $$ignoreReadonly = Symbol('$$ignoreReadonly');
 
 
-Field[$$registerFieldClass](class PropertyField extends Field {
+export default (env) => env.registerFieldClass('PropertyField', class PropertyField extends Field_factory(env) {
 	
 	// this[$$owner]   instanceof   RelatedTo | Resource
 	// this[$$key]     instanceof   "name" | "class" | "id" | ...
@@ -49,8 +41,7 @@ Field[$$registerFieldClass](class PropertyField extends Field {
 		return cls.properties::entries()
 			.map(([key, desc])=>({
 				key,
-				desc,
-				relatedKeys: []
+				desc
 			}));
 	}
 	
@@ -61,15 +52,7 @@ Field[$$registerFieldClass](class PropertyField extends Field {
 	
 	constructor(options) {
 		super(options);
-		const { owner, key, desc, initialValue } = options;
-		
-		/* sanity checks */
-		constraint(desc.value::isUndefined() || initialValue::isUndefined(), humanMsg`
-			You tried to manually assign a value ${JSON.stringify(initialValue)}
-			to ${owner.constructor.name}#${key},
-			but it already has a fixed value of ${JSON.stringify(desc.value)}.
-		`);
-		// TODO (MANIFEST): make 'value' imply 'readonly', so the above constraint won't be explicitly needed anymore
+		const { owner, desc, initialValue } = options;
 		
 		/* set the initial value */
 		this.p('isPlaceholder').filter(v=>!v).take(1).subscribe(() => {
@@ -87,6 +70,11 @@ Field[$$registerFieldClass](class PropertyField extends Field {
 		return value;
 	}
 	
+	static jsonToValue(json, {flattenFieldValues = false} = {}) {
+		if (flattenFieldValues) { json = JSON.parse(value) }
+		return json;
+	}
+	
 	validate(val, stages = []) {
 		
 		if (stages.includes('commit')) {
@@ -97,8 +85,8 @@ Field[$$registerFieldClass](class PropertyField extends Field {
 		}
 		
 		// TODO: CHECK CONSTRAINT: given property value conforms to JSON schema
-		// TODO: CHECK ADDITIONAL (PROPERTY-SPECIFIC) CONSTRAINTS: e.g., if this
-		//     : is a template, does it conform to its corresponding type?
+		// TODO: CHECK ADDITIONAL (PROPERTY-SPECIFIC) CONSTRAINTS:
+		//     : e.g., if this is a template, does it conform to its corresponding type?
 		
 	}
 	

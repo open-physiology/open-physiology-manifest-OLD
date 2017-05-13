@@ -30,7 +30,8 @@ export default TypedModule.create('groups', [
 		
 		extends: PullsIntoTypeDefinition,
 		
-		singular: "includes element",
+		singular: "includes",
+		plural:   "include",
 		
 		1: [Group,    '0..*', { anchors: true, key: 'elements' }],
 		2: [Template, '0..*',                                   ],

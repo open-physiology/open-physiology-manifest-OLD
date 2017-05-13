@@ -1,14 +1,7 @@
-// TODO: make sure we don't need to import this anymore: switchMap;
-// TODO: make sure we don't need to import this anymore: startWith;
-// TODO: make sure we don't need to import this anymore: pairwise;
-// import 'rxjs/add/operator/do';
-
 import inRange     from 'lodash-bound/inRange';
 import get         from 'lodash-bound/get';
 import size        from 'lodash-bound/size';
 import entries     from 'lodash-bound/entries';
-import isUndefined from 'lodash-bound/isUndefined';
-import isArray     from 'lodash-bound/isArray';
 
 import {defineProperty} from 'bound-native-methods';
 
@@ -16,12 +9,10 @@ import assert from 'power-assert';
 
 import ObservableSet, {setEquals, copySetContent} from '../util/ObservableSet';
 import {humanMsg, constraint} from '../util/misc';
-import {map, filter} from 'lodash-bound';
 
-import {Field, RelField} from './Field';
+import RelField_factory from './RelField.js';
 
 import {
-	$$registerFieldClass,
 	$$owner,
 	$$key,
 	$$desc,
@@ -32,7 +23,7 @@ import {
 import {callOrReturn} from 'utilities';
 
 
-Field[$$registerFieldClass](class Rel$Field extends RelField {
+export default (env) => env.registerFieldClass('Rel$Field', class Rel$Field extends RelField_factory(env) {
 	
 	// this[$$owner] instanceof Resource
 	// this[$$key]   instanceof "-->ContainsMaterial" | "-->HasPart" | "<--FlowsTo" | ...
@@ -67,8 +58,7 @@ Field[$$registerFieldClass](class Rel$Field extends RelField {
 			.map(([key, desc]) => ({
 				key,
 				desc,
-				aliases:     desc.shortcutKey ? [desc.shortcutKey] : [],
-				relatedKeys: desc.shortcutKey ? [desc.shortcutKey] : [] // TODO (MANIFEST): still need this?
+				aliases: desc.shortcutKey ? [desc.shortcutKey] : []
 			}));
 	}
 	
@@ -151,44 +141,49 @@ Field[$$registerFieldClass](class Rel$Field extends RelField {
 	
 	set(newValue, { ignoreReadonly = false, ignoreValidation = false } = {}) {
 		constraint(ignoreReadonly || !this[$$desc].readonly);
-		// if (newValue::isArray()) { newValue = this.jsonToValue(newValue) }
-		// TODO (MANIFEST): Maybe remove jsonToValue from the manifest?
+		newValue = new Set(newValue);
 		if (!ignoreValidation) { this.validate(newValue, ['set']) }
 		copySetContent(this[$$value], newValue);
 	}
 	
 	add(newSubValue, { ignoreReadonly = false, ignoreValidation = false } = {}) {
 		constraint(ignoreReadonly || !this[$$desc].readonly);
-		if (!ignoreValidation) { this.validateElement(newSubValue, ['set']) }
-		// TODO: validate whether this exceeds max cardinality?
+		if (!ignoreValidation) {
+			this.validateCardinality(this[$$value]::size() + 1, ['set']);
+			this.validateElement(newSubValue, ['set']);
+		}
 		this.get().add(newSubValue);
 	}
 	
 	delete(subValue, { ignoreReadonly = false, ignoreValidation = false } = {}) {
 		constraint(ignoreReadonly || !this[$$desc].readonly);
-		// if (!ignoreValidation) {}
-		// TODO: validate whether this exceeds max cardinality?
+		if (!ignoreValidation) {
+			this.validateCardinality(this[$$value]::size() - 1, ['set']);
+		}
 		this.get().delete(subValue);
 	}
 	
 	static valueToJSON(value, {requireClass, ...options} = {}) {
 		return [...value].map(e => {
-			const Entity = e.constructor.Entity;
 			if (requireClass && requireClass !== e.class) { return undefined }
-			return Entity.normalizeAddress(e, options);
+			return env.Entity.normalizeAddress(e, options);
 		}).filter(v=>!!v);
 	}
 	
-	// jsonToValue(json, options = {}) { // TODO (MANIFEST): We're not keeping track of entities in the manifest; do this in the model library
-	// 	const Entity = this[$$owner].constructor.Entity;
-	// 	let result = new Set;
-	// 	for (let thing of json) {
-	// 		let entity = Entity.getLocal(thing, options);
-	// 		if (!entity) { entity = Entity.setPlaceholder(thing, options) }
-	// 		result.add(entity);
-	// 	}
-	// 	return result;
-	// }
+	static jsonToValue(json, options = {}) {
+		let result = new Set;
+		const {getEntity} = options;
+		for (let thing of json) {
+			let entity;
+			if (thing instanceof env.Entity) {
+				entity = thing;
+			} else if (getEntity::isFunction()) {
+				entity = getEntity(thing, options);
+			}
+			result.add(entity);
+		}
+		return result;
+	}
 		
 	[$$destruct]() {
 		this.set(new Set(), {
@@ -204,17 +199,21 @@ Field[$$registerFieldClass](class Rel$Field extends RelField {
 			The value ${val} given for ${this[$$owner].constructor.name}#${this[$$key]}
 			is not an iterable collection (like array or set).
 		`);
+		this.validateCardinality(val::size(), stages);
+		val.forEach(::this.validateElement, stages);
+	}
+	
+	validateCardinality(cardinality, stages = []) {
 		if (stages.includes('commit')) {
 			const {min, max} = this[$$desc].cardinality;
-			constraint(val::size()::inRange(min, max + 1), humanMsg`
+			constraint(cardinality::inRange(min, max + 1), humanMsg`
 				The number of values in field ${this[$$owner].constructor.name}#${this[$$key]}
 				is not within the expected range [${min}, ${max}].
 			`);
 		}
-		val.forEach(::this.validateElement);
 	}
 	
-	validateElement(element) {
+	validateElement(element, stages = []) {
 		/* the value must be of the proper domain */
 		if (!this[$$desc].codomain.resourceClass.hasInstance(element)) {
 			throw new Error(humanMsg`

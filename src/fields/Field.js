@@ -1,24 +1,19 @@
 import {pick, isFunction, isUndefined, values} from 'lodash-bound';
 
-import {defineProperties, defineProperty} from 'bound-native-methods';
+import {defineProperty} from 'bound-native-methods';
 
 import assert from 'power-assert';
 
-import {ValueTracker, event, property, flag, callOrReturn} from 'utilities';
-import {humanMsg, assign} from "../util/misc";
+import {ValueTracker, property, flag, callOrReturn, humanMsg} from 'utilities';
 
 import {
-	$$registerFieldClass,
-	$$fieldClasses,
 	$$owner,
 	$$key,
 	$$desc,
 	$$value,
 	$$initSet,
 	$$entriesIn,
-	$$initialized,
-	$$destruct,
-	$$id
+	$$destruct
 } from './symbols';
 const $$fieldsInitialized = Symbol('$$fieldsInitialized');
 const $$aliases           = Symbol('$$aliases');
@@ -26,22 +21,16 @@ const $$aliases           = Symbol('$$aliases');
 import {constraint} from "../util/misc";
 
 
-export class Field extends ValueTracker {
+export default (env) => class Field extends ValueTracker {
 	
 	////////////
 	// static //
 	////////////
 	
-	static [$$registerFieldClass](FieldClass) {
-		if (!this[$$fieldClasses]) { this[$$fieldClasses] = new Set() }
-		this[$$fieldClasses].add(FieldClass);
-	}
-	
 	static augmentClass(cls, onlyForKey) {
-		if (!this[$$fieldClasses]) { this[$$fieldClasses] = new Set() }
-		
 		/* allow each kind of field to perform its initializations */
-		for (let FieldClass of this[$$fieldClasses]) {
+		for (let FieldClass of env.fieldClasses::values()) {
+			if (!FieldClass[$$entriesIn]) { continue }
 			for (let {key, desc, aliases} of FieldClass[$$entriesIn](cls)) {
 				if (!onlyForKey || onlyForKey === key) {
 					FieldClass.initClass({ cls, key, aliases, desc });
@@ -56,7 +45,8 @@ export class Field extends ValueTracker {
 		
 		/* initialize all fields */
 		const keyDescs = {};
-		for (let FieldClass of this[$$fieldClasses]) {
+		for (let FieldClass of env.fieldClasses::values()) {
+			if (!FieldClass[$$entriesIn]) { continue }
 			for (let entry of FieldClass[$$entriesIn](owner.constructor)) {
 				const {key, aliases = []} = entry;
 				const candidateKeys = [key, ...aliases].filter(v=>!initialValues[v]::isUndefined());
@@ -83,7 +73,6 @@ export class Field extends ValueTracker {
 		for (let entry of keyDescs::values()) {
 			let {FieldClass} = entry;
 			delete entry.FieldClass;
-			delete entry.relatedKeys; // TODO (MANIFEST): still need this?
 			new FieldClass(entry);
 		}
 		
@@ -128,10 +117,7 @@ export class Field extends ValueTracker {
 		this[$$desc]    = desc;
 		this[$$aliases] = aliases;
 		if (setValueThroughSignal) {
-			// allow signal-push to change value
-			this.p('value').subscribe((v) => {
-				this.set(v);
-			});
+			this.p('value').subscribe( ::this.set );
 		}
 		this.isPlaceholder = isPlaceholder;
 	}
@@ -140,7 +126,6 @@ export class Field extends ValueTracker {
 	
 	valueToJSON(options = {}) { return this.constructor.valueToJSON(this.value, options) }
 	
-	//noinspection JSDuplicatedDeclaration // (to suppress warning due to Webstorm bug)
 	get() { return this[$$value] }
 	
 	set(newValue, options = {}) {
@@ -153,13 +138,14 @@ export class Field extends ValueTracker {
 				Tried to set the readonly field
 				'${this[$$owner].constructor.name}#${this[$$key]}'.
 			`);
-			if (this.jsonToValue::isFunction()) {
-				newValue = this.jsonToValue(newValue, options);
-			}
 			if (!ignoreValidation) { this.validate(newValue, ['set']) }
 			this[$$value] = newValue;
 			this.pSubject('value').next(newValue);
 		}
+	}
+	
+	validate(val, stages = []) {
+		// to be implemented in subclasses
 	}
 	
 	[$$destruct]() {
@@ -181,38 +167,4 @@ export class Field extends ValueTracker {
 		}
 	}
 	
-	isInvalid(val) {
-		try {
-			let valueToValidate = val::isUndefined() ? this[$$value] : val;
-			this.validate(valueToValidate, ['set']);
-			return false;
-		} catch (err) {
-			return err;
-		}
-	}
-	
-	validate(val, stages = []) {}
-	
-}
-
-export class RelField extends Field {
-	
-	getAll() {
-		// to be implemented in subclasses
-	}
-	
-	add(newValue, options) {
-		// to be implemented in subclasses
-	}
-	
-	delete(oldValue, options) {
-		// to be implemented in subclasses
-	}
-	
-	validateElement(element, options) {
-		// to be implemented in subclasses
-	}
-	
-}
-
-// TODO (MANIFEST): ^ a way for the model library to add 'possibleValues' property to RelField instances
+};

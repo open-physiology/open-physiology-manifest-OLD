@@ -44,14 +44,11 @@ export default TypedModule.create('measurables', [
 		
 		extends: PullsIntoTypeDefinition,
 		
-		singular: "measures material",
+		singular: "measures",
+		plural:   "measure",
 		
 		1: [Measurable,    '0..*', { anchors: true, key: 'materials' }],
-		2: [Material.Type, '0..*',                                    ],
-		
-		properties: {
-			'dimensionality': { ...dimensionalitySchema }
-		},
+		2: [Material.Type, '0..*',                                    ]
 		
 	});
 	
@@ -77,7 +74,8 @@ export default TypedModule.create('measurables', [
 		
 		extends: Has,
 		
-		singular: "has measurable",
+		singular: "has",
+		plural: "have",
 		
 		1: [MeasurableLocation, '0..*', { anchors: true, sustains: true, key: 'measurables' }],
 		2: [Measurable,         '0..*', {                                key: 'locations'   }],
@@ -109,6 +107,7 @@ export default TypedModule.create('measurables', [
 		extends: PullsIntoTypeDefinition,
 		
 		singular: "is cause of",
+		plural: "are cause of",
 		
 		1: [Measurable, '0..*', {                key: 'effects' }],
 		2: [Causality,  '1..1', { anchors: true, key: 'cause'   }],
@@ -122,6 +121,7 @@ export default TypedModule.create('measurables', [
 		extends: PullsIntoTypeDefinition,
 		
 		singular: "has effect",
+		plural:   "have effect",
 		
 		1: [Causality,  '1..1', { anchors: true, key: 'effect' }],
 		2: [Measurable, '0..*', {                key: 'causes' }],
