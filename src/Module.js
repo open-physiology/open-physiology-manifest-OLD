@@ -1,17 +1,15 @@
-'use strict';
+import {
+	isUndefined,
+	isInteger,
+	defaults,
+	assignWith,
+	keys,
+	values,
+	entries,
+	fromPairs
+} from 'lodash-bound';
 
-import isUndefined from 'lodash-bound/isUndefined';
-import isInteger   from 'lodash-bound/isInteger';
-import defaults    from 'lodash-bound/defaults';
-import assignWith  from 'lodash-bound/assignWith';
-import keys        from 'lodash-bound/keys';
-import values      from 'lodash-bound/values';
-import entries     from 'lodash-bound/entries';
-import fromPairs   from 'lodash-bound/fromPairs';
-import cloneDeep   from 'lodash-bound/cloneDeep';
-import isArray     from 'lodash-bound/isArray';
-
-import _isEqual from 'lodash/isEqual';
+import {isEqual as _isEqual} from 'lodash';
 
 import assert from 'power-assert';
 
@@ -27,10 +25,8 @@ import {
 	definePropertiesByValue
 } from './util/misc';
 
-import entityClassFactory  from './Entity';
-import {Field}             from './fields/fields';
-import commandClassFactory from './commands/Command';
-
+import Entity_factory from './Entity';
+import Field_factory      from './fields/fields.js';
 
 const $$processedFor              = Symbol('$$processedFor');
 const $$relationshipSpecs         = Symbol('$$relationshipSpecs');
@@ -39,138 +35,32 @@ const $$processRelationshipDomain = Symbol('$$processRelationshipDomain');
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Environment class                                                         //
+// Environment class                                                          //
 ////////////////////////////////////////////////////////////////////////////////
 
 class Environment {
 	
 	// vertices: name                   -> class
 	// edges:    [superclass, subclass] -> undefined
-	classes : Graph;
+	classes: Graph;
+	Entity:  Class;
+	Field:   Class;
 	
-	Command : Class;
-	Entity  : Class;
-	
-	constructor(envOrBackend) {
+	constructor(env) {
 		/* if the passed object is already an environment, return it now */
-		if (envOrBackend instanceof Environment) { return envOrBackend }
-		
-		/* initialize commit and load implementations */
-		/* issue an error if/when commit or load were called but not provided */
-		const noOpMsg = (op) => async () => { console.error(humanMsg`No '${op}' behavior was specified to the module.`) };
-		const thisEnvironment = this;
-		
-		
-		
-		/* a function to replace temporary id with new id */
-		function replaceTemporaryIds({futureCommand, temporaryId, newId}) {
-			let idObjects = [];
-			switch (futureCommand.commandType) {
-				case 'new': {
-					const cls = thisEnvironment.classes[futureCommand.values.class];
-					const fieldKeys = cls.isResource
-						? [...cls.relationships::keys(), ...cls.relationshipShortcuts::keys()]
-						: [1, 2];
-					for (let key of fieldKeys) {
-						if (futureCommand.values[key]::isArray()) {
-							idObjects.push(...futureCommand.values[key]);
-						} else {
-							idObjects.push(futureCommand.values[key]);
-						}
-					}
-				} break;
-				case 'edit': {
-					idObjects.push(futureCommand.entity);
-					const cls = thisEnvironment.classes[futureCommand.entity.class];
-					const fieldKeys = cls.isResource
-						? [...cls.relationships::keys(), ...cls.relationshipShortcuts::keys()]
-						: [1, 2];
-					for (let key of fieldKeys) {
-						if (futureCommand.newValues[key]::isArray()) {
-							idObjects.push(...futureCommand.newValues[key]);
-						} else {
-							idObjects.push(futureCommand.newValues[key]);
-						}
-					}
-				} break;
-				case 'delete': {
-					idObjects.push(futureCommand.entity);
-				} break;
-			}
-			for (let idObject of idObjects) {
-				if (idObject && idObject.id === temporaryId) {
-					idObject.id = newId;
-				}
-			}
-		}
-		
-		async function defaultBatchCommitter({temporaryIds, commands}) {
-			
-			/* get unfrozen version */
-			commands = commands::cloneDeep();
-			
-			/* prepare response object */
-			let response = {
-				temporaryIds: {},
-				commands: []
-			};
-			
-			/* handle all commands in order */
-			for (let i = 0; i < commands.length; ++i) {
-				const localCommand = commands[i];
-				let localResponse;
-				switch(localCommand.commandType) {
-					case 'new': {
-						localResponse = await this.commit_new(localCommand);
-						if (temporaryIds.includes(localCommand.values.id)) {
-							const temporaryId = localCommand.values.id;
-							const newId       = localResponse.id;
-							response.temporaryIds[temporaryId] = newId;
-							for (let j = i+1; j < commands.length; ++j) {
-								const futureCommand = commands[j];
-								replaceTemporaryIds({futureCommand, temporaryId, newId});
-							}
-						}
-					} break;
-					case 'edit': {
-						localResponse = await this.commit_edit(localCommand);
-					} break;
-					case 'delete': {
-						localResponse = await this.commit_delete(localCommand);
-					} break;
-					default: assert(false)
-				}
-				response.commands.push(localResponse);
-			}
-			
-			/***/
-			return response::cloneDeep();
-		}
-		this.backend = {};
-		for (let [op,         defaultOp] of [
-	        ['commit_new',    noOpMsg('commit_new')   ],
-	        ['commit_edit',   noOpMsg('commit_edit')  ],
-	        ['commit_delete', noOpMsg('commit_delete')],
-	        ['commit_batch',  defaultBatchCommitter   ],
-	        ['load',          noOpMsg('load')         ],
-	        ['loadAll',       noOpMsg('loadAll')      ],
-		]) {
-			this.backend[op] = this[op] =
-				envOrBackend[op] ? ::envOrBackend[op] : defaultOp;
-		}
+		if (env instanceof Environment) { return env }
 		
 		/* start tracking modules and classes */
 		this::definePropertiesByValue({
 			modules: new Map,
-			classes: new Graph
+			classes: new Graph,
+			Entity:  Entity_factory(this),
+			Field:   Field_factory(this)
 		});
 		
-		/* create a version of the Command and Entity classes */
-		const {Command, TrackedCommand, Command_batch} = commandClassFactory(this);
-		this::definePropertyByValue('Command',        Command                 );
-		this::definePropertyByValue('TrackedCommand', TrackedCommand          );
-		this::definePropertyByValue('Command_batch',  Command_batch           );
-		this::definePropertyByValue('Entity',         entityClassFactory(this));
+		// /* create a version of the Entity class */
+		// this::definePropertyByValue('Entity', );
+		// this::definePropertyByValue('Field',  );
 		
 		/* make Entity behave more like all its subclasses */
 		this.classes.ensureVertex('Entity', this.Entity);
@@ -188,8 +78,7 @@ class Environment {
 		module::definePropertiesByValue({
 			environment: this,
 			classes:     this.classes,
-			Entity:      this.Entity,
-			Command:     this.Command
+			Entity:      this.Entity
 		});
 		/* creating dependency modules */
 		for (let dep of dependencies) { dep(this) }
@@ -223,12 +112,12 @@ export default class Module {
 	
 	RESOURCE(config) {
 		config.isResource = true;
-		this.basicNormalization                      (config                         );
-		let constructor = this.mergeSameNameResources(this.Entity.createClass(config));
-		this.register                                (constructor                    );
-		this.mergeSuperclassFields                   (constructor                    );
-		// jsonSchemaConfig                          (constructor                    ); // TODO
-		Field.augmentClass                           (constructor                    );
+		this.basicNormalization                      (config);
+		let constructor = this.Entity.createClass    (config);
+		    constructor = this.mergeSameNameResources(constructor);
+		this.register                                (constructor);
+		this.mergeSuperclassFields                   (constructor);
+		this.environment.Field.augmentClass          (constructor);
 		return constructor;
 	}
 
@@ -239,10 +128,7 @@ export default class Module {
 		this.normalizeRelationshipSides              (constructor);
 		constructor = this.mergeSameNameRelationships(constructor);
 		this.register                                (constructor);
-		this.mergeSuperclassFields                   (constructor);
-		// jsonSchemaConfig                          (constructor); // TODO
 		this.resolveRelationshipDomains              (constructor);
-		Field.augmentClass                           (constructor);
 		return constructor;
 	}
 	
@@ -268,8 +154,7 @@ export default class Module {
 		
 		if (config.isResource) {
 			config::defaults({
-				relationships:         {},
-				relationshipShortcuts: {}
+				relationships: {}
 			});
 		}
 		
@@ -287,6 +172,13 @@ export default class Module {
 			config::defaults({ [pKey]: {} });
 			for (let [k, desc] of config[pKey]::entries()) {
 				desc[kKey] = k;
+				if (!desc[kKey].value::isUndefined()) {
+					assert(desc[kKey] !== false, humanMsg`
+						The property '${kKey}' has a constant
+						value, so it must be readonly.
+					`);
+					desc[kKey].readonly = true;
+				}
 			}
 		}
 		
@@ -387,98 +279,17 @@ export default class Module {
 	[$$processRelationshipDomain](referenceDomain) {
 		const {
 			resourceClass,
-			relationshipClass,
-			keyInRelationship,
 			keyInResource,
 			shortcutKey
 		} = referenceDomain;
 		
-		// const relSinks = relationshipClass::(function findSinks() {
-		// 	if (this.extendedBy::size() === 0) { return [this] }
-		// 	return union(...[...this.extendedBy].map(c => c::findSinks()));
-		// })();
-		//
-		// let hierarchy = new Graph();
-		// // ^ In this graph: super --> sub
-		//
-		// const process = (CurrentRelClass, RelSubclass) => {
-		// 	/* find all domains relevant to this resource class + field key combo */
-		// 	const relevantDomains = CurrentRelClass[$$relevantDomains] = CurrentRelClass.domainPairs
-		// 		::map(keyInRelationship)
-        //      ::filter(d => (d.resourceClass).hasSubclass(resourceClass)       ||
-        //                      (resourceClass).hasSubclass(d.resourceClass) )
-		// 		::groupBy('resourceClass.name')
-		// 		::_values()
-		// 		::map(0); // for now, only using one domain-pair per ResourceClass+RelationshipClass combination
-		// 	// TODO: ^ don't use only a[0]; this is just for now, to simplify
-		// 	//     :   we still manually have to manually create common superclasses
-		// 	//     :   for stuff (examples: MeasurableLocation, NodeLocation)
-		//
-		// 	/* register domain */
-		// 	for (let domain of relevantDomains) {
-		// 		hierarchy.addVertex(domain, domain);
-		// 	}
-		// 	/* register domain ordering by (sub/super) relationship class */
-		// 	for (let domain of relevantDomains) {
-		// 		if (RelSubclass) {
-		// 			for (let subDomain of RelSubclass[$$relevantDomains]) {
-		// 				hierarchy.spanEdge(domain, subDomain);
-		// 			}
-		// 		}
-		// 	}
-		// 	/* register domain ordering by (sub/super) resource class */
-		// 	for (let domain of relevantDomains) {
-		// 		for (let otherDomain of relevantDomains::without(domain)) {
-		// 			assert(domain.resourceClass !== otherDomain.resourceClass);
-		// 			// ^ (because `::groupBy('resourceClass.name')` above)
-		// 			if (otherDomain.resourceClass.hasSubclass(domain.resourceClass)) {
-		// 				hierarchy.spanEdge(otherDomain, domain);
-		// 			}
-		// 		}
-		// 	}
-		// 	/* recurse to relationship superclass */
-		// 	for (let RelSuperclass of CurrentRelClass.extends) {
-		// 		process(RelSuperclass, CurrentRelClass);
-		// 	}
-		// };
-		// relSinks.forEach(process);
-		//
-		// hierarchy = hierarchy.transitiveReduction();
-		
-		
-		// TODO: fix bug in the code below (the commented code above already works)
-		/* from the graph of relevant domains for this field (domain), craft one specifically for each ResourceClass */
-		// let resourceHasField = (resCls) => (!!resCls.properties[referenceDomain.keyInResource]);
-		// console.log(this.classes.hasVertex(referenceDomain.resourceClass.name), referenceDomain.resourceClass.name, [...this.classes.vertices()]::map(v=>v[1].name));
-		// for (let referenceResource of union(
-		// 	[...this.classes.verticesWithPathFrom(referenceDomain.resourceClass.name)]::map(([,r])=>r)::filter(resourceHasField),
-		// 	[...this.classes.verticesWithPathTo  (referenceDomain.resourceClass.name)]::map(([,r])=>r)::filter(resourceHasField),
-		// 	[referenceDomain.resourceClass]
-		// )) {
-		// 	let candidateDomains = [...hierarchy.sinks()]::map(([,d])=>d)::(function pinpoint() {
-		// 		let result = new Set();
-		// 		for (let domain of this) {
-		// 			const relationshipFits = (referenceDomain.relationshipClass.hasSubclass(domain.relationshipClass));
-		// 			const resourceFits     = (referenceResource                .hasSubclass(domain.resourceClass    ));
-		// 			if (relationshipFits && resourceFits) {
-		// 				result.add(domain);
-		// 			} else {
-		// 				for (let superDomain of [...hierarchy.verticesTo(domain)]::map(([,d])=>d)) {
-		// 					[superDomain]::pinpoint().forEach(::result.add);
-		// 				}
-		// 			}
-		// 		}
-		// 		return result;
-		// 	})();
-		// }
+		// NOTE: This was the location of a whole lot of unfinished code we
+		//     : may yet want to reinstate in the future. See commented code
+		//     : at the bottom of this file.
 		
 		/* put back-reference in classes */
 		resourceClass.relationships[keyInResource] = referenceDomain;
-		Field.augmentClass(resourceClass, keyInResource);
-		if (shortcutKey) {
-			resourceClass.relationshipShortcuts[shortcutKey] = referenceDomain;
-			Field.augmentClass(resourceClass, shortcutKey);
-		}
+		this.environment.Field.augmentClass(resourceClass, keyInResource);
 	}
 	
 	register(cls) {
@@ -523,20 +334,20 @@ export default class Module {
 			if (cls[$$processedFor][kind].has(newCls)) { return }
 			cls[$$processedFor][kind].add(newCls);
 			
-			function mergeBetween(superCls, subCls) {
+			const mergeBetween = (superCls, subCls) => {
 				for (let key of superCls[kind]::keys()) {
 					let superDesc = superCls[kind][key];
 					let subDesc   = subCls[kind][key];
 					if (subDesc::isUndefined()) {
 						subCls[kind][key] = superDesc;
-						Field.augmentClass(subCls, key);
+						this.environment.Field.augmentClass(subCls, key);
 					} else if (_isEqual(subDesc, superDesc)) {
 						continue;
 					} else {
 						subCls[kind][key] = customMerge(superDesc, subDesc);
 					}
 				}
-			}
+			};
 			
 			for (let superCls of cls.extends) {
 				mergeFieldKind(superCls, newCls, kind, customMerge);
@@ -552,8 +363,6 @@ export default class Module {
 				
 		mergeFieldKind(cls, cls, 'properties', (superDesc, subDesc) => {
 			assert(subDesc.key === superDesc.key);
-			
-			
 			// We're assuming that the only kind of non-trivial merging
 			// right now is to give a property a specific constant value
 			// in the subclass, which has to be checked in the superclass.
@@ -581,14 +390,6 @@ export default class Module {
 			assert(superDesc.resourceClass.hasSubclass(subDesc.resourceClass));
 			return subDesc;
 		});
-		
-		mergeFieldKind(cls, cls, 'relationshipShortcuts', (superDesc, subDesc) => {
-			assert(superDesc.resourceClass.hasSubclass(subDesc.resourceClass));
-			return subDesc;
-		});
-		
-		// TODO: for sides of a relationship (after splitting / merging all relevant domainPairs)
-		
 	}
 	
 	mergeSameNameResources(NewClass) : Class {
@@ -717,47 +518,90 @@ export default class Module {
 ////////////////////////////////////////////////////////////
 
 
-// TODO: reintroduce json schema processor
+
+
+
+////////// Below is a whole lot of unfinished code we
+		// may yet want to reinstate in the future,
+        // stored temporarily here in a comment.
+
+// const relSinks = relationshipClass::(function findSinks() {
+// 	if (this.extendedBy::size() === 0) { return [this] }
+// 	return union(...[...this.extendedBy].map(c => c::findSinks()));
+// })();
 //
-// function jsonSchemaConfig(config) {
-// 	let result = {
-// 		...config,
-// 		allProperties: { ...config.properties }
-// 	};
+// let hierarchy = new Graph();
+// // ^ In this graph: super --> sub
 //
-// 	if (isFunction(config.extends)) {
-// 		/* merge each property with properties of the same name in the superclass */
-// 		for (let key of Object.keys(config.extends.allProperties)) {
-// 			// TODO: check for conflicts
-// 			// TODO: merge certain sub-items (e.g., enums can be made narrower)
-// 			result.allProperties[key] = {
-// 				...config.extends.allProperties[key],
-// 				...result.allProperties[key]
-// 			};
+// const process = (CurrentRelClass, RelSubclass) => {
+// 	/* find all domains relevant to this resource class + field key combo */
+// 	const relevantDomains = CurrentRelClass[$$relevantDomains] = CurrentRelClass.domainPairs
+// 		::map(keyInRelationship)
+      //      ::filter(d => (d.resourceClass).hasSubclass(resourceClass)       ||
+      //                      (resourceClass).hasSubclass(d.resourceClass) )
+// 		::groupBy('resourceClass.name')
+// 		::_values()
+// 		::map(0); // for now, only using one domain-pair per ResourceClass+RelationshipClass combination
+// 	// TODO: ^ don't use only a[0]; this is just for now, to simplify
+// 	//     :   we still manually have to manually create common superclasses
+// 	//     :   for stuff (examples: MeasurableLocation, NodeLocation)
+//
+// 	/* register domain */
+// 	for (let domain of relevantDomains) {
+// 		hierarchy.addVertex(domain, domain);
+// 	}
+// 	/* register domain ordering by (sub/super) relationship class */
+// 	for (let domain of relevantDomains) {
+// 		if (RelSubclass) {
+// 			for (let subDomain of RelSubclass[$$relevantDomains]) {
+// 				hierarchy.spanEdge(domain, subDomain);
+// 			}
 // 		}
 // 	}
+// 	/* register domain ordering by (sub/super) resource class */
+// 	for (let domain of relevantDomains) {
+// 		for (let otherDomain of relevantDomains::without(domain)) {
+// 			assert(domain.resourceClass !== otherDomain.resourceClass);
+// 			// ^ (because `::groupBy('resourceClass.name')` above)
+// 			if (otherDomain.resourceClass.hasSubclass(domain.resourceClass)) {
+// 				hierarchy.spanEdge(otherDomain, domain);
+// 			}
+// 		}
+// 	}
+// 	/* recurse to relationship superclass */
+// 	for (let RelSuperclass of CurrentRelClass.extends) {
+// 		process(RelSuperclass, CurrentRelClass);
+// 	}
+// };
+// relSinks.forEach(process);
 //
-// 	/* folding superclass properties into one object */
-// 	Object.assign(result.allProperties, config.extends && config.extends.allProperties);
-//
-// 	return result;
-//
-// 	// return {
-// 	// 	...config,
-// 	// 	schema: {
-// 	// 		$schema:             'http://json-schema.org/draft-04/schema#',
-// 	// 		type:                'Object',
-// 	// 		properties:           { ...(config.properties || {})         },
-// 	// 		patternProperties:    { ...(config.patternProperties || {})  },
-// 	// 		additionalProperties: ( config.additionalProperties === true )  // default: no additional properties allowed
-// 	//
-// 	// 		// TODO: have this object conform to json schema syntax
-// 	// 		//     : - add 'required' field?
-// 	// 		//     : - sanitize config.properties
-// 	// 		//     : - add properties '1' and '2' to it (if config.isRelationship)
-// 	//
-// 	// 		// TODO: fold superclass properties, patternProperties, etc. into this
-// 	// 		//     : - fold property flags into each other
-// 	// 	}
-// 	// };
+// hierarchy = hierarchy.transitiveReduction();
+
+// --- fix bug in the code below (the commented code above already works)
+
+/* from the graph of relevant domains for this field (domain), craft one specifically for each ResourceClass */
+// let resourceHasField = (resCls) => (!!resCls.properties[referenceDomain.keyInResource]);
+// console.log(this.classes.hasVertex(referenceDomain.resourceClass.name), referenceDomain.resourceClass.name, [...this.classes.vertices()]::map(v=>v[1].name));
+// for (let referenceResource of union(
+// 	[...this.classes.verticesWithPathFrom(referenceDomain.resourceClass.name)]::map(([,r])=>r)::filter(resourceHasField),
+// 	[...this.classes.verticesWithPathTo  (referenceDomain.resourceClass.name)]::map(([,r])=>r)::filter(resourceHasField),
+// 	[referenceDomain.resourceClass]
+// )) {
+// 	let candidateDomains = [...hierarchy.sinks()]::map(([,d])=>d)::(function pinpoint() {
+// 		let result = new Set();
+// 		for (let domain of this) {
+// 			const relationshipFits = (referenceDomain.relationshipClass.hasSubclass(domain.relationshipClass));
+// 			const resourceFits     = (referenceResource                .hasSubclass(domain.resourceClass    ));
+// 			if (relationshipFits && resourceFits) {
+// 				result.add(domain);
+// 			} else {
+// 				for (let superDomain of [...hierarchy.verticesTo(domain)]::map(([,d])=>d)) {
+// 					[superDomain]::pinpoint().forEach(::result.add);
+// 				}
+// 			}
+// 		}
+// 		return result;
+// 	})();
 // }
+
+//////////////////////

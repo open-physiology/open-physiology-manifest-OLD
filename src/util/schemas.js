@@ -30,40 +30,7 @@ export const enumArraySchema = (...candidates) => ({
 	maxItems   : candidates.length
 });
 
-export const minusPlusSchema = enumSchema('minus', 'plus');
-
-export const innerOuterSchema = enumSchema('inner', 'outer');
-
-export const lyphDirectionSchema = enumSchema(...minusPlusSchema.enum, ...innerOuterSchema.enum);
-
 export const oneOf = (...schemas) => ({ oneOf: schemas });
-
-// export const rationalNumberSchema = oneOf({
-// 	// TODO: specify format (https://github.com/infusion/Fraction.js)
-// 	type: 'object',
-// 	properties: {
-// 		'n': { type: 'integer', minimum: 0,                required: true }, // numerator
-// 		'd': { type: 'integer', minimum: 1,    default: 1, required: true }, // denominator
-// 		's': { type: 'integer', enum: [-1, 1], default: 1, required: true }  // sign
-// 	}
-// }, { type: 'number' }, { type: 'string' });
-
-
-//NK Simplified schema to avoid oneOf
-export const rationalNumberSchema = {
-	type: 'object',
-	properties: {
-		'n': { type: 'integer', minimum: 0,                required: true }, // numerator
-		'd': { type: 'integer', minimum: 1,    default: 1, required: true }, // denominator
-		's': { type: 'integer', enum: [-1, 1], default: 1, required: true }  // sign
-	}
-};
-
-export const angleSchema = {
-	type: 'number',
-	minimum: 0,   exclusiveMinimum: false,
-	maximum: 360, exclusiveMaximum: true
-};
 
 export const typedDistributionSchema = {
 	type: 'object',

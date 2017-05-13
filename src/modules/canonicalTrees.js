@@ -31,8 +31,7 @@ export default TypedModule.create('canonicalTrees', [
 		extends: Template,
 		
 		singular: "canonical tree branch",
-		
-		plural: "canonical tree branches",
+		plural:   "canonical tree branches",
 				
 		icon: 'data:image/png;base64,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',
 		
@@ -44,7 +43,8 @@ export default TypedModule.create('canonicalTrees', [
 		
 		extends: PullsIntoTypeDefinition,
 		
-		singular: "has branch",
+		singular: "has",
+		plural:   "have",
 		
 		1: [CanonicalTree,       '0..*', {                key: 'childBranches' }],
 		2: [CanonicalTreeBranch, '1..1', { anchors: true, key: 'parentTree'    }],
@@ -58,6 +58,7 @@ export default TypedModule.create('canonicalTrees', [
 		extends: PullsIntoTypeDefinition,
 		
 		singular: "branches to",
+		plural:   "branch to",
 		
 		1: [CanonicalTreeBranch, '1..1', { anchors: true, key: 'childTree'    }],
 		2: [CanonicalTree,       '0..1', {                key: 'parentBranch' }],
@@ -71,8 +72,7 @@ export default TypedModule.create('canonicalTrees', [
 		extends: IsRelatedTo,
 		
 		singular: "is conveyed by",
-		
-		plural: "are conveyed by",
+		plural:   "are conveyed by",
 		
 		1: [CanonicalTreeBranch, '0..1', { anchors: true, key: 'conveyingLyphType' }],
 		2: [Lyph.Type,           '0..*', {                                         }],

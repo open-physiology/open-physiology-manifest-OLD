@@ -34,7 +34,8 @@ export default Module.create('research', [
 		
 		extends: IsRelatedTo,
 		
-		singular: "involves measurable",
+		singular: "involves",
+		plural:   "involve",
 		
 		1: [Correlation, '0..*', { anchors: true, key: 'measurables' }],
 		2: [Measurable,  '0..*',                                      ],
@@ -62,7 +63,8 @@ export default Module.create('research', [
 		
 		extends: IsRelatedTo,
 		
-		singular: "encompasses clinical index",
+		singular: "encompasses",
+		plural: "encompass",
 		
 		1: [ClinicalIndex, '0..*', { anchors: true, key: 'children' }],
 		2: [ClinicalIndex, '0..1', {                key: 'parent'   }],
@@ -78,7 +80,8 @@ export default Module.create('research', [
 		
 		extends: IsRelatedTo,
 		
-		singular: "involves clinical index",
+		singular: "involves",
+		plural: "involve",
 		
 		1: [Correlation,   '0..*', { anchors: true, key: 'clinicalIndices' }],
 		2: [ClinicalIndex, '0..*',                                          ],
@@ -105,7 +108,8 @@ export default Module.create('research', [
 		
 		extends: IsRelatedTo,
 		
-		singular: "involves publication",
+		singular: "involves",
+		plural: "involve",
 		
 		1: [Correlation, '0..1', { anchors: true, key: 'publication'  }],
 		2: [Publication, '0..*', { anchors: true, key: 'correlations' }],

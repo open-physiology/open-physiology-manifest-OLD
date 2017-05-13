@@ -1,4 +1,4 @@
-import {describe, it, expect} from '../test.helper';
+import {describe, it, expect, beforeEach} from '../test.helper';
 
 import moduleFactory from '../../src/modules/resources';
 import {simpleMockHandlers} from "../mock-handlers.helper";
@@ -6,13 +6,8 @@ import {simpleMockHandlers} from "../mock-handlers.helper";
 
 describe("'resources' Module", () => {
 	
-	let environment, backend, frontend;
-	beforeEach(() => {
-		let registerEnvironment;
-		({backend, frontend, registerEnvironment} = simpleMockHandlers());
-		environment = moduleFactory(frontend);
-		registerEnvironment(environment);
-	});
+	let environment;
+	beforeEach(() => { environment = moduleFactory() });
 	
 	it("exports the expected classes", () => {
 
@@ -22,7 +17,6 @@ describe("'resources' Module", () => {
 		);
 		expect(environment.classes).to.contain.relationships(
 			'IsRelatedTo',
-			'IsExternallyRelatedTo',
 			'CorrespondsTo'
 		);
 		

@@ -8,15 +8,14 @@ import {
 	expect,
 } from './test.helper';
 
-// import  from '../src/index.js';
+import moduleFactory from '../src/index.js';
 
-/** @test */
+
 describe("the open-physiology-manifest", () => {
 	
-	beforeEach(() => {
-		// setup
-	});
+	let environment;
+	beforeEach(() => { environment = moduleFactory() });
 	
-	
+	// TODO: tests
 	
 });

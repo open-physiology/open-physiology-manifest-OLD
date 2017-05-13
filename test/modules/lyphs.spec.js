@@ -1,4 +1,4 @@
-import {describe, it, expect} from '../test.helper';
+import {describe, it, expect, beforeEach} from '../test.helper';
 
 import moduleFactory from '../../src/modules/lyphs';
 
@@ -7,13 +7,8 @@ import {simpleMockHandlers} from "../mock-handlers.helper";
 
 describe("'lyphs' Module", () => {
 	
-	let environment, backend, frontend;
-	beforeEach(() => {
-		let registerEnvironment;
-		({backend, frontend, registerEnvironment} = simpleMockHandlers());
-		environment = moduleFactory(frontend);
-		registerEnvironment(environment);
-	});
+	let environment;
+	beforeEach(() => { environment = moduleFactory() });
 	
 	it("exports the expected classes", () => {
 		
@@ -44,60 +39,21 @@ describe("'lyphs' Module", () => {
 
 	it("exports classes that can be instantiated", async () => {
 		
-		const {
-			Material,
-			Lyph,
-			Border
-		} = environment.classes;
+		const {Material, Lyph} = environment.classes;
 		
 		let material = Material.new();
 		let lyph     = Lyph.new();
-		
 		expect(material).to.be.an.instanceOf(Material);
 		expect(lyph    ).to.be.an.instanceOf(Material, Lyph);
 		
 	});
- 
-	it("exports lyph type that can be given custom borders and axes", async () => {
-		
-		const {
-			Lyph,
-			Border,
-			Has,
-			HasBorder,
-			HasLongitudinalBorder
-		} = environment.classes;
-		
-		let lyph1 = Lyph.new({}, {
-			createRadialBorders: 1
-		});
-		
-		expect([...lyph1['-->HasBorder']]).to.have.a.lengthOf(1);
-		
-		expect([...lyph1.radialBorders]).to.have.a.lengthOf(1);
-		expect([...lyph1.radialBorders][0]).to.be.an.instanceOf(Border);
-		
-		let lyph2 = Lyph.new({}, {
-			createRadialBorders: 2,
-			createAxis: true
-		});
-		
-		expect([...lyph2['-->HasBorder']]).to.have.a.lengthOf(3);
-		
-		expect([...lyph2.radialBorders]).to.have.a.lengthOf(2);
-		expect([...lyph2.radialBorders][0]).to.be.an.instanceOf(Border);
-		expect([...lyph2.radialBorders][1]).to.be.an.instanceOf(Border);
-		expect(lyph2.axis).to.be.an.instanceOf(Border);
-		
-	});
 	
-	it("exports classes that have the properties, relationships and relationshipShortcuts of their superclasses", () => {
+	it("exports classes that have the properties and relationships of their superclasses", () => {
 		
 		const {Lyph} = environment.classes;
 		
-		expect(Lyph.properties           ).to.have.property('id');
-		expect(Lyph.relationships        ).to.have.property('-->ContainsMaterial');
-		expect(Lyph.relationshipShortcuts).to.have.property('materials');
+		expect(Lyph.properties   ).to.have.property('id');
+		expect(Lyph.relationships).to.have.property('-->ContainsMaterial');
 		
 	});
 	
@@ -115,10 +71,11 @@ describe("'lyphs' Module", () => {
 		lyph.layers.add(layer2);
 		lyph.layers.add(layer3);
 		
-		expect(new Set([...lyph['-->HasLayer']]::map('relativePosition')).size).to.equal(3);
-		expect([...lyph['-->HasLayer']]::map('relativePosition')[0]).to.be.a('number');
-		expect([...lyph['-->HasLayer']]::map('relativePosition')[1]).to.be.a('number');
-		expect([...lyph['-->HasLayer']]::map('relativePosition')[2]).to.be.a('number');
+		const layers = [...lyph['-->HasLayer']];
+		expect(layers.length).to.equal(3);
+		expect(layers[0]).to.be.instanceOf(Lyph);
+		expect(layers[1]).to.be.instanceOf(Lyph);
+		expect(layers[2]).to.be.instanceOf(Lyph);
 		
 	});
 	
@@ -128,18 +85,19 @@ describe("'lyphs' Module", () => {
 		
 		let lyph = Lyph.new();
 		
-		let layer1 = Lyph.new();
-		let layer2 = Lyph.new();
-		let layer3 = Lyph.new();
+		let segment1 = Lyph.new();
+		let segment2 = Lyph.new();
+		let segment3 = Lyph.new();
 		
-		lyph.segments.add(layer1);
-		lyph.segments.add(layer2);
-		lyph.segments.add(layer3);
+		lyph.segments.add(segment1);
+		lyph.segments.add(segment2);
+		lyph.segments.add(segment3);
 		
-		expect(new Set([...lyph['-->HasSegment']]::map('relativePosition')).size).to.equal(3);
-		expect([...lyph['-->HasSegment']]::map('relativePosition')[0]).to.be.a('number');
-		expect([...lyph['-->HasSegment']]::map('relativePosition')[1]).to.be.a('number');
-		expect([...lyph['-->HasSegment']]::map('relativePosition')[2]).to.be.a('number');
+		const segments = [...lyph['-->HasSegment']];
+		expect(segments.length).to.equal(3);
+		expect(segments[0]).to.be.instanceOf(Lyph);
+		expect(segments[1]).to.be.instanceOf(Lyph);
+		expect(segments[2]).to.be.instanceOf(Lyph);
 		
 	});
 	
