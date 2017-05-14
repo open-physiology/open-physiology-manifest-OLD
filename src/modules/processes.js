@@ -1,11 +1,11 @@
-import TypedModule                   from '../TypedModule';
-import {arrayContainsValue}          from '../util/misc';
-import {enumArraySchema, enumSchema} from '../util/schemas';
+import {wrapInArray} from 'utilities';
 
-import resources from './resources';
-import typed     from './typed';
-import lyphs     from './lyphs';
-import {wrapInArray} from "../util/misc";
+import TypedModule       from '../TypedModule.js';
+import {enumArraySchema} from '../util/schemas.js';
+import resources         from './resources.js';
+import typed             from './typed.js';
+import lyphs             from './lyphs.js';
+
 
 export default TypedModule.create('processes', [
 	resources, typed, lyphs

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/scripts/produce-grouped-descriptions.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/open-physiology/open-physiology-manifest" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Entity">Entity</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/scripts/produce-grouped-descriptions.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import M from &apos;../index&apos;;
+
+import padEnd   from &apos;lodash-bound/padEnd&apos;;
+import entries from &apos;lodash-bound/entries&apos;;
+import size     from &apos;lodash-bound/size&apos;;
+
+////////////////////////////////////////////////////////////////////////////////
+
+let output = &quot;&quot;;
+const o = (...t) =&gt; {
+	for (let t1 of t) {
+		output += t1;
+	}
+};
+for (let [,cls] of M.classes) {
+	if (cls.isResource) {
+		let fields = [];
+		fields.largestKeySize = 0;
+		
+		/* properties */
+		for (let [key, desc] of cls.properties::entries()) {
+			
+			fields.largestKeySize = Math.max(key.length, fields.largestKeySize);
+			let entry = { key };
+			fields.push(entry);
+			
+			if (typeof desc.value !== &apos;undefined&apos;) {
+				entry.op = &apos;=&apos;;
+				entry.desc = `${JSON.stringify(desc.value)}`;
+			} else {
+				entry.op = &apos;:&apos;;
+				entry.desc = `${JSON.stringify(desc)}`;
+			}
+			
+		}
+		/* relationships */
+		for (let [key, desc] of (cls.relationships || {})::entries()) {
+			
+			fields.largestKeySize = Math.max(key.length, fields.largestKeySize);
+			let entry = { key, op: &apos;:&apos; };
+			fields.push(entry);
+			
+			let cardinality = (desc) =&gt; stringifyCardinality(desc.cardinality, {abbreviate: true});
+			let arrow = (desc === desc.relationshipClass[1] ? &apos;--&gt;&apos; : &apos;&lt;--&apos;);
+			
+			entry.desc = `(${cardinality(desc.codomain)})${arrow}(${cardinality(desc)})  ${desc.codomain.resourceClass.name}`;
+			
+			if (desc.options.anchors  ) { entry.desc += &apos; [anchors]&apos;                   }
+			if (desc.options.sustains ) { entry.desc += &apos; [sustains]&apos;                  }
+			if (desc.options.covariant) { entry.desc += &apos; [covariant]&apos;                 }
+			if (desc.shortcutKey      ) { entry.desc += ` [key=&apos;${desc.shortcutKey}&apos;]` }
+			if (desc.properties &amp;&amp; desc.properties::size() &gt; 0) {
+				entry.sub = [];
+				entry.sub.largestKeySize = 0;
+				
+				for (let [pKey, pDesc] of desc.properties::entries()) {
+					
+					entry.sub.largestKeySize = Math.max(pKey.length, entry.sub.largestKeySize);
+					let sub = { key: pKey };
+					entry.sub.push(sub);
+					
+					if (typeof pDesc.value !== &apos;undefined&apos;) {
+						sub.op = &apos;=&apos;;
+						sub.desc = `${JSON.stringify(pDesc.value)}`;
+					} else {
+						sub.op = &apos;:&apos;;
+						sub.desc = `${JSON.stringify(pDesc)}`;
+					}
+				}
+			}
+		}
+		
+		/* generating the output */
+		o(&apos;========================================\n&apos;);
+		o(cls.name);
+		if (cls.abstract) { o(&apos; [abstract]&apos;) }
+		let aClassesIn = [...M.classes.verticesTo(cls.name)].map(pair=&gt;pair[1]);
+		if (aClassesIn.length &gt; 0) { o(` [extends ${aClassesIn.map(c=&gt;c.name).join(&apos;, &apos;)}]`) }
+		o(&apos;\n&apos;);
+		o(&apos;----------------------------------------\n&apos;);
+		for (let entry of fields || []) {
+			entry.key = entry.key::padEnd(fields.largestKeySize);
+			o(entry.key, &apos; &apos;, entry.op, &apos;  &apos;, entry.desc, &apos; &apos;, &apos;\n&apos;);
+			for (let sub of entry.sub || []) {
+				sub.key = sub.key::padEnd(entry.sub.largestKeySize);
+				o(&apos;&apos;::padEnd(fields.largestKeySize+4), sub.key, &apos; &apos;, sub.op, &apos;  &apos;, sub.desc, &apos;\n&apos;);
+			}
+		}
+		o(&apos;\n&apos;);
+		
+		
+	}
+}
+
+
+import fs from &apos;fs&apos;;
+import {stringifyCardinality} from &quot;../util/misc&quot;;
+fs.writeFile(&apos;grouped-descriptions.txt&apos;, output, (err) =&gt; {
+	if(err) { return console.log(err) }
+	console.log(&quot;File saved: grouped-descriptions.txt&quot;);
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

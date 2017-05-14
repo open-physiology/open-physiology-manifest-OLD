@@ -1,14 +1,12 @@
-import get         from 'lodash-bound/get';
-import isUndefined from 'lodash-bound/isUndefined';
-import isNull      from 'lodash-bound/isNull';
-import entries     from 'lodash-bound/entries';
-import isFunction  from 'lodash-bound/isFunction';
+import {get, isUndefined, isNull, entries, isFunction} from 'lodash-bound';
 
 import {defineProperty} from 'bound-native-methods';
 
 import assert from 'power-assert';
 
-import {humanMsg, callOrReturn, constraint} from "../util/misc";
+import {humanMsg, callOrReturn} from 'utilities';
+
+import {constraint} from "../util/misc";
 
 import RelField_factory from './RelField.js';
 
@@ -22,6 +20,7 @@ import {
 } from './symbols';
 
 
+/** @private */
 export default (env) => env.registerFieldClass('Rel1Field', class Rel1Field extends RelField_factory(env) {
 	
 	// this[$$owner] instanceof Resource

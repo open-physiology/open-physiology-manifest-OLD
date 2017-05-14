@@ -1,8 +1,8 @@
-import Module               from '../Module';
+import {definePropertyByValue}   from 'utilities';
 
-import resources                 from './resources';
-import {definePropertyByValue}   from '../util/misc';
-import {typedDistributionSchema} from '../util/schemas';
+import Module                    from '../Module.js';
+import resources                 from './resources.js';
+import {typedDistributionSchema} from '../util/schemas.js';
 
 
 export default Module.create('typed', [

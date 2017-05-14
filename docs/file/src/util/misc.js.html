@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/util/misc.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/open-physiology/open-physiology-manifest" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Entity">Entity</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/util/misc.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">////////////////////////////////////////////////////////////////////////////////
+
+import {isString} from &apos;lodash-bound&apos;;
+
+import assert from &apos;power-assert&apos;;
+
+// export * from &apos;utilities&apos;;
+
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Transform a string representation of a cardinality range into an object.
+ * @private
+ * @param cardinality {string} a string representation of minimum and maximum cardinality `&quot;min..max&quot;`,
+ *                     where `min` is a natural number and `max` is a natural number greater or
+ *                     equal to `min` or an asterisk symbol `*` to represent an unbounded maximum
+ * @returns {{min: number, max: number}} an object with `min` and `max` fields
+ */
+export function parseCardinality(cardinality) {
+	assert(cardinality::isString(), `
+		A cardinality range has to be a string,
+		but a value ${JSON.stringify(cardinality)} was given.
+	`);
+	let match = cardinality.match(/^(\d+)\.\.(\d+|\*)$/);
+	assert(match &amp;&amp; match.length === 3, `
+		A cardinality range has to be in the form &quot;min..max&quot;,
+		but a value ${JSON.stringify(cardinality)} was given.
+	`);
+	let [,min,max] = match;
+	if (max === &apos;*&apos;) { max = Infinity }
+	else { max = parseInt(max, 10) }
+	min = parseInt(min, 10);
+	return {min, max};
+}
+
+/**
+ * Transform an object representation of a cardinality range into a representative string.
+ * @private
+ * @param cardinality {{min: number, max: number}} an object representation of minimum and maximum cardinality `{min, max}`
+ * @param abbreviate  {boolean} whether or not to collapse the resulting string if `min === max`
+ * @returns {string} a string representing the given cardinality range, possibly collapsed if `min === max` and `abbreviate === true`
+ */
+export function stringifyCardinality(cardinality, {abbreviate} = {}) {
+	return (cardinality.min === cardinality.max &amp;&amp; abbreviate)
+		? `   ${cardinality.min}`
+		: `${cardinality.min}..${cardinality.max === Infinity ? &apos;*&apos; : cardinality.max}`;
+}
+
+/**
+ * Compare two sets for equality.
+ * @private
+ * @param setA {Iterable&lt;T&gt;}
+ * @param setB {Iterable&lt;T&gt;}
+ * @returns {boolean} `true`, if both sets have the same elements; `false`, otherwise
+ */
+export function setEquals&lt;T&gt;(setA: Iterable&lt;T&gt;, setB: Iterable&lt;T&gt;): boolean {
+	setA = new Set(setA);
+	setB = new Set(setB);
+	if (setA.size !== setB.size) return false;
+	for (let a of setA) if (!setB.has(a)) return false;
+	return true;
+}
+
+/**
+ * Express an assertion that&apos;s tied to outside input.
+ * We may later replace this with a more sophisticated mechanism.
+ * @private
+ * @param {boolean} constraint - the condition to check
+ * @param {string}  message    - the message to display if the condition fails
+ */
+export function constraint(constraint, message) {
+	if (!constraint) {
+		throw new Error(&apos;Constraint Failure: &apos; + (message || &apos;(no message)&apos;));
+	}
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

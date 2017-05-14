@@ -1,7 +1,5 @@
 import TypedModule from '../TypedModule';
-import {
-	normalizeToRange
-} from '../util/misc';
+import {normalizeToRange, wrapInArray} from 'utilities';
 import {
 	enumArraySchema
 } from '../util/schemas';
@@ -9,19 +7,9 @@ import {
 import resources from './resources';
 import typed     from './typed';
 import {universalDistanceRange} from "../util/schemas";
-import {wrapInArray} from "../util/misc";
 
-import _union from 'lodash/union';
-
-import defaults from 'lodash-bound/defaults';
-import isUndefined from 'lodash-bound/isUndefined';
-import assign from 'lodash-bound/assign';
-import max from 'lodash-bound/max';
-import map from 'lodash-bound/map';
 import {typedDistributionSchema} from "../util/schemas";
-import {Field} from '../fields/Field';
 
-import {$$value} from '../fields/symbols';
 
 export default TypedModule.create('lyphs', [
 	resources, typed

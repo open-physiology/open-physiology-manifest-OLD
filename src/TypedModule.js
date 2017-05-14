@@ -1,5 +1,3 @@
-import Module                       from './Module';
-
 import defaults from 'lodash-bound/defaults';
 import {
 	defineProperty,
@@ -9,7 +7,10 @@ import {
 	mapOptionalArray,
 	wrapInArray,
 	definePropertyByValue
-} from './util/misc';
+} from 'utilities';
+
+import Module from './Module';
+
 
 /**
  * Typed Modules allow to more easily create related

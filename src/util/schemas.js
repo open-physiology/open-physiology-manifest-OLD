@@ -1,28 +1,35 @@
+/** @private */
 export const identifierRegex = `^[a-zA-Z_][a-zA-Z0-9_]*$`;
 
+/** @private */
 export const qualitySchema = {
 	type: 'string'
 };
 
+/** @private */
 export const identifierSchema = {
 	type:    'string',
 	pattern: '^[a-zA-Z_][a-zA-Z0-9_]*$'
 };
 
+/** @private */
 export const uriSchema = {
 	type: 'string',
 	format: 'uri'
 };
 
+/** @private */
 export const idSchema = {
 	type: 'integer'
 };
 
+/** @private */
 export const enumSchema = (...candidates) => ({
 	type: 'string',
 	enum: candidates
 });
 
+/** @private */
 export const enumArraySchema = (...candidates) => ({
 	type       : 'array',
 	items      : { ...enumSchema(...candidates) },
@@ -30,8 +37,10 @@ export const enumArraySchema = (...candidates) => ({
 	maxItems   : candidates.length
 });
 
+/** @private */
 export const oneOf = (...schemas) => ({ oneOf: schemas });
 
+/** @private */
 export const typedDistributionSchema = {
 	type: 'object',
 	properties: {
@@ -45,6 +54,7 @@ export const typedDistributionSchema = {
 	}
 };
 
+/** @private */
 export const rangeSchema = {
 	type: 'object',
 	properties: {
@@ -53,11 +63,13 @@ export const rangeSchema = {
 	}
 };
 
+/** @private */
 export const universalDistanceRange = {
 	'min': 0,
 	'max': Infinity
 };
 
+/** @private */
 export const normalDistributionSchema = {
 	type: 'object',
 	properties: {
@@ -67,6 +79,7 @@ export const normalDistributionSchema = {
 	}
 };
 
+/** @private */
 export const boundedNormalDistributionSchema = {
 	type: 'object',
 	properties: {
@@ -78,6 +91,7 @@ export const boundedNormalDistributionSchema = {
 	}
 };
 
+/** @private */
 export const uniformDistributionSchema = {
 	type: 'object',
 	properties: {
@@ -95,6 +109,7 @@ export const uniformDistributionSchema = {
 // 	]
 // };
 
+/** @private */
 export const distributionSchemaOr = (otherSchema) => ({
 	oneOf: [
 		boundedNormalDistributionSchema,
@@ -103,6 +118,7 @@ export const distributionSchemaOr = (otherSchema) => ({
 	]
 });
 
+/** @private */
 export const dimensionalitySchema = {
 	type: 'object',
 	patternProperties: {

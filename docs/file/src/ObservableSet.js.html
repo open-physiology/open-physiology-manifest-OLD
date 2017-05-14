@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/ObservableSet.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/open-physiology/open-physiology-manifest" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Entity">Entity</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/ObservableSet.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {BehaviorSubject, Subject, Observable} from &apos;./libs/rxjs.js&apos;;
+import assert                                 from &apos;power-assert&apos;;
+import {humanMsg}                             from &apos;utilities&apos;;
+import {constraint}                           from &apos;./util/misc.js&apos;;
+
+type Iterator&lt;T&gt; = {
+	next: () =&gt; ({
+		done: boolean,
+		value: T
+	})
+}
+type Iterable&lt;T&gt; = {
+	// [Symbol.iterator: Symbol]: () =&gt; Iterator&lt;T&gt; // Flow does not accept this
+}
+
+const $$set               = Symbol(&apos;$$set&apos;);
+const $$addSubject        = Symbol(&apos;$$addSubject&apos;);
+const $$deleteSubject     = Symbol(&apos;$$deleteSubject&apos;);
+const $$valueObservable   = Symbol(&apos;$$valueObservable&apos;);
+const $$disableNextReplay = Symbol(&apos;$$disableNextReplay&apos;);
+
+class AddReplaySubject extends Subject {
+	constructor(initialSet) {
+		super();
+		assert(initialSet[Symbol.iterator]);
+		this._setReference = initialSet;
+	}
+	normalSubscribe(...args) {
+		this[$$disableNextReplay] = true;
+		return this.subscribe(...args);
+	}
+	// noinspection JSDuplicatedDeclaration
+	_subscribe(subscriber) {
+		const subscription = super._subscribe(subscriber);
+		if (subscription &amp;&amp; !subscription.isUnsubscribed &amp;&amp; !this[$$disableNextReplay]) {
+			this._setReference.forEach(::subscriber.next);
+		}
+		this[$$disableNextReplay] = false;
+		return subscription;
+	}
+}
+
+/**
+ * A data-structure with the same interface as `Set`,
+ * and emits mutation events from rxjs streams.
+ */
+export default class ObservableSet&lt;T&gt; {
+	
+	/**
+	 * Create a new instance of `ObservableSet`.
+	 * @param {Iterable&lt;T&gt;} [initialContent] - initial elements to put in this set object
+	 */
+	constructor(initialContent: Iterable&lt;T&gt; = []) {
+		/* define private fields */
+		/** @private */ this[$$set]             = new Set();
+		/** @private */ this[$$addSubject]      = new AddReplaySubject(this);
+		/** @private */ this[$$deleteSubject]   = new Subject();
+		
+		const valueSubject = new BehaviorSubject(new Set(this));
+		
+		/** @private */ this[$$valueObservable] = valueSubject.asObservable();
+		
+		/* link streams */
+		this[$$addSubject]   .normalSubscribe(::this.add);
+		this[$$deleteSubject].subscribe      (::this.delete);
+		this[$$addSubject]   .normalSubscribe(() =&gt; { valueSubject.next(new Set(this)) });
+		this[$$deleteSubject].subscribe      (() =&gt; { valueSubject.next(new Set(this)) });
+		
+		/* add initial content */
+		initialContent.forEach(::this.add);
+	}
+	
+	/**
+	 * Get an event stream associated with this set object.
+	 * @param {string} op - the name of the event stream you want: `&quot;add&quot;` or `&quot;delete&quot;`
+	 * @returns {Subject} - the rxjs event stream
+	 */
+	e(op: string): Observable {
+		switch (op) {
+			case &apos;add&apos;:    return this[$$addSubject];
+			case &apos;delete&apos;: return this[$$deleteSubject];
+			default: constraint(false, humanMsg`
+				The ${op} event does not exist.
+			`);
+		}
+	}
+	
+	/**
+	 * Get an event stream associated with this set object.
+	 * @param {string} name  - the name of the property you want; the
+	 *                         only one available at the moment is `&quot;value&quot;`
+	 * @returns {Observable} - the rxjs event stream (based on the `BehaviorSubject` class)
+	 */
+	p(name: string): Observable {
+		switch (name) {
+			case &apos;value&apos;: return this[$$valueObservable];
+			default: constraint(false, humanMsg`
+				The ${name} property does not exist.
+			`);
+		}
+	}
+	
+	/**
+	 * Add a new element with the given value to this set object.
+	 * @param   {T} val         - the value to add to the set
+	 * @returns {ObservableSet} - this observable set object
+	 */
+	add(val: T): this {
+		if (!this[$$set].has(val)) {
+			this[$$set].add(val);
+			this[$$addSubject].next(val);
+		}
+		return this;
+	}
+	
+	/**
+	 * Remove all elements from this set object.
+	 * @returns {void}
+	 */
+	clear(): void {
+		for (let value of this[$$set]) {
+			this.delete(value);
+		}
+	}
+	
+	/**
+	 * Removes the element with the value and returns the value that `has(val)` would have previously returned.
+	 * @param   {T} val   - the value to remove
+	 * @returns {boolean} - the element that was removed, if it existed; `false` otherwise
+	 */
+	delete(val: T): boolean {
+		if (this[$$set].has(val)) {
+			this[$$set].delete(val);
+			this[$$deleteSubject].next(val);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * @returns {Iterator&lt;T[]&gt;} - a new Iterator object that yields an array of
+	 *                              `[value, value]` for each element in this set object.
+	 */
+	entries(): Iterator&lt;[T, T]&gt; {
+		return this[$$set].entries();
+	}
+	
+	/**
+	 * Run a function for each element in this set object.
+	 * @param {function(:T, :T)} callbackFn - the function to invoke for each element
+	 * @param {Object} [thisArg]            - the object that will be `this` inside the `callbackFn`
+	 * @returns {void}
+	 */
+	forEach(callbackFn: (T, T)=&gt;void, thisArg?: Object): void {
+		return this[$$set].forEach(callbackFn, thisArg);
+	}
+	
+	/**
+	 * Test whether this set object contains a certain value.
+	 * @param {T} val - the value to test for
+	 * @returns {boolean} `true`, if `val` is an element in this set object; `false` otherwise
+	 */
+	has(val: T): boolean {
+		return this[$$set].has(val);
+	}
+	
+	/**
+	 * @returns {Iterator&lt;T&gt;} - a new Iterator object that contains the values for each element in this set object
+	 */
+	values(): Iterator&lt;T&gt; {
+		return this[$$set].values();
+	}
+	
+	/**
+	 * The presence of this method makes an observable set object iterable through `for...of` loops.
+	 * @returns {Iterator&lt;T&gt;} - a new Iterator object that contains the values for each element in this set object
+	 */
+	[Symbol.iterator](): Iterator&lt;T&gt; {
+		return this[$$set][Symbol.iterator]();
+	}
+	
+	/**
+	 * @returns {number} - the number of values in this set object
+	 */
+	get size(): number {
+		return this[$$set].size;
+	}
+	
+	/**
+	 * Overwrite the content of this set object,
+	 * emitting the proper `delete` and `add` signals (in that order).
+	 * @param {Iterable&lt;T&gt;} newContent - the new elements of the set
+	 * @returns {ObservableSet} - this observable set object
+	 */
+	overwrite(newContent: Iterable&lt;T&gt;) {
+		newContent = new Set(newContent);
+		for (let e of this.values()) {
+			if (!newContent.has(e)) {
+				this.delete(e);
+			}
+		}
+		for (let e of newContent) {
+			if (!this.has(e)) {
+				this.add(e);
+			}
+		}
+		return this;
+	}
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

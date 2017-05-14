@@ -1,0 +1,45 @@
+{
+  "coverage": "50%",
+  "expectCount": 30,
+  "actualCount": 15,
+  "files": {
+    "src/Entity.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        16
+      ]
+    },
+    "src/Module.js": {
+      "expectCount": 13,
+      "actualCount": 0,
+      "undocumentLines": [
+        91,
+        117,
+        106,
+        270,
+        130,
+        102,
+        93,
+        436,
+        398,
+        319,
+        195,
+        286,
+        262
+      ]
+    },
+    "src/ObservableSet.js": {
+      "expectCount": 14,
+      "actualCount": 14,
+      "undocumentLines": []
+    },
+    "src/TypedModule.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        15
+      ]
+    }
+  }
+}

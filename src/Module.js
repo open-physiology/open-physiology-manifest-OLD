@@ -17,16 +17,19 @@ import Graph from 'graph.js/dist/graph.js';
 
 import {assign, defineProperty} from 'bound-native-methods';
 
+import {parseCardinality} from './util/misc';
+
 import {
 	humanMsg,
-	parseCardinality,
 	wrapInArray,
 	definePropertyByValue,
 	definePropertiesByValue
-} from './util/misc';
+} from 'utilities';
 
-import Entity_factory from './Entity';
-import Field_factory      from './fields/fields.js';
+
+
+import Entity_factory from './Entity.js';
+import Field_factory  from './fields/fields.js';
 
 const $$processedFor              = Symbol('$$processedFor');
 const $$relationshipSpecs         = Symbol('$$relationshipSpecs');
@@ -96,11 +99,11 @@ class Environment {
 export default class Module {
 	
 	static create(name, dependencies, fn) {
-		return (environment = {}) => {
-			environment  = new Environment(environment);
+		return (env = {}) => {
+			env  = new Environment(env);
 			const module = new this(name);
-			environment.registerModule(module, dependencies, fn);
-			return environment;
+			env.registerModule(module, dependencies, fn);
+			return env;
 		};
 	}
 	

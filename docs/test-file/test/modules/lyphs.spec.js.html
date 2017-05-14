@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">test/modules/lyphs.spec.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/open-physiology/open-physiology-manifest" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Entity">Entity</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/modules/lyphs.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {describe, it, expect, beforeEach} from &apos;../test.helper&apos;;
+
+import moduleFactory from &apos;../../src/modules/lyphs&apos;;
+
+import map from &apos;lodash-bound/map&apos;;
+import {simpleMockHandlers} from &quot;../mock-handlers.helper&quot;;
+
+describe(&quot;&apos;lyphs&apos; Module&quot;, () =&gt; {
+	
+	let environment;
+	beforeEach(() =&gt; { environment = moduleFactory() });
+	
+	it(&quot;exports the expected classes&quot;, () =&gt; {
+		
+		expect(environment.classes).to.contain.resources(
+			&apos;Material&apos;,
+			&apos;Lyph&apos;,
+			&apos;Border&apos;,
+			&apos;Node&apos;,
+			&apos;CoalescenceScenario&apos;,
+			&apos;Coalescence&apos;
+		);
+		expect(environment.classes).to.contain.relationships(
+			&apos;ContainsMaterial&apos;,
+			&apos;HasPart&apos;,
+			&apos;HasLayer&apos;,
+			&apos;HasPatch&apos;,
+			&apos;HasSegment&apos;,
+			&apos;HasBorder&apos;,
+			&apos;HasRadialBorder&apos;,
+			&apos;HasLongitudinalBorder&apos;,
+			&apos;ContainsNode&apos;,
+			&apos;JoinsLyph&apos;,
+			&apos;Coalesces&apos;,
+			&apos;CoalescesLike&apos;
+		);
+
+	});
+
+	it(&quot;exports classes that can be instantiated&quot;, () =&gt; {
+		
+		const {Material, Lyph} = environment.classes;
+		
+		let material = Material.new();
+		let lyph     = Lyph.new();
+		expect(material).to.be.an.instanceOf(Material);
+		expect(lyph    ).to.be.an.instanceOf(Material, Lyph);
+		
+	});
+	
+	it(&quot;exports classes that have the properties and relationships of their superclasses&quot;, () =&gt; {
+		
+		const {Lyph} = environment.classes;
+		
+		expect(Lyph.properties   ).to.have.property(&apos;id&apos;);
+		expect(Lyph.relationships).to.have.property(&apos;--&gt;ContainsMaterial&apos;);
+		
+	});
+	
+	it(&quot;exports lyph classes that can have layers&quot;, () =&gt; {
+		
+		const {Lyph} = environment.classes;
+		
+		let lyph = Lyph.new();
+		
+		let layer1 = Lyph.new();
+		let layer2 = Lyph.new();
+		let layer3 = Lyph.new();
+		
+		lyph.layers.add(layer1);
+		lyph.layers.add(layer2);
+		lyph.layers.add(layer3);
+		
+		const layers = [...lyph[&apos;--&gt;HasLayer&apos;]];
+		expect(layers.length).to.equal(3);
+		expect(layers[0]).to.be.instanceOf(Lyph);
+		expect(layers[1]).to.be.instanceOf(Lyph);
+		expect(layers[2]).to.be.instanceOf(Lyph);
+		
+	});
+	
+	it(&quot;exports lyph classes that can have segments&quot;, () =&gt; {
+		
+		const {Lyph} = environment.classes;
+		
+		let lyph = Lyph.new();
+		
+		let segment1 = Lyph.new();
+		let segment2 = Lyph.new();
+		let segment3 = Lyph.new();
+		
+		lyph.segments.add(segment1);
+		lyph.segments.add(segment2);
+		lyph.segments.add(segment3);
+		
+		const segments = [...lyph[&apos;--&gt;HasSegment&apos;]];
+		expect(segments.length).to.equal(3);
+		expect(segments[0]).to.be.instanceOf(Lyph);
+		expect(segments[1]).to.be.instanceOf(Lyph);
+		expect(segments[2]).to.be.instanceOf(Lyph);
+		
+	});
+	
+	it(&quot;exports lyph classes that have icons&quot;, () =&gt; {
+		const {Lyph} = environment.classes;
+		expect(Lyph.icon).to.be.a(&apos;string&apos;);
+	});
+	
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

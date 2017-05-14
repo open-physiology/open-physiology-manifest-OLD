@@ -1,14 +1,12 @@
-import inRange     from 'lodash-bound/inRange';
-import get         from 'lodash-bound/get';
-import size        from 'lodash-bound/size';
-import entries     from 'lodash-bound/entries';
+import {inRange, get, size, entries} from 'lodash-bound';
 
 import {defineProperty} from 'bound-native-methods';
 
 import assert from 'power-assert';
 
-import ObservableSet, {setEquals, copySetContent} from '../util/ObservableSet';
-import {humanMsg, constraint} from '../util/misc';
+import ObservableSet from '../ObservableSet';
+import {humanMsg, callOrReturn} from 'utilities';
+import {constraint, setEquals} from '../util/misc';
 
 import RelField_factory from './RelField.js';
 
@@ -20,9 +18,9 @@ import {
 	$$entriesIn,
 	$$destruct, $$initSet
 } from './symbols';
-import {callOrReturn} from 'utilities';
 
 
+/** @private */
 export default (env) => env.registerFieldClass('Rel$Field', class Rel$Field extends RelField_factory(env) {
 	
 	// this[$$owner] instanceof Resource
@@ -143,7 +141,7 @@ export default (env) => env.registerFieldClass('Rel$Field', class Rel$Field exte
 		constraint(ignoreReadonly || !this[$$desc].readonly);
 		newValue = new Set(newValue);
 		if (!ignoreValidation) { this.validate(newValue, ['set']) }
-		copySetContent(this[$$value], newValue);
+		this[$$value].overwrite(newValue);
 	}
 	
 	add(newSubValue, { ignoreReadonly = false, ignoreValidation = false } = {}) {

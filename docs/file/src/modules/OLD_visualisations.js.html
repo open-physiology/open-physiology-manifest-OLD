@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/modules/OLD_visualisations.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/open-physiology/open-physiology-manifest" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Entity">Entity</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/modules/OLD_visualisations.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import TypedModule                                          from &apos;../TypedModule&apos;;
+import {identifierRegex, rationalNumberSchema, angleSchema} from &apos;../util/schemas&apos;;
+
+import resources   from &apos;./resources&apos;;
+import lyphs       from &apos;./lyphs&apos;;
+import typed       from &apos;./typed&apos;;
+import processes   from &apos;./processes&apos;;
+import measurables from &apos;./measurables&apos;;
+
+
+export default TypedModule.create(&apos;visualisations&apos;, [
+	resources, lyphs, typed, processes, measurables
+], (M, {
+	Resource, IsRelatedTo, Material, Lyph,
+	Border, Coalescence, Node,
+	Template, Process, Measurable, Causality
+}) =&gt; {
+	
+	
+	const Theme = M.RESOURCE({//////////////////////////////////////////////////
+		
+		name: &apos;Theme&apos;,
+		
+		extends: Resource,
+		
+		singular: &quot;theme&quot;,
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	
+	const PrescribesStyleFor = M.RELATIONSHIP({
+		
+		name: &apos;PrescribesStyleFor&apos;,
+		
+		extends: IsRelatedTo,
+		
+		singular: &quot;prescribes style for&quot;,
+		
+		1: [Theme,    &apos;0..*&apos;, { key: &apos;resources&apos; }],
+		2: [Resource, &apos;0..*&apos;, { key: &apos;themes&apos;    }],
+		
+		patternProperties: {
+			[identifierRegex]: { type: &apos;string&apos;, minLength: 1 }
+		}
+		
+	});
+
+
+	////////////////////////////
+	//// Artefact Hierarchy ////
+	////////////////////////////
+	
+	const Artefact = M.RESOURCE({///////////////////////////////////////////////
+		
+		name: &apos;Artefact&apos;,
+		
+		extends:  Resource,
+		abstract: true,
+		
+		singular: &quot;artefact&quot;,
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const Dim2Artefact = M.RESOURCE({///////////////////////////////////////////
+		
+		name: &apos;Dim2Artefact&apos;,
+		
+		extends:  Artefact,
+		abstract: true,
+		
+		singular: &quot;2-dimensional artefact&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const Dim1Artefact = M.RESOURCE({///////////////////////////////////////////
+		
+		name: &apos;Dim1Artefact&apos;,
+		
+		extends:  Dim2Artefact,
+		abstract: true,
+		
+		singular: &quot;1-dimensional artefact&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const Dim0Artefact = M.RESOURCE({///////////////////////////////////////////
+		
+		name: &apos;Dim0Artefact&apos;,
+		
+		extends:  Dim1Artefact,
+		abstract: true,
+		
+		singular: &quot;0-dimensional artefact&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////
+//// Artefact Container Hierarchy ////
+//////////////////////////////////////
+	
+	const ArtefactContainer = M.RESOURCE({//////////////////////////////////////
+		
+		name: &apos;ArtefactContainer&apos;,
+		
+		abstract: true,
+		
+		extends:  Artefact,
+		
+		singular: &quot;artefact container&quot;,
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const Dim2Container = M.RESOURCE({//////////////////////////////////////////
+		
+		name: &apos;Dim2Container&apos;,
+		
+		extends:  [ArtefactContainer, Dim2Artefact],
+		abstract: true,
+		
+		singular: &quot;2-dimensional container&quot;,
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const Dim1Container = M.RESOURCE({//////////////////////////////////////////
+		
+		name: &apos;Dim1Container&apos;,
+		
+		extends:  [ArtefactContainer, Dim1Artefact],
+		abstract: true,
+		
+		singular: &quot;1-dimensional container&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const Dim0Container = M.RESOURCE({//////////////////////////////////////////
+		
+		name: &apos;Dim0Container&apos;,
+		
+		extends:  [ArtefactContainer, Dim0Artefact],
+		abstract: true,
+		
+		singular: &quot;0-dimensional container&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////
+//// Artefact Containment Relationship Hierarchy ////
+/////////////////////////////////////////////////////
+	
+	const ContainsArtefact = M.RELATIONSHIP({
+		
+		name: &apos;ContainsArtefact&apos;,
+		
+		abstract: true,
+		
+		extends: IsRelatedTo,
+		
+		singular: &quot;contains artefact&quot;,
+		
+		1: [ArtefactContainer, &apos;0..*&apos;, { anchors: true, key: &apos;children&apos; }],
+		2: [Artefact,          &apos;0..1&apos;, {                key: &apos;parent&apos;   }]
+		
+	});
+	
+	/* in 2-dimensional containers */
+	const ContainsArtefact_22 = M.RELATIONSHIP({
+		
+		name: &apos;ContainsArtefact_22&apos;,
+		
+		extends: ContainsArtefact,
+		
+		1: [Dim2Container, &apos;0..*&apos;, { anchors: true, key: &apos;children&apos; }],
+		2: [Dim2Artefact,  &apos;0..1&apos;, {                key: &apos;parent&apos;   }],
+		
+		properties: {
+			&apos;x&apos;:        { ...rationalNumberSchema,    required: true },
+			&apos;y&apos;:        { ...rationalNumberSchema,    required: true },
+			&apos;rotation&apos;: { ...angleSchema, default: 0, required: true },
+			&apos;width&apos;:    { ...rationalNumberSchema,    required: true },
+			&apos;height&apos;:   { ...rationalNumberSchema,    required: true }
+		}
+		
+	});
+	const ContainsArtefact_21 = M.RELATIONSHIP({
+		
+		name: &apos;ContainsArtefact_21&apos;,
+		
+		extends: ContainsArtefact_22,
+		
+		1: [Dim2Container, &apos;0..*&apos;, { anchors: true, key: &apos;children&apos; }],
+		2: [Dim1Artefact,  &apos;0..1&apos;, {                key: &apos;parent&apos;   }],
+		
+		properties: { &apos;height&apos;: { value: 0 } }
+		
+	});
+	const ContainsArtefact_20 = M.RELATIONSHIP({
+		
+		name: &apos;ContainsArtefact_20&apos;,
+		
+		extends: ContainsArtefact_21,
+		
+		1: [Dim2Container, &apos;0..*&apos;, { anchors: true, key: &apos;children&apos; }],
+		2: [Dim0Artefact,  &apos;0..1&apos;, {                key: &apos;parent&apos;   }],
+		
+		properties: { &apos;width&apos;: { value: 0 } }
+		
+	});
+	
+	/* in 1-dimensional containers */
+	const ContainsArtefact_11 = M.RELATIONSHIP({
+		
+		name: &apos;ContainsArtefact_11&apos;,
+		
+		extends: ContainsArtefact,
+		
+		1: [Dim1Container, &apos;0..*&apos;, { anchors: true, key: &apos;children&apos; }],
+		2: [Dim1Artefact,  &apos;0..1&apos;, {                key: &apos;parent&apos;   }],
+		
+		properties: {
+			&apos;x&apos;:        { ...rationalNumberSchema, required: true },
+			&apos;width&apos;:    { ...rationalNumberSchema, required: true }
+		}
+		
+	});
+	const ContainsArtefact_10 = M.RELATIONSHIP({
+		
+		name: &apos;ContainsArtefact_10&apos;,
+		
+		extends: ContainsArtefact_11,
+		
+		1: [Dim1Container, &apos;0..*&apos;, { anchors: true, key: &apos;children&apos; }],
+		2: [Dim0Artefact,  &apos;0..1&apos;, {                key: &apos;parent&apos;   }],
+		
+		properties: { &apos;width&apos;: { value: 0 } }
+		
+	});
+	
+	/* containment in 0-dimensional containers */
+	const ContainsArtefact_00 = M.RELATIONSHIP({
+		
+		name: &apos;ContainsArtefact_00&apos;,
+		
+		extends: ContainsArtefact,
+		
+		1: [Dim0Container, &apos;0..*&apos;, { anchors: true, key: &apos;children&apos; }],
+		2: [Dim0Artefact,  &apos;0..1&apos;, {                key: &apos;parent&apos;   }]
+		
+	});
+
+
+	////////////////////////////
+	//// Specific Artefacts ////
+	////////////////////////////
+	
+	const LyphCanvas = M.RESOURCE({/////////////////////////////////////////////
+		
+		name: &apos;LyphCanvas&apos;,
+		
+		extends: Dim2Container,
+		
+		singular: &quot;lyph canvas&quot;,
+		plural:   &quot;lyph canvases&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const MaterialGlyph = M.RESOURCE({//////////////////////////////////////////
+		
+		name: &apos;MaterialGlyph&apos;,
+		
+		extends: Dim0Artefact,
+		
+		singular: &quot;material glyph&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const LyphRectangle = M.RESOURCE({//////////////////////////////////////////
+		
+		name: &apos;LyphRectangle&apos;,
+		
+		extends: Dim2Container,
+		
+		singular: &quot;lyph rectangle&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const LyphArtefact = M.RESOURCE({///////////////////////////////////////////
+		
+		name: &apos;LyphArtefact&apos;,
+		
+		extends: Dim2Container,
+		extendedBy: [LyphCanvas, LyphRectangle],
+		
+		singular: &quot;lyph artefact&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const BorderLine = M.RESOURCE({/////////////////////////////////////////////
+		
+		name: &apos;BorderLine&apos;,
+		
+		extends: Dim1Container,
+		
+		singular: &quot;border line&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const CoalescenceRectangle = M.RESOURCE({///////////////////////////////////
+		
+		name: &apos;CoalescenceRectangle&apos;,
+		
+		extends: Dim2Container,
+		
+		singular: &quot;coalescence rectangle&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const NodeGlyph = M.RESOURCE({//////////////////////////////////////////////
+		
+		name: &apos;NodeGlyph&apos;,
+		
+		extends: Dim0Container,
+		
+		singular: &quot;node glyph&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const ProcessEdge = M.RESOURCE({////////////////////////////////////////////
+		
+		name: &apos;ProcessEdge&apos;,
+		
+		extends: Dim1Container,
+		
+		singular: &quot;process edge&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const MeasurableGlyph = M.RESOURCE({////////////////////////////////////////
+		
+		name: &apos;MeasurableGlyph&apos;,
+		
+		extends: Dim0Artefact,
+		
+		singular: &quot;measurable glyph&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	const CausalityArrow = M.RESOURCE({/////////////////////////////////////////
+		
+		name: &apos;CausalityArrow&apos;,
+		
+		extends: Dim1Artefact,
+		
+		singular: &quot;causality arrow&quot;
+		
+	});/////////////////////////////////////////////////////////////////////////
+
+
+	////////////////////////////////////////
+	//// Model - Artefact Relationships ////
+	////////////////////////////////////////
+	
+	const PresentsModel = M.RELATIONSHIP({
+		
+		name: &apos;PresentsModel&apos;,
+		
+		abstract: true,
+		
+		extends: IsRelatedTo,
+		
+		singular: &quot;presents model&quot;,
+		
+		1: [Artefact, &apos;1..1&apos;, { anchors: true, key: &apos;model&apos; }],
+		2: [Template, &apos;0..*&apos;,                                ],
+		
+	});
+	
+	
+	for (let [ArtefactClass,        ModelClass ] of [
+		     [MaterialGlyph,        Material   ],
+		     [LyphArtefact,         Lyph       ],
+		     [LyphCanvas,           Lyph       ], // TODO: Tests fail if these two
+		     [LyphRectangle,        Lyph       ], //       lines are left out.
+		     [BorderLine,           Border     ],
+		     [NodeGlyph,            Node       ],
+		     [ProcessEdge,          Process    ],
+		     [MeasurableGlyph,      Measurable ],
+		     [CausalityArrow,       Causality  ],
+		     [CoalescenceRectangle, Coalescence],
+	]) {
+		M.RELATIONSHIP({
+			
+			name: `Presents${ArtefactClass.name}Model`,
+			
+			extends: PresentsModel,
+			
+			singular: `presents ${ArtefactClass.singular}-model`,
+			
+			1: [ArtefactClass, &apos;1..1&apos;, { anchors: true, key: &apos;model&apos; }],
+			2: [ModelClass,    &apos;0..*&apos;,                                ],
+			
+		});
+	}
+	
+});
+
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
