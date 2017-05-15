@@ -32,10 +32,15 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Entity">Entity</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -52,6 +57,7 @@ const $$allowInvokingConstructor = Symbol(&apos;$$allowInvokingConstructor&apos;
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/** @wrapper */
 export default (env) =&gt; {
 	/**
 	 * The base-class of all entities described in the manifest.
@@ -60,8 +66,6 @@ export default (env) =&gt; {
 	class Entity extends ValueTracker {
 		
 		static get environment() { return env }
-		
-		static get Field() { return env.Field }
 		
 		static get Entity() { return Entity }
 		
@@ -187,7 +191,7 @@ export default (env) =&gt; {
 			});
 			
 			/* initialize all fields in this entity */
-			env.Field.initializeEntity(this, initialValues);
+			this.environment.Field.initializeEntity(this, initialValues);
 		}
 		
 		get [Symbol.toStringTag]() {

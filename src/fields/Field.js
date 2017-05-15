@@ -20,7 +20,7 @@ const $$aliases           = Symbol('$$aliases');
 
 import {constraint} from "../util/misc";
 
-/** @private */
+/** @wrapper */
 export default (env) => {
 	/**
 	 * A class that represents specific fields on an `Entity`.

@@ -9,6 +9,7 @@
     "name": "esdoc-babel-plugin",
     "option": {
       "plugins": [
+        "unwrap-wrapper-function",
         "transform-function-bind",
         "transform-object-rest-spread",
         "transform-flow-strip-types",

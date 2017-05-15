@@ -32,10 +32,15 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Entity">Entity</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -63,150 +68,160 @@ import {
 } from &apos;./symbols&apos;;
 
 
-/** @private */
-export default (env) =&gt; env.registerFieldClass(&apos;Rel1Field&apos;, class Rel1Field extends RelField_factory(env) {
+/** @wrapper */
+export default (env) =&gt; {
 	
-	// this[$$owner] instanceof Resource
-	// this[$$key]   instanceof &quot;--&gt;HasInnerBorder&quot; | &quot;&lt;--HasPlusBorder&quot; | ...
-	// this[$$value] instanceof IsRelatedTo
+	const RelField = RelField_factory(env);
 	
-	////////////
-	// static //
-	////////////
-	
-	static initClass({ cls, key, aliases, desc: {readonly} }) {
-		assert(cls.isResource);
-		if (cls.prototype.hasOwnProperty(key)) { return }
-		for (let k of [key, ...aliases]) {
-			cls.prototype::defineProperty(k, {
-				get() { return this.fields[k].get() },
-				...(readonly ? {} : {
-					set(val) { this.fields[k].set(val)}
-				}),
-				enumerable:   true,
-				configurable: false
+	/**
+	 *
+	 */
+	class Rel1Field extends RelField {
+		
+		// this[$$owner] instanceof Resource
+		// this[$$key]   instanceof &quot;--&gt;HasInnerBorder&quot; | &quot;&lt;--HasPlusBorder&quot; | ...
+		// this[$$value] instanceof IsRelatedTo
+		
+		////////////
+		// static //
+		////////////
+		
+		static initClass({ cls, key, aliases, desc: {readonly} }) {
+			assert(cls.isResource);
+			if (cls.prototype.hasOwnProperty(key)) { return }
+			for (let k of [key, ...aliases]) {
+				cls.prototype::defineProperty(k, {
+					get() { return this.fields[k].get() },
+					...(readonly ? {} : {
+						set(val) { this.fields[k].set(val)}
+					}),
+					enumerable:   true,
+					configurable: false
+				});
+			}
+		}
+		
+		static [$$entriesIn](cls) {
+			if (!cls.isResource) { return [] }
+			return cls.relationships::entries()
+	             .filter(([,desc]) =&gt; desc.cardinality.max === 1)
+	             .map(([key, desc]) =&gt; ({
+	                 key,
+	                 desc,
+		             aliases: desc.shortcutKey ? [desc.shortcutKey] : []
+	             }));
+		}
+		
+		
+		//////////////
+		// instance //
+		//////////////
+		
+		constructor(options) {
+			super(options);
+			const { owner, key, desc, initialValue, related } = options;
+			
+			this.p(&apos;isPlaceholder&apos;).filter(v=&gt;!v).take(1).subscribe(() =&gt; {
+				
+				/* set the initial value */
+				const initialShortcutValue = related::get([desc.shortcutKey, &apos;initialValue&apos;]);
+				constraint(!initialValue || !initialShortcutValue, humanMsg`
+					You cannot set the fields &apos;${key}&apos; and &apos;${desc.shortcutKey}&apos;
+					at the same time for a ${this.constructor.singular}.
+				`);
+				this[$$initSet](
+					[!initialValue        ::isUndefined(), () =&gt; initialValue        ::callOrReturn(owner)],
+					[!initialShortcutValue::isUndefined(), () =&gt; initialShortcutValue::callOrReturn(owner)],
+					[desc.cardinality.min === 0,           () =&gt; null]
+				);
+				
+				/* synchronize with the other side */
+				this.p(&apos;value&apos;).startWith(null).distinctUntilChanged().pairwise().subscribe(([prev, curr]) =&gt; {
+					if (prev) { prev.fields[desc.codomain.keyInResource].delete(owner) }
+					if (curr) { curr.fields[desc.codomain.keyInResource].add   (owner) }
+				});
+			
+				/* pull in values set in sub-fields */
+				owner.p(&apos;fieldsInitialized&apos;).filter(v=&gt;!!v).take(1).subscribe(() =&gt; {
+					for (let subCls of desc.relationshipClass.extendedBy) {
+						const subFieldKey = subCls.keyInResource[desc.keyInRelationship];
+						const subField = owner.fields[subFieldKey];
+						if (!subField) { continue }
+						subField.p(&apos;value&apos;).subscribe( this.p(&apos;value&apos;) );
+					}
+				});
+				
 			});
 		}
-	}
-	
-	static [$$entriesIn](cls) {
-		if (!cls.isResource) { return [] }
-		return cls.relationships::entries()
-             .filter(([,desc]) =&gt; desc.cardinality.max === 1)
-             .map(([key, desc]) =&gt; ({
-                 key,
-                 desc,
-	             aliases: desc.shortcutKey ? [desc.shortcutKey] : []
-             }));
-	}
-	
-	
-	//////////////
-	// instance //
-	//////////////
-	
-	constructor(options) {
-		super(options);
-		const { owner, key, desc, initialValue, related } = options;
 		
-		this.p(&apos;isPlaceholder&apos;).filter(v=&gt;!v).take(1).subscribe(() =&gt; {
+		static valueToJSON(value, {requireClass, ...options} = {}) {
+			if (!value) { return value }
+			if (requireClass &amp;&amp; requireClass !== value.class) { return undefined }
+			return env.Entity.normalizeAddress(value, options);
+		}
+		
+		static jsonToValue(json, options = {}) {
+			if (json === null) { return null }
+			const {getEntity} = options;
+			if (json instanceof env.Entity) {
+				return json;
+			} else if (getEntity::isFunction()) {
+				return getEntity(json);
+			}
+		}
+		
+		[$$destruct]() {
+			this.set(null, {
+				ignoreReadonly:   true,
+				ignoreValidation: true
+			});
+			super[$$destruct]();
+		}
+		
+		getAll() {
+			let val = this.get();
+			return new Set(val === null ? [] : [val]);
+		}
+		
+		add(newValue, options) {
+			this.set(newValue, options);
+		}
+		
+		delete(oldValue, options) {
+			if (this.get() === oldValue) {
+				this.set(null, options);
+			}
+		}
+		
+		validate(val, stages = []) {
 			
-			/* set the initial value */
-			const initialShortcutValue = related::get([desc.shortcutKey, &apos;initialValue&apos;]);
-			constraint(!initialValue || !initialShortcutValue, humanMsg`
-				You cannot set the fields &apos;${key}&apos; and &apos;${desc.shortcutKey}&apos;
-				at the same time for a ${this.constructor.singular}.
+			const notGiven = val::isNull() || val::isUndefined();
+			
+			if (stages.includes(&apos;commit&apos;)) {
+				/* if there&apos;s a minimum cardinality, a value must have been given */
+				constraint(!notGiven || this[$$desc].cardinality.min === 0, humanMsg`
+					No value given for required field
+					${this[$$owner].constructor.name}#${this[$$key]}.
+				`);
+			}
+			
+			/* the value must be of the proper domain */
+			const expectedResourceClass = this[$$desc].codomain.resourceClass;
+			const hasCompatibleType = expectedResourceClass.hasInstance(val);
+			constraint(notGiven || hasCompatibleType, humanMsg`
+				Invalid value &apos;${val}&apos; given for field ${this[$$owner].constructor.name}#${this[$$key]}.
 			`);
-			this[$$initSet](
-				[!initialValue        ::isUndefined(), () =&gt; initialValue        ::callOrReturn(owner)],
-				[!initialShortcutValue::isUndefined(), () =&gt; initialShortcutValue::callOrReturn(owner)],
-				[desc.cardinality.min === 0,           () =&gt; null]
-			);
 			
-			/* synchronize with the other side */
-			this.p(&apos;value&apos;).startWith(null).distinctUntilChanged().pairwise().subscribe(([prev, curr]) =&gt; {
-				if (prev) { prev.fields[desc.codomain.keyInResource].delete(owner) }
-				if (curr) { curr.fields[desc.codomain.keyInResource].add   (owner) }
-			});
-		
-			/* pull in values set in sub-fields */
-			owner.p(&apos;fieldsInitialized&apos;).filter(v=&gt;!!v).take(1).subscribe(() =&gt; {
-				for (let subCls of desc.relationshipClass.extendedBy) {
-					const subFieldKey = subCls.keyInResource[desc.keyInRelationship];
-					const subField = owner.fields[subFieldKey];
-					if (!subField) { continue }
-					subField.p(&apos;value&apos;).subscribe( this.p(&apos;value&apos;) );
-				}
-			});
-			
-		});
-	}
-	
-	static valueToJSON(value, {requireClass, ...options} = {}) {
-		if (!value) { return value }
-		if (requireClass &amp;&amp; requireClass !== value.class) { return undefined }
-		return env.Entity.normalizeAddress(value, options);
-	}
-	
-	static jsonToValue(json, options = {}) {
-		if (json === null) { return null }
-		const {getEntity} = options;
-		if (json instanceof env.Entity) {
-			return json;
-		} else if (getEntity::isFunction()) {
-			return getEntity(json);
-		}
-	}
-	
-	[$$destruct]() {
-		this.set(null, {
-			ignoreReadonly:   true,
-			ignoreValidation: true
-		});
-		super[$$destruct]();
-	}
-	
-	getAll() {
-		let val = this.get();
-		return new Set(val === null ? [] : [val]);
-	}
-	
-	add(newValue, options) {
-		this.set(newValue, options);
-	}
-	
-	delete(oldValue, options) {
-		if (this.get() === oldValue) {
-			this.set(null, options);
-		}
-	}
-	
-	validate(val, stages = []) {
-		
-		const notGiven = val::isNull() || val::isUndefined();
-		
-		if (stages.includes(&apos;commit&apos;)) {
-			/* if there&apos;s a minimum cardinality, a value must have been given */
-			constraint(!notGiven || this[$$desc].cardinality.min === 0, humanMsg`
-				No value given for required field
-				${this[$$owner].constructor.name}#${this[$$key]}.
-			`);
 		}
 		
-		/* the value must be of the proper domain */
-		const expectedResourceClass = this[$$desc].codomain.resourceClass;
-		const hasCompatibleType = expectedResourceClass.hasInstance(val);
-		constraint(notGiven || hasCompatibleType, humanMsg`
-			Invalid value &apos;${val}&apos; given for field ${this[$$owner].constructor.name}#${this[$$key]}.
-		`);
+		validateElement(element, options) {
+			return this.validate(element, options);
+		}
 		
 	}
 	
-	validateElement(element, options) {
-		return this.validate(element, options);
-	}
-	
-});
+	return env.registerFieldClass(&apos;Rel1Field&apos;, Rel1Field);
+};
 </code></pre>
 
 </div>

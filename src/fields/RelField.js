@@ -1,22 +1,33 @@
 import Field_factory from './Field.js';
 
-/** @private */
-export default (env) => env.registerFieldClass('RelField', class RelField extends Field_factory(env) {
+/** @wrapper */
+export default (env) => {
 	
-	getAll() {
-		// to be implemented in subclasses
+	const Field = Field_factory(env);
+	
+	/**
+	 *
+	 */
+	class RelField extends Field {
+		
+		getAll() {
+			// to be implemented in subclasses
+		}
+		
+		add(newValue, options) {
+			// to be implemented in subclasses
+		}
+		
+		delete(oldValue, options) {
+			// to be implemented in subclasses
+		}
+		
+		validateElement(element, options) {
+			// to be implemented in subclasses
+		}
+		
 	}
 	
-	add(newValue, options) {
-		// to be implemented in subclasses
-	}
+	return env.registerFieldClass('RelField', RelField);
 	
-	delete(oldValue, options) {
-		// to be implemented in subclasses
-	}
-	
-	validateElement(element, options) {
-		// to be implemented in subclasses
-	}
-	
-});
+};

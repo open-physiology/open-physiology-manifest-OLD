@@ -17,9 +17,11 @@ import {
 const $$ignoreReadonly = Symbol('$$ignoreReadonly');
 
 
-/** @private */
+/** @wrapper */
 export default (env) => {
+	
 	const Field = Field_factory(env);
+	
 	/**
 	 * A field on an `Entity` representing a simple data-type.
 	 * @public

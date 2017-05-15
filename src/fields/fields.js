@@ -3,7 +3,7 @@ import PropertyField_factory  from './PropertyField.js';
 import Rel1Field_factory      from './Rel1Field.js';
 import Rel$Field_factory      from './Rel$Field.js';
 
-/** @private */
+/** @ignore */
 export default (env) => {
 	env.fieldClasses = {};
 	env.registerFieldClass = (name, FieldClass) => {

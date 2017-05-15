@@ -9,6 +9,7 @@ const $$allowInvokingConstructor = Symbol('$$allowInvokingConstructor');
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/** @wrapper */
 export default (env) => {
 	/**
 	 * The base-class of all entities described in the manifest.
@@ -17,8 +18,6 @@ export default (env) => {
 	class Entity extends ValueTracker {
 		
 		static get environment() { return env }
-		
-		static get Field() { return env.Field }
 		
 		static get Entity() { return Entity }
 		
@@ -144,7 +143,7 @@ export default (env) => {
 			});
 			
 			/* initialize all fields in this entity */
-			env.Field.initializeEntity(this, initialValues);
+			this.environment.Field.initializeEntity(this, initialValues);
 		}
 		
 		get [Symbol.toStringTag]() {

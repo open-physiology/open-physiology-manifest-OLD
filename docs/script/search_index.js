@@ -151,9 +151,15 @@ window.esdocSearchIndex = [
   ],
   [
     "open-physiology-manifest/src/entity.js~entity",
-    "function/index.html#static-function-Entity",
+    "class/src/Entity.js~Entity.html",
     "<span>Entity</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/Entity.js</span>",
-    "function"
+    "class"
+  ],
+  [
+    "open-physiology-manifest/src/fields/field.js~field",
+    "class/src/fields/Field.js~Field.html",
+    "<span>Field</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/fields/Field.js</span>",
+    "class"
   ],
   [
     "open-physiology-manifest/src/module.js~module",
@@ -165,6 +171,30 @@ window.esdocSearchIndex = [
     "open-physiology-manifest/src/observableset.js~observableset",
     "class/src/ObservableSet.js~ObservableSet.html",
     "<span>ObservableSet</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/ObservableSet.js</span>",
+    "class"
+  ],
+  [
+    "open-physiology-manifest/src/fields/propertyfield.js~propertyfield",
+    "class/src/fields/PropertyField.js~PropertyField.html",
+    "<span>PropertyField</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/fields/PropertyField.js</span>",
+    "class"
+  ],
+  [
+    "open-physiology-manifest/src/fields/rel$field.js~rel$field",
+    "class/src/fields/Rel$Field.js~Rel$Field.html",
+    "<span>Rel$Field</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/fields/Rel$Field.js</span>",
+    "class"
+  ],
+  [
+    "open-physiology-manifest/src/fields/rel1field.js~rel1field",
+    "class/src/fields/Rel1Field.js~Rel1Field.html",
+    "<span>Rel1Field</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/fields/Rel1Field.js</span>",
+    "class"
+  ],
+  [
+    "open-physiology-manifest/src/fields/relfield.js~relfield",
+    "class/src/fields/RelField.js~RelField.html",
+    "<span>RelField</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/fields/RelField.js</span>",
     "class"
   ],
   [
@@ -588,6 +618,102 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/entity.js~entity#[symbol.tostringtag]",
+    "class/src/Entity.js~Entity.html#instance-get-[Symbol.toStringTag]",
+    "src/Entity.js~Entity#[Symbol.toStringTag]",
+    "member"
+  ],
+  [
+    "src/entity.js~entity#constructor",
+    "class/src/Entity.js~Entity.html#instance-constructor-constructor",
+    "src/Entity.js~Entity#constructor",
+    "method"
+  ],
+  [
+    "src/entity.js~entity#get",
+    "class/src/Entity.js~Entity.html#instance-method-get",
+    "src/Entity.js~Entity#get",
+    "method"
+  ],
+  [
+    "src/entity.js~entity#p",
+    "class/src/Entity.js~Entity.html#instance-method-p",
+    "src/Entity.js~Entity#p",
+    "method"
+  ],
+  [
+    "src/entity.js~entity#set",
+    "class/src/Entity.js~Entity.html#instance-method-set",
+    "src/Entity.js~Entity#set",
+    "method"
+  ],
+  [
+    "src/entity.js~entity#tojson",
+    "class/src/Entity.js~Entity.html#instance-method-toJSON",
+    "src/Entity.js~Entity#toJSON",
+    "method"
+  ],
+  [
+    "src/entity.js~entity.entity",
+    "class/src/Entity.js~Entity.html#static-get-Entity",
+    "src/Entity.js~Entity.Entity",
+    "member"
+  ],
+  [
+    "src/entity.js~entity.[symbol.hasinstance]",
+    "class/src/Entity.js~Entity.html#static-method-[Symbol.hasInstance]",
+    "src/Entity.js~Entity.[Symbol.hasInstance]",
+    "method"
+  ],
+  [
+    "src/entity.js~entity.allsubclasses",
+    "class/src/Entity.js~Entity.html#static-method-allSubclasses",
+    "src/Entity.js~Entity.allSubclasses",
+    "method"
+  ],
+  [
+    "src/entity.js~entity.createclass",
+    "class/src/Entity.js~Entity.html#static-method-createClass",
+    "src/Entity.js~Entity.createClass",
+    "method"
+  ],
+  [
+    "src/entity.js~entity.environment",
+    "class/src/Entity.js~Entity.html#static-get-environment",
+    "src/Entity.js~Entity.environment",
+    "member"
+  ],
+  [
+    "src/entity.js~entity.hasinstance",
+    "class/src/Entity.js~Entity.html#static-method-hasInstance",
+    "src/Entity.js~Entity.hasInstance",
+    "method"
+  ],
+  [
+    "src/entity.js~entity.hassubclass",
+    "class/src/Entity.js~Entity.html#static-method-hasSubclass",
+    "src/Entity.js~Entity.hasSubclass",
+    "method"
+  ],
+  [
+    "src/entity.js~entity.new",
+    "class/src/Entity.js~Entity.html#static-method-new",
+    "src/Entity.js~Entity.new",
+    "method"
+  ],
+  [
+    "src/entity.js~entity.normalizeaddress",
+    "class/src/Entity.js~Entity.html#static-method-normalizeAddress",
+    "src/Entity.js~Entity.normalizeAddress",
+    "method"
+  ],
+  [
+    "src/entity.js~entity.objecttojson",
+    "class/src/Entity.js~Entity.html#static-method-objectToJSON",
+    "src/Entity.js~Entity.objectToJSON",
+    "method"
+  ],
+  [
     "src/module.js",
     "file/src/Module.js.html",
     "src/Module.js",
@@ -768,10 +894,160 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/fields/field.js~field#[$$aliases]",
+    "class/src/fields/Field.js~Field.html#instance-member-[$$aliases]",
+    "src/fields/Field.js~Field#[$$aliases]",
+    "member"
+  ],
+  [
+    "src/fields/field.js~field#[$$desc]",
+    "class/src/fields/Field.js~Field.html#instance-member-[$$desc]",
+    "src/fields/Field.js~Field#[$$desc]",
+    "member"
+  ],
+  [
+    "src/fields/field.js~field#[$$destruct]",
+    "class/src/fields/Field.js~Field.html#instance-method-[$$destruct]",
+    "src/fields/Field.js~Field#[$$destruct]",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field#[$$initset]",
+    "class/src/fields/Field.js~Field.html#instance-method-[$$initSet]",
+    "src/fields/Field.js~Field#[$$initSet]",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field#[$$key]",
+    "class/src/fields/Field.js~Field.html#instance-member-[$$key]",
+    "src/fields/Field.js~Field#[$$key]",
+    "member"
+  ],
+  [
+    "src/fields/field.js~field#[$$owner]",
+    "class/src/fields/Field.js~Field.html#instance-member-[$$owner]",
+    "src/fields/Field.js~Field#[$$owner]",
+    "member"
+  ],
+  [
+    "src/fields/field.js~field#[$$value]",
+    "class/src/fields/Field.js~Field.html#instance-member-[$$value]",
+    "src/fields/Field.js~Field#[$$value]",
+    "member"
+  ],
+  [
+    "src/fields/field.js~field#[symbol.tostringtag]",
+    "class/src/fields/Field.js~Field.html#instance-get-[Symbol.toStringTag]",
+    "src/fields/Field.js~Field#[Symbol.toStringTag]",
+    "member"
+  ],
+  [
+    "src/fields/field.js~field#constructor",
+    "class/src/fields/Field.js~Field.html#instance-constructor-constructor",
+    "src/fields/Field.js~Field#constructor",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field#get",
+    "class/src/fields/Field.js~Field.html#instance-method-get",
+    "src/fields/Field.js~Field#get",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field#isplaceholder",
+    "class/src/fields/Field.js~Field.html#instance-member-isPlaceholder",
+    "src/fields/Field.js~Field#isPlaceholder",
+    "member"
+  ],
+  [
+    "src/fields/field.js~field#set",
+    "class/src/fields/Field.js~Field.html#instance-method-set",
+    "src/fields/Field.js~Field#set",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field#validate",
+    "class/src/fields/Field.js~Field.html#instance-method-validate",
+    "src/fields/Field.js~Field#validate",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field#valuetojson",
+    "class/src/fields/Field.js~Field.html#instance-method-valueToJSON",
+    "src/fields/Field.js~Field#valueToJSON",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field.augmentclass",
+    "class/src/fields/Field.js~Field.html#static-method-augmentClass",
+    "src/fields/Field.js~Field.augmentClass",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field.destructentity",
+    "class/src/fields/Field.js~Field.html#static-method-destructEntity",
+    "src/fields/Field.js~Field.destructEntity",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field.initializeentity",
+    "class/src/fields/Field.js~Field.html#static-method-initializeEntity",
+    "src/fields/Field.js~Field.initializeEntity",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field.isequal",
+    "class/src/fields/Field.js~Field.html#static-method-isEqual",
+    "src/fields/Field.js~Field.isEqual",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field.valuetojson",
+    "class/src/fields/Field.js~Field.html#static-method-valueToJSON",
+    "src/fields/Field.js~Field.valueToJSON",
+    "method"
+  ],
+  [
     "src/fields/propertyfield.js",
     "file/src/fields/PropertyField.js.html",
     "src/fields/PropertyField.js",
     "file"
+  ],
+  [
+    "src/fields/propertyfield.js~propertyfield#constructor",
+    "class/src/fields/PropertyField.js~PropertyField.html#instance-constructor-constructor",
+    "src/fields/PropertyField.js~PropertyField#constructor",
+    "method"
+  ],
+  [
+    "src/fields/propertyfield.js~propertyfield#validate",
+    "class/src/fields/PropertyField.js~PropertyField.html#instance-method-validate",
+    "src/fields/PropertyField.js~PropertyField#validate",
+    "method"
+  ],
+  [
+    "src/fields/propertyfield.js~propertyfield.[$$entriesin]",
+    "class/src/fields/PropertyField.js~PropertyField.html#static-method-[$$entriesIn]",
+    "src/fields/PropertyField.js~PropertyField.[$$entriesIn]",
+    "method"
+  ],
+  [
+    "src/fields/propertyfield.js~propertyfield.initclass",
+    "class/src/fields/PropertyField.js~PropertyField.html#static-method-initClass",
+    "src/fields/PropertyField.js~PropertyField.initClass",
+    "method"
+  ],
+  [
+    "src/fields/propertyfield.js~propertyfield.jsontovalue",
+    "class/src/fields/PropertyField.js~PropertyField.html#static-method-jsonToValue",
+    "src/fields/PropertyField.js~PropertyField.jsonToValue",
+    "method"
+  ],
+  [
+    "src/fields/propertyfield.js~propertyfield.valuetojson",
+    "class/src/fields/PropertyField.js~PropertyField.html#static-method-valueToJSON",
+    "src/fields/PropertyField.js~PropertyField.valueToJSON",
+    "method"
   ],
   [
     "src/fields/rel$field.js",
@@ -780,16 +1056,184 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/fields/rel$field.js~rel$field#[$$destruct]",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#instance-method-[$$destruct]",
+    "src/fields/Rel$Field.js~Rel$Field#[$$destruct]",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field#add",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#instance-method-add",
+    "src/fields/Rel$Field.js~Rel$Field#add",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field#constructor",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#instance-constructor-constructor",
+    "src/fields/Rel$Field.js~Rel$Field#constructor",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field#delete",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#instance-method-delete",
+    "src/fields/Rel$Field.js~Rel$Field#delete",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field#getall",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#instance-method-getAll",
+    "src/fields/Rel$Field.js~Rel$Field#getAll",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field#set",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#instance-method-set",
+    "src/fields/Rel$Field.js~Rel$Field#set",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field#validate",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#instance-method-validate",
+    "src/fields/Rel$Field.js~Rel$Field#validate",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field#validatecardinality",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#instance-method-validateCardinality",
+    "src/fields/Rel$Field.js~Rel$Field#validateCardinality",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field#validateelement",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#instance-method-validateElement",
+    "src/fields/Rel$Field.js~Rel$Field#validateElement",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field.[$$entriesin]",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#static-method-[$$entriesIn]",
+    "src/fields/Rel$Field.js~Rel$Field.[$$entriesIn]",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field.initclass",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#static-method-initClass",
+    "src/fields/Rel$Field.js~Rel$Field.initClass",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field.jsontovalue",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#static-method-jsonToValue",
+    "src/fields/Rel$Field.js~Rel$Field.jsonToValue",
+    "method"
+  ],
+  [
+    "src/fields/rel$field.js~rel$field.valuetojson",
+    "class/src/fields/Rel$Field.js~Rel$Field.html#static-method-valueToJSON",
+    "src/fields/Rel$Field.js~Rel$Field.valueToJSON",
+    "method"
+  ],
+  [
     "src/fields/rel1field.js",
     "file/src/fields/Rel1Field.js.html",
     "src/fields/Rel1Field.js",
     "file"
   ],
   [
+    "src/fields/rel1field.js~rel1field#[$$destruct]",
+    "class/src/fields/Rel1Field.js~Rel1Field.html#instance-method-[$$destruct]",
+    "src/fields/Rel1Field.js~Rel1Field#[$$destruct]",
+    "method"
+  ],
+  [
+    "src/fields/rel1field.js~rel1field#add",
+    "class/src/fields/Rel1Field.js~Rel1Field.html#instance-method-add",
+    "src/fields/Rel1Field.js~Rel1Field#add",
+    "method"
+  ],
+  [
+    "src/fields/rel1field.js~rel1field#constructor",
+    "class/src/fields/Rel1Field.js~Rel1Field.html#instance-constructor-constructor",
+    "src/fields/Rel1Field.js~Rel1Field#constructor",
+    "method"
+  ],
+  [
+    "src/fields/rel1field.js~rel1field#delete",
+    "class/src/fields/Rel1Field.js~Rel1Field.html#instance-method-delete",
+    "src/fields/Rel1Field.js~Rel1Field#delete",
+    "method"
+  ],
+  [
+    "src/fields/rel1field.js~rel1field#getall",
+    "class/src/fields/Rel1Field.js~Rel1Field.html#instance-method-getAll",
+    "src/fields/Rel1Field.js~Rel1Field#getAll",
+    "method"
+  ],
+  [
+    "src/fields/rel1field.js~rel1field#validate",
+    "class/src/fields/Rel1Field.js~Rel1Field.html#instance-method-validate",
+    "src/fields/Rel1Field.js~Rel1Field#validate",
+    "method"
+  ],
+  [
+    "src/fields/rel1field.js~rel1field#validateelement",
+    "class/src/fields/Rel1Field.js~Rel1Field.html#instance-method-validateElement",
+    "src/fields/Rel1Field.js~Rel1Field#validateElement",
+    "method"
+  ],
+  [
+    "src/fields/rel1field.js~rel1field.[$$entriesin]",
+    "class/src/fields/Rel1Field.js~Rel1Field.html#static-method-[$$entriesIn]",
+    "src/fields/Rel1Field.js~Rel1Field.[$$entriesIn]",
+    "method"
+  ],
+  [
+    "src/fields/rel1field.js~rel1field.initclass",
+    "class/src/fields/Rel1Field.js~Rel1Field.html#static-method-initClass",
+    "src/fields/Rel1Field.js~Rel1Field.initClass",
+    "method"
+  ],
+  [
+    "src/fields/rel1field.js~rel1field.jsontovalue",
+    "class/src/fields/Rel1Field.js~Rel1Field.html#static-method-jsonToValue",
+    "src/fields/Rel1Field.js~Rel1Field.jsonToValue",
+    "method"
+  ],
+  [
+    "src/fields/rel1field.js~rel1field.valuetojson",
+    "class/src/fields/Rel1Field.js~Rel1Field.html#static-method-valueToJSON",
+    "src/fields/Rel1Field.js~Rel1Field.valueToJSON",
+    "method"
+  ],
+  [
     "src/fields/relfield.js",
     "file/src/fields/RelField.js.html",
     "src/fields/RelField.js",
     "file"
+  ],
+  [
+    "src/fields/relfield.js~relfield#add",
+    "class/src/fields/RelField.js~RelField.html#instance-method-add",
+    "src/fields/RelField.js~RelField#add",
+    "method"
+  ],
+  [
+    "src/fields/relfield.js~relfield#delete",
+    "class/src/fields/RelField.js~RelField.html#instance-method-delete",
+    "src/fields/RelField.js~RelField#delete",
+    "method"
+  ],
+  [
+    "src/fields/relfield.js~relfield#getall",
+    "class/src/fields/RelField.js~RelField.html#instance-method-getAll",
+    "src/fields/RelField.js~RelField#getAll",
+    "method"
+  ],
+  [
+    "src/fields/relfield.js~relfield#validateelement",
+    "class/src/fields/RelField.js~RelField.html#instance-method-validateElement",
+    "src/fields/RelField.js~RelField#validateElement",
+    "method"
   ],
   [
     "src/fields/fields.js",
