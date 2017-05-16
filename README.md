@@ -6,4 +6,3 @@ This repository contains the Open Physiology Manifest module. Formerly part of `
 it is now a separate module which knows about all model concepts and their manipulation,
 but not about their management via database or web-server. This module does not have concepts
 of 'commit' and 'rollback'.
-
