@@ -136,6 +136,38 @@ export default TypedModule.create('lyphs', [
 
 	});
 	
+	const IsLongitudinallyAdjacent = M.RELATIONSHIP({
+		
+		name: 'IsLongitudinallyAdjacent',
+		
+		extends: IsRelatedTo,
+		
+		singular: "is longitudinally adjacent",
+		plural:  "are longitudinally adjacent",
+		
+		1: [Lyph, '0..*'],
+		2: [Lyph, '0..*'],
+		
+		noCycles: true
+		
+	});
+	
+	const IsRadiallyAdjacent = M.RELATIONSHIP({
+		
+		name: 'IsRadiallyAdjacent',
+		
+		extends: IsRelatedTo,
+		
+		singular: "is radially adjacent",
+		plural:  "are radially adjacent",
+		
+		1: [Lyph, '0..*'],
+		2: [Lyph, '0..*'],
+		
+		noCycles: true
+		
+	});
+	
 	
 	const Border = M.TYPED_RESOURCE({///////////////////////////////////////////
 		

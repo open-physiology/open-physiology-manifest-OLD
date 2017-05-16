@@ -143,7 +143,7 @@ export default (env) => {
 			});
 			
 			/* initialize all fields in this entity */
-			this.environment.Field.initializeEntity(this, initialValues);
+			this.constructor.environment.Field.initializeEntity(this, initialValues);
 		}
 		
 		get [Symbol.toStringTag]() {
