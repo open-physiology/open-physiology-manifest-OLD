@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/fields/PropertyField.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/open-physiology/open-physiology-manifest" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/fields/PropertyField.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {isUndefined, entries, cloneDeep} from &apos;lodash-bound&apos;;
+import {defineProperty}                  from &apos;bound-native-methods&apos;;
+import {humanMsg, callOrReturn}          from &apos;utilities&apos;;
+
+import {constraint} from &quot;../util/misc&quot;;
+
+import Field_factory from &apos;./Field.js&apos;;
+
+import {
+	$$owner,
+	$$key,
+	$$desc,
+	$$initSet,
+	$$entriesIn
+} from &apos;./symbols&apos;;
+
+const $$ignoreReadonly = Symbol(&apos;$$ignoreReadonly&apos;);
+
+
+/** @wrapper */
+export default (env) =&gt; {
+	
+	const Field = Field_factory(env);
+	
+	/**
+	 * A field on an `Entity` representing a simple data-type.
+	 * @public
+	 */
+	class PropertyField extends Field {
+		
+		// this[$$owner]   instanceof   RelatedTo | Resource
+		// this[$$key]     instanceof   &quot;name&quot; | &quot;class&quot; | &quot;id&quot; | ...
+		// this[$$value]   instanceof   any
+		
+		////////////
+		// static //
+		////////////
+		
+		static initClass({ cls, key, desc: {readonly} }) {
+			if (cls.prototype.hasOwnProperty(key)) { return }
+			cls.prototype::defineProperty(key, {
+				get() { return this.fields[key].get() },
+				...(readonly ? {} : {
+					set(val) { this.fields[key].set(val)}
+				}),
+				enumerable:   true,
+				configurable: false
+			});
+		}
+		
+		static [$$entriesIn](cls) {
+			return cls.properties::entries()
+				.map(([key, desc])=&gt;({
+					key,
+					desc
+				}));
+		}
+		
+		
+		//////////////
+		// instance //
+		//////////////
+		
+		constructor(options) {
+			super(options);
+			const { owner, desc, initialValue } = options;
+			
+			/* set the initial value */
+			this.p(&apos;isPlaceholder&apos;).filter(v=&gt;!v).take(1).subscribe(() =&gt; {
+				this[$$initSet](
+					[!initialValue::isUndefined(), () =&gt; initialValue::callOrReturn(owner)::cloneDeep()],
+					[&apos;default&apos; in desc,            () =&gt; desc.default::callOrReturn(owner)::cloneDeep()],
+					[&apos;value&apos;   in desc,            () =&gt; desc.value  ::callOrReturn(owner)::cloneDeep()],
+					[!desc.required]
+				);
+			});
+		}
+		
+		static valueToJSON(value, {flattenFieldValues = false} = {}) {
+			if (flattenFieldValues) { value = JSON.stringify(value) }
+			return value;
+		}
+		
+		static jsonToValue(json, {flattenFieldValues = false} = {}) {
+			if (flattenFieldValues) { json = JSON.parse(value) }
+			return json;
+		}
+		
+		validate(val, stages = []) {
+			
+			if (stages.includes(&apos;commit&apos;)) {
+				constraint(!this[$$desc].required || !val::isUndefined(), humanMsg`
+				    No value given for required field
+				    &apos;${this[$$owner].constructor.name}#${this[$$key]}&apos;.
+				`);
+			}
+			
+			// TODO: CHECK CONSTRAINT: given property value conforms to JSON schema
+			// TODO: CHECK ADDITIONAL (PROPERTY-SPECIFIC) CONSTRAINTS:
+			//     : e.g., if this is a template, does it conform to its corresponding type?
+			
+		}
+		
+	}
+	
+	return env.registerFieldClass(&apos;PropertyField&apos;, PropertyField);
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

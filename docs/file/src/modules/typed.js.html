@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/modules/typed.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/open-physiology/open-physiology-manifest" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/modules/typed.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {definePropertyByValue}   from &apos;utilities&apos;;
+
+import Module                    from &apos;../Module.js&apos;;
+import resources                 from &apos;./resources.js&apos;;
+import {typedDistributionSchema} from &apos;../util/schemas.js&apos;;
+
+
+export default Module.create(&apos;typed&apos;, [
+	resources
+], (M, {
+	Resource, IsRelatedTo
+}) =&gt; {
+	
+	
+	const Type = M.RESOURCE({///////////////////////////////////////////////////
+		
+		name: &apos;Type&apos;,
+		
+		extends: Resource,
+		
+		singular: &quot;type&quot;,
+		
+		icon: &apos;data:image/png;base64,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&apos;
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	
+	const IsSubtypeOf = M.RELATIONSHIP({
+		
+		name: &apos;IsSubtypeOf&apos;,
+		
+		extends: IsRelatedTo,
+		
+		singular: &quot;is subtype of&quot;,
+		plural:   &quot;are subtype of&quot;,
+		
+		1: [Type, &apos;0..*&apos;, {                key: &apos;subtypes&apos;   }],
+		2: [Type, &apos;0..*&apos;, { anchors: true, key: &apos;supertypes&apos; }],
+		
+		noCycles: true
+		
+	});
+	
+	
+	const Template = M.RESOURCE({///////////////////////////////////////////////
+		
+		name: &apos;Template&apos;,
+		
+		abstract: true,
+		
+		extends: Resource,
+		
+		singular: &quot;template&quot;,
+
+		properties: {
+			&apos;cardinalityBase&apos;: {
+				...typedDistributionSchema,
+				default: 1
+			},
+			&apos;species&apos;: {
+				type: &apos;string&apos;,
+				isRefinement(a, b) {
+					return !a || a === b;
+				}
+			}
+		}
+		
+	});/////////////////////////////////////////////////////////////////////////
+	
+	Template::definePropertyByValue(&apos;Type&apos;,     Type    );
+	Type    ::definePropertyByValue(&apos;Template&apos;, Template);
+	
+	
+	const HasCardinalityMultipliedByThatOf = M.RELATIONSHIP({
+		
+		name: &apos;HasCardinalityMultipliedByThatOf&apos;,
+		
+		extends: IsRelatedTo,
+		
+		singular: &quot;has cardinality multiplied by that of&quot;,
+		plural:   &quot;have cardinality multiplied by that of&quot;,
+		
+		1: [Template, &apos;0..*&apos;, { anchors: true, key: &apos;cardinalityMultipliers&apos; }],
+		2: [Template, &apos;0..*&apos;,                                                 ],
+		
+		noCycles: true
+		
+	});
+	
+	
+	const HasType = M.RELATIONSHIP({
+		
+		name: &apos;HasType&apos;,
+		
+		extends: IsRelatedTo,
+		
+		singular: &quot;has type&quot;,
+		plural:   &quot;have type&quot;,
+		
+		1: [Template, &apos;0..*&apos;, { anchors: true, key: &apos;types&apos; }],
+		2: [Type,     &apos;0..*&apos;,                                ]
+		
+	});
+	
+	 
+	const DefinesType = M.RELATIONSHIP({
+		
+		name: &apos;DefinesType&apos;,
+		
+		extends: HasType,
+		
+		singular: &quot;defines&quot;,
+		plural:   &quot;define&quot;,
+		
+		1: [Template, &apos;0..1&apos;, { anchors: true, key: &apos;definedType&apos; }],
+		2: [Type,     &apos;1..1&apos;, { anchors: true, key: &apos;definition&apos;  }]
+		
+	});
+	
+	
+	const PullsIntoTypeDefinition = M.RELATIONSHIP({
+		
+		name: &apos;PullsIntoTypeDefinition&apos;,
+		
+		abstract: true,
+		
+		extends: IsRelatedTo,
+		
+		singular: &quot;pulls into type definition&quot;,
+		plural:   &quot;pull into type definition&quot;,
+		
+		1: [Template, &apos;0..*&apos;],
+		2: [Template, &apos;0..*&apos;]
+		
+	});
+	
+	
+	const Has = M.RELATIONSHIP({
+		
+		name: &apos;Has&apos;,
+		
+		abstract: true,
+		
+		extends: PullsIntoTypeDefinition,
+		
+		singular: &quot;has&quot;,
+		plural:   &quot;have&quot;,
+		
+		1: [Template, &apos;0..*&apos;, { anchors: true, key: &apos;children&apos; }],
+		2: [Template, &apos;0..*&apos;, {                key: &apos;parents&apos;  }],
+		
+		noCycles: true
+		
+	});
+	
+	
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

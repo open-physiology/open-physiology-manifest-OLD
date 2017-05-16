@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/Entity.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/open-physiology/open-physiology-manifest" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/Entity.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {defaults, isInteger, isObject, entries, assign} from &apos;lodash-bound&apos;;
+import assert from &apos;power-assert&apos;;
+
+import {humanMsg, definePropertiesByValue, babelHelpers, ValueTracker} from &apos;utilities&apos;;
+
+import {constraint} from &apos;./util/misc&apos;;
+
+const $$allowInvokingConstructor = Symbol(&apos;$$allowInvokingConstructor&apos;);
+
+////////////////////////////////////////////////////////////////////////////////
+
+/** @wrapper */
+export default (env) =&gt; {
+	/**
+	 * The base-class of all entities described in the manifest.
+	 * @public
+	 */
+	class Entity extends ValueTracker {
+		
+		static get environment() { return env }
+		
+		static get Entity() { return Entity }
+		
+		static normalizeAddress(address, options = {}) {
+			const {entityToTemporaryId = new Map} = options;
+			if (address::isInteger()) { return { class: this.name, id: address } }
+			if (address::isObject()) {
+				let id = address.id || entityToTemporaryId.get(address);
+				return { class: address.class || this.name, id };
+			}
+			assert(false, humanMsg`${JSON.stringify(address)} is not a valid entity identifier.`);
+		}
+		
+		////////////////////////////////////////////////////////////
+		////////// STATIC (building Entity-based classes) //////////
+		////////////////////////////////////////////////////////////
+		
+		static createClass(config): Class&lt;Entity&gt; {
+			/* create the class with the right name, constructor and static content */
+			const {name, ...rest} = config;
+			
+			/* create the new class */
+			// using Function constructor to give the class a dynamic name
+			// http://stackoverflow.com/a/9947842/681588
+			// (and using babel-technique to build it, rather than using class
+			//  expression, so that it can be extended by babel-compiled code)
+			const EntitySubclass = new Function(&apos;Entity&apos;, `
+				&apos;use strict&apos;;
+				${babelHelpers};
+				return function (_Entity) {
+					_inherits(${name}, _Entity);
+					function ${name}() {
+						_classCallCheck(this, ${name});
+						return _possibleConstructorReturn(this, Object.getPrototypeOf(${name}).apply(this, arguments));
+					}
+					return ${name};
+				}(Entity);
+			`)(Entity);
+			
+			/* populate it with the necessary data and behavior */
+			EntitySubclass::assign(rest);
+			EntitySubclass::definePropertiesByValue({ name });
+			
+			/***/
+			return EntitySubclass;
+		}
+		
+		
+				
+		///////////////////////////////////////////////////
+		////////// STATIC CLASS ANALYSIS METHODS //////////
+		///////////////////////////////////////////////////
+		
+		static hasInstance(instance) {
+			if (!instance) { return false }
+			return this.hasSubclass(instance.constructor);
+		}
+		
+		static hasSubclass(otherClass) {
+			if (!otherClass || otherClass.Entity !== this.Entity) { return false }
+			if (this === this.Entity)                             { return true  }
+			if (otherClass === this)                              { return true  }
+			for (let SubClass of this.extendedBy) {
+				if (SubClass.hasSubclass(otherClass)) {
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		static allSubclasses() {
+			let result = [this];
+			for (let subClass of this.extendedBy) {
+				result = [...result, ...subClass.allSubclasses()];
+			}
+			return new Set(result);
+		}
+		
+		static [Symbol.hasInstance](instance) {
+			return this.hasInstance(instance);
+		}
+		
+		
+		///////////////////////////////
+		////////// INSTANCES //////////
+		///////////////////////////////
+		
+		static new(
+			initialValues: {} = {},
+		    options:       {} = {}
+		) : this {
+			if (this.isRelationship) {
+				throw new Error(humanMsg`
+					You cannot instantiate ${this.name},
+					because it is a Relationship subclass.
+				`);
+			}
+			return new this(initialValues, {
+				...options,
+				[$$allowInvokingConstructor]: true
+			});
+		}
+		
+		constructor(initialValues: {} = {}, options = {}) {
+			/* initialize value tracking */
+			super();
+			
+			/* make sure this constructor was invoked under proper conditions */
+			constraint(options[$$allowInvokingConstructor], humanMsg`
+				Do not use &apos;new ${this.constructor.name}(...args)&apos;.
+				Instead, use &apos;${this.constructor.name}.new(...args)&apos;
+				          or &apos;${this.constructor.name}.get(...args)&apos;.
+			`);
+			delete options[$$allowInvokingConstructor];
+			
+			/* create fieldsInitialized property */
+			// for some reason, I can&apos;t use @property for this; TODO: find out why
+			this.newProperty(&apos;fieldsInitialized&apos;, { initial: false, readonly: true });
+			
+			/* set defaults for the core initial field values */
+			initialValues::defaults({
+				class: this.constructor.name
+			});
+			
+			/* initialize all fields in this entity */
+			this.constructor.environment.Field.initializeEntity(this, initialValues);
+		}
+		
+		get [Symbol.toStringTag]() {
+			const identifier = this.id || this.name || this.title; // &lt;-- just some common candidates
+			return `${this.constructor.name}${identifier ? &apos;: &apos;+identifier : &apos;&apos;}`;
+		}
+		
+		p(...args) {
+			if (!!this.fields &amp;&amp; !!this.fields[args[0]]) {
+				return this.fields[args[0]].p(&apos;value&apos;);
+			} else if (this.hasProperty(...args)) {
+				return super.p(...args);
+			}
+		}
+		
+		
+		//// Transforming to/from JSON
+		
+		static objectToJSON(obj, options = {}) {
+			let { sourceEntity } = options;
+			// TODO: rather than sourceEntity, accept an entity CLASS,
+			//     : which should have a good description of the fields
+			//     : This is issue open-physiology/open-physiology-model#10
+			let result = {};
+			for (let [key, value] of obj::entries()) {
+				const field = sourceEntity.fields[key];
+				let opts;
+				switch (field.constructor.name) {
+					case &apos;Rel$Field&apos;: case &apos;Rel1Field&apos;: {
+						opts = { ...options, requireClass: key.substring(3) };
+					} break;
+					case &apos;SideField&apos;: case &apos;PropertyField&apos;: {
+						opts = options;
+					} break;
+					default: continue; // Don&apos;t put shortcut fields in JSON
+				}
+				let valueJSON = field.constructor.valueToJSON(value, opts);
+				if (field.constructor.name === &apos;Rel$Field&apos; &amp;&amp; valueJSON.length === 0) { continue }
+				if (field.constructor.name === &apos;Rel1Field&apos; &amp;&amp; valueJSON === null)     { continue }
+				result[key] = valueJSON;
+			}
+			return result;
+		}
+		
+		toJSON(options = {}) {
+			let result = {};
+			for (let [key, field] of this.fields::entries()) {
+				result[key] = field.value;
+			}
+			return this.constructor.objectToJSON(result, { ...options, sourceEntity: this });
+		}
+		
+		
+		//// Setting / getting of fields
+		
+		get(key)                    { return this.fields[key].get()             }
+		set(key, val, options = {}) { return this.fields[key].set(val, options) }
+		
+	}
+	
+	return env.Entity || Entity;
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

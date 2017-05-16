@@ -9,9 +9,12 @@
     "name": "esdoc-babel-plugin",
     "option": {
       "plugins": [
-        "transform-decorators-legacy",
+        "unwrap-wrapper-function",
+        "transform-function-bind",
+        "transform-object-rest-spread",
         "transform-flow-strip-types",
-        "transform-class-properties"
+        "transform-class-properties",
+        "remove-decorator"
       ]
     }
   }],

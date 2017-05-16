@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/util/schemas.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/open-physiology/open-physiology-manifest" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/util/schemas.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/** @private */
+export const identifierRegex = `^[a-zA-Z_][a-zA-Z0-9_]*$`;
+
+/** @private */
+export const qualitySchema = {
+	type: &apos;string&apos;
+};
+
+/** @private */
+export const identifierSchema = {
+	type:    &apos;string&apos;,
+	pattern: &apos;^[a-zA-Z_][a-zA-Z0-9_]*$&apos;
+};
+
+/** @private */
+export const uriSchema = {
+	type: &apos;string&apos;,
+	format: &apos;uri&apos;
+};
+
+/** @private */
+export const idSchema = {
+	type: &apos;integer&apos;
+};
+
+/** @private */
+export const enumSchema = (...candidates) =&gt; ({
+	type: &apos;string&apos;,
+	enum: candidates
+});
+
+/** @private */
+export const enumArraySchema = (...candidates) =&gt; ({
+	type       : &apos;array&apos;,
+	items      : { ...enumSchema(...candidates) },
+	uniqueItems: true,
+	maxItems   : candidates.length
+});
+
+/** @private */
+export const oneOf = (...schemas) =&gt; ({ oneOf: schemas });
+
+/** @private */
+export const typedDistributionSchema = {
+	type: &apos;object&apos;,
+	properties: {
+		&apos;value&apos;: { type: &apos;number&apos; },
+		&apos;min&apos;:   { type: &apos;number&apos; },
+		&apos;max&apos;:   { type: &apos;number&apos; },
+		&apos;mean&apos;:  { type: &apos;number&apos; },
+		&apos;std&apos;:   { type: &apos;number&apos; },
+		&apos;class&apos;: { type: &apos;string&apos;, required: true }
+		// &apos;UniformDistribution&apos; | &apos;BoundedNormalDistribution&apos; | &apos;Number&apos; | &apos;NumberRange&apos;
+	}
+};
+
+/** @private */
+export const rangeSchema = {
+	type: &apos;object&apos;,
+	properties: {
+		&apos;min&apos;:  { type: &apos;number&apos;, required: true },
+		&apos;max&apos;:  { type: &apos;number&apos;, required: true }
+	}
+};
+
+/** @private */
+export const universalDistanceRange = {
+	&apos;min&apos;: 0,
+	&apos;max&apos;: Infinity
+};
+
+/** @private */
+export const normalDistributionSchema = {
+	type: &apos;object&apos;,
+	properties: {
+		&apos;distribution&apos;: { value: &apos;normal&apos; },
+		&apos;mean&apos;: { type: &apos;number&apos;, required: true },
+		&apos;std&apos;:  { type: &apos;number&apos;, required: true }
+	}
+};
+
+/** @private */
+export const boundedNormalDistributionSchema = {
+	type: &apos;object&apos;,
+	properties: {
+		&apos;distribution&apos;: { value: &apos;bounded-normal&apos; },
+		&apos;mean&apos;: { type: &apos;number&apos;, required: true },
+		&apos;std&apos;:  { type: &apos;number&apos;, required: true },
+		&apos;min&apos;:  { type: &apos;number&apos;, required: true },
+		&apos;max&apos;:  { type: &apos;number&apos;, required: true }
+	}
+};
+
+/** @private */
+export const uniformDistributionSchema = {
+	type: &apos;object&apos;,
+	properties: {
+		&apos;distribution&apos;: { value: &apos;uniform&apos; },
+		&apos;min&apos;:  { type: &apos;number&apos;, required: true },
+		&apos;max&apos;:  { type: &apos;number&apos;, required: true }
+	}
+};
+
+// export const distributionSchema = {
+// 	oneOf: [
+// 		{ ...normalDistributionSchema        },
+// 		{ ...boundedNormalDistributionSchema },
+// 		{ ...uniformDistributionSchema       }
+// 	]
+// };
+
+/** @private */
+export const distributionSchemaOr = (otherSchema) =&gt; ({
+	oneOf: [
+		boundedNormalDistributionSchema,
+		uniformDistributionSchema,
+		otherSchema
+	]
+});
+
+/** @private */
+export const dimensionalitySchema = {
+	type: &apos;object&apos;,
+	patternProperties: {
+		&apos;[a-zA-Z0-9 ]+&apos;: { type: &apos;integer&apos; }
+	}
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

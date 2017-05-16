@@ -1,0 +1,143 @@
+{
+  "coverage": "20.19%",
+  "expectCount": 104,
+  "actualCount": 21,
+  "files": {
+    "src/Entity.js": {
+      "expectCount": 17,
+      "actualCount": 1,
+      "undocumentLines": [
+        28,
+        116,
+        161,
+        108,
+        136,
+        48,
+        24,
+        221,
+        83,
+        90,
+        124,
+        32,
+        176,
+        166,
+        224,
+        209
+      ]
+    },
+    "src/fields/Field.js": {
+      "expectCount": 20,
+      "actualCount": 1,
+      "undocumentLines": [
+        131,
+        130,
+        172,
+        176,
+        129,
+        128,
+        163,
+        118,
+        29,
+        122,
+        97,
+        146,
+        47,
+        105,
+        135,
+        150,
+        168,
+        142,
+        138
+      ]
+    },
+    "src/Module.js": {
+      "expectCount": 13,
+      "actualCount": 0,
+      "undocumentLines": [
+        91,
+        117,
+        106,
+        270,
+        130,
+        102,
+        93,
+        436,
+        398,
+        319,
+        195,
+        286,
+        262
+      ]
+    },
+    "src/ObservableSet.js": {
+      "expectCount": 14,
+      "actualCount": 14,
+      "undocumentLines": []
+    },
+    "src/fields/PropertyField.js": {
+      "expectCount": 7,
+      "actualCount": 1,
+      "undocumentLines": [
+        52,
+        65,
+        32,
+        94,
+        101,
+        87
+      ]
+    },
+    "src/fields/Rel$Field.js": {
+      "expectCount": 14,
+      "actualCount": 1,
+      "undocumentLines": [
+        198,
+        61,
+        150,
+        78,
+        161,
+        137,
+        35,
+        183,
+        141,
+        207,
+        216,
+        226,
+        171
+      ]
+    },
+    "src/fields/Rel1Field.js": {
+      "expectCount": 12,
+      "actualCount": 1,
+      "undocumentLines": [
+        138,
+        58,
+        151,
+        75,
+        155,
+        146,
+        35,
+        126,
+        161,
+        181,
+        113
+      ]
+    },
+    "src/fields/RelField.js": {
+      "expectCount": 5,
+      "actualCount": 1,
+      "undocumentLines": [
+        15,
+        19,
+        11,
+        23
+      ]
+    },
+    "src/TypedModule.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        15
+      ]
+    }
+  }
+}

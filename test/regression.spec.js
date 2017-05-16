@@ -7,7 +7,7 @@ describe("regression tests", () => {
     let environment;
    	beforeEach(() => { environment = moduleFactory() });
 
-    it("HasType[2] set to null? (pre-manifest-separation)", async () => {
+    it("HasType[2] set to null? (pre-manifest-separation)", () => {
         const {Group, Lyph} = environment.classes;
 
         let lyph1 = Lyph .new();
@@ -20,7 +20,7 @@ describe("regression tests", () => {
         expect([...group.elements]).to.eql([lyph1, lyph2]);
     });
 
-    it("trying to instantiate abstract class Has", async () => {
+    it("trying to instantiate abstract class Has", () => {
         const {Lyph, HasPart} = environment.classes;
 
         let subLyph = Lyph.new({ name: 'Sublyph' });
@@ -60,7 +60,7 @@ describe("regression tests", () => {
     });
 
 
-    it("export manually defined plural", async () => {
+    it("export manually defined plural", () => {
         const {Process, Causality} = environment.classes;
 
         let process   = Process.new({ name: "Blood advection" });

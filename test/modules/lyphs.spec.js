@@ -37,7 +37,7 @@ describe("'lyphs' Module", () => {
 
 	});
 
-	it("exports classes that can be instantiated", async () => {
+	it("exports classes that can be instantiated", () => {
 		
 		const {Material, Lyph} = environment.classes;
 		

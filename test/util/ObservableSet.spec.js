@@ -1,11 +1,10 @@
 import {describe, it, expect, beforeEach} from '../test.helper';
 
-import ObservableSet, {setEquals} from '../../src/util/ObservableSet';
+import ObservableSet, {setEquals} from '../../src/ObservableSet';
 
 describe("ObservableSet", () => {
 	
 	let s;
-	
 	beforeEach(() => {
 		s = new ObservableSet();
 	});
@@ -44,7 +43,6 @@ describe("ObservableSet", () => {
 		s.add(5);
 		s.delete(2);
 		
-		
 		expect([...added]).to.include(2);
 		expect([...added]).to.include(3);
 		expect([...added]).to.include(4);
@@ -76,7 +74,6 @@ describe("ObservableSet", () => {
 		expect([...syncedSet]).to.not.include(2);
 
 		expect([...s]).to.eql([...syncedSet]);
-		
 		
 	});
 	
