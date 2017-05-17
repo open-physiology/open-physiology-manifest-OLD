@@ -279,6 +279,7 @@ export default class Module {
 		}
 	}
 	
+	/** @private */
 	[$$processRelationshipDomain](referenceDomain) {
 		const {
 			resourceClass,

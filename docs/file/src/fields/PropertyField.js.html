@@ -96,6 +96,7 @@ export default (env) =&gt; {
 			});
 		}
 		
+		/** @private */
 		static [$$entriesIn](cls) {
 			return cls.properties::entries()
 				.map(([key, desc])=&gt;({

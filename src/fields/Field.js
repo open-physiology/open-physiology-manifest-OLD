@@ -111,20 +111,39 @@ export default (env) => {
 			return `Field: ${this[$$owner].constructor.name}#${this[$$key]}`;
 		}
 		
-		constructor({ owner, key, desc, aliases = [], setValueThroughSignal = true, isPlaceholder = false }) {
+		/**
+		 *
+		 * @private
+		 * @param {Object} options
+		 * @param options.owner
+		 * @param options.key
+		 * @param options.desc
+		 * @param options.aliases
+		 * @param options.setValueThroughSignal
+		 * @param options.isPlaceholder
+		 */
+		constructor(options) {
 			super();
+			const {
+				owner,
+				key,
+				desc,
+				aliases = [],
+				setValueThroughSignal = true,
+				isPlaceholder = false
+			} = options;
 			owner.fields[key] = this;
 			for (let alias of aliases) {
 				owner.fields[alias] = this;
 			}
-			this[$$owner]   = owner;
-			this[$$key]     = key;
-			this[$$desc]    = desc;
-			this[$$aliases] = aliases;
+			/** @private */ this[$$owner]   = owner;
+			/** @private */ this[$$key]     = key;
+			/** @private */ this[$$desc]    = desc;
+			/** @private */ this[$$aliases] = aliases;
 			if (setValueThroughSignal) {
 				this.p('value').subscribe(::this.set);
 			}
-			this.isPlaceholder = isPlaceholder;
+			this.isPlaceholder = isPlaceholder; // TODO (MANIFEST): are we still doing placeholders this way?
 		}
 		
 		static valueToJSON() { assert(false, humanMsg`Field.valueToJSON must be implemented in subclasses.`) }
@@ -144,7 +163,7 @@ export default (env) => {
 					'${this[$$owner].constructor.name}#${this[$$key]}'.
 				`);
 				if (!ignoreValidation) { this.validate(newValue, ['set']) }
-				this[$$value] = newValue;
+				/** @private */ this[$$value] = newValue;
 				this.pSubject('value').next(newValue);
 			}
 		}
@@ -153,10 +172,12 @@ export default (env) => {
 			// to be implemented in subclasses
 		}
 		
+		/** @private */
 		[$$destruct]() {
 			// to be implemented in subclasses
 		}
 		
+		/** @private */
 		[$$initSet](...alternatives) {
 			for (let [guard, value] of alternatives) {
 				if (guard::callOrReturn(this)) {

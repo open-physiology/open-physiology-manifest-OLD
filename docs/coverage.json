@@ -1,6 +1,6 @@
 {
-  "coverage": "20.19%",
-  "expectCount": 104,
+  "coverage": "22.82%",
+  "expectCount": 92,
   "actualCount": 21,
   "files": {
     "src/Entity.js": {
@@ -26,46 +26,37 @@
       ]
     },
     "src/fields/Field.js": {
-      "expectCount": 20,
+      "expectCount": 12,
       "actualCount": 1,
       "undocumentLines": [
-        131,
-        130,
-        172,
-        176,
-        129,
-        128,
-        163,
         118,
         29,
-        122,
         97,
-        146,
+        165,
         47,
         105,
-        135,
-        150,
-        168,
-        142,
-        138
+        154,
+        169,
+        187,
+        157,
+        161
       ]
     },
     "src/Module.js": {
-      "expectCount": 13,
+      "expectCount": 12,
       "actualCount": 0,
       "undocumentLines": [
         91,
         117,
         106,
-        270,
         130,
         102,
         93,
-        436,
-        398,
-        319,
+        437,
+        399,
+        320,
         195,
-        286,
+        287,
         262
       ]
     },
@@ -75,51 +66,48 @@
       "undocumentLines": []
     },
     "src/fields/PropertyField.js": {
-      "expectCount": 7,
+      "expectCount": 6,
       "actualCount": 1,
       "undocumentLines": [
-        52,
-        65,
+        66,
         32,
-        94,
-        101,
-        87
+        95,
+        102,
+        88
       ]
     },
     "src/fields/Rel$Field.js": {
-      "expectCount": 14,
+      "expectCount": 13,
       "actualCount": 1,
       "undocumentLines": [
-        198,
-        61,
-        150,
-        78,
-        161,
-        137,
+        199,
+        151,
+        79,
+        162,
+        138,
         35,
-        183,
-        141,
-        207,
-        216,
-        226,
-        171
+        184,
+        142,
+        208,
+        217,
+        227,
+        172
       ]
     },
     "src/fields/Rel1Field.js": {
-      "expectCount": 12,
+      "expectCount": 11,
       "actualCount": 1,
       "undocumentLines": [
-        138,
-        58,
-        151,
-        75,
-        155,
-        146,
+        139,
+        152,
+        76,
+        156,
+        147,
         35,
-        126,
-        161,
-        181,
-        113
+        127,
+        162,
+        182,
+        114
       ]
     },
     "src/fields/RelField.js": {

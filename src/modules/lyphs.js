@@ -168,7 +168,6 @@ export default TypedModule.create('lyphs', [
 		
 	});
 	
-	
 	const Border = M.TYPED_RESOURCE({///////////////////////////////////////////
 		
 		name: 'Border',
