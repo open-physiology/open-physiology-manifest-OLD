@@ -48,6 +48,7 @@ export default (env) => {
 			});
 		}
 		
+		/** @private */
 		static [$$entriesIn](cls) {
 			return cls.properties::entries()
 				.map(([key, desc])=>({

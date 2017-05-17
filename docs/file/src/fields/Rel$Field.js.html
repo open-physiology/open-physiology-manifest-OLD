@@ -104,6 +104,7 @@ export default (env) =&gt; {
 			}
 		}
 		
+		/** @private */
 		static [$$entriesIn](cls) {
 			if (!cls.isResource) { return [] }
 			return cls.relationships::entries()

@@ -5829,6 +5829,9 @@ var Module = function () {
 				}
 			}
 		}
+
+		/** @private */
+
 	}, {
 		key: $$processRelationshipDomain,
 		value: function value(referenceDomain) {
@@ -9792,6 +9795,19 @@ exports.default = function (env) {
 			get: function get() {
 				return 'Field: ' + this[_symbols.$$owner].constructor.name + '#' + this[_symbols.$$key];
 			}
+
+			/**
+    *
+    * @private
+    * @param {Object} options
+    * @param options.owner
+    * @param options.key
+    * @param options.desc
+    * @param options.aliases
+    * @param options.setValueThroughSignal
+    * @param options.isPlaceholder
+    */
+
 		}], [{
 			key: 'augmentClass',
 
@@ -9824,10 +9840,10 @@ exports.default = function (env) {
 								var _ref2 = _step2.value;
 								var key = _ref2.key,
 								    desc = _ref2.desc,
-								    aliases = _ref2.aliases;
+								    _aliases = _ref2.aliases;
 
 								if (!onlyForKey || onlyForKey === key) {
-									FieldClass.initClass({ cls: cls, key: key, aliases: aliases, desc: desc });
+									FieldClass.initClass({ cls: cls, key: key, aliases: _aliases, desc: desc });
 								}
 							}
 						} catch (err) {
@@ -9890,11 +9906,12 @@ exports.default = function (env) {
 						try {
 							for (var _iterator6 = FieldClass[_symbols.$$entriesIn](owner.constructor)[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
 								var entry = _step6.value;
+
 								var key = entry.key,
 								    _entry$aliases = entry.aliases,
-								    aliases = _entry$aliases === undefined ? [] : _entry$aliases;
+								    _aliases2 = _entry$aliases === undefined ? [] : _entry$aliases;
 
-								var candidateKeys = [key].concat(_toConsumableArray(aliases)).filter(function (v) {
+								var candidateKeys = [key].concat(_toConsumableArray(_aliases2)).filter(function (v) {
 									var _context3;
 
 									return !(_context3 = initialValues[v], _lodashBound.isUndefined).call(_context3);
@@ -10039,17 +10056,7 @@ exports.default = function (env) {
 
 		}]);
 
-		function Field(_ref3) {
-			var owner = _ref3.owner,
-			    key = _ref3.key,
-			    desc = _ref3.desc,
-			    _ref3$aliases = _ref3.aliases,
-			    aliases = _ref3$aliases === undefined ? [] : _ref3$aliases,
-			    _ref3$setValueThrough = _ref3.setValueThroughSignal,
-			    setValueThroughSignal = _ref3$setValueThrough === undefined ? true : _ref3$setValueThrough,
-			    _ref3$isPlaceholder = _ref3.isPlaceholder,
-			    isPlaceholder = _ref3$isPlaceholder === undefined ? false : _ref3$isPlaceholder;
-
+		function Field(options) {
 			_classCallCheck(this, Field);
 
 			var _this = _possibleConstructorReturn(this, (Field.__proto__ || Object.getPrototypeOf(Field)).call(this));
@@ -10057,6 +10064,16 @@ exports.default = function (env) {
 			_initDefineProp(_this, 'value', _descriptor, _this);
 
 			_initDefineProp(_this, 'isPlaceholder', _descriptor2, _this);
+
+			var owner = options.owner,
+			    key = options.key,
+			    desc = options.desc,
+			    _options$aliases = options.aliases,
+			    aliases = _options$aliases === undefined ? [] : _options$aliases,
+			    _options$setValueThro = options.setValueThroughSignal,
+			    setValueThroughSignal = _options$setValueThro === undefined ? true : _options$setValueThro,
+			    _options$isPlaceholde = options.isPlaceholder,
+			    isPlaceholder = _options$isPlaceholde === undefined ? false : _options$isPlaceholde;
 
 			owner.fields[key] = _this;
 			var _iteratorNormalCompletion8 = true;
@@ -10069,6 +10086,7 @@ exports.default = function (env) {
 
 					owner.fields[alias] = _this;
 				}
+				/** @private */
 			} catch (err) {
 				_didIteratorError8 = true;
 				_iteratorError8 = err;
@@ -10085,13 +10103,13 @@ exports.default = function (env) {
 			}
 
 			_this[_symbols.$$owner] = owner;
-			_this[_symbols.$$key] = key;
-			_this[_symbols.$$desc] = desc;
-			_this[$$aliases] = aliases;
+			/** @private */_this[_symbols.$$key] = key;
+			/** @private */_this[_symbols.$$desc] = desc;
+			/** @private */_this[$$aliases] = aliases;
 			if (setValueThroughSignal) {
 				_this.p('value').subscribe(_this.set.bind(_this));
 			}
-			_this.isPlaceholder = isPlaceholder;
+			_this.isPlaceholder = isPlaceholder; // TODO (MANIFEST): are we still doing placeholders this way?
 			return _this;
 		}
 
@@ -10121,22 +10139,28 @@ exports.default = function (env) {
 					if (!ignoreValidation) {
 						this.validate(newValue, ['set']);
 					}
-					this[_symbols.$$value] = newValue;
+					/** @private */this[_symbols.$$value] = newValue;
 					this.pSubject('value').next(newValue);
 				}
 			}
 		}, {
 			key: 'validate',
 			value: function validate(val) {
-				// to be implemented in subclasses
-
 				var stages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 			}
+			// to be implemented in subclasses
+
+
+			/** @private */
+
 		}, {
 			key: _symbols.$$destruct,
-			value: function value() {
-				// to be implemented in subclasses
-			}
+			value: function value() {}
+			// to be implemented in subclasses
+
+
+			/** @private */
+
 		}, {
 			key: _symbols.$$initSet,
 			value: function value() {
@@ -43773,6 +43797,9 @@ exports.default = function (env) {
 					configurable: false
 				}));
 			}
+
+			/** @private */
+
 		}, {
 			key: _symbols.$$entriesIn,
 			value: function value(cls) {
@@ -43991,6 +44018,9 @@ exports.default = function (env) {
 					_loop();
 				}
 			}
+
+			/** @private */
+
 		}, {
 			key: _symbols.$$entriesIn,
 			value: function value(cls) {
@@ -44401,6 +44431,9 @@ exports.default = function (env) {
 					_loop();
 				}
 			}
+
+			/** @private */
+
 		}, {
 			key: _symbols.$$entriesIn,
 			value: function value(cls) {
