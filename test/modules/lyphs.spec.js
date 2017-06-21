@@ -2,9 +2,6 @@ import {describe, it, expect, beforeEach} from '../test.helper';
 
 import moduleFactory from '../../src/modules/lyphs';
 
-import map from 'lodash-bound/map';
-import {simpleMockHandlers} from "../mock-handlers.helper";
-
 describe("'lyphs' Module", () => {
 	
 	let environment;
@@ -48,12 +45,47 @@ describe("'lyphs' Module", () => {
 		
 	});
 	
+	it("exports lyph type that can be given custom borders and axes", async () => {
+		
+		const {
+			Lyph,
+			Border,
+			Has,
+			HasBorder,
+			HasLongitudinalBorder
+		} = environment.classes;
+		
+		let lyph1 = Lyph.new({
+			radialBorders: [ Border.new() ]
+		});
+		
+		expect([...lyph1['-->HasBorder']])            .to.have.a.lengthOf(1);
+		expect([...lyph1['-->HasRadialBorder']])      .to.have.a.lengthOf(1);
+		expect([...lyph1['-->HasLongitudinalBorder']]).to.have.a.lengthOf(0);
+		expect([...lyph1.radialBorders])              .to.have.a.lengthOf(1);
+		
+		expect([...lyph1.radialBorders][0]).to.be.an.instanceOf(Border);
+		
+		let lyph2 = Lyph.new({
+			radialBorders: [ Border.new(), Border.new() ],
+			axis:            Border.new()
+		});
+
+		expect([...lyph2['-->HasBorder']]).to.have.a.lengthOf(3);
+		expect([...lyph2.radialBorders])  .to.have.a.lengthOf(2);
+		expect([...lyph2.radialBorders][0]).to.be.an.instanceOf(Border);
+		expect([...lyph2.radialBorders][1]).to.be.an.instanceOf(Border);
+		expect(lyph2.axis)                 .to.be.an.instanceOf(Border);
+		
+	});
+	
 	it("exports classes that have the properties and relationships of their superclasses", () => {
 		
 		const {Lyph} = environment.classes;
 		
-		expect(Lyph.properties   ).to.have.property('id');
-		expect(Lyph.relationships).to.have.property('-->ContainsMaterial');
+		expect(Lyph.properties   )        .to.have.property('id');
+		expect(Lyph.relationships)        .to.have.property('-->ContainsMaterial');
+		expect(Lyph.relationshipShortcuts).to.have.property('materials');
 		
 	});
 	

@@ -67,14 +67,12 @@ export default (env) => {
 			const { owner, desc, initialValue } = options;
 			
 			/* set the initial value */
-			this.p('isPlaceholder').filter(v=>!v).take(1).subscribe(() => {
-				this[$$initSet](
-					[!initialValue::isUndefined(), () => initialValue::callOrReturn(owner)::cloneDeep()],
-					['default' in desc,            () => desc.default::callOrReturn(owner)::cloneDeep()],
-					['value'   in desc,            () => desc.value  ::callOrReturn(owner)::cloneDeep()],
-					[!desc.required]
-				);
-			});
+			this[$$initSet](
+				[!initialValue::isUndefined(), () => initialValue::callOrReturn(owner)::cloneDeep()],
+				['default' in desc,            () => desc.default::callOrReturn(owner)::cloneDeep()],
+				['value'   in desc,            () => desc.value  ::callOrReturn(owner)::cloneDeep()],
+				[!desc.required]
+			);
 		}
 		
 		static valueToJSON(value, {flattenFieldValues = false} = {}) {

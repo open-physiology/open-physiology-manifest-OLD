@@ -14,8 +14,5 @@ module.exports = {
 	target: 'node',
 	externals: [require('webpack-node-externals')({
 		whitelist: ['utilities']
-	})],
-	plugins: [
-		new webpack.NormalModuleReplacementPlugin(/\.(gif|png|scss|css)$/, 'node-noop')
-	]
+	})]
 };

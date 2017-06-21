@@ -74,35 +74,38 @@ export default (env) => {
 			super(options);
 			const { owner, key, desc, initialValue, related } = options;
 			
-			this.p('isPlaceholder').filter(v=>!v).take(1).subscribe(() => {
-				
-				/* set the initial value */
-				const initialShortcutValue = related::get([desc.shortcutKey, 'initialValue']);
-				constraint(!initialValue || !initialShortcutValue, humanMsg`
-					You cannot set the fields '${key}' and '${desc.shortcutKey}'
-					at the same time for a ${this.constructor.singular}.
-				`);
-				this[$$initSet](
-					[!initialValue        ::isUndefined(), () => initialValue        ::callOrReturn(owner)],
-					[!initialShortcutValue::isUndefined(), () => initialShortcutValue::callOrReturn(owner)],
-					[desc.cardinality.min === 0,           () => null]
-				);
-				
+			/* set the initial value */
+			const initialShortcutValue = related::get([desc.shortcutKey, 'initialValue']);
+			constraint(!initialValue || !initialShortcutValue, humanMsg`
+				You cannot set the fields '${key}' and '${desc.shortcutKey}'
+				at the same time for a ${this.constructor.singular}.
+			`);
+			this[$$initSet](
+				[!initialValue        ::isUndefined(), () => initialValue        ::callOrReturn(owner)],
+				[!initialShortcutValue::isUndefined(), () => initialShortcutValue::callOrReturn(owner)],
+				[desc.cardinality.min === 0,           () => null]
+			);
+			
+			owner.p('fieldsInitialized').filter(v=>!!v).take(1).subscribe(() => {
+			
 				/* synchronize with the other side */
 				this.p('value').startWith(null).distinctUntilChanged().pairwise().subscribe(([prev, curr]) => {
 					if (prev) { prev.fields[desc.codomain.keyInResource].delete(owner) }
-					if (curr) { curr.fields[desc.codomain.keyInResource].add   (owner) }
+					if (curr) {
+						if (!curr.fields[desc.codomain.keyInResource]) {
+							debugger;
+						}
+						curr.fields[desc.codomain.keyInResource].add   (owner)
+					}
 				});
 			
 				/* pull in values set in sub-fields */
-				owner.p('fieldsInitialized').filter(v=>!!v).take(1).subscribe(() => {
-					for (let subCls of desc.relationshipClass.extendedBy) {
-						const subFieldKey = subCls.keyInResource[desc.keyInRelationship];
-						const subField = owner.fields[subFieldKey];
-						if (!subField) { continue }
-						subField.p('value').subscribe( this.p('value') );
-					}
-				});
+				for (let subCls of desc.relationshipClass.extendedBy) {
+					const subFieldKey = subCls.keyInResource[desc.keyInRelationship];
+					const subField = owner.fields[subFieldKey];
+					if (!subField) { continue }
+					subField.p('value').subscribe( this.p('value') );
+				}
 				
 			});
 		}
