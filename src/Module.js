@@ -58,7 +58,7 @@ class Environment {
 			modules: new Map,
 			classes: new Graph,
 			Entity:  Entity_factory(this),
-			Field:   Field_factory(this)
+			Field:   Field_factory (this)
 		});
 		
 		// /* create a version of the Entity class */
@@ -157,7 +157,8 @@ export default class Module {
 		
 		if (config.isResource) {
 			config::defaults({
-				relationships: {}
+				relationships:         {},
+				relationshipShortcuts: {}
 			});
 		}
 		
@@ -293,6 +294,9 @@ export default class Module {
 		
 		/* put back-reference in classes */
 		resourceClass.relationships[keyInResource] = referenceDomain;
+		if (!shortcutKey::isUndefined()) {
+			resourceClass.relationshipShortcuts[shortcutKey] = referenceDomain;
+		}
 		this.environment.Field.augmentClass(resourceClass, keyInResource);
 	}
 	
@@ -390,10 +394,8 @@ export default class Module {
 			return singleSuperDesc;
 		});
 		
-		mergeFieldKind(cls, cls, 'relationships', (superDesc, subDesc) => {
-			assert(superDesc.resourceClass.hasSubclass(subDesc.resourceClass));
-			return subDesc;
-		});
+		mergeFieldKind(cls, cls, 'relationships');
+		mergeFieldKind(cls, cls, 'relationshipShortcuts');
 	}
 	
 	mergeSameNameResources(NewClass) : Class {

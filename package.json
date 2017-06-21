@@ -51,7 +51,6 @@
     "json-stringify-safe": "5",
     "mocha": "2",
     "mocha-webpack": "0.5",
-    "node-noop": "1",
     "npm-cli": "0.1",
     "polyfill-function-prototype-bind": "0.0",
     "power-assert": "1",

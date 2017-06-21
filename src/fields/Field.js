@@ -98,8 +98,7 @@ export default (env) => {
 		// events & properties //
 		/////////////////////////
 		
-		@property()              value;
-		@flag({ initial: true }) isPlaceholder;
+		@property() value;
 		
 		
 		//////////////
@@ -120,7 +119,6 @@ export default (env) => {
 		 * @param options.desc
 		 * @param options.aliases
 		 * @param options.setValueThroughSignal
-		 * @param options.isPlaceholder
 		 */
 		constructor(options) {
 			super();
@@ -129,8 +127,7 @@ export default (env) => {
 				key,
 				desc,
 				aliases = [],
-				setValueThroughSignal = true,
-				isPlaceholder = false
+				setValueThroughSignal = true
 			} = options;
 			owner.fields[key] = this;
 			for (let alias of aliases) {
@@ -143,7 +140,6 @@ export default (env) => {
 			if (setValueThroughSignal) {
 				this.p('value').subscribe(::this.set);
 			}
-			this.isPlaceholder = isPlaceholder; // TODO (MANIFEST): are we still doing placeholders this way?
 		}
 		
 		static valueToJSON() { assert(false, humanMsg`Field.valueToJSON must be implemented in subclasses.`) }

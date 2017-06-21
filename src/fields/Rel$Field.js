@@ -39,9 +39,6 @@ export default (env) => {
 		////////////
 		
 		static initClass({ cls, key, aliases, desc: {readonly} }) {
-				
-			// console.log('Rel$Field.initClass:', cls.name, key, aliases);
-		
 			assert(cls.isResource);
 			if (cls.prototype.hasOwnProperty(key)) { return }
 			for (let k of [key, ...aliases]) {
@@ -82,20 +79,19 @@ export default (env) => {
 			/* initialize an empty observable set */
 			this::defineProperty($$value, { value: new ObservableSet });
 			
-			/***/
-			this.p('isPlaceholder').filter(v=>!v).take(1).subscribe(() => {
-				
-				/* set the initial value */
-				const initialScValue = related::get([desc.shortcutKey, 'initialValue']);
-				constraint(!initialValue || !initialScValue, humanMsg`
-					You cannot set the fields '${desc.keyInResource}' and '${desc.shortcutKey}'
-					at the same time for a ${this.constructor.singular}.
-				`);
-				this[$$initSet](
-					[initialValue   && initialValue  [Symbol.iterator], () => initialValue  ::callOrReturn(owner)],
-					[initialScValue && initialScValue[Symbol.iterator], () => initialScValue::callOrReturn(owner)],
-					[desc.cardinality.min === 0]
-				);
+			/* set the initial value */
+			const initialScValue = related::get([desc.shortcutKey, 'initialValue']);
+			constraint(!initialValue || !initialScValue, humanMsg`
+				You cannot set the fields '${desc.keyInResource}' and '${desc.shortcutKey}'
+				at the same time for a ${this.constructor.singular}.
+			`);
+			this[$$initSet](
+				[initialValue   && initialValue  [Symbol.iterator], () => initialValue  ::callOrReturn(owner)],
+				[initialScValue && initialScValue[Symbol.iterator], () => initialScValue::callOrReturn(owner)],
+				[desc.cardinality.min === 0]
+			);
+			
+			owner.p('fieldsInitialized').filter(v=>!!v).take(1).subscribe(() => {
 				
 				/* synchronize with the other side */
 				this.get().e('add').switchMap(
@@ -112,33 +108,31 @@ export default (env) => {
 				});
 				
 				/* mirror stuff that happens in sub-fields */
-				owner.p('fieldsInitialized').filter(v=>!!v).take(1).subscribe(() => {
-					for (let subCls of desc.relationshipClass.extendedBy) {
-						const subFieldKey = subCls.keyInResource[desc.keyInRelationship];
-						const subField    = owner.fields[subFieldKey];
-						if (!subField) { continue }
-						if (subField instanceof Rel$Field) {
-							subField.get().e('add')   .subscribe( this.get().e('add')    );
-							subField.get().e('delete').subscribe( this.get().e('delete') );
-						} else { // Rel1Field
-							subField.p('value')
-								.startWith(null)
-								.pairwise()
-								.subscribe(([prev, curr]) => {
-									if (prev) { this.get().delete(prev) }
-									if (curr) { this.get().add   (curr) }
-								});
-						}
+				for (let subCls of desc.relationshipClass.extendedBy) {
+					const subFieldKey = subCls.keyInResource[desc.keyInRelationship];
+					const subField    = owner.fields[subFieldKey];
+					if (!subField) { continue }
+					if (subField instanceof Rel$Field) {
+						subField.get().e('add')   .subscribe( this.get().e('add')    );
+						subField.get().e('delete').subscribe( this.get().e('delete') );
+					} else { // Rel1Field
+						subField.p('value')
+							.startWith(null)
+							.pairwise()
+							.subscribe(([prev, curr]) => {
+								if (prev) { this.get().delete(prev) }
+								if (curr) { this.get().add   (curr) }
+							});
 					}
-					
-				});
-			
-				/* emit 'value' signals (but note that setValueThroughSignal = false) */
-				this[$$value].p('value')
-					.sample(owner.p('fieldsInitialized').filter(v=>!!v))
-					.subscribe( this.p('value') );
+				}
 				
 			});
+		
+			/* emit 'value' signals (but note that setValueThroughSignal = false) */
+			this[$$value].p('value')
+				.sample(owner.p('fieldsInitialized').filter(v=>!!v))
+				.subscribe( this.p('value') );
+			
 		}
 		
 		getAll() {

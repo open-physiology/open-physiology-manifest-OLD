@@ -38,6 +38,7 @@ describe("regression tests", () => {
         });
         
         expect(() => { layer1.parts.add(subLyph) }).not.to.throw();
+        
         expect([...layer1.parts])   .to.include(subLyph);
         expect([...layer1.children]).to.include(subLyph);
         expect([...subLyph.parents]).to.include(layer1);
@@ -58,8 +59,7 @@ describe("regression tests", () => {
         expect(blood.types.size).to.equal(1);
         expect([...blood.types][0]).to.equal(bloodType);
     });
-
-
+    
     it("export manually defined plural", () => {
         const {Process, Causality} = environment.classes;
 
@@ -81,7 +81,7 @@ describe("regression tests", () => {
             ]
         });
 
-        await new Promise((resolve) => { setTimeout(resolve, 1000) });
+        await new Promise((resolve) => { setTimeout(resolve, 10) });
 
         expect(new Set([
             [...lyph.longitudinalBorders][0].nature,
