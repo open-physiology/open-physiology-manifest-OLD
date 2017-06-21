@@ -20,4 +20,4 @@ export default Module.create('all', [
 	research,
 	// visualisations,
 	canonicalTrees,
-])(); // <-- NOTE: calling it immediately; TODO: refactor this moduleFactory concept away
+]);
