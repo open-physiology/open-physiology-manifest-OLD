@@ -29,7 +29,7 @@ import {
 
 
 import Entity_factory from './Entity.js';
-import Field_factory  from './fields/fields.js';
+import fields_factory from './fields/fields.js';
 
 const $$processedFor              = Symbol('$$processedFor');
 const $$relationshipSpecs         = Symbol('$$relationshipSpecs');
@@ -58,7 +58,7 @@ class Environment {
 			modules: new Map,
 			classes: new Graph,
 			Entity:  Entity_factory(this),
-			Field:   Field_factory (this)
+			...fields_factory(this)
 		});
 		
 		// /* create a version of the Entity class */

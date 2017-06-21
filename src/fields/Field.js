@@ -190,5 +190,6 @@ export default (env) => {
 		}
 		
 	}
-	return Field;
+	
+	return env.registerFieldClass('Field', Field);
 }
