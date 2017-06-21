@@ -22,7 +22,8 @@ describe("integrated workflow", () => {
 		
 		waterType.definition = water2;
 		
-		expect(water2.type).to.be(waterType);
+		expect(water2.definedType).to.equal (waterType);
+		expect([...water2.types]).to.include(waterType);
 	});
 	
 });

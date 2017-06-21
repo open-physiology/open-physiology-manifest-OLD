@@ -18,5 +18,15 @@ export default function propertiesPlugin(chai, utils) {
 			);
 		}
 	});
+	
+	Assertion.addMethod('subclassOf', function (...classes) {
+		for (let cls of classes) {
+			this.assert(
+				this._obj === cls || this._obj.prototype instanceof cls
+				, 'expected #{this} to be a subclass of ' + cls.name
+				, 'expected #{this} to not be a subclass of ' + cls.name
+			);
+		}
+	});
 
 };
