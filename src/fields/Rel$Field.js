@@ -25,9 +25,6 @@ export default (env) => {
 	
 	const RelField = RelField_factory(env);
 	
-	/**
-	 * bla
-	 */
 	class Rel$Field extends RelField {
 		
 		// this[$$owner] instanceof Resource

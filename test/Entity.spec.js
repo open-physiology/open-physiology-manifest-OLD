@@ -18,4 +18,36 @@ describe("Entity classes", () => {
 		expect([...resourceSubclasses]).to.contain(Lyph);
 	});
 	
+	it("has resources that can be deleted", () => {
+		const {Lyph} = environment.classes;
+		
+		let lyph = Lyph.new({ name: 'A Lyph!' });
+		let deleted;
+		lyph.p('deleted').subscribe((d) => { deleted = d });
+		
+		expect(deleted).to.be.false;
+		
+		lyph.delete();
+		
+		expect(deleted).to.be.true;
+	});
+	
+	it("has resources that can be placeholders", () => {
+		const {Lyph} = environment.classes;
+		
+		let lyph = Lyph.new({ id: 1234 }, { isPlaceholder: true });
+		let isPlaceholder;
+		lyph.p('isPlaceholder').subscribe((p) => { isPlaceholder = p });
+		
+		expect(isPlaceholder).to.be.true;
+		expect(lyph.id).to.equal(1234);
+		expect(lyph.name).to.be.undefined;
+		
+		lyph.loadIntoPlaceholder({ name: "New Lyph" });
+		
+		expect(isPlaceholder).to.be.false;
+		expect(lyph.id).to.equal(1234);
+		expect(lyph.name).to.equal("New Lyph");
+	});
+	
 });
