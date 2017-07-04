@@ -48,8 +48,8 @@ export default TypedModule.create('measurables', [
 		singular: "measures",
 		plural:   "measure",
 		
-		1: [Measurable,    '0..*', { anchors: true, key: 'materials' }],
-		2: [Material.Type, '0..*',                                    ]
+		1: [Measurable,    '0..*', { key: 'materials' }],
+		2: [Material.Type, '0..*',                     ]
 		
 	});
 	
@@ -78,8 +78,8 @@ export default TypedModule.create('measurables', [
 		singular: "has",
 		plural: "have",
 		
-		1: [MeasurableLocation, '0..*', { anchors: true, sustains: true, key: 'measurables' }],
-		2: [Measurable,         '0..*', {                                key: 'locations'   }],
+		1: [MeasurableLocation, '0..*', { key: 'measurables' }],
+		2: [Measurable,         '0..*', { key: 'locations'   }],
 		
 		// TODO: maybe... auto-create classes for the inverse of relationships,
 		//     : so that HasMeasurable_inverse can extend PullsIntoTypeDefinition
@@ -111,8 +111,8 @@ export default TypedModule.create('measurables', [
 		singular: "is cause of",
 		plural: "are cause of",
 		
-		1: [Measurable, '0..*', {                key: 'effects' }],
-		2: [Causality,  '1..1', { anchors: true, key: 'cause'   }],
+		1: [Measurable, '0..*', { key: 'effects' }],
+		2: [Causality,  '1..1', { key: 'cause'   }],
 		
 	});
 	
@@ -125,8 +125,8 @@ export default TypedModule.create('measurables', [
 		singular: "has effect",
 		plural:   "have effect",
 		
-		1: [Causality,  '1..1', { anchors: true, key: 'effect' }],
-		2: [Measurable, '0..*', {                key: 'causes' }],
+		1: [Causality,  '1..1', { key: 'effect' }],
+		2: [Measurable, '0..*', { key: 'causes' }],
 		
 	});
 

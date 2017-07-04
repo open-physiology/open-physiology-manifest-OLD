@@ -67,8 +67,8 @@ export default Module.create('resources', [], (M) => {
 		singular: "corresponds to",
 		plural: "correspond to",
 		
-		1: [Resource,         '0..*', { anchors: true, key: 'externals' }],
-		2: [ExternalResource, '0..*', {                key: 'locals'    }],
+		1: [Resource,         '0..*', { key: 'externals' }],
+		2: [ExternalResource, '0..*', { key: 'locals'    }],
 		
 	});
 	

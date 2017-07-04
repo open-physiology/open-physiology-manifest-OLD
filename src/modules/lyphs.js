@@ -40,8 +40,8 @@ export default TypedModule.create('lyphs', [
 		singular: "contains",
 		plural:   "contain",
 		
-		1: [Material,      '0..*', { anchors: true, key: 'materials' }],
-		2: [Material.Type, '0..*'                                     ],
+		1: [Material,      '0..*', { key: 'materials' }],
+		2: [Material.Type, '0..*'                      ],
 		
 		noCycles: true
 		
@@ -89,8 +89,8 @@ export default TypedModule.create('lyphs', [
 		
 		extends: Has,
 		
-		1: [Lyph, '0..*', { anchors: true, key: 'parts' }],
-		2: [Lyph, '0..*',                                ],
+		1: [Lyph, '0..*', { key: 'parts' }],
+		2: [Lyph, '0..*',                 ],
 		
 		noCycles: true,
 		
@@ -102,8 +102,8 @@ export default TypedModule.create('lyphs', [
 		
 		extends: Has,
 		
-		1: [Lyph, '0..*', { anchors: true, key: 'layers' }],
-		2: [Lyph, '0..*'                                  ],
+		1: [Lyph, '0..*', { key: 'layers' }],
+		2: [Lyph, '0..*'                   ],
 		
 		noCycles: true,
 		
@@ -115,8 +115,8 @@ export default TypedModule.create('lyphs', [
 		
 		extends: HasPart,
 		
-		1: [Lyph, '0..*', { anchors: true, key: 'patches' }],
-		2: [Lyph, '0..*'                                   ],
+		1: [Lyph, '0..*', { key: 'patches' }],
+		2: [Lyph, '0..*'                    ],
 		
 		noCycles: true,
 		
@@ -128,8 +128,8 @@ export default TypedModule.create('lyphs', [
 
 		extends: HasPatch,
 
-		1: [Lyph, '0..*', { anchors: true, key: 'segments' }],
-		2: [Lyph, '0..*'                                    ],
+		1: [Lyph, '0..*', { key: 'segments' }],
+		2: [Lyph, '0..*'                     ],
 		
 		noCycles: true
 		
@@ -197,7 +197,7 @@ export default TypedModule.create('lyphs', [
 		
 	});/////////////////////////////////////////////////////////////////////////
 	
-	const borderRel = (name, Superclass, c1, c2, key, singular, flags = {}, options = {}) => M.RELATIONSHIP({
+	const borderRel = (name, Superclass, c1, c2, key, singular, flags = {}) => M.RELATIONSHIP({
 		 
 		name: name,
 		
@@ -208,8 +208,8 @@ export default TypedModule.create('lyphs', [
 	
 		...flags,
 		
-		1: [Lyph,   c1, { ...options, sustains: true, anchors: true, expand: true, key }],
-		2: [Border, c2                                                                  ],
+		1: [Lyph,   c1, { expand: true, key }],
+		2: [Border, c2, {                   }],
 		
 		// Two lyphs never share the same border, formally speaking.
 		// The degree to which two borders overlap can be controlled through
@@ -233,7 +233,7 @@ export default TypedModule.create('lyphs', [
 	
 	/* 4 borders maximum; at least two longitudinal borders; optionally one or two radial borders */
 	const HasBorder             = borderRel('HasBorder',             Has,       '0..4', '1..1', 'borders',             'border', { abstract: true });
-	const HasLongitudinalBorder = borderRel('HasLongitudinalBorder', HasBorder, '2..2', '0..1', 'longitudinalBorders', 'longitudinal border', {}, {});
+	const HasLongitudinalBorder = borderRel('HasLongitudinalBorder', HasBorder, '2..2', '0..1', 'longitudinalBorders', 'longitudinal border');
 	const HasRadialBorder       = borderRel('HasRadialBorder',       HasBorder, '0..2', '0..1', 'radialBorders',       'radial border');
 	
 	/* one of the longitudinal borders can be an axis */
@@ -272,8 +272,8 @@ export default TypedModule.create('lyphs', [
 		singular: "joins",
 		plural:   "join",
 		
-		1: [CoalescenceScenario, '2..2', { anchors: true, key: 'lyphs' }],
-		2: [Lyph,                '0..*'                                 ],
+		1: [CoalescenceScenario, '2..2', { key: 'lyphs' }],
+		2: [Lyph,                '0..*'                  ],
 		
 		// cardinality max=2, because we're only working in two dimensions right now
 		
@@ -310,8 +310,8 @@ export default TypedModule.create('lyphs', [
 		singular: "coalesces",
 		plural:   "coalesce",
 		
-		1: [Coalescence, '2..2', { anchors: true, key: 'lyphs'        }],
-		2: [Lyph,        '0..*', {                key: 'coalescences' }],
+		1: [Coalescence, '2..2', { key: 'lyphs'        }],
+		2: [Lyph,        '0..*', { key: 'coalescences' }],
 		
 		// cardinality max=2, because we're only working in two dimensions right now
 				
@@ -327,8 +327,8 @@ export default TypedModule.create('lyphs', [
 		singular: "coalesces like",
 		plural:   "coalesce like",
 		
-		1: [Coalescence,         '0..*', { anchors: true, key: 'scenarios' }],
-		2: [CoalescenceScenario, '0..*',                                    ],
+		1: [Coalescence,         '0..*', { key: 'scenarios' }],
+		2: [CoalescenceScenario, '0..*',                     ],
 		
 		// TODO: CONSTRAINT: the two lyphs for every scenario each have to be
 		//     :             a refinement of their respective lyphs in the coalescence
@@ -373,8 +373,8 @@ export default TypedModule.create('lyphs', [
 		
 		extends: PullsIntoTypeDefinition,
 		
-		1: [NodeLocation, '0..*', { anchors: true, key: 'nodes'     }],
-		2: [Node,         '0..*', { anchors: true, key: 'locations' }],
+		1: [NodeLocation, '0..*', { key: 'nodes'     }],
+		2: [Node,         '0..*', { key: 'locations' }],
 		
 	});
 

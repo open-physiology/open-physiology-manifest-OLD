@@ -91,12 +91,7 @@ export default (env) => {
 				/* synchronize with the other side */
 				this.p('value').startWith(null).distinctUntilChanged().pairwise().subscribe(([prev, curr]) => {
 					if (prev) { prev.fields[desc.codomain.keyInResource].delete(owner) }
-					if (curr) {
-						if (!curr.fields[desc.codomain.keyInResource]) {
-							debugger;
-						}
-						curr.fields[desc.codomain.keyInResource].add   (owner)
-					}
+					if (curr) { curr.fields[desc.codomain.keyInResource].add   (owner) }
 				});
 			
 				/* pull in values set in sub-fields */

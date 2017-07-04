@@ -38,8 +38,8 @@ export default Module.create('research', [
 		singular: "involves",
 		plural:   "involve",
 		
-		1: [Correlation, '0..*', { anchors: true, key: 'measurables' }],
-		2: [Measurable,  '0..*',                                      ],
+		1: [Correlation, '0..*', { key: 'measurables' }],
+		2: [Measurable,  '0..*',                       ],
 		
 	});
 	
@@ -68,8 +68,8 @@ export default Module.create('research', [
 		singular: "encompasses",
 		plural: "encompass",
 		
-		1: [ClinicalIndex, '0..*', { anchors: true, key: 'children' }],
-		2: [ClinicalIndex, '0..1', {                key: 'parent'   }],
+		1: [ClinicalIndex, '0..*', { key: 'children' }],
+		2: [ClinicalIndex, '0..1', { key: 'parent'   }],
 		
 		noCycles: true,
 		
@@ -85,8 +85,8 @@ export default Module.create('research', [
 		singular: "involves",
 		plural: "involve",
 		
-		1: [Correlation,   '0..*', { anchors: true, key: 'clinicalIndices' }],
-		2: [ClinicalIndex, '0..*',                                          ],
+		1: [Correlation,   '0..*', { key: 'clinicalIndices' }],
+		2: [ClinicalIndex, '0..*',                           ],
 		
 	});
 	
@@ -114,8 +114,8 @@ export default Module.create('research', [
 		singular: "involves",
 		plural: "involve",
 		
-		1: [Correlation, '0..1', { anchors: true, key: 'publication'  }],
-		2: [Publication, '0..*', { anchors: true, key: 'correlations' }],
+		1: [Correlation, '0..1', { key: 'publication'  }],
+		2: [Publication, '0..*', { key: 'correlations' }],
 		
 	});
 	

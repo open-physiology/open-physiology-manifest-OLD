@@ -151,9 +151,9 @@ export default (env) => {
 		set(newValue, options = {}) {
 			if (!this.constructor.isEqual(this[$$value], newValue)) {
 				const {
-					      ignoreReadonly   = false,
-					      ignoreValidation = false
-				      }                    = options;
+			        ignoreReadonly   = false,
+			        ignoreValidation = false
+		        } = options;
 				constraint(ignoreReadonly || !this[$$desc].readonly, humanMsg`
 					Tried to set the readonly field
 					'${this[$$owner].constructor.name}#${this[$$key]}'.

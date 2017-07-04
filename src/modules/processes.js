@@ -53,8 +53,8 @@ export default TypedModule.create('processes', [
 		singular: "is source for",
 		plural:   "are source for",
 		
-		1: [Node,    '0..*', {                key: 'outgoingProcesses' }],
-		2: [Process, '0..1', { anchors: true, key: 'source'            }],
+		1: [Node,    '0..*', { key: 'outgoingProcesses' }],
+		2: [Process, '1..1', { key: 'source'            }],
 		
 	});
 	
@@ -67,8 +67,8 @@ export default TypedModule.create('processes', [
 		singular: "has target",
 		plural:   "have target",
 		
-		1: [Process, '0..1', { anchors: true, key: 'target'            }],
-		2: [Node,    '0..*', {                key: 'incomingProcesses' }],
+		1: [Process, '1..1', { key: 'target'            }],
+		2: [Node,    '0..*', { key: 'incomingProcesses' }],
 		
 	});
 	
@@ -82,8 +82,8 @@ export default TypedModule.create('processes', [
 		singular: "conveys",
 		plural: "convey",
 		
-		1: [Lyph,    '0..*', { anchors: true, key: 'processes'     }],
-		2: [Process, '0..*', {                key: 'conveyingLyph' }],
+		1: [Lyph,    '0..*', { key: 'processes'     }],
+		2: [Process, '0..*', { key: 'conveyingLyph' }],
 		
 	});
 	
@@ -97,8 +97,8 @@ export default TypedModule.create('processes', [
 		singular: "transports",
 		plural: "transport",
 		
-		1: [Process,       '0..*', { anchors: true, key: 'materials' }],
-		2: [Material.Type, '0..*',                                    ],
+		1: [Process,       '0..*', { key: 'materials' }],
+		2: [Material.Type, '0..*',                     ],
 		
 	});
 	
@@ -111,8 +111,8 @@ export default TypedModule.create('processes', [
 		singular: "has segment",
 		plural:   "have segment",
 		
-		1: [Process, '0..*', { anchors: true, key: 'segments' }],
-		2: [Process, '0..*',                                   ],
+		1: [Process, '0..*', { key: 'segments' }],
+		2: [Process, '0..*',                    ],
 		
 	});
 	
@@ -126,8 +126,8 @@ export default TypedModule.create('processes', [
 		singular: "has channel",
 		plural:   "have channel",
 		
-		1: [Process, '0..*', { anchors: true, key: 'channels' }],
-		2: [Process, '0..*',                                   ],
+		1: [Process, '0..*', { key: 'channels' }],
+		2: [Process, '0..*',                    ],
 		
 	});
 	
@@ -141,8 +141,8 @@ export default TypedModule.create('processes', [
 		singular: "has channel",
 		plural:   "have channel",
 		
-		1: [Node, '0..*', { anchors: true, key: 'channels' }],
-		2: [Node, '0..*',                                   ],
+		1: [Node, '0..*', { key: 'channels' }],
+		2: [Node, '0..*',                    ],
 		
 	});
 	

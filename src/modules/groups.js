@@ -34,8 +34,8 @@ export default TypedModule.create('groups', [
 		singular: "includes",
 		plural:   "include",
 		
-		1: [Group,    '0..*', { anchors: true, key: 'elements' }],
-		2: [Template, '0..*',                                   ],
+		1: [Group,    '0..*', { key: 'elements' }],
+		2: [Template, '0..*',                    ],
 		
 	});
 

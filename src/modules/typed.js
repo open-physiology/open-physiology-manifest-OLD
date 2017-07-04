@@ -35,8 +35,8 @@ export default Module.create('typed', [
 		singular: "is subtype of",
 		plural:   "are subtype of",
 		
-		1: [Type, '0..*', {                key: 'subtypes'   }],
-		2: [Type, '0..*', { anchors: true, key: 'supertypes' }],
+		1: [Type, '0..*', { key: 'subtypes'   }],
+		2: [Type, '0..*', { key: 'supertypes' }],
 		
 		noCycles: true
 		
@@ -81,8 +81,8 @@ export default Module.create('typed', [
 		singular: "has cardinality multiplied by that of",
 		plural:   "have cardinality multiplied by that of",
 		
-		1: [Template, '0..*', { anchors: true, key: 'cardinalityMultipliers' }],
-		2: [Template, '0..*',                                                 ],
+		1: [Template, '0..*', { key: 'cardinalityMultipliers' }],
+		2: [Template, '0..*',                                  ],
 		
 		noCycles: true
 		
@@ -98,8 +98,8 @@ export default Module.create('typed', [
 		singular: "has type",
 		plural:   "have type",
 		
-		1: [Template, '0..*', { anchors: true, key: 'types' }],
-		2: [Type,     '0..*',                                ]
+		1: [Template, '0..*', { key: 'types' }],
+		2: [Type,     '0..*',                 ]
 		
 	});
 	
@@ -113,8 +113,8 @@ export default Module.create('typed', [
 		singular: "defines",
 		plural:   "define",
 		
-		1: [Template, '0..1', { anchors: true, key: 'definedType' }],
-		2: [Type,     '1..1', { anchors: true, key: 'definition'  }]
+		1: [Template, '0..1', { key: 'definedType' }],
+		2: [Type,     '1..1', { key: 'definition'  }]
 		
 	});
 	
@@ -147,8 +147,8 @@ export default Module.create('typed', [
 		singular: "has",
 		plural:   "have",
 		
-		1: [Template, '0..*', { anchors: true, key: 'children' }],
-		2: [Template, '0..*', {                key: 'parents'  }],
+		1: [Template, '0..*', { key: 'children' }],
+		2: [Template, '0..*', { key: 'parents'  }],
 		
 		noCycles: true
 		

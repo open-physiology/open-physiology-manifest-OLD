@@ -1,7 +1,9 @@
 import {defaults, isInteger, isObject, entries, assign} from 'lodash-bound';
 import assert from 'power-assert';
 
-import {humanMsg, definePropertiesByValue, babelHelpers, ValueTracker} from 'utilities';
+import {humanMsg, definePropertiesByValue, babelHelpers, ValueTracker, event,
+	property, flag
+} from 'utilities';
 
 import {constraint} from './util/misc';
 
@@ -121,7 +123,7 @@ export default (env) => {
 			});
 		}
 		
-		constructor(initialValues: {} = {}, options = {}) {
+		constructor(initialValues = {}, options = {}) {
 			/* initialize value tracking */
 			super();
 			
@@ -132,6 +134,23 @@ export default (env) => {
 				          or '${this.constructor.name}.get(...args)'.
 			`);
 			delete options[$$allowInvokingConstructor];
+			
+			/* create placeholder property */
+			// for some reason, I can't use @property for this; TODO: find out why
+			this.newProperty('isPlaceholder', { initial: !!options.isPlaceholder, readonly: true });
+			this.isPlaceholder = !!options.isPlaceholder; // TODO: find out why this is needed (see above comment)
+			this.p('isPlaceholder').subscribe((v) => {
+				this.isPlaceholder = v;
+			});
+			
+			/* create deleted property */
+			// for some reason, I can't use @property for this; TODO: find out why
+			this.newProperty('deleted', { initial: false, isValid: (v) => v === false || !this.isPlaceholder });
+			
+			/* stop signals after this entity is deleted */
+			this.setValueTrackerOptions({
+				takeUntil: this.p('deleted').filter(d=>d)
+			});
 			
 			/* create fieldsInitialized property */
 			// for some reason, I can't use @property for this; TODO: find out why
@@ -146,6 +165,15 @@ export default (env) => {
 			this.constructor.environment.Field.initializeEntity(this, initialValues);
 		}
 		
+		loadIntoPlaceholder(initialValues = {}) {
+			//assert(this.isPlaceholder); // TODO: fix ValueTracker, so that this.isPlaceholder is available
+			for (let [key, value] of initialValues::entries()) {
+				if (!this.fields[key]) { continue }
+				this.fields[key].set(value);
+			}
+			this.pSubject('isPlaceholder').next(false);
+		}
+		
 		get [Symbol.toStringTag]() {
 			const identifier = this.id || this.name || this.title; // <-- just some common candidates
 			return `${this.constructor.name}${identifier ? ': '+identifier : ''}`;
@@ -158,6 +186,10 @@ export default (env) => {
 				return super.p(...args);
 			}
 		}
+		
+		
+		//// Deleting
+		delete() { this.p('deleted').next(true) }
 		
 		
 		//// Transforming to/from JSON
