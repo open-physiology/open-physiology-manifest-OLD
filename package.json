@@ -70,7 +70,7 @@
     "lodash-bound": "1",
     "rearg": "0.0",
     "rxjs": "5",
-    "utilities": "open-physiology/utilities",
+    "utilities": "open-physiology/utilities#master",
     "wu": "2"
   }
 }
