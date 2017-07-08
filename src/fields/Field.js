@@ -44,7 +44,7 @@ export default (env) => {
 			}
 		}
 		
-		static initializeEntity(owner, initialValues) {
+		static initializeEntity(owner, initialValues, valueTrackerOptions = {}) {
 			if (owner.fields) { return }
 			owner::defineProperty('fields', { value: {} });
 			
@@ -78,7 +78,7 @@ export default (env) => {
 			for (let entry of keyDescs::values()) {
 				let { FieldClass } = entry;
 				delete entry.FieldClass;
-				new FieldClass(entry);
+				let newField = new FieldClass({ ...entry, valueTrackerOptions });
 			}
 			
 			/* notify completion of field initialization */
@@ -119,9 +119,11 @@ export default (env) => {
 		 * @param options.desc
 		 * @param options.aliases
 		 * @param options.setValueThroughSignal
+		 * @param options.valueTrackerOptions
 		 */
 		constructor(options) {
 			super();
+			this.setValueTrackerOptions(options.valueTrackerOptions);
 			const {
 				owner,
 				key,

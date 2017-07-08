@@ -146,11 +146,13 @@ export default (env) => {
 			/* create deleted property */
 			// for some reason, I can't use @property for this; TODO: find out why
 			this.newProperty('deleted', { initial: false, isValid: (v) => v === false || !this.isPlaceholder });
+			this.newProperty('silent',  { initial: false, isValid: (v) => v === false || !this.isPlaceholder });
 			
 			/* stop signals after this entity is deleted */
-			this.setValueTrackerOptions({
-				takeUntil: this.p('deleted').filter(d=>d)
-			});
+			const valueTrackerOptions = {
+				takeUntil: this.p('silent').filter(s=>!!s)
+			};
+			this.setValueTrackerOptions(valueTrackerOptions);
 			
 			/* create fieldsInitialized property */
 			// for some reason, I can't use @property for this; TODO: find out why
@@ -162,7 +164,7 @@ export default (env) => {
 			});
 			
 			/* initialize all fields in this entity */
-			this.constructor.environment.Field.initializeEntity(this, initialValues);
+			this.constructor.environment.Field.initializeEntity(this, initialValues, valueTrackerOptions);
 		}
 		
 		loadIntoPlaceholder(initialValues = {}) {
@@ -189,7 +191,10 @@ export default (env) => {
 		
 		
 		//// Deleting
-		delete() { this.p('deleted').next(true) }
+		delete  () { this.p('deleted').next(true)  }
+		undelete() { this.p('deleted').next(false) }
+		
+		silence() { this.p('silent').next(true) }
 		
 		
 		//// Transforming to/from JSON
