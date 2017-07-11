@@ -123,6 +123,13 @@ export default (env) => {
 			});
 		}
 		
+		
+		@property({ readonly: true }) isPlaceholder;
+		@property({ initial: false, readonly: true }) fieldsInitialized;
+		@property({ initial: false, allowSynchronousAccess: true, isValid(v) { return v === false || !this.isPlaceholder } }) deleted;
+		@property({ initial: false, allowSynchronousAccess: true, isValid(v) { return v === false || !this.isPlaceholder } }) silent;
+		
+		
 		constructor(initialValues = {}, options = {}) {
 			/* initialize value tracking */
 			super();
@@ -135,28 +142,14 @@ export default (env) => {
 			`);
 			delete options[$$allowInvokingConstructor];
 			
-			/* create placeholder property */
-			// for some reason, I can't use @property for this; TODO: find out why
-			this.newProperty('isPlaceholder', { initial: !!options.isPlaceholder, readonly: true });
-			this.isPlaceholder = !!options.isPlaceholder; // TODO: find out why this is needed (see above comment)
-			this.p('isPlaceholder').subscribe((v) => {
-				this.isPlaceholder = v;
-			});
-			
-			/* create deleted property */
-			// for some reason, I can't use @property for this; TODO: find out why
-			this.newProperty('deleted', { initial: false, isValid: (v) => v === false || !this.isPlaceholder });
-			this.newProperty('silent',  { initial: false, isValid: (v) => v === false || !this.isPlaceholder });
+			/* init placeholder property */
+			this.pSubject('isPlaceholder').next(options.isPlaceholder);
 			
 			/* stop signals after this entity is deleted */
 			const valueTrackerOptions = {
 				takeUntil: this.p('silent').filter(s=>!!s)
 			};
 			this.setValueTrackerOptions(valueTrackerOptions);
-			
-			/* create fieldsInitialized property */
-			// for some reason, I can't use @property for this; TODO: find out why
-			this.newProperty('fieldsInitialized', { initial: false, readonly: true });
 			
 			/* set defaults for the core initial field values */
 			initialValues::defaults({
@@ -191,10 +184,10 @@ export default (env) => {
 		
 		
 		//// Deleting
-		delete  () { this.p('deleted').next(true)  }
-		undelete() { this.p('deleted').next(false) }
+		delete  () { this.pSubject('deleted').next(true)  }
+		undelete() { this.pSubject('deleted').next(false) }
 		
-		silence() { this.p('silent').next(true) }
+		silence() { this.pSubject('silent').next(true) }
 		
 		
 		//// Transforming to/from JSON

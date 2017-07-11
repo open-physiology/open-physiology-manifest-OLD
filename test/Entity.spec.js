@@ -22,59 +22,51 @@ describe("Entity classes", () => {
 		const {Lyph} = environment.classes;
 		
 		let lyph = Lyph.new({ name: "A Lyph!" });
-		let deleted, name;
-		lyph.p('deleted').subscribe((d) => { deleted = d });
-		lyph.fields['name'].p('value').subscribe((n) => { name = n });
 		
-		expect(deleted).to.be.false;
-		expect(name).to.equal("A Lyph!");
+		expect(lyph.deleted).to.be.false;
+		expect(lyph.name).to.equal("A Lyph!");
 		
 		lyph.delete();
-		expect(deleted).to.be.true;
+		expect(lyph.deleted).to.be.true;
 		
 		/* still sending signals after a deletion */
 		lyph.p('name').next("A deleted lyph!");
-		expect(name).to.equal("A deleted lyph!");
+		expect(lyph.name).to.equal("A deleted lyph!");
 		
 		/* can undelete */
 		lyph.undelete();
-		expect(deleted).to.be.false;
+		expect(lyph.deleted).to.be.false;
 	});
 	
 	it("has resources that can be silenced", async () => {
 		const {Lyph} = environment.classes;
 		
 		let lyph = Lyph.new({ name: "A Lyph!" });
-		let silent, name;
-		lyph.p('silent').subscribe((s) => { silent = s });
-		lyph.fields['name'].p('value').subscribe((n) => { name = n });
 		
-		expect(silent).to.be.false;
-		expect(name).to.equal("A Lyph!");
+		expect(lyph.silent).to.be.false;
+		expect(lyph.name).to.equal("A Lyph!");
 		
 		lyph.silence();
-		expect(silent).to.be.true;
+		expect(lyph.silent).to.be.true;
 		
 		/* no longer sending signals after silencing */
 		lyph.p('name').next("A silent lyph!");
 		
-		expect(name).to.equal("A Lyph!");
+		expect(lyph.name).to.equal("A Lyph!");
 	});
 	
 	it("has resources that can be placeholders", () => {
 		const {Lyph} = environment.classes;
 		
 		let lyph = Lyph.new({ id: 1234 }, { isPlaceholder: true });
-		let isPlaceholder;
-		lyph.p('isPlaceholder').subscribe((p) => { isPlaceholder = p });
 		
-		expect(isPlaceholder).to.be.true;
+		expect(lyph.isPlaceholder).to.be.true;
 		expect(lyph.id).to.equal(1234);
 		expect(lyph.name).to.be.undefined;
 		
 		lyph.loadIntoPlaceholder({ name: "New Lyph" });
 		
-		expect(isPlaceholder).to.be.false;
+		expect(lyph.isPlaceholder).to.be.false;
 		expect(lyph.id).to.equal(1234);
 		expect(lyph.name).to.equal("New Lyph");
 	});
