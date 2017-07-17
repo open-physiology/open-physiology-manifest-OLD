@@ -52,8 +52,8 @@ export default Module.create('resources', [], (M) => {
 		// icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QQDEREV1RllFQAAA25JREFUWMPFl11sDFEYhp8zM7uLlrQRNITQNLgQCTd0kbouF2jFhaa1liYNvfCTiEjcE3EjqtmNTYuQKBJCJBKhIUgq/tIgLkhRfy1t7Xa77ezOuDiz25Z2O7O7+JK5mnPO+34/5/3OJ3BqteYc4CM5Mi3rE8wM9ogcEVAETJ0MQtjHjRsQjuWCgAEzCyFQBZNd9raoCrz6DLvOAWq2BBT40gM/+qGm1P62wimj06ZkAK0DkeTubSFofmh/c8IYXQPOCQTEN6Ac6EqROA1NDzIOZAYWEPeAHUC3TC74zzqLRHYEpA0A0eRV1BTojWaiA7WPDzm8+CbMngZsBuYlCTRuBZ83MyE67Ex18oFZSuoG6XBpN1Qsz1wJ3fbB84BFsoxNqQWX62HTshxIsSKgME9jkibGDHpXxIOeWJgCd2sQrE4Pfu05dPZCXdlEBEwoyNO4UV/Civl5fyx60QkbG+Btt1ybPwmOVkD1yvEPPvsIqoPg8oBLBf+qsSU7dQsM0yQ8kPhjwa2XsO4EvP1GyvOjFem9OtUK/jPyeuo67GmB4H3LY2W0EqaV4tY3sL0ZOr9bVA0Z9nSeN9yFA1dAj1uKJyAShX0t8n/RNJvdsK0DNjRAb7/VOPSJC67pIextgUE9BZIAvqMwMxKT/9zqcCMal0B4EFYfgaG45XkMTvpgYxrwy0/BFxr22uoZK2XcuIOgoH8Q+u0o4VQPNFaBqlr58sChq/D8w/jglSes0wTAENDlJyCeEBDPgErgPfAT6Bv5jZsCn1d2rj0XITIAvWFYexyu1kHZwtFh94UA18hm+Q74GR3RO25Ta64DSqyI2CvCHavBMGUBRQagLwJbghCqgfIlsuD2tlhem4A5BEoHELaUBag1ISAgINqBdsdvwp1r5FF15yGegK99sPsClBbDzXar4AC3ZlA84wuvP/WlsC3vs+uGwopEsMqqaQHvuuFCG/REk+Bwvd5kcZEuQ/Y32vE2LzT5hzNomjLsHhc8OgjeYgvb4SvZ0XugphRCPimtxGF6PrTuh2Vz5Wv3n8wFPq/Uh1OtcKwSViz4D4OJbxWsXwqzC3I4GQlAVexNGG4V5vwGrqnC9oAyJoG4Aa8+xyicopEwnM9bkUGDnmgcpyy0pPvhWIJd5zpkFYsM46kI0EQWNaAK/rUp/Gf7BTnyF+pF5ztFAAAAAElFTkSuQmCC',
 		
 		properties: {
-			'uri':  { ...uriSchema, required: true },
-			'type': { type: 'string'               } // "fma" or "cocomac", etc.
+			'uri':  { ...uriSchema   },
+			'type': { type: 'string' } // "fma" or "cocomac", etc.
 		}
 		
 	});/////////////////////////////////////////////////////////////////////////
