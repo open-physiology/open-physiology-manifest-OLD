@@ -179,7 +179,6 @@ export default TypedModule.create('lyphs', [
 			nature: {
 				...enumArraySchema('open', 'closed'),
 				default: ['open', 'closed'],
-				required: true,
 				isRefinement(a, b) {
 					a = new Set(a ? wrapInArray(a) : []);
 					b = new Set(b ? wrapInArray(b) : []);

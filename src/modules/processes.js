@@ -31,7 +31,6 @@ export default TypedModule.create('processes', [
 			'transportPhenomenon': {
 				...enumArraySchema('advection', 'diffusion'),
 				default: ['advection', 'diffusion'],
-				required: true,
 				isRefinement(a, b) {
 					a = new Set(a ? wrapInArray(a) : []);
 					b = new Set(b ? wrapInArray(b) : []);
