@@ -1,7 +1,7 @@
 {
   "name": "open-physiology-manifest",
-  "version": "v0.10.0",
-  "description": "Templates for starting new open-physiology projects",
+  "version": "0.10.0",
+  "description": "smart data types for all open-physiology concepts (e.g., Lyph, Process)",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha-webpack --opts mocha-webpack.opts",
