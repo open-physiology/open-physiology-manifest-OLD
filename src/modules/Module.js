@@ -17,7 +17,7 @@ import Graph from 'graph.js/dist/graph.js';
 
 import {assign, defineProperty} from 'bound-native-methods';
 
-import {parseCardinality} from './util/misc';
+import {parseCardinality} from '../util/misc';
 
 import {
 	humanMsg,
@@ -28,8 +28,8 @@ import {
 
 
 
-import Entity_factory from './Entity.js';
-import fields_factory from './fields/fields.js';
+import Entity_factory from '../Entity.js';
+import fields_factory from '../fields/fields.js';
 
 const $$processedFor              = Symbol('$$processedFor');
 const $$relationshipSpecs         = Symbol('$$relationshipSpecs');

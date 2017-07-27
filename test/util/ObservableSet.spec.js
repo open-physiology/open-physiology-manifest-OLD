@@ -1,6 +1,6 @@
 import {describe, it, expect, beforeEach} from '../test.helper';
 
-import ObservableSet, {setEquals} from '../../src/ObservableSet';
+import ObservableSet, {setEquals} from '../../src/util/ObservableSet';
 
 describe("ObservableSet", () => {
 	

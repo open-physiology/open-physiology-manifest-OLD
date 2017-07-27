@@ -3660,7 +3660,7 @@ exports.default = _Module2.default.create('resources', [], function (M) {
 		// icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QQDEREV1RllFQAAA25JREFUWMPFl11sDFEYhp8zM7uLlrQRNITQNLgQCTd0kbouF2jFhaa1liYNvfCTiEjcE3EjqtmNTYuQKBJCJBKhIUgq/tIgLkhRfy1t7Xa77ezOuDiz25Z2O7O7+JK5mnPO+34/5/3OJ3BqteYc4CM5Mi3rE8wM9ogcEVAETJ0MQtjHjRsQjuWCgAEzCyFQBZNd9raoCrz6DLvOAWq2BBT40gM/+qGm1P62wimj06ZkAK0DkeTubSFofmh/c8IYXQPOCQTEN6Ac6EqROA1NDzIOZAYWEPeAHUC3TC74zzqLRHYEpA0A0eRV1BTojWaiA7WPDzm8+CbMngZsBuYlCTRuBZ83MyE67Ex18oFZSuoG6XBpN1Qsz1wJ3fbB84BFsoxNqQWX62HTshxIsSKgME9jkibGDHpXxIOeWJgCd2sQrE4Pfu05dPZCXdlEBEwoyNO4UV/Civl5fyx60QkbG+Btt1ybPwmOVkD1yvEPPvsIqoPg8oBLBf+qsSU7dQsM0yQ8kPhjwa2XsO4EvP1GyvOjFem9OtUK/jPyeuo67GmB4H3LY2W0EqaV4tY3sL0ZOr9bVA0Z9nSeN9yFA1dAj1uKJyAShX0t8n/RNJvdsK0DNjRAb7/VOPSJC67pIextgUE9BZIAvqMwMxKT/9zqcCMal0B4EFYfgaG45XkMTvpgYxrwy0/BFxr22uoZK2XcuIOgoH8Q+u0o4VQPNFaBqlr58sChq/D8w/jglSes0wTAENDlJyCeEBDPgErgPfAT6Bv5jZsCn1d2rj0XITIAvWFYexyu1kHZwtFh94UA18hm+Q74GR3RO25Ta64DSqyI2CvCHavBMGUBRQagLwJbghCqgfIlsuD2tlhem4A5BEoHELaUBag1ISAgINqBdsdvwp1r5FF15yGegK99sPsClBbDzXar4AC3ZlA84wuvP/WlsC3vs+uGwopEsMqqaQHvuuFCG/REk+Bwvd5kcZEuQ/Y32vE2LzT5hzNomjLsHhc8OgjeYgvb4SvZ0XugphRCPimtxGF6PrTuh2Vz5Wv3n8wFPq/Uh1OtcKwSViz4D4OJbxWsXwqzC3I4GQlAVexNGG4V5vwGrqnC9oAyJoG4Aa8+xyicopEwnM9bkUGDnmgcpyy0pPvhWIJd5zpkFYsM46kI0EQWNaAK/rUp/Gf7BTnyF+pF5ztFAAAAAElFTkSuQmCC',
 
 		properties: {
-			'uri': _extends({}, _schemas.uriSchema, { required: true }),
+			'uri': _extends({}, _schemas.uriSchema),
 			'type': { type: 'string' } // "fma" or "cocomac", etc.
 		}
 
@@ -5162,7 +5162,7 @@ var _Entity = __webpack_require__(704);
 
 var _Entity2 = _interopRequireDefault(_Entity);
 
-var _fields = __webpack_require__(709);
+var _fields = __webpack_require__(708);
 
 var _fields2 = _interopRequireDefault(_fields);
 
@@ -7241,7 +7241,6 @@ exports.default = _TypedModule2.default.create('lyphs', [_resources2.default, _t
 		properties: {
 			nature: _extends({}, (0, _schemas.enumArraySchema)('open', 'closed'), {
 				default: ['open', 'closed'],
-				required: true,
 				isRefinement: function isRefinement(a, b) {
 					a = new Set(a ? (0, _utilities.wrapInArray)(a) : []);
 					b = new Set(b ? (0, _utilities.wrapInArray)(b) : []);
@@ -12506,7 +12505,6 @@ exports.default = _TypedModule2.default.create('processes', [_resources2.default
 		properties: {
 			'transportPhenomenon': _extends({}, (0, _schemas.enumArraySchema)('advection', 'diffusion'), {
 				default: ['advection', 'diffusion'],
-				required: true,
 				isRefinement: function isRefinement(a, b) {
 					a = new Set(a ? (0, _utilities.wrapInArray)(a) : []);
 					b = new Set(b ? (0, _utilities.wrapInArray)(b) : []);
@@ -40509,11 +40507,11 @@ var _processes = __webpack_require__(245);
 
 var _processes2 = _interopRequireDefault(_processes);
 
-var _canonicalTrees = __webpack_require__(711);
+var _canonicalTrees = __webpack_require__(710);
 
 var _canonicalTrees2 = _interopRequireDefault(_canonicalTrees);
 
-var _research = __webpack_require__(712);
+var _research = __webpack_require__(711);
 
 var _research2 = _interopRequireDefault(_research);
 
@@ -41911,370 +41909,6 @@ exports.default = function (env) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.default = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-var _templateObject = _taggedTemplateLiteral(['\n\t\t\t\tThe ', ' event does not exist.\n\t\t\t'], ['\n\t\t\t\tThe ', ' event does not exist.\n\t\t\t']),
-    _templateObject2 = _taggedTemplateLiteral(['\n\t\t\t\tThe ', ' property does not exist.\n\t\t\t'], ['\n\t\t\t\tThe ', ' property does not exist.\n\t\t\t']);
-
-var _rxjs = __webpack_require__(710);
-
-var _utilities = __webpack_require__(32);
-
-var _misc = __webpack_require__(69);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return _instanceof(left, right); } }
-
-function _classCallCheck(instance, Constructor) { if (!_instanceof(instance, Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var $$set = Symbol('$$set');
-var $$addSubject = Symbol('$$addSubject');
-var $$deleteSubject = Symbol('$$deleteSubject');
-var $$valueObservable = Symbol('$$valueObservable');
-var $$disableNextReplay = Symbol('$$disableNextReplay');
-
-var AddReplaySubject = function (_Subject) {
-	_inherits(AddReplaySubject, _Subject);
-
-	function AddReplaySubject(initialSet) {
-		_classCallCheck(this, AddReplaySubject);
-
-		var _this = _possibleConstructorReturn(this, (AddReplaySubject.__proto__ || Object.getPrototypeOf(AddReplaySubject)).call(this));
-
-		_this._setReference = initialSet;
-		return _this;
-	}
-
-	_createClass(AddReplaySubject, [{
-		key: 'normalSubscribe',
-		value: function normalSubscribe() {
-			this[$$disableNextReplay] = true;
-			return this.subscribe.apply(this, arguments);
-		}
-		// noinspection JSDuplicatedDeclaration
-
-	}, {
-		key: '_subscribe',
-		value: function _subscribe(subscriber) {
-			var subscription = _get(AddReplaySubject.prototype.__proto__ || Object.getPrototypeOf(AddReplaySubject.prototype), '_subscribe', this).call(this, subscriber);
-			if (subscription && !subscription.isUnsubscribed && !this[$$disableNextReplay]) {
-				this._setReference.forEach(subscriber.next.bind(subscriber));
-			}
-			this[$$disableNextReplay] = false;
-			return subscription;
-		}
-	}]);
-
-	return AddReplaySubject;
-}(_rxjs.Subject);
-
-/**
- * A data-structure with the same interface as `Set`,
- * and emits mutation events from rxjs streams.
- */
-
-
-var ObservableSet = function () {
-
-	/**
-  * Create a new instance of `ObservableSet`.
-  * @param {Iterable<T>} [initialContent] - initial elements to put in this set object
-  */
-	function ObservableSet() {
-		var _this2 = this;
-
-		var initialContent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-		_classCallCheck(this, ObservableSet);
-
-		/* define private fields */
-		/** @private */this[$$set] = new Set();
-		/** @private */this[$$addSubject] = new AddReplaySubject(this);
-		/** @private */this[$$deleteSubject] = new _rxjs.Subject();
-
-		var valueSubject = new _rxjs.BehaviorSubject(new Set(this));
-
-		/** @private */this[$$valueObservable] = valueSubject.asObservable();
-
-		/* link streams */
-		this[$$addSubject].normalSubscribe(this.add.bind(this));
-		this[$$deleteSubject].subscribe(this.delete.bind(this));
-		this[$$addSubject].normalSubscribe(function () {
-			valueSubject.next(new Set(_this2));
-		});
-		this[$$deleteSubject].subscribe(function () {
-			valueSubject.next(new Set(_this2));
-		});
-
-		/* add initial content */
-		initialContent.forEach(this.add.bind(this));
-	}
-
-	/**
-  * Get an event stream associated with this set object.
-  * @param {string} op - the name of the event stream you want: `"add"` or `"delete"`
-  * @returns {Subject} - the rxjs event stream
-  */
-
-
-	_createClass(ObservableSet, [{
-		key: 'e',
-		value: function e(op) {
-			switch (op) {
-				case 'add':
-					return this[$$addSubject];
-				case 'delete':
-					return this[$$deleteSubject];
-				default:
-					(0, _misc.constraint)(false, (0, _utilities.humanMsg)(_templateObject, op));
-			}
-		}
-
-		/**
-   * Get an event stream associated with this set object.
-   * @param {string} name  - the name of the property you want; the
-   *                         only one available at the moment is `"value"`
-   * @returns {Observable} - the rxjs event stream (based on the `BehaviorSubject` class)
-   */
-
-	}, {
-		key: 'p',
-		value: function p(name) {
-			switch (name) {
-				case 'value':
-					return this[$$valueObservable];
-				default:
-					(0, _misc.constraint)(false, (0, _utilities.humanMsg)(_templateObject2, name));
-			}
-		}
-
-		/**
-   * Add a new element with the given value to this set object.
-   * @param   {T} val         - the value to add to the set
-   * @returns {ObservableSet} - this observable set object
-   */
-
-	}, {
-		key: 'add',
-		value: function add(val) {
-			if (!this[$$set].has(val)) {
-				this[$$set].add(val);
-				this[$$addSubject].next(val);
-			}
-			return this;
-		}
-
-		/**
-   * Remove all elements from this set object.
-   * @returns {void}
-   */
-
-	}, {
-		key: 'clear',
-		value: function clear() {
-			var _iteratorNormalCompletion = true;
-			var _didIteratorError = false;
-			var _iteratorError = undefined;
-
-			try {
-				for (var _iterator = this[$$set][Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-					var _value = _step.value;
-
-					this.delete(_value);
-				}
-			} catch (err) {
-				_didIteratorError = true;
-				_iteratorError = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion && _iterator.return) {
-						_iterator.return();
-					}
-				} finally {
-					if (_didIteratorError) {
-						throw _iteratorError;
-					}
-				}
-			}
-		}
-
-		/**
-   * Removes the element with the value and returns the value that `has(val)` would have previously returned.
-   * @param   {T} val   - the value to remove
-   * @returns {boolean} - the element that was removed, if it existed; `false` otherwise
-   */
-
-	}, {
-		key: 'delete',
-		value: function _delete(val) {
-			if (this[$$set].has(val)) {
-				this[$$set].delete(val);
-				this[$$deleteSubject].next(val);
-				return true;
-			}
-			return false;
-		}
-
-		/**
-   * @returns {Iterator<T[]>} - a new Iterator object that yields an array of
-   *                              `[value, value]` for each element in this set object.
-   */
-
-	}, {
-		key: 'entries',
-		value: function entries() {
-			return this[$$set].entries();
-		}
-
-		/**
-   * Run a function for each element in this set object.
-   * @param {function(:T, :T)} callbackFn - the function to invoke for each element
-   * @param {Object} [thisArg]            - the object that will be `this` inside the `callbackFn`
-   * @returns {void}
-   */
-
-	}, {
-		key: 'forEach',
-		value: function forEach(callbackFn, thisArg) {
-			return this[$$set].forEach(callbackFn, thisArg);
-		}
-
-		/**
-   * Test whether this set object contains a certain value.
-   * @param {T} val - the value to test for
-   * @returns {boolean} `true`, if `val` is an element in this set object; `false` otherwise
-   */
-
-	}, {
-		key: 'has',
-		value: function has(val) {
-			return this[$$set].has(val);
-		}
-
-		/**
-   * @returns {Iterator<T>} - a new Iterator object that contains the values for each element in this set object
-   */
-
-	}, {
-		key: 'values',
-		value: function values() {
-			return this[$$set].values();
-		}
-
-		/**
-   * The presence of this method makes an observable set object iterable through `for...of` loops.
-   * @returns {Iterator<T>} - a new Iterator object that contains the values for each element in this set object
-   */
-
-	}, {
-		key: Symbol.iterator,
-		value: function value() {
-			return this[$$set][Symbol.iterator]();
-		}
-
-		/**
-   * @returns {number} - the number of values in this set object
-   */
-
-	}, {
-		key: 'overwrite',
-
-
-		/**
-   * Overwrite the content of this set object,
-   * emitting the proper `delete` and `add` signals (in that order).
-   * @param {Iterable<T>} newContent - the new elements of the set
-   * @returns {ObservableSet} - this observable set object
-   */
-		value: function overwrite(newContent) {
-			newContent = new Set(newContent);
-			var _iteratorNormalCompletion2 = true;
-			var _didIteratorError2 = false;
-			var _iteratorError2 = undefined;
-
-			try {
-				for (var _iterator2 = this.values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-					var e = _step2.value;
-
-					if (!newContent.has(e)) {
-						this.delete(e);
-					}
-				}
-			} catch (err) {
-				_didIteratorError2 = true;
-				_iteratorError2 = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion2 && _iterator2.return) {
-						_iterator2.return();
-					}
-				} finally {
-					if (_didIteratorError2) {
-						throw _iteratorError2;
-					}
-				}
-			}
-
-			var _iteratorNormalCompletion3 = true;
-			var _didIteratorError3 = false;
-			var _iteratorError3 = undefined;
-
-			try {
-				for (var _iterator3 = newContent[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-					var _e = _step3.value;
-
-					if (!this.has(_e)) {
-						this.add(_e);
-					}
-				}
-			} catch (err) {
-				_didIteratorError3 = true;
-				_iteratorError3 = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion3 && _iterator3.return) {
-						_iterator3.return();
-					}
-				} finally {
-					if (_didIteratorError3) {
-						throw _iteratorError3;
-					}
-				}
-			}
-
-			return this;
-		}
-	}, {
-		key: 'size',
-		get: function get() {
-			return this[$$set].size;
-		}
-	}]);
-
-	return ObservableSet;
-}();
-
-exports.default = ObservableSet;
-
-/***/ }),
-/* 706 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -42320,7 +41954,6 @@ exports.default = function (env) {
 
 	/**
   * A field on an `Entity` representing a simple data-type.
-  * @public
   */
 
 	var PropertyField = function (_Field) {
@@ -42461,7 +42094,7 @@ exports.default = function (env) {
 };
 
 /***/ }),
-/* 707 */
+/* 706 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42488,7 +42121,7 @@ var _lodashBound = __webpack_require__(47);
 
 var _boundNativeMethods = __webpack_require__(70);
 
-var _ObservableSet = __webpack_require__(705);
+var _ObservableSet = __webpack_require__(712);
 
 var _ObservableSet2 = _interopRequireDefault(_ObservableSet);
 
@@ -42522,6 +42155,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 exports.default = function (env) {
 
 	var RelField = (0, _RelField3.default)(env);
+
+	/**
+  * A field on an `Entity` representing the 'many-side'
+  * of a many-to-many or many-to-one relationship.
+  * Therefore,
+  */
 
 	var Rel$Field = function (_RelField) {
 		_inherits(Rel$Field, _RelField);
@@ -42871,7 +42510,7 @@ exports.default = function (env) {
 };
 
 /***/ }),
-/* 708 */
+/* 707 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42929,7 +42568,7 @@ exports.default = function (env) {
 	var RelField = (0, _RelField3.default)(env);
 
 	/**
-  *
+  * 
   */
 
 	var Rel1Field = function (_RelField) {
@@ -43182,7 +42821,7 @@ exports.default = function (env) {
 };
 
 /***/ }),
-/* 709 */
+/* 708 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43196,7 +42835,7 @@ var _Field = __webpack_require__(169);
 
 var _Field2 = _interopRequireDefault(_Field);
 
-var _PropertyField = __webpack_require__(706);
+var _PropertyField = __webpack_require__(705);
 
 var _PropertyField2 = _interopRequireDefault(_PropertyField);
 
@@ -43204,11 +42843,11 @@ var _RelField = __webpack_require__(170);
 
 var _RelField2 = _interopRequireDefault(_RelField);
 
-var _Rel1Field = __webpack_require__(708);
+var _Rel1Field = __webpack_require__(707);
 
 var _Rel1Field2 = _interopRequireDefault(_Rel1Field);
 
-var _Rel$Field = __webpack_require__(707);
+var _Rel$Field = __webpack_require__(706);
 
 var _Rel$Field2 = _interopRequireDefault(_Rel$Field);
 
@@ -43234,7 +42873,7 @@ exports.default = function (env) {
 };
 
 /***/ }),
-/* 710 */
+/* 709 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43255,7 +42894,7 @@ var Observable = exports.Observable = Rx.Observable;
 /** @private */var BehaviorSubject = exports.BehaviorSubject = Rx.BehaviorSubject;
 
 /***/ }),
-/* 711 */
+/* 710 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43364,7 +43003,7 @@ exports.default = _TypedModule2.default.create('canonicalTrees', [_resources2.de
 });
 
 /***/ }),
-/* 712 */
+/* 711 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43495,6 +43134,370 @@ exports.default = _Module2.default.create('research', [_resources2.default, _mea
 
 	});
 });
+
+/***/ }),
+/* 712 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _templateObject = _taggedTemplateLiteral(['\n\t\t\t\tThe ', ' event does not exist.\n\t\t\t'], ['\n\t\t\t\tThe ', ' event does not exist.\n\t\t\t']),
+    _templateObject2 = _taggedTemplateLiteral(['\n\t\t\t\tThe ', ' property does not exist.\n\t\t\t'], ['\n\t\t\t\tThe ', ' property does not exist.\n\t\t\t']);
+
+var _rxjs = __webpack_require__(709);
+
+var _utilities = __webpack_require__(32);
+
+var _misc = __webpack_require__(69);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return _instanceof(left, right); } }
+
+function _classCallCheck(instance, Constructor) { if (!_instanceof(instance, Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var $$set = Symbol('$$set');
+var $$addSubject = Symbol('$$addSubject');
+var $$deleteSubject = Symbol('$$deleteSubject');
+var $$valueObservable = Symbol('$$valueObservable');
+var $$disableNextReplay = Symbol('$$disableNextReplay');
+
+var AddReplaySubject = function (_Subject) {
+	_inherits(AddReplaySubject, _Subject);
+
+	function AddReplaySubject(initialSet) {
+		_classCallCheck(this, AddReplaySubject);
+
+		var _this = _possibleConstructorReturn(this, (AddReplaySubject.__proto__ || Object.getPrototypeOf(AddReplaySubject)).call(this));
+
+		_this._setReference = initialSet;
+		return _this;
+	}
+
+	_createClass(AddReplaySubject, [{
+		key: 'normalSubscribe',
+		value: function normalSubscribe() {
+			this[$$disableNextReplay] = true;
+			return this.subscribe.apply(this, arguments);
+		}
+		// noinspection JSDuplicatedDeclaration
+
+	}, {
+		key: '_subscribe',
+		value: function _subscribe(subscriber) {
+			var subscription = _get(AddReplaySubject.prototype.__proto__ || Object.getPrototypeOf(AddReplaySubject.prototype), '_subscribe', this).call(this, subscriber);
+			if (subscription && !subscription.isUnsubscribed && !this[$$disableNextReplay]) {
+				this._setReference.forEach(subscriber.next.bind(subscriber));
+			}
+			this[$$disableNextReplay] = false;
+			return subscription;
+		}
+	}]);
+
+	return AddReplaySubject;
+}(_rxjs.Subject);
+
+/**
+ * A data-structure with the same interface as `Set`,
+ * and emits mutation events from rxjs streams.
+ */
+
+
+var ObservableSet = function () {
+
+	/**
+  * Create a new instance of `ObservableSet`.
+  * @param {Iterable<T>} [initialContent] - initial elements to put in this set object
+  */
+	function ObservableSet() {
+		var _this2 = this;
+
+		var initialContent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+		_classCallCheck(this, ObservableSet);
+
+		/* define private fields */
+		/** @private */this[$$set] = new Set();
+		/** @private */this[$$addSubject] = new AddReplaySubject(this);
+		/** @private */this[$$deleteSubject] = new _rxjs.Subject();
+
+		var valueSubject = new _rxjs.BehaviorSubject(new Set(this));
+
+		/** @private */this[$$valueObservable] = valueSubject.asObservable();
+
+		/* link streams */
+		this[$$addSubject].normalSubscribe(this.add.bind(this));
+		this[$$deleteSubject].subscribe(this.delete.bind(this));
+		this[$$addSubject].normalSubscribe(function () {
+			valueSubject.next(new Set(_this2));
+		});
+		this[$$deleteSubject].subscribe(function () {
+			valueSubject.next(new Set(_this2));
+		});
+
+		/* add initial content */
+		initialContent.forEach(this.add.bind(this));
+	}
+
+	/**
+  * Get an event stream associated with this set object.
+  * @param {string} op - the name of the event stream you want: `"add"` or `"delete"`
+  * @returns {Subject} - the rxjs event stream
+  */
+
+
+	_createClass(ObservableSet, [{
+		key: 'e',
+		value: function e(op) {
+			switch (op) {
+				case 'add':
+					return this[$$addSubject];
+				case 'delete':
+					return this[$$deleteSubject];
+				default:
+					(0, _misc.constraint)(false, (0, _utilities.humanMsg)(_templateObject, op));
+			}
+		}
+
+		/**
+   * Get an event stream associated with this set object.
+   * @param {string} name  - the name of the property you want; the
+   *                         only one available at the moment is `"value"`
+   * @returns {Observable} - the rxjs event stream (based on the `BehaviorSubject` class)
+   */
+
+	}, {
+		key: 'p',
+		value: function p(name) {
+			switch (name) {
+				case 'value':
+					return this[$$valueObservable];
+				default:
+					(0, _misc.constraint)(false, (0, _utilities.humanMsg)(_templateObject2, name));
+			}
+		}
+
+		/**
+   * Add a new element with the given value to this set object.
+   * @param   {T} val         - the value to add to the set
+   * @returns {ObservableSet} - this observable set object
+   */
+
+	}, {
+		key: 'add',
+		value: function add(val) {
+			if (!this[$$set].has(val)) {
+				this[$$set].add(val);
+				this[$$addSubject].next(val);
+			}
+			return this;
+		}
+
+		/**
+   * Remove all elements from this set object.
+   * @returns {void}
+   */
+
+	}, {
+		key: 'clear',
+		value: function clear() {
+			var _iteratorNormalCompletion = true;
+			var _didIteratorError = false;
+			var _iteratorError = undefined;
+
+			try {
+				for (var _iterator = this[$$set][Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+					var _value = _step.value;
+
+					this.delete(_value);
+				}
+			} catch (err) {
+				_didIteratorError = true;
+				_iteratorError = err;
+			} finally {
+				try {
+					if (!_iteratorNormalCompletion && _iterator.return) {
+						_iterator.return();
+					}
+				} finally {
+					if (_didIteratorError) {
+						throw _iteratorError;
+					}
+				}
+			}
+		}
+
+		/**
+   * Removes the element with the value and returns the value that `has(val)` would have previously returned.
+   * @param   {T} val   - the value to remove
+   * @returns {boolean} - the element that was removed, if it existed; `false` otherwise
+   */
+
+	}, {
+		key: 'delete',
+		value: function _delete(val) {
+			if (this[$$set].has(val)) {
+				this[$$set].delete(val);
+				this[$$deleteSubject].next(val);
+				return true;
+			}
+			return false;
+		}
+
+		/**
+   * @returns {Iterator<T[]>} - a new Iterator object that yields an array of
+   *                              `[value, value]` for each element in this set object.
+   */
+
+	}, {
+		key: 'entries',
+		value: function entries() {
+			return this[$$set].entries();
+		}
+
+		/**
+   * Run a function for each element in this set object.
+   * @param {function(:T, :T)} callbackFn - the function to invoke for each element
+   * @param {Object} [thisArg]            - the object that will be `this` inside the `callbackFn`
+   * @returns {void}
+   */
+
+	}, {
+		key: 'forEach',
+		value: function forEach(callbackFn, thisArg) {
+			return this[$$set].forEach(callbackFn, thisArg);
+		}
+
+		/**
+   * Test whether this set object contains a certain value.
+   * @param {T} val - the value to test for
+   * @returns {boolean} `true`, if `val` is an element in this set object; `false` otherwise
+   */
+
+	}, {
+		key: 'has',
+		value: function has(val) {
+			return this[$$set].has(val);
+		}
+
+		/**
+   * @returns {Iterator<T>} - a new Iterator object that contains the values for each element in this set object
+   */
+
+	}, {
+		key: 'values',
+		value: function values() {
+			return this[$$set].values();
+		}
+
+		/**
+   * The presence of this method makes an observable set object iterable through `for...of` loops.
+   * @returns {Iterator<T>} - a new Iterator object that contains the values for each element in this set object
+   */
+
+	}, {
+		key: Symbol.iterator,
+		value: function value() {
+			return this[$$set][Symbol.iterator]();
+		}
+
+		/**
+   * @returns {number} - the number of values in this set object
+   */
+
+	}, {
+		key: 'overwrite',
+
+
+		/**
+   * Overwrite the content of this set object,
+   * emitting the proper `delete` and `add` signals (in that order).
+   * @param {Iterable<T>} newContent - the new elements of the set
+   * @returns {ObservableSet} - this observable set object
+   */
+		value: function overwrite(newContent) {
+			newContent = new Set(newContent);
+			var _iteratorNormalCompletion2 = true;
+			var _didIteratorError2 = false;
+			var _iteratorError2 = undefined;
+
+			try {
+				for (var _iterator2 = this.values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+					var e = _step2.value;
+
+					if (!newContent.has(e)) {
+						this.delete(e);
+					}
+				}
+			} catch (err) {
+				_didIteratorError2 = true;
+				_iteratorError2 = err;
+			} finally {
+				try {
+					if (!_iteratorNormalCompletion2 && _iterator2.return) {
+						_iterator2.return();
+					}
+				} finally {
+					if (_didIteratorError2) {
+						throw _iteratorError2;
+					}
+				}
+			}
+
+			var _iteratorNormalCompletion3 = true;
+			var _didIteratorError3 = false;
+			var _iteratorError3 = undefined;
+
+			try {
+				for (var _iterator3 = newContent[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+					var _e = _step3.value;
+
+					if (!this.has(_e)) {
+						this.add(_e);
+					}
+				}
+			} catch (err) {
+				_didIteratorError3 = true;
+				_iteratorError3 = err;
+			} finally {
+				try {
+					if (!_iteratorNormalCompletion3 && _iterator3.return) {
+						_iterator3.return();
+					}
+				} finally {
+					if (_didIteratorError3) {
+						throw _iteratorError3;
+					}
+				}
+			}
+
+			return this;
+		}
+	}, {
+		key: 'size',
+		get: function get() {
+			return this[$$set].size;
+		}
+	}]);
+
+	return ObservableSet;
+}();
+
+exports.default = ObservableSet;
 
 /***/ }),
 /* 713 */

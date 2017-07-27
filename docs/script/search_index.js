@@ -25,43 +25,49 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/modules/lyphs.spec.js.html#lineNumber8",
+    "test-file/test/modules/lyphs.spec.js.html#lineNumber5",
     "'lyphs' Module",
     "test"
   ],
   [
     "",
-    "test-file/test/modules/lyphs.spec.js.html#lineNumber21",
+    "test-file/test/modules/lyphs.spec.js.html#lineNumber18",
     "'lyphs' Module exports classes that can be instantiated",
     "test"
   ],
   [
     "",
-    "test-file/test/modules/lyphs.spec.js.html#lineNumber31",
+    "test-file/test/modules/lyphs.spec.js.html#lineNumber61",
     "'lyphs' Module exports classes that have the properties and relationships of their superclasses",
     "test"
   ],
   [
     "",
-    "test-file/test/modules/lyphs.spec.js.html#lineNumber39",
+    "test-file/test/modules/lyphs.spec.js.html#lineNumber70",
     "'lyphs' Module exports lyph classes that can have layers",
     "test"
   ],
   [
     "",
-    "test-file/test/modules/lyphs.spec.js.html#lineNumber60",
+    "test-file/test/modules/lyphs.spec.js.html#lineNumber91",
     "'lyphs' Module exports lyph classes that can have segments",
     "test"
   ],
   [
     "",
-    "test-file/test/modules/lyphs.spec.js.html#lineNumber81",
+    "test-file/test/modules/lyphs.spec.js.html#lineNumber112",
     "'lyphs' Module exports lyph classes that have icons",
     "test"
   ],
   [
     "",
-    "test-file/test/modules/lyphs.spec.js.html#lineNumber15",
+    "test-file/test/modules/lyphs.spec.js.html#lineNumber28",
+    "'lyphs' Module exports lyph type that can be given custom borders and axes",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/modules/lyphs.spec.js.html#lineNumber12",
     "'lyphs' Module exports the expected classes",
     "test"
   ],
@@ -138,18 +144,6 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
-    "",
-    "test-file/test/modules/OLD_visualisation.OLD_spec.js.html#lineNumber6",
-    "'visualisation' Module",
-    "test"
-  ],
-  [
-    "",
-    "test-file/test/modules/OLD_visualisation.OLD_spec.js.html#lineNumber16",
-    "'visualisation' Module exports the expected classes",
-    "test"
-  ],
-  [
     "open-physiology-manifest/src/entity.js~entity",
     "class/src/Entity.js~Entity.html",
     "<span>Entity</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/Entity.js</span>",
@@ -162,15 +156,15 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "open-physiology-manifest/src/module.js~module",
-    "class/src/Module.js~Module.html",
-    "<span>Module</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/Module.js</span>",
+    "open-physiology-manifest/src/modules/module.js~module",
+    "class/src/modules/Module.js~Module.html",
+    "<span>Module</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/modules/Module.js</span>",
     "class"
   ],
   [
-    "open-physiology-manifest/src/observableset.js~observableset",
-    "class/src/ObservableSet.js~ObservableSet.html",
-    "<span>ObservableSet</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/ObservableSet.js</span>",
+    "open-physiology-manifest/src/util/observableset.js~observableset",
+    "class/src/util/ObservableSet.js~ObservableSet.html",
+    "<span>ObservableSet</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/util/ObservableSet.js</span>",
     "class"
   ],
   [
@@ -198,9 +192,9 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "open-physiology-manifest/src/typedmodule.js~typedmodule",
-    "class/src/TypedModule.js~TypedModule.html",
-    "<span>TypedModule</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/TypedModule.js</span>",
+    "open-physiology-manifest/src/modules/typedmodule.js~typedmodule",
+    "class/src/modules/TypedModule.js~TypedModule.html",
+    "<span>TypedModule</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/modules/TypedModule.js</span>",
     "class"
   ],
   [
@@ -547,6 +541,24 @@ window.esdocSearchIndex = [
   ],
   [
     "",
+    "test-file/test/Entity.spec.js.html#lineNumber23",
+    "Entity classes has resources that can be deleted",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/Entity.spec.js.html#lineNumber60",
+    "Entity classes has resources that can be placeholders",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/Entity.spec.js.html#lineNumber43",
+    "Entity classes has resources that can be silenced",
+    "test"
+  ],
+  [
+    "",
     "test-file/test/util/ObservableSet.spec.js.html#lineNumber5",
     "ObservableSet",
     "test"
@@ -577,6 +589,18 @@ window.esdocSearchIndex = [
   ],
   [
     "",
+    "test-file/test/integration.spec.js.html#lineNumber8",
+    "integrated workflow",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/integration.spec.js.html#lineNumber15",
+    "integrated workflow can create new Materials and link them",
+    "test"
+  ],
+  [
+    "",
     "test-file/test/regression.spec.js.html#lineNumber4",
     "regression tests",
     "test"
@@ -589,19 +613,19 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/regression.spec.js.html#lineNumber74",
+    "test-file/test/regression.spec.js.html#lineNumber75",
     "regression tests auto-synchronized border-natures?",
     "test"
   ],
   [
     "",
-    "test-file/test/regression.spec.js.html#lineNumber64",
+    "test-file/test/regression.spec.js.html#lineNumber65",
     "regression tests export manually defined plural",
     "test"
   ],
   [
     "",
-    "test-file/test/regression.spec.js.html#lineNumber53",
+    "test-file/test/regression.spec.js.html#lineNumber54",
     "regression tests relationship mismatch",
     "test"
   ],
@@ -630,9 +654,21 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/entity.js~entity#delete",
+    "class/src/Entity.js~Entity.html#instance-method-delete",
+    "src/Entity.js~Entity#delete",
+    "method"
+  ],
+  [
     "src/entity.js~entity#get",
     "class/src/Entity.js~Entity.html#instance-method-get",
     "src/Entity.js~Entity#get",
+    "method"
+  ],
+  [
+    "src/entity.js~entity#loadintoplaceholder",
+    "class/src/Entity.js~Entity.html#instance-method-loadIntoPlaceholder",
+    "src/Entity.js~Entity#loadIntoPlaceholder",
     "method"
   ],
   [
@@ -648,9 +684,21 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/entity.js~entity#silence",
+    "class/src/Entity.js~Entity.html#instance-method-silence",
+    "src/Entity.js~Entity#silence",
+    "method"
+  ],
+  [
     "src/entity.js~entity#tojson",
     "class/src/Entity.js~Entity.html#instance-method-toJSON",
     "src/Entity.js~Entity#toJSON",
+    "method"
+  ],
+  [
+    "src/entity.js~entity#undelete",
+    "class/src/Entity.js~Entity.html#instance-method-undelete",
+    "src/Entity.js~Entity#undelete",
     "method"
   ],
   [
@@ -714,174 +762,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/module.js",
-    "file/src/Module.js.html",
-    "src/Module.js",
-    "file"
-  ],
-  [
-    "src/module.js~module#relationship",
-    "class/src/Module.js~Module.html#instance-method-RELATIONSHIP",
-    "src/Module.js~Module#RELATIONSHIP",
-    "method"
-  ],
-  [
-    "src/module.js~module#resource",
-    "class/src/Module.js~Module.html#instance-method-RESOURCE",
-    "src/Module.js~Module#RESOURCE",
-    "method"
-  ],
-  [
-    "src/module.js~module#basicnormalization",
-    "class/src/Module.js~Module.html#instance-method-basicNormalization",
-    "src/Module.js~Module#basicNormalization",
-    "method"
-  ],
-  [
-    "src/module.js~module#constructor",
-    "class/src/Module.js~Module.html#instance-constructor-constructor",
-    "src/Module.js~Module#constructor",
-    "method"
-  ],
-  [
-    "src/module.js~module#mergesamenamerelationships",
-    "class/src/Module.js~Module.html#instance-method-mergeSameNameRelationships",
-    "src/Module.js~Module#mergeSameNameRelationships",
-    "method"
-  ],
-  [
-    "src/module.js~module#mergesamenameresources",
-    "class/src/Module.js~Module.html#instance-method-mergeSameNameResources",
-    "src/Module.js~Module#mergeSameNameResources",
-    "method"
-  ],
-  [
-    "src/module.js~module#mergesuperclassfields",
-    "class/src/Module.js~Module.html#instance-method-mergeSuperclassFields",
-    "src/Module.js~Module#mergeSuperclassFields",
-    "method"
-  ],
-  [
-    "src/module.js~module#normalizerelationshipsides",
-    "class/src/Module.js~Module.html#instance-method-normalizeRelationshipSides",
-    "src/Module.js~Module#normalizeRelationshipSides",
-    "method"
-  ],
-  [
-    "src/module.js~module#register",
-    "class/src/Module.js~Module.html#instance-method-register",
-    "src/Module.js~Module#register",
-    "method"
-  ],
-  [
-    "src/module.js~module#resolverelationshipdomains",
-    "class/src/Module.js~Module.html#instance-method-resolveRelationshipDomains",
-    "src/Module.js~Module#resolveRelationshipDomains",
-    "method"
-  ],
-  [
-    "src/module.js~module.create",
-    "class/src/Module.js~Module.html#static-method-create",
-    "src/Module.js~Module.create",
-    "method"
-  ],
-  [
-    "src/observableset.js",
-    "file/src/ObservableSet.js.html",
-    "src/ObservableSet.js",
-    "file"
-  ],
-  [
-    "src/observableset.js~observableset#[symbol.iterator]",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-method-[Symbol.iterator]",
-    "src/ObservableSet.js~ObservableSet#[Symbol.iterator]",
-    "method"
-  ],
-  [
-    "src/observableset.js~observableset#add",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-method-add",
-    "src/ObservableSet.js~ObservableSet#add",
-    "method"
-  ],
-  [
-    "src/observableset.js~observableset#clear",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-method-clear",
-    "src/ObservableSet.js~ObservableSet#clear",
-    "method"
-  ],
-  [
-    "src/observableset.js~observableset#constructor",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-constructor-constructor",
-    "src/ObservableSet.js~ObservableSet#constructor",
-    "method"
-  ],
-  [
-    "src/observableset.js~observableset#delete",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-method-delete",
-    "src/ObservableSet.js~ObservableSet#delete",
-    "method"
-  ],
-  [
-    "src/observableset.js~observableset#e",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-method-e",
-    "src/ObservableSet.js~ObservableSet#e",
-    "method"
-  ],
-  [
-    "src/observableset.js~observableset#entries",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-method-entries",
-    "src/ObservableSet.js~ObservableSet#entries",
-    "method"
-  ],
-  [
-    "src/observableset.js~observableset#foreach",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-method-forEach",
-    "src/ObservableSet.js~ObservableSet#forEach",
-    "method"
-  ],
-  [
-    "src/observableset.js~observableset#has",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-method-has",
-    "src/ObservableSet.js~ObservableSet#has",
-    "method"
-  ],
-  [
-    "src/observableset.js~observableset#overwrite",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-method-overwrite",
-    "src/ObservableSet.js~ObservableSet#overwrite",
-    "method"
-  ],
-  [
-    "src/observableset.js~observableset#p",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-method-p",
-    "src/ObservableSet.js~ObservableSet#p",
-    "method"
-  ],
-  [
-    "src/observableset.js~observableset#size",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-get-size",
-    "src/ObservableSet.js~ObservableSet#size",
-    "member"
-  ],
-  [
-    "src/observableset.js~observableset#values",
-    "class/src/ObservableSet.js~ObservableSet.html#instance-method-values",
-    "src/ObservableSet.js~ObservableSet#values",
-    "method"
-  ],
-  [
-    "src/typedmodule.js",
-    "file/src/TypedModule.js.html",
-    "src/TypedModule.js",
-    "file"
-  ],
-  [
-    "src/typedmodule.js~typedmodule#typed_resource",
-    "class/src/TypedModule.js~TypedModule.html#instance-method-TYPED_RESOURCE",
-    "src/TypedModule.js~TypedModule#TYPED_RESOURCE",
-    "method"
-  ],
-  [
     "src/fields/field.js",
     "file/src/fields/Field.js.html",
     "src/fields/Field.js",
@@ -894,16 +774,16 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/fields/field.js~field#constructor",
+    "class/src/fields/Field.js~Field.html#instance-constructor-constructor",
+    "src/fields/Field.js~Field#constructor",
+    "method"
+  ],
+  [
     "src/fields/field.js~field#get",
     "class/src/fields/Field.js~Field.html#instance-method-get",
     "src/fields/Field.js~Field#get",
     "method"
-  ],
-  [
-    "src/fields/field.js~field#isplaceholder",
-    "class/src/fields/Field.js~Field.html#instance-member-isPlaceholder",
-    "src/fields/Field.js~Field#isPlaceholder",
-    "member"
   ],
   [
     "src/fields/field.js~field#set",
@@ -930,12 +810,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/fields/field.js~field.destructentity",
-    "class/src/fields/Field.js~Field.html#static-method-destructEntity",
-    "src/fields/Field.js~Field.destructEntity",
-    "method"
-  ],
-  [
     "src/fields/field.js~field.initializeentity",
     "class/src/fields/Field.js~Field.html#static-method-initializeEntity",
     "src/fields/Field.js~Field.initializeEntity",
@@ -945,6 +819,12 @@ window.esdocSearchIndex = [
     "src/fields/field.js~field.isequal",
     "class/src/fields/Field.js~Field.html#static-method-isEqual",
     "src/fields/Field.js~Field.isEqual",
+    "method"
+  ],
+  [
+    "src/fields/field.js~field.jsontovalue",
+    "class/src/fields/Field.js~Field.html#static-method-jsonToValue",
+    "src/fields/Field.js~Field.jsonToValue",
     "method"
   ],
   [
@@ -994,12 +874,6 @@ window.esdocSearchIndex = [
     "file/src/fields/Rel$Field.js.html",
     "src/fields/Rel$Field.js",
     "file"
-  ],
-  [
-    "src/fields/rel$field.js~rel$field#[$$destruct]",
-    "class/src/fields/Rel$Field.js~Rel$Field.html#instance-method-[$$destruct]",
-    "src/fields/Rel$Field.js~Rel$Field#[$$destruct]",
-    "method"
   ],
   [
     "src/fields/rel$field.js~rel$field#add",
@@ -1072,12 +946,6 @@ window.esdocSearchIndex = [
     "file/src/fields/Rel1Field.js.html",
     "src/fields/Rel1Field.js",
     "file"
-  ],
-  [
-    "src/fields/rel1field.js~rel1field#[$$destruct]",
-    "class/src/fields/Rel1Field.js~Rel1Field.html#instance-method-[$$destruct]",
-    "src/fields/Rel1Field.js~Rel1Field#[$$destruct]",
-    "method"
   ],
   [
     "src/fields/rel1field.js~rel1field#add",
@@ -1188,10 +1056,88 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/modules/old_visualisations.js",
-    "file/src/modules/OLD_visualisations.js.html",
-    "src/modules/OLD_visualisations.js",
+    "src/modules/module.js",
+    "file/src/modules/Module.js.html",
+    "src/modules/Module.js",
     "file"
+  ],
+  [
+    "src/modules/module.js~module#relationship",
+    "class/src/modules/Module.js~Module.html#instance-method-RELATIONSHIP",
+    "src/modules/Module.js~Module#RELATIONSHIP",
+    "method"
+  ],
+  [
+    "src/modules/module.js~module#resource",
+    "class/src/modules/Module.js~Module.html#instance-method-RESOURCE",
+    "src/modules/Module.js~Module#RESOURCE",
+    "method"
+  ],
+  [
+    "src/modules/module.js~module#basicnormalization",
+    "class/src/modules/Module.js~Module.html#instance-method-basicNormalization",
+    "src/modules/Module.js~Module#basicNormalization",
+    "method"
+  ],
+  [
+    "src/modules/module.js~module#constructor",
+    "class/src/modules/Module.js~Module.html#instance-constructor-constructor",
+    "src/modules/Module.js~Module#constructor",
+    "method"
+  ],
+  [
+    "src/modules/module.js~module#mergesamenamerelationships",
+    "class/src/modules/Module.js~Module.html#instance-method-mergeSameNameRelationships",
+    "src/modules/Module.js~Module#mergeSameNameRelationships",
+    "method"
+  ],
+  [
+    "src/modules/module.js~module#mergesamenameresources",
+    "class/src/modules/Module.js~Module.html#instance-method-mergeSameNameResources",
+    "src/modules/Module.js~Module#mergeSameNameResources",
+    "method"
+  ],
+  [
+    "src/modules/module.js~module#mergesuperclassfields",
+    "class/src/modules/Module.js~Module.html#instance-method-mergeSuperclassFields",
+    "src/modules/Module.js~Module#mergeSuperclassFields",
+    "method"
+  ],
+  [
+    "src/modules/module.js~module#normalizerelationshipsides",
+    "class/src/modules/Module.js~Module.html#instance-method-normalizeRelationshipSides",
+    "src/modules/Module.js~Module#normalizeRelationshipSides",
+    "method"
+  ],
+  [
+    "src/modules/module.js~module#register",
+    "class/src/modules/Module.js~Module.html#instance-method-register",
+    "src/modules/Module.js~Module#register",
+    "method"
+  ],
+  [
+    "src/modules/module.js~module#resolverelationshipdomains",
+    "class/src/modules/Module.js~Module.html#instance-method-resolveRelationshipDomains",
+    "src/modules/Module.js~Module#resolveRelationshipDomains",
+    "method"
+  ],
+  [
+    "src/modules/module.js~module.create",
+    "class/src/modules/Module.js~Module.html#static-method-create",
+    "src/modules/Module.js~Module.create",
+    "method"
+  ],
+  [
+    "src/modules/typedmodule.js",
+    "file/src/modules/TypedModule.js.html",
+    "src/modules/TypedModule.js",
+    "file"
+  ],
+  [
+    "src/modules/typedmodule.js~typedmodule#typed_resource",
+    "class/src/modules/TypedModule.js~TypedModule.html#instance-method-TYPED_RESOURCE",
+    "src/modules/TypedModule.js~TypedModule#TYPED_RESOURCE",
+    "method"
   ],
   [
     "src/modules/canonicaltrees.js",
@@ -1248,6 +1194,90 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/util/observableset.js",
+    "file/src/util/ObservableSet.js.html",
+    "src/util/ObservableSet.js",
+    "file"
+  ],
+  [
+    "src/util/observableset.js~observableset#[symbol.iterator]",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-method-[Symbol.iterator]",
+    "src/util/ObservableSet.js~ObservableSet#[Symbol.iterator]",
+    "method"
+  ],
+  [
+    "src/util/observableset.js~observableset#add",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-method-add",
+    "src/util/ObservableSet.js~ObservableSet#add",
+    "method"
+  ],
+  [
+    "src/util/observableset.js~observableset#clear",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-method-clear",
+    "src/util/ObservableSet.js~ObservableSet#clear",
+    "method"
+  ],
+  [
+    "src/util/observableset.js~observableset#constructor",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-constructor-constructor",
+    "src/util/ObservableSet.js~ObservableSet#constructor",
+    "method"
+  ],
+  [
+    "src/util/observableset.js~observableset#delete",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-method-delete",
+    "src/util/ObservableSet.js~ObservableSet#delete",
+    "method"
+  ],
+  [
+    "src/util/observableset.js~observableset#e",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-method-e",
+    "src/util/ObservableSet.js~ObservableSet#e",
+    "method"
+  ],
+  [
+    "src/util/observableset.js~observableset#entries",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-method-entries",
+    "src/util/ObservableSet.js~ObservableSet#entries",
+    "method"
+  ],
+  [
+    "src/util/observableset.js~observableset#foreach",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-method-forEach",
+    "src/util/ObservableSet.js~ObservableSet#forEach",
+    "method"
+  ],
+  [
+    "src/util/observableset.js~observableset#has",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-method-has",
+    "src/util/ObservableSet.js~ObservableSet#has",
+    "method"
+  ],
+  [
+    "src/util/observableset.js~observableset#overwrite",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-method-overwrite",
+    "src/util/ObservableSet.js~ObservableSet#overwrite",
+    "method"
+  ],
+  [
+    "src/util/observableset.js~observableset#p",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-method-p",
+    "src/util/ObservableSet.js~ObservableSet#p",
+    "method"
+  ],
+  [
+    "src/util/observableset.js~observableset#size",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-get-size",
+    "src/util/ObservableSet.js~ObservableSet#size",
+    "member"
+  ],
+  [
+    "src/util/observableset.js~observableset#values",
+    "class/src/util/ObservableSet.js~ObservableSet.html#instance-method-values",
+    "src/util/ObservableSet.js~ObservableSet#values",
+    "method"
+  ],
+  [
     "src/util/misc.js",
     "file/src/util/misc.js.html",
     "src/util/misc.js",
@@ -1272,9 +1302,9 @@ window.esdocSearchIndex = [
     "testFile"
   ],
   [
-    "test/modules/old_visualisation.old_spec.js",
-    "test-file/test/modules/OLD_visualisation.OLD_spec.js.html",
-    "test/modules/OLD_visualisation.OLD_spec.js",
+    "test/integration.spec.js",
+    "test-file/test/integration.spec.js.html",
+    "test/integration.spec.js",
     "testFile"
   ],
   [
@@ -1341,6 +1371,12 @@ window.esdocSearchIndex = [
     "",
     "test-file/test/index.spec.js.html#lineNumber5",
     "the open-physiology-manifest",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/index.spec.js.html#lineNumber12",
+    "the open-physiology-manifest provides access to all Field classes",
     "test"
   ]
 ]

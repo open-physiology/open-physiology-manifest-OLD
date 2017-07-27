@@ -1,4 +1,4 @@
-import TypedModule from '../TypedModule';
+import TypedModule from './TypedModule.js';
 
 import resources from './resources';
 import typed     from './typed';

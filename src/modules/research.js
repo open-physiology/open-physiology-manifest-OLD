@@ -1,4 +1,4 @@
-import Module from '../Module';
+import Module from './Module.js';
 
 import resources   from './resources';
 import measurables from './measurables';

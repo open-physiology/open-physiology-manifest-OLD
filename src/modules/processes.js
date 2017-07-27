@@ -1,6 +1,6 @@
 import {wrapInArray} from 'utilities';
 
-import TypedModule       from '../TypedModule.js';
+import TypedModule       from './TypedModule.js';
 import {enumArraySchema} from '../util/schemas.js';
 import resources         from './resources.js';
 import typed             from './typed.js';

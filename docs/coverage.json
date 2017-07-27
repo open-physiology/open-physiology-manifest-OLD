@@ -1,126 +1,77 @@
 {
-  "coverage": "22.82%",
-  "expectCount": 92,
-  "actualCount": 21,
+  "coverage": "71.27%",
+  "expectCount": 94,
+  "actualCount": 67,
   "files": {
     "src/Entity.js": {
-      "expectCount": 17,
-      "actualCount": 1,
+      "expectCount": 21,
+      "actualCount": 7,
       "undocumentLines": [
         28,
-        116,
-        161,
-        108,
-        136,
-        48,
+        212,
+        171,
+        226,
         24,
-        221,
-        83,
-        90,
-        124,
+        284,
+        201,
         32,
-        176,
-        166,
-        224,
-        209
+        239,
+        217,
+        287,
+        233,
+        272,
+        229
       ]
     },
     "src/fields/Field.js": {
       "expectCount": 12,
-      "actualCount": 1,
-      "undocumentLines": [
-        118,
-        29,
-        97,
-        165,
-        47,
-        105,
-        154,
-        169,
-        187,
-        157,
-        161
-      ]
+      "actualCount": 12,
+      "undocumentLines": []
     },
-    "src/Module.js": {
+    "src/modules/Module.js": {
       "expectCount": 12,
       "actualCount": 0,
       "undocumentLines": [
-        91,
-        117,
-        106,
-        130,
-        102,
-        93,
-        437,
-        399,
-        320,
+        90,
+        116,
+        105,
+        129,
+        101,
+        92,
+        438,
+        400,
+        323,
         195,
-        287,
+        290,
         262
       ]
     },
-    "src/ObservableSet.js": {
+    "src/util/ObservableSet.js": {
       "expectCount": 14,
       "actualCount": 14,
       "undocumentLines": []
     },
     "src/fields/PropertyField.js": {
       "expectCount": 6,
-      "actualCount": 1,
-      "undocumentLines": [
-        66,
-        32,
-        95,
-        102,
-        88
-      ]
+      "actualCount": 6,
+      "undocumentLines": []
     },
     "src/fields/Rel$Field.js": {
-      "expectCount": 13,
-      "actualCount": 1,
-      "undocumentLines": [
-        199,
-        151,
-        79,
-        162,
-        138,
-        35,
-        184,
-        142,
-        208,
-        217,
-        227,
-        172
-      ]
+      "expectCount": 12,
+      "actualCount": 12,
+      "undocumentLines": []
     },
     "src/fields/Rel1Field.js": {
-      "expectCount": 11,
-      "actualCount": 1,
-      "undocumentLines": [
-        139,
-        152,
-        76,
-        156,
-        147,
-        35,
-        127,
-        162,
-        182,
-        114
-      ]
+      "expectCount": 10,
+      "actualCount": 10,
+      "undocumentLines": []
     },
     "src/fields/RelField.js": {
       "expectCount": 5,
-      "actualCount": 1,
-      "undocumentLines": [
-        15,
-        19,
-        11,
-        23
-      ]
+      "actualCount": 5,
+      "undocumentLines": []
     },
-    "src/TypedModule.js": {
+    "src/modules/TypedModule.js": {
       "expectCount": 2,
       "actualCount": 1,
       "undocumentLines": [

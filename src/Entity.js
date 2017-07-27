@@ -37,6 +37,12 @@ export default (env) => {
 		////////// STATIC (building Entity-based classes) //////////
 		////////////////////////////////////////////////////////////
 		
+		/**
+		 * Create a new `Entity` subclass with the given configuration.
+		 * @param {Object} config      - a set of static properties for the new class
+		 * @param {string} config.name - the name of the new class
+		 * @return {Class} a new subclass of `Entity`
+		 */
 		static createClass(config): Class<Entity> {
 			/* create the class with the right name, constructor and static content */
 			const {name, ...rest} = config;
@@ -58,10 +64,10 @@ export default (env) => {
 					return ${name};
 				}(Entity);
 			`)(Entity);
-			
-			/* populate it with the necessary data and behavior */
-			EntitySubclass::assign(rest);
 			EntitySubclass::definePropertiesByValue({ name });
+			
+			/* populate it with the requested data and behavior */
+			EntitySubclass::assign(rest);
 			
 			/***/
 			return EntitySubclass;
@@ -73,11 +79,23 @@ export default (env) => {
 		////////// STATIC CLASS ANALYSIS METHODS //////////
 		///////////////////////////////////////////////////
 		
-		static hasInstance(instance) {
-			if (!instance) { return false }
-			return this.hasSubclass(instance.constructor);
+		/**
+		 * Test whether the given entity is an instance of this class.
+		 * This is a polymorphic check; call it on `Entity` subclasses.
+		 * @param {Entity} entity - the entity to test
+		 * @return {boolean} whether the given entity is an instance of this class
+		 */
+		static hasInstance(entity) {
+			if (!entity) { return false }
+			return this.hasSubclass(entity.constructor);
 		}
 		
+		/**
+		 * Test whether the given class is a subclass of this class.
+		 * This is a polymorphic check; call it on `Entity` subclasses.
+		 * @param {Class} otherClass - the class to test
+		 * @return {boolean} whether the given class is subclass of this class
+		 */
 		static hasSubclass(otherClass) {
 			if (!otherClass || otherClass.Entity !== this.Entity) { return false }
 			if (this === this.Entity)                             { return true  }
@@ -90,6 +108,11 @@ export default (env) => {
 			return false;
 		}
 		
+		/**
+		 * Returns all the subclasses of this class, both direct and indirect.
+		 * This is a polymorphic check; call it on `Entity` subclasses.
+		 * @return {Set<Class>} the set of subclasses of this class
+		 */
 		static allSubclasses() {
 			let result = [this];
 			for (let subClass of this.extendedBy) {
@@ -98,8 +121,14 @@ export default (env) => {
 			return new Set(result);
 		}
 		
-		static [Symbol.hasInstance](instance) {
-			return this.hasInstance(instance);
+		/**
+		 * Overwriting the JavaScript `instanceof` operator to work with our improvised class hierarchy.
+		 * @param {Entity} entity - the entity to test
+		 * @return {boolean} whether the given entity is an instance of this class
+		 * @see Entity.hasInstance
+		 */
+		static [Symbol.hasInstance](entity) {
+			return this.hasInstance(entity);
 		}
 		
 		
@@ -107,6 +136,12 @@ export default (env) => {
 		////////// INSTANCES //////////
 		///////////////////////////////
 		
+		/**
+		 * Create a new entity of this (polymorphically determined) Entity subclass.
+		 * @param initialValues
+		 * @param options
+		 * @return {Entity}
+		 */
 		static new(
 			initialValues: {} = {},
 		    options:       {} = {}

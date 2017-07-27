@@ -1,5 +1,5 @@
 import {idSchema, uriSchema, identifierSchema} from '../util/schemas';
-import Module                                  from '../Module';
+import Module                                  from './Module';
 
 
 export default Module.create('resources', [], (M) => {

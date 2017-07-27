@@ -33,14 +33,14 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/util/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -49,7 +49,9 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {defaults, isInteger, isObject, entries, assign} from &apos;lodash-bound&apos;;
 import assert from &apos;power-assert&apos;;
 
-import {humanMsg, definePropertiesByValue, babelHelpers, ValueTracker} from &apos;utilities&apos;;
+import {humanMsg, definePropertiesByValue, babelHelpers, ValueTracker, event,
+	property, flag
+} from &apos;utilities&apos;;
 
 import {constraint} from &apos;./util/misc&apos;;
 
@@ -83,6 +85,12 @@ export default (env) =&gt; {
 		////////// STATIC (building Entity-based classes) //////////
 		////////////////////////////////////////////////////////////
 		
+		/**
+		 * Create a new `Entity` subclass with the given configuration.
+		 * @param {Object} config      - a set of static properties for the new class
+		 * @param {string} config.name - the name of the new class
+		 * @return {Class} a new subclass of `Entity`
+		 */
 		static createClass(config): Class&lt;Entity&gt; {
 			/* create the class with the right name, constructor and static content */
 			const {name, ...rest} = config;
@@ -104,10 +112,10 @@ export default (env) =&gt; {
 					return ${name};
 				}(Entity);
 			`)(Entity);
-			
-			/* populate it with the necessary data and behavior */
-			EntitySubclass::assign(rest);
 			EntitySubclass::definePropertiesByValue({ name });
+			
+			/* populate it with the requested data and behavior */
+			EntitySubclass::assign(rest);
 			
 			/***/
 			return EntitySubclass;
@@ -119,11 +127,23 @@ export default (env) =&gt; {
 		////////// STATIC CLASS ANALYSIS METHODS //////////
 		///////////////////////////////////////////////////
 		
-		static hasInstance(instance) {
-			if (!instance) { return false }
-			return this.hasSubclass(instance.constructor);
+		/**
+		 * Test whether the given entity is an instance of this class.
+		 * This is a polymorphic check; call it on `Entity` subclasses.
+		 * @param {Entity} entity - the entity to test
+		 * @return {boolean} whether the given entity is an instance of this class
+		 */
+		static hasInstance(entity) {
+			if (!entity) { return false }
+			return this.hasSubclass(entity.constructor);
 		}
 		
+		/**
+		 * Test whether the given class is a subclass of this class.
+		 * This is a polymorphic check; call it on `Entity` subclasses.
+		 * @param {Class} otherClass - the class to test
+		 * @return {boolean} whether the given class is subclass of this class
+		 */
 		static hasSubclass(otherClass) {
 			if (!otherClass || otherClass.Entity !== this.Entity) { return false }
 			if (this === this.Entity)                             { return true  }
@@ -136,6 +156,11 @@ export default (env) =&gt; {
 			return false;
 		}
 		
+		/**
+		 * Returns all the subclasses of this class, both direct and indirect.
+		 * This is a polymorphic check; call it on `Entity` subclasses.
+		 * @return {Set&lt;Class&gt;} the set of subclasses of this class
+		 */
 		static allSubclasses() {
 			let result = [this];
 			for (let subClass of this.extendedBy) {
@@ -144,8 +169,14 @@ export default (env) =&gt; {
 			return new Set(result);
 		}
 		
-		static [Symbol.hasInstance](instance) {
-			return this.hasInstance(instance);
+		/**
+		 * Overwriting the JavaScript `instanceof` operator to work with our improvised class hierarchy.
+		 * @param {Entity} entity - the entity to test
+		 * @return {boolean} whether the given entity is an instance of this class
+		 * @see Entity.hasInstance
+		 */
+		static [Symbol.hasInstance](entity) {
+			return this.hasInstance(entity);
 		}
 		
 		
@@ -153,6 +184,12 @@ export default (env) =&gt; {
 		////////// INSTANCES //////////
 		///////////////////////////////
 		
+		/**
+		 * Create a new entity of this (polymorphically determined) Entity subclass.
+		 * @param initialValues
+		 * @param options
+		 * @return {Entity}
+		 */
 		static new(
 			initialValues: {} = {},
 		    options:       {} = {}
@@ -169,7 +206,14 @@ export default (env) =&gt; {
 			});
 		}
 		
-		constructor(initialValues: {} = {}, options = {}) {
+		
+		@property({ readonly: true }) isPlaceholder;
+		@property({ initial: false, readonly: true }) fieldsInitialized;
+		@property({ initial: false, allowSynchronousAccess: true, isValid(v) { return v === false || !this.isPlaceholder } }) deleted;
+		@property({ initial: false, allowSynchronousAccess: true, isValid(v) { return v === false || !this.isPlaceholder } }) silent;
+		
+		
+		constructor(initialValues = {}, options = {}) {
 			/* initialize value tracking */
 			super();
 			
@@ -181,9 +225,14 @@ export default (env) =&gt; {
 			`);
 			delete options[$$allowInvokingConstructor];
 			
-			/* create fieldsInitialized property */
-			// for some reason, I can&apos;t use @property for this; TODO: find out why
-			this.newProperty(&apos;fieldsInitialized&apos;, { initial: false, readonly: true });
+			/* init placeholder property */
+			this.pSubject(&apos;isPlaceholder&apos;).next(options.isPlaceholder);
+			
+			/* stop signals after this entity is deleted */
+			const valueTrackerOptions = {
+				takeUntil: this.p(&apos;silent&apos;).filter(s=&gt;!!s)
+			};
+			this.setValueTrackerOptions(valueTrackerOptions);
 			
 			/* set defaults for the core initial field values */
 			initialValues::defaults({
@@ -191,7 +240,16 @@ export default (env) =&gt; {
 			});
 			
 			/* initialize all fields in this entity */
-			this.constructor.environment.Field.initializeEntity(this, initialValues);
+			this.constructor.environment.Field.initializeEntity(this, initialValues, valueTrackerOptions);
+		}
+		
+		loadIntoPlaceholder(initialValues = {}) {
+			//assert(this.isPlaceholder); // TODO: fix ValueTracker, so that this.isPlaceholder is available
+			for (let [key, value] of initialValues::entries()) {
+				if (!this.fields[key]) { continue }
+				this.fields[key].set(value);
+			}
+			this.pSubject(&apos;isPlaceholder&apos;).next(false);
 		}
 		
 		get [Symbol.toStringTag]() {
@@ -206,6 +264,13 @@ export default (env) =&gt; {
 				return super.p(...args);
 			}
 		}
+		
+		
+		//// Deleting
+		delete  () { this.pSubject(&apos;deleted&apos;).next(true)  }
+		undelete() { this.pSubject(&apos;deleted&apos;).next(false) }
+		
+		silence() { this.pSubject(&apos;silent&apos;).next(true) }
 		
 		
 		//// Transforming to/from JSON

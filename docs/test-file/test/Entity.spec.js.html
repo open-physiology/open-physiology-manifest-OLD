@@ -33,14 +33,14 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/util/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -64,6 +64,59 @@ describe(&quot;Entity classes&quot;, () =&gt; {
 		expect([...resourceSubclasses]).to.contain(ExternalResource);
 		expect([...resourceSubclasses]).to.contain(Type);
 		expect([...resourceSubclasses]).to.contain(Lyph);
+	});
+	
+	it(&quot;has resources that can be deleted&quot;, () =&gt; {
+		const {Lyph} = environment.classes;
+		
+		let lyph = Lyph.new({ name: &quot;A Lyph!&quot; });
+		
+		expect(lyph.deleted).to.be.false;
+		expect(lyph.name).to.equal(&quot;A Lyph!&quot;);
+		
+		lyph.delete();
+		expect(lyph.deleted).to.be.true;
+		
+		/* still sending signals after a deletion */
+		lyph.p(&apos;name&apos;).next(&quot;A deleted lyph!&quot;);
+		expect(lyph.name).to.equal(&quot;A deleted lyph!&quot;);
+		
+		/* can undelete */
+		lyph.undelete();
+		expect(lyph.deleted).to.be.false;
+	});
+	
+	it(&quot;has resources that can be silenced&quot;, async () =&gt; {
+		const {Lyph} = environment.classes;
+		
+		let lyph = Lyph.new({ name: &quot;A Lyph!&quot; });
+		
+		expect(lyph.silent).to.be.false;
+		expect(lyph.name).to.equal(&quot;A Lyph!&quot;);
+		
+		lyph.silence();
+		expect(lyph.silent).to.be.true;
+		
+		/* no longer sending signals after silencing */
+		lyph.p(&apos;name&apos;).next(&quot;A silent lyph!&quot;);
+		
+		expect(lyph.name).to.equal(&quot;A Lyph!&quot;);
+	});
+	
+	it(&quot;has resources that can be placeholders&quot;, () =&gt; {
+		const {Lyph} = environment.classes;
+		
+		let lyph = Lyph.new({ id: 1234 }, { isPlaceholder: true });
+		
+		expect(lyph.isPlaceholder).to.be.true;
+		expect(lyph.id).to.equal(1234);
+		expect(lyph.name).to.be.undefined;
+		
+		lyph.loadIntoPlaceholder({ name: &quot;New Lyph&quot; });
+		
+		expect(lyph.isPlaceholder).to.be.false;
+		expect(lyph.id).to.equal(1234);
+		expect(lyph.name).to.equal(&quot;New Lyph&quot;);
 	});
 	
 });

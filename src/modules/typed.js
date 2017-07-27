@@ -1,6 +1,6 @@
 import {definePropertyByValue}   from 'utilities';
 
-import Module                    from '../Module.js';
+import Module                    from './Module.js';
 import resources                 from './resources.js';
 import {typedDistributionSchema} from '../util/schemas.js';
 

@@ -8,7 +8,7 @@ import canonicalTrees from './modules/canonicalTrees';
 import research       from './modules/research';
 // import visualisations from './modules/OLD_visualisations';
 
-import Module from './Module';
+import Module from './modules/Module.js';
 
 export default Module.create('all', [
 	resources,
