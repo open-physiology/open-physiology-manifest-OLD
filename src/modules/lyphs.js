@@ -1,4 +1,4 @@
-import TypedModule from '../TypedModule';
+import TypedModule from './TypedModule.js';
 import {normalizeToRange, wrapInArray} from 'utilities';
 import {
 	enumArraySchema

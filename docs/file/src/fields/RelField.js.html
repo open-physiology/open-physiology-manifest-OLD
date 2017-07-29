@@ -33,14 +33,19 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Environment.html">Environment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/util/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-constraint">constraint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parseCardinality">parseCardinality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setEquals">setEquals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stringifyCardinality">stringifyCardinality</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -54,25 +59,46 @@ export default (env) =&gt; {
 	const Field = Field_factory(env);
 	
 	/**
-	 *
+	 * A field on an `Entity` representing one side of a relationship.
 	 */
 	class RelField extends Field {
 		
+		/**
+		 * @return {Set} A new `Set` data-structure populated with
+		 *               the entities related through this field.
+		 */
 		getAll() {
-			// to be implemented in subclasses
-		}
+		} // to be implemented in subclasses
 		
+		
+		/**
+		 * Add an additional entity to this field, or replace the current entity if this is a `Rel1Field`.
+		 * @param {Entity}   newValue - the new entity to be added into this field
+		 * @param {Object}  [options={}]
+		 * @param {boolean} [options.ignoreReadonly=false]   - allow this field&apos;s value to be changed even if it is read-only
+		 * @param {boolean} [options.ignoreValidation=false] - don&apos;t validate the new cardinality or value
+		 */
 		add(newValue, options) {
-			// to be implemented in subclasses
-		}
+		} // to be implemented in subclasses
 		
+		/**
+		 * Remove a specific entity from this field.
+		 * @param {Entity}   oldValue - the entity to be removed from this field
+		 * @param {Object}  [options={}]
+		 * @param {boolean} [options.ignoreReadonly=false]   - allow this field&apos;s value to be changed even if it is read-only
+		 * @param {boolean} [options.ignoreValidation=false] - don&apos;t validate the new cardinality
+		 */
 		delete(oldValue, options) {
-			// to be implemented in subclasses
-		}
+		} // to be implemented in subclasses
 		
-		validateElement(element, options) {
-			// to be implemented in subclasses
-		}
+		/**
+		 * Validate a specific entity as appropriate to be included in this field.
+		 * Throws an exception if the entity is invalid. Otherwise does nothing.
+		 * @param {Entity} entity     - the entity to test
+		 * @param {Array} [stages=[]] - the validation stages to validate for (e.g., &apos;commit&apos;)
+		 */
+		validateElement(entity, stages) {
+		} // to be implemented in subclasses
 		
 	}
 	

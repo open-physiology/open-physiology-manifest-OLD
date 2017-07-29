@@ -4,4 +4,3 @@
 /** @private */ export const $$value     = Symbol('$$value');
 /** @private */ export const $$initSet   = Symbol('$$initSet');
 /** @private */ export const $$entriesIn = Symbol('$$entriesIn');
-/** @private */ export const $$destruct  = Symbol('$$destruct');

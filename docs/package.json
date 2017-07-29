@@ -1,8 +1,8 @@
 {
   "name": "open-physiology-manifest",
-  "version": "0.2.0",
-  "description": "Templates for starting new open-physiology projects",
-  "main": "dist/index.js",
+  "version": "0.10.0",
+  "description": "smart data types for all open-physiology concepts (e.g., Lyph, Process)",
+  "main": "src/index.js",
   "scripts": {
     "test": "mocha-webpack --opts mocha-webpack.opts",
     "build": "cross-env BABEL_ENV=production webpack",
@@ -51,7 +51,6 @@
     "json-stringify-safe": "5",
     "mocha": "2",
     "mocha-webpack": "0.5",
-    "node-noop": "1",
     "npm-cli": "0.1",
     "polyfill-function-prototype-bind": "0.0",
     "power-assert": "1",
@@ -71,7 +70,7 @@
     "lodash-bound": "1",
     "rearg": "0.0",
     "rxjs": "5",
-    "utilities": "open-physiology/utilities",
+    "utilities": "open-physiology/utilities#master",
     "wu": "2"
   }
 }

@@ -1,7 +1,7 @@
-import {BehaviorSubject, Subject, Observable} from './libs/rxjs.js';
+import {BehaviorSubject, Subject, Observable} from '../libs/rxjs.js';
 import assert                                 from 'power-assert';
 import {humanMsg}                             from 'utilities';
-import {constraint}                           from './util/misc.js';
+import {constraint}                           from './misc.js';
 
 type Iterator<T> = {
 	next: () => ({

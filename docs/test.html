@@ -33,14 +33,19 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Environment.html">Environment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/util/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-constraint">constraint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parseCardinality">parseCardinality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setEquals">setEquals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stringifyCardinality">stringifyCardinality</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -60,11 +65,35 @@
   <td data-ice="testDescription" style="padding-left: 10px"><span class="toggle closed"></span><span><a href="test-file/test/Entity.spec.js.html#lineNumber5"><p>Entity classes</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
-  <td data-ice="testCount">1</td>
+  <td data-ice="testCount">5</td>
 </tr>
 
 <tr data-ice="testIt" style="display: none;" data-test-depth="1">
   <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/Entity.spec.js.html#lineNumber12"><p>can list its possible subclasses</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+  <td></td>
+</tr>
+<tr data-ice="testIt" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/Entity.spec.js.html#lineNumber23"><p>can be used as a base to instantiate subclasses</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+  <td></td>
+</tr>
+<tr data-ice="testIt" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/Entity.spec.js.html#lineNumber38"><p>has resources that can be deleted</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+  <td></td>
+</tr>
+<tr data-ice="testIt" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/Entity.spec.js.html#lineNumber58"><p>has resources that can be silenced</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+  <td></td>
+</tr>
+<tr data-ice="testIt" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/Entity.spec.js.html#lineNumber75"><p>has resources that can be placeholders</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td></td>
@@ -75,20 +104,26 @@
   <td data-ice="testDescription" style="padding-left: 10px"><span class="toggle closed"></span><span><a href="test-file/test/index.spec.js.html#lineNumber5"><p>the open-physiology-manifest</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
-  
+  <td data-ice="testCount">1</td>
+</tr>
+
+<tr data-ice="testIt" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/index.spec.js.html#lineNumber12"><p>provides access to all Field classes</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+  <td></td>
 </tr>
 
 
-
 <tr class="test-describe" data-ice="testDescribe" style="display: none;" data-test-depth="0">
-  <td data-ice="testDescription" style="padding-left: 10px"><span class="toggle closed"></span><span><a href="test-file/test/modules/OLD_visualisation.OLD_spec.js.html#lineNumber6"><p>&apos;visualisation&apos; Module</p>
+  <td data-ice="testDescription" style="padding-left: 10px"><span class="toggle closed"></span><span><a href="test-file/test/integration.spec.js.html#lineNumber8"><p>integrated workflow</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td data-ice="testCount">1</td>
 </tr>
 
 <tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/OLD_visualisation.OLD_spec.js.html#lineNumber16"><p>exports the expected classes</p>
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/integration.spec.js.html#lineNumber15"><p>can create new Materials and link them</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td></td>
@@ -126,44 +161,50 @@
 
 
 <tr class="test-describe" data-ice="testDescribe" style="display: none;" data-test-depth="0">
-  <td data-ice="testDescription" style="padding-left: 10px"><span class="toggle closed"></span><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber8"><p>&apos;lyphs&apos; Module</p>
+  <td data-ice="testDescription" style="padding-left: 10px"><span class="toggle closed"></span><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber5"><p>&apos;lyphs&apos; Module</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
-  <td data-ice="testCount">6</td>
+  <td data-ice="testCount">7</td>
 </tr>
 
 <tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber15"><p>exports the expected classes</p>
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber12"><p>exports the expected classes</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td></td>
 </tr>
 <tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber21"><p>exports classes that can be instantiated</p>
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber18"><p>exports classes that can be instantiated</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td></td>
 </tr>
 <tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber31"><p>exports classes that have the properties and relationships of their superclasses</p>
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber28"><p>exports lyph type that can be given custom borders and axes</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td></td>
 </tr>
 <tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber39"><p>exports lyph classes that can have layers</p>
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber61"><p>exports classes that have the properties and relationships of their superclasses</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td></td>
 </tr>
 <tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber60"><p>exports lyph classes that can have segments</p>
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber70"><p>exports lyph classes that can have layers</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td></td>
 </tr>
 <tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber81"><p>exports lyph classes that have icons</p>
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber91"><p>exports lyph classes that can have segments</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+  <td></td>
+</tr>
+<tr data-ice="testIt" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/modules/lyphs.spec.js.html#lineNumber112"><p>exports lyph classes that have icons</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td></td>
@@ -277,19 +318,19 @@
   <td></td>
 </tr>
 <tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/regression.spec.js.html#lineNumber53"><p>relationship mismatch</p>
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/regression.spec.js.html#lineNumber54"><p>relationship mismatch</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td></td>
 </tr>
 <tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/regression.spec.js.html#lineNumber64"><p>export manually defined plural</p>
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/regression.spec.js.html#lineNumber65"><p>export manually defined plural</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td></td>
 </tr>
 <tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/regression.spec.js.html#lineNumber74"><p>auto-synchronized border-natures?</p>
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/regression.spec.js.html#lineNumber75"><p>auto-synchronized border-natures?</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
   <td></td>

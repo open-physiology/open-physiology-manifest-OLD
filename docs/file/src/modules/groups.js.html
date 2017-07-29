@@ -33,20 +33,25 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Environment.html">Environment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/util/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-constraint">constraint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parseCardinality">parseCardinality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setEquals">setEquals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stringifyCardinality">stringifyCardinality</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/modules/groups.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import TypedModule from &apos;../TypedModule&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import TypedModule from &apos;./TypedModule.js&apos;;
 
 import resources from &apos;./resources&apos;;
 import typed     from &apos;./typed&apos;;
@@ -67,7 +72,7 @@ export default TypedModule.create(&apos;groups&apos;, [
 		
 		singular: &quot;group&quot;,
 				
-		icon: &apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QQDEQw1ERspwQAABCJJREFUWMPtlkuIHVUQhr/q7nvnzoxxCEiQoJKYhS4EQRe6UXElgkTNc2MERdy7EFy5cqG7rLNQMAExJkrEMYiELMQgEQTdRAhJEOMQMzjJ9Ptx6pSL7pm5mZsbvMH4gBQ0fTh9Tv//qVN/VcFt+5dNJln8w77ooIi+JL2gnbChjwamHrPw0CMH3b6/+s9oEgLmTTY8sJHNz27DVw4aD41CrQQeFk79RvxrNtGhJiKAQW+2z8zWOUhqqByU2r7ViKbCia8gmnSDmUHhsLyBqgW3SgnUg/O3ngBqHXAHXirUDpy1324pAQG8b10+DF5qe3pvIPIPeKBcB15qS8wm90Aw8Q7fXoE0ilQeqdvxzdpEHpAguLp0Zmlx8aclhwxlke4dhkQS9q7eOgLSf49+eCDqY2OXWHgFmv95Kt69d6fYmIA6cvhTe2H79qA33XsbeLKbPpmm6TvH57+yXXt2yPVdI3zy8VG7IYFde3Y+LMITwEYzC8YRFJFp4GXg7m7qEvChmRXj8peIeOCKGd8cOXz0xxECu/a8+LhIcBIYdFM1EI9PylSAH1LT1A2K251AvxuXZv7pI4c/++6aIDTjkggfAdNAAbwPnJu0Yo4huw14deXfZlz67wTh8wemH1RVbNWb0h1ZOm1HHrh47PU8v/+5dzer2pxzait+kTYoWk2HgQSBLJ//4q2FQ73eDGb3OOcCGRP9Qa9HBP741NQUgQRDPYZh3ahp6hzjFeC0GW9GUbBzdmZKV1Via6tdo6E3Owq8YaoPifcfTM/Ozqwrp2CGqeKcI4qiaMszj+1m8133UWtBZRm15tQ+Q4Oaz+eP5VEQDQBU/aZHH9p672t7n6Ioa4pKyWolrxyNF778+jTnzi9s6oAGDrbs2L9/pilLKEssy7AkgSzjjwsX+P7ECSIQBv0B/X4fpwWhhyDwiFcIGjC5pvHqRREb7hjgPFTeEXhBnKxqfV1FssHcHKEZvq4xs7af8J6eKrKiAmcNpU+pfEqlKbXPKH2KUo5IwJtRVEpaOrLKkZVKVjkqB43aiGisLPFxjCUJliT4JEHSFMtzMCMCo/EFlU+oNaXyWUckw1k+Ut+dWgteOtLKkXcESgdO/QhhGwaPY0gSrCNgQGRAbQWV9iiHwCtLcZqtamKVgPek68Cz0lE4Q3U0a9jyMhbH+CSBOMbStCWRZes8YCGVb91fW3sdFjYj2lE10lLJqw68UtLKUXvw1ymSlqZroGmKxTFkGTRNGwNmxlJ8mdJias2ofUFjBc5qglDW4QtJVnLul99J84qi9hSNUjYOJKSpmxGtL549i1tehjxvVZDnSNOQlCVmRqSqnPn5DCLSJaO1HAB0JFoiQSBcXFjk8vFvOzm3K62LPW1cp4RWEaEZp+bn19q1lacLZr2JFu62/e32J4u63QWs1oUKAAAAAElFTkSuQmCC&apos;
+		icon: require(&apos;./icons/group.png&apos;),
 		
 	});/////////////////////////////////////////////////////////////////////////////
 	
@@ -81,8 +86,8 @@ export default TypedModule.create(&apos;groups&apos;, [
 		singular: &quot;includes&quot;,
 		plural:   &quot;include&quot;,
 		
-		1: [Group,    &apos;0..*&apos;, { anchors: true, key: &apos;elements&apos; }],
-		2: [Template, &apos;0..*&apos;,                                   ],
+		1: [Group,    &apos;0..*&apos;, { key: &apos;elements&apos; }],
+		2: [Template, &apos;0..*&apos;,                    ],
 		
 	});
 

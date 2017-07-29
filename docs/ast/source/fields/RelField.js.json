@@ -1,28 +1,28 @@
 {
   "type": "File",
   "start": 0,
-  "end": 386,
+  "end": 1675,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 27,
+      "line": 44,
       "column": 1
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 386,
+    "end": 1675,
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-        "line": 27,
+        "line": 44,
         "column": 1
       }
     },
@@ -115,9 +115,9 @@
           },
           {
             "type": "CommentBlock",
-            "value": "*\n *\n ",
+            "value": "*\n * A field on an `Entity` representing one side of a relationship.\n ",
             "start": 59,
-            "end": 69,
+            "end": 133,
             "loc": {
               "start": {
                 "line": 6,
@@ -133,36 +133,36 @@
       },
       {
         "type": "ExportDefaultDeclaration",
-        "start": 70,
-        "end": 386,
+        "start": 134,
+        "end": 1675,
         "loc": {
           "start": {
             "line": 9,
             "column": 0
           },
           "end": {
-            "line": 27,
+            "line": 44,
             "column": 1
           }
         },
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 85,
-          "end": 386,
+          "start": 149,
+          "end": 1675,
           "loc": {
             "start": {
               "line": 9,
               "column": 15
             },
             "end": {
-              "line": 27,
+              "line": 44,
               "column": 1
             }
           },
           "id": {
             "type": "Identifier",
-            "start": 91,
-            "end": 99,
+            "start": 155,
+            "end": 163,
             "loc": {
               "start": {
                 "line": 9,
@@ -179,8 +179,8 @@
           },
           "superClass": {
             "type": "Identifier",
-            "start": 108,
-            "end": 113,
+            "start": 172,
+            "end": 177,
             "loc": {
               "start": {
                 "line": 9,
@@ -196,50 +196,51 @@
           },
           "body": {
             "type": "ClassBody",
-            "start": 114,
-            "end": 386,
+            "start": 178,
+            "end": 1675,
             "loc": {
               "start": {
                 "line": 9,
                 "column": 44
               },
               "end": {
-                "line": 27,
+                "line": 44,
                 "column": 1
               }
             },
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 118,
-                "end": 168,
+                "start": 311,
+                "end": 322,
                 "loc": {
                   "start": {
-                    "line": 11,
+                    "line": 15,
                     "column": 1
                   },
                   "end": {
-                    "line": 13,
-                    "column": 2
+                    "line": 15,
+                    "column": 12
                   }
                 },
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 118,
-                  "end": 124,
+                  "start": 311,
+                  "end": 317,
                   "loc": {
                     "start": {
-                      "line": 11,
+                      "line": 15,
                       "column": 1
                     },
                     "end": {
-                      "line": 11,
+                      "line": 15,
                       "column": 7
                     },
                     "identifierName": "getAll"
                   },
-                  "name": "getAll"
+                  "name": "getAll",
+                  "leadingComments": null
                 },
                 "static": false,
                 "kind": "method",
@@ -250,72 +251,108 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 127,
-                  "end": 168,
+                  "start": 320,
+                  "end": 322,
                   "loc": {
                     "start": {
-                      "line": 11,
+                      "line": 15,
                       "column": 10
                     },
                     "end": {
-                      "line": 13,
-                      "column": 2
+                      "line": 15,
+                      "column": 12
                     }
                   },
                   "body": [],
                   "directives": [],
                   "leadingComments": null,
-                  "innerComments": [
-                    {
-                      "type": "CommentLine",
-                      "value": " to be implemented in subclasses",
-                      "start": 131,
-                      "end": 165,
-                      "loc": {
-                        "start": {
-                          "line": 12,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 12,
-                          "column": 36
-                        }
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n  * @return {Set} A new `Set` data-structure populated with\n  *               the entities related through this field.\n  ",
+                    "start": 182,
+                    "end": 309,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 4
                       }
                     }
-                  ]
-                }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentLine",
+                    "value": " to be implemented in subclasses",
+                    "start": 323,
+                    "end": 357,
+                    "loc": {
+                      "start": {
+                        "line": 15,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 15,
+                        "column": 47
+                      }
+                    }
+                  },
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n  * Add an additional entity to this field, or replace the current entity if this is a `Rel1Field`.\n  * @param {Entity}   newValue - the new entity to be added into this field\n  * @param {Object}  [options={}]\n  * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only\n  * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality or value\n  ",
+                    "start": 361,
+                    "end": 798,
+                    "loc": {
+                      "start": {
+                        "line": 18,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 24,
+                        "column": 4
+                      }
+                    }
+                  }
+                ]
               },
               {
                 "type": "ClassMethod",
-                "start": 171,
-                "end": 235,
+                "start": 800,
+                "end": 825,
                 "loc": {
                   "start": {
-                    "line": 15,
+                    "line": 25,
                     "column": 1
                   },
                   "end": {
-                    "line": 17,
-                    "column": 2
+                    "line": 25,
+                    "column": 26
                   }
                 },
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 171,
-                  "end": 174,
+                  "start": 800,
+                  "end": 803,
                   "loc": {
                     "start": {
-                      "line": 15,
+                      "line": 25,
                       "column": 1
                     },
                     "end": {
-                      "line": 15,
+                      "line": 25,
                       "column": 4
                     },
                     "identifierName": "add"
                   },
-                  "name": "add"
+                  "name": "add",
+                  "leadingComments": null
                 },
                 "static": false,
                 "kind": "method",
@@ -326,15 +363,15 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 175,
-                    "end": 183,
+                    "start": 804,
+                    "end": 812,
                     "loc": {
                       "start": {
-                        "line": 15,
+                        "line": 25,
                         "column": 5
                       },
                       "end": {
-                        "line": 15,
+                        "line": 25,
                         "column": 13
                       },
                       "identifierName": "newValue"
@@ -343,15 +380,15 @@
                   },
                   {
                     "type": "Identifier",
-                    "start": 185,
-                    "end": 192,
+                    "start": 814,
+                    "end": 821,
                     "loc": {
                       "start": {
-                        "line": 15,
+                        "line": 25,
                         "column": 15
                       },
                       "end": {
-                        "line": 15,
+                        "line": 25,
                         "column": 22
                       },
                       "identifierName": "options"
@@ -361,72 +398,124 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 194,
-                  "end": 235,
+                  "start": 823,
+                  "end": 825,
                   "loc": {
                     "start": {
-                      "line": 15,
+                      "line": 25,
                       "column": 24
                     },
                     "end": {
-                      "line": 17,
-                      "column": 2
+                      "line": 25,
+                      "column": 26
                     }
                   },
                   "body": [],
                   "directives": [],
                   "leadingComments": null,
-                  "innerComments": [
-                    {
-                      "type": "CommentLine",
-                      "value": " to be implemented in subclasses",
-                      "start": 198,
-                      "end": 232,
-                      "loc": {
-                        "start": {
-                          "line": 16,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 16,
-                          "column": 36
-                        }
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentLine",
+                    "value": " to be implemented in subclasses",
+                    "start": 323,
+                    "end": 357,
+                    "loc": {
+                      "start": {
+                        "line": 15,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 15,
+                        "column": 47
                       }
                     }
-                  ]
-                }
+                  },
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n  * Add an additional entity to this field, or replace the current entity if this is a `Rel1Field`.\n  * @param {Entity}   newValue - the new entity to be added into this field\n  * @param {Object}  [options={}]\n  * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only\n  * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality or value\n  ",
+                    "start": 361,
+                    "end": 798,
+                    "loc": {
+                      "start": {
+                        "line": 18,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 24,
+                        "column": 4
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentLine",
+                    "value": " to be implemented in subclasses",
+                    "start": 826,
+                    "end": 860,
+                    "loc": {
+                      "start": {
+                        "line": 25,
+                        "column": 27
+                      },
+                      "end": {
+                        "line": 25,
+                        "column": 61
+                      }
+                    }
+                  },
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n  * Remove a specific entity from this field.\n  * @param {Entity}   oldValue - the entity to be removed from this field\n  * @param {Object}  [options={}]\n  * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only\n  * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality\n  ",
+                    "start": 863,
+                    "end": 1235,
+                    "loc": {
+                      "start": {
+                        "line": 27,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 33,
+                        "column": 4
+                      }
+                    }
+                  }
+                ]
               },
               {
                 "type": "ClassMethod",
-                "start": 238,
-                "end": 305,
+                "start": 1237,
+                "end": 1265,
                 "loc": {
                   "start": {
-                    "line": 19,
+                    "line": 34,
                     "column": 1
                   },
                   "end": {
-                    "line": 21,
-                    "column": 2
+                    "line": 34,
+                    "column": 29
                   }
                 },
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 238,
-                  "end": 244,
+                  "start": 1237,
+                  "end": 1243,
                   "loc": {
                     "start": {
-                      "line": 19,
+                      "line": 34,
                       "column": 1
                     },
                     "end": {
-                      "line": 19,
+                      "line": 34,
                       "column": 7
                     },
                     "identifierName": "delete"
                   },
-                  "name": "delete"
+                  "name": "delete",
+                  "leadingComments": null
                 },
                 "static": false,
                 "kind": "method",
@@ -437,15 +526,15 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 245,
-                    "end": 253,
+                    "start": 1244,
+                    "end": 1252,
                     "loc": {
                       "start": {
-                        "line": 19,
+                        "line": 34,
                         "column": 8
                       },
                       "end": {
-                        "line": 19,
+                        "line": 34,
                         "column": 16
                       },
                       "identifierName": "oldValue"
@@ -454,15 +543,15 @@
                   },
                   {
                     "type": "Identifier",
-                    "start": 255,
-                    "end": 262,
+                    "start": 1254,
+                    "end": 1261,
                     "loc": {
                       "start": {
-                        "line": 19,
+                        "line": 34,
                         "column": 18
                       },
                       "end": {
-                        "line": 19,
+                        "line": 34,
                         "column": 25
                       },
                       "identifierName": "options"
@@ -472,72 +561,124 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 264,
-                  "end": 305,
+                  "start": 1263,
+                  "end": 1265,
                   "loc": {
                     "start": {
-                      "line": 19,
+                      "line": 34,
                       "column": 27
                     },
                     "end": {
-                      "line": 21,
-                      "column": 2
+                      "line": 34,
+                      "column": 29
                     }
                   },
                   "body": [],
                   "directives": [],
                   "leadingComments": null,
-                  "innerComments": [
-                    {
-                      "type": "CommentLine",
-                      "value": " to be implemented in subclasses",
-                      "start": 268,
-                      "end": 302,
-                      "loc": {
-                        "start": {
-                          "line": 20,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 20,
-                          "column": 36
-                        }
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentLine",
+                    "value": " to be implemented in subclasses",
+                    "start": 826,
+                    "end": 860,
+                    "loc": {
+                      "start": {
+                        "line": 25,
+                        "column": 27
+                      },
+                      "end": {
+                        "line": 25,
+                        "column": 61
                       }
                     }
-                  ]
-                }
+                  },
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n  * Remove a specific entity from this field.\n  * @param {Entity}   oldValue - the entity to be removed from this field\n  * @param {Object}  [options={}]\n  * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only\n  * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality\n  ",
+                    "start": 863,
+                    "end": 1235,
+                    "loc": {
+                      "start": {
+                        "line": 27,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 33,
+                        "column": 4
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentLine",
+                    "value": " to be implemented in subclasses",
+                    "start": 1266,
+                    "end": 1300,
+                    "loc": {
+                      "start": {
+                        "line": 34,
+                        "column": 30
+                      },
+                      "end": {
+                        "line": 34,
+                        "column": 64
+                      }
+                    }
+                  },
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n  * Validate a specific entity as appropriate to be included in this field.\n  * Throws an exception if the entity is invalid. Otherwise does nothing.\n  * @param {Entity} entity     - the entity to test\n  * @param {Array} [stages=[]] - the validation stages to validate for (e.g., 'commit')\n  ",
+                    "start": 1303,
+                    "end": 1601,
+                    "loc": {
+                      "start": {
+                        "line": 36,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 41,
+                        "column": 4
+                      }
+                    }
+                  }
+                ]
               },
               {
                 "type": "ClassMethod",
-                "start": 308,
-                "end": 383,
+                "start": 1603,
+                "end": 1637,
                 "loc": {
                   "start": {
-                    "line": 23,
+                    "line": 42,
                     "column": 1
                   },
                   "end": {
-                    "line": 25,
-                    "column": 2
+                    "line": 42,
+                    "column": 35
                   }
                 },
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 308,
-                  "end": 323,
+                  "start": 1603,
+                  "end": 1618,
                   "loc": {
                     "start": {
-                      "line": 23,
+                      "line": 42,
                       "column": 1
                     },
                     "end": {
-                      "line": 23,
+                      "line": 42,
                       "column": 16
                     },
                     "identifierName": "validateElement"
                   },
-                  "name": "validateElement"
+                  "name": "validateElement",
+                  "leadingComments": null
                 },
                 "static": false,
                 "kind": "method",
@@ -548,75 +689,110 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 324,
-                    "end": 331,
+                    "start": 1619,
+                    "end": 1625,
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 42,
                         "column": 17
                       },
                       "end": {
-                        "line": 23,
-                        "column": 24
+                        "line": 42,
+                        "column": 23
                       },
-                      "identifierName": "element"
+                      "identifierName": "entity"
                     },
-                    "name": "element"
+                    "name": "entity"
                   },
                   {
                     "type": "Identifier",
-                    "start": 333,
-                    "end": 340,
+                    "start": 1627,
+                    "end": 1633,
                     "loc": {
                       "start": {
-                        "line": 23,
-                        "column": 26
+                        "line": 42,
+                        "column": 25
                       },
                       "end": {
-                        "line": 23,
-                        "column": 33
+                        "line": 42,
+                        "column": 31
                       },
-                      "identifierName": "options"
+                      "identifierName": "stages"
                     },
-                    "name": "options"
+                    "name": "stages"
                   }
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 342,
-                  "end": 383,
+                  "start": 1635,
+                  "end": 1637,
                   "loc": {
                     "start": {
-                      "line": 23,
-                      "column": 35
+                      "line": 42,
+                      "column": 33
                     },
                     "end": {
-                      "line": 25,
-                      "column": 2
+                      "line": 42,
+                      "column": 35
                     }
                   },
                   "body": [],
                   "directives": [],
                   "leadingComments": null,
-                  "innerComments": [
-                    {
-                      "type": "CommentLine",
-                      "value": " to be implemented in subclasses",
-                      "start": 346,
-                      "end": 380,
-                      "loc": {
-                        "start": {
-                          "line": 24,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 24,
-                          "column": 36
-                        }
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentLine",
+                    "value": " to be implemented in subclasses",
+                    "start": 1266,
+                    "end": 1300,
+                    "loc": {
+                      "start": {
+                        "line": 34,
+                        "column": 30
+                      },
+                      "end": {
+                        "line": 34,
+                        "column": 64
                       }
                     }
-                  ]
-                }
+                  },
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n  * Validate a specific entity as appropriate to be included in this field.\n  * Throws an exception if the entity is invalid. Otherwise does nothing.\n  * @param {Entity} entity     - the entity to test\n  * @param {Array} [stages=[]] - the validation stages to validate for (e.g., 'commit')\n  ",
+                    "start": 1303,
+                    "end": 1601,
+                    "loc": {
+                      "start": {
+                        "line": 36,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 41,
+                        "column": 4
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentLine",
+                    "value": " to be implemented in subclasses",
+                    "start": 1638,
+                    "end": 1672,
+                    "loc": {
+                      "start": {
+                        "line": 42,
+                        "column": 36
+                      },
+                      "end": {
+                        "line": 42,
+                        "column": 70
+                      }
+                    }
+                  }
+                ]
               }
             ]
           },
@@ -639,9 +815,9 @@
             },
             {
               "type": "CommentBlock",
-              "value": "*\n *\n ",
+              "value": "*\n * A field on an `Entity` representing one side of a relationship.\n ",
               "start": 59,
-              "end": 69,
+              "end": 133,
               "loc": {
                 "start": {
                   "line": 6,
@@ -675,9 +851,9 @@
           },
           {
             "type": "CommentBlock",
-            "value": "*\n *\n ",
+            "value": "*\n * A field on an `Entity` representing one side of a relationship.\n ",
             "start": 59,
-            "end": 69,
+            "end": 133,
             "loc": {
               "start": {
                 "line": 6,
@@ -713,9 +889,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n *\n ",
+      "value": "*\n * A field on an `Entity` representing one side of a relationship.\n ",
       "start": 59,
-      "end": 69,
+      "end": 133,
       "loc": {
         "start": {
           "line": 6,
@@ -728,66 +904,130 @@
       }
     },
     {
-      "type": "CommentLine",
-      "value": " to be implemented in subclasses",
-      "start": 131,
-      "end": 165,
+      "type": "CommentBlock",
+      "value": "*\n  * @return {Set} A new `Set` data-structure populated with\n  *               the entities related through this field.\n  ",
+      "start": 182,
+      "end": 309,
       "loc": {
         "start": {
-          "line": 12,
-          "column": 2
+          "line": 11,
+          "column": 1
         },
         "end": {
-          "line": 12,
-          "column": 36
+          "line": 14,
+          "column": 4
         }
       }
     },
     {
       "type": "CommentLine",
       "value": " to be implemented in subclasses",
-      "start": 198,
-      "end": 232,
+      "start": 323,
+      "end": 357,
       "loc": {
         "start": {
-          "line": 16,
-          "column": 2
+          "line": 15,
+          "column": 13
         },
         "end": {
-          "line": 16,
-          "column": 36
+          "line": 15,
+          "column": 47
         }
       }
     },
     {
-      "type": "CommentLine",
-      "value": " to be implemented in subclasses",
-      "start": 268,
-      "end": 302,
+      "type": "CommentBlock",
+      "value": "*\n  * Add an additional entity to this field, or replace the current entity if this is a `Rel1Field`.\n  * @param {Entity}   newValue - the new entity to be added into this field\n  * @param {Object}  [options={}]\n  * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only\n  * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality or value\n  ",
+      "start": 361,
+      "end": 798,
       "loc": {
         "start": {
-          "line": 20,
-          "column": 2
-        },
-        "end": {
-          "line": 20,
-          "column": 36
-        }
-      }
-    },
-    {
-      "type": "CommentLine",
-      "value": " to be implemented in subclasses",
-      "start": 346,
-      "end": 380,
-      "loc": {
-        "start": {
-          "line": 24,
-          "column": 2
+          "line": 18,
+          "column": 1
         },
         "end": {
           "line": 24,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " to be implemented in subclasses",
+      "start": 826,
+      "end": 860,
+      "loc": {
+        "start": {
+          "line": 25,
+          "column": 27
+        },
+        "end": {
+          "line": 25,
+          "column": 61
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n  * Remove a specific entity from this field.\n  * @param {Entity}   oldValue - the entity to be removed from this field\n  * @param {Object}  [options={}]\n  * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only\n  * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality\n  ",
+      "start": 863,
+      "end": 1235,
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 1
+        },
+        "end": {
+          "line": 33,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " to be implemented in subclasses",
+      "start": 1266,
+      "end": 1300,
+      "loc": {
+        "start": {
+          "line": 34,
+          "column": 30
+        },
+        "end": {
+          "line": 34,
+          "column": 64
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n  * Validate a specific entity as appropriate to be included in this field.\n  * Throws an exception if the entity is invalid. Otherwise does nothing.\n  * @param {Entity} entity     - the entity to test\n  * @param {Array} [stages=[]] - the validation stages to validate for (e.g., 'commit')\n  ",
+      "start": 1303,
+      "end": 1601,
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 1
+        },
+        "end": {
+          "line": 41,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " to be implemented in subclasses",
+      "start": 1638,
+      "end": 1672,
+      "loc": {
+        "start": {
+          "line": 42,
           "column": 36
+        },
+        "end": {
+          "line": 42,
+          "column": 70
         }
       }
     }
@@ -944,9 +1184,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n *\n ",
+      "value": "*\n * A field on an `Entity` representing one side of a relationship.\n ",
       "start": 59,
-      "end": 69,
+      "end": 133,
       "loc": {
         "start": {
           "line": 6,
@@ -973,8 +1213,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 70,
-      "end": 76,
+      "start": 134,
+      "end": 140,
       "loc": {
         "start": {
           "line": 9,
@@ -1001,8 +1241,8 @@
         "updateContext": null
       },
       "value": "default",
-      "start": 77,
-      "end": 84,
+      "start": 141,
+      "end": 148,
       "loc": {
         "start": {
           "line": 9,
@@ -1029,8 +1269,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 85,
-      "end": 90,
+      "start": 149,
+      "end": 154,
       "loc": {
         "start": {
           "line": 9,
@@ -1055,8 +1295,8 @@
         "binop": null
       },
       "value": "RelField",
-      "start": 91,
-      "end": 99,
+      "start": 155,
+      "end": 163,
       "loc": {
         "start": {
           "line": 9,
@@ -1083,8 +1323,8 @@
         "updateContext": null
       },
       "value": "extends",
-      "start": 100,
-      "end": 107,
+      "start": 164,
+      "end": 171,
       "loc": {
         "start": {
           "line": 9,
@@ -1109,8 +1349,8 @@
         "binop": null
       },
       "value": "Field",
-      "start": 108,
-      "end": 113,
+      "start": 172,
+      "end": 177,
       "loc": {
         "start": {
           "line": 9,
@@ -1134,8 +1374,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 114,
-      "end": 115,
+      "start": 178,
+      "end": 179,
       "loc": {
         "start": {
           "line": 9,
@@ -1144,6 +1384,22 @@
         "end": {
           "line": 9,
           "column": 45
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n  * @return {Set} A new `Set` data-structure populated with\n  *               the entities related through this field.\n  ",
+      "start": 182,
+      "end": 309,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 1
+        },
+        "end": {
+          "line": 14,
+          "column": 4
         }
       }
     },
@@ -1160,15 +1416,15 @@
         "binop": null
       },
       "value": "getAll",
-      "start": 118,
-      "end": 124,
+      "start": 311,
+      "end": 317,
       "loc": {
         "start": {
-          "line": 11,
+          "line": 15,
           "column": 1
         },
         "end": {
-          "line": 11,
+          "line": 15,
           "column": 7
         }
       }
@@ -1185,15 +1441,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 124,
-      "end": 125,
+      "start": 317,
+      "end": 318,
       "loc": {
         "start": {
-          "line": 11,
+          "line": 15,
           "column": 7
         },
         "end": {
-          "line": 11,
+          "line": 15,
           "column": 8
         }
       }
@@ -1210,15 +1466,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 125,
-      "end": 126,
+      "start": 318,
+      "end": 319,
       "loc": {
         "start": {
-          "line": 11,
+          "line": 15,
           "column": 8
         },
         "end": {
-          "line": 11,
+          "line": 15,
           "column": 9
         }
       }
@@ -1235,32 +1491,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 127,
-      "end": 128,
+      "start": 320,
+      "end": 321,
       "loc": {
         "start": {
-          "line": 11,
+          "line": 15,
           "column": 10
         },
         "end": {
-          "line": 11,
+          "line": 15,
           "column": 11
-        }
-      }
-    },
-    {
-      "type": "CommentLine",
-      "value": " to be implemented in subclasses",
-      "start": 131,
-      "end": 165,
-      "loc": {
-        "start": {
-          "line": 12,
-          "column": 2
-        },
-        "end": {
-          "line": 12,
-          "column": 36
         }
       }
     },
@@ -1276,16 +1516,48 @@
         "postfix": false,
         "binop": null
       },
-      "start": 167,
-      "end": 168,
+      "start": 321,
+      "end": 322,
       "loc": {
         "start": {
-          "line": 13,
+          "line": 15,
+          "column": 11
+        },
+        "end": {
+          "line": 15,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " to be implemented in subclasses",
+      "start": 323,
+      "end": 357,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 13
+        },
+        "end": {
+          "line": 15,
+          "column": 47
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n  * Add an additional entity to this field, or replace the current entity if this is a `Rel1Field`.\n  * @param {Entity}   newValue - the new entity to be added into this field\n  * @param {Object}  [options={}]\n  * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only\n  * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality or value\n  ",
+      "start": 361,
+      "end": 798,
+      "loc": {
+        "start": {
+          "line": 18,
           "column": 1
         },
         "end": {
-          "line": 13,
-          "column": 2
+          "line": 24,
+          "column": 4
         }
       }
     },
@@ -1302,15 +1574,15 @@
         "binop": null
       },
       "value": "add",
-      "start": 171,
-      "end": 174,
+      "start": 800,
+      "end": 803,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 25,
           "column": 1
         },
         "end": {
-          "line": 15,
+          "line": 25,
           "column": 4
         }
       }
@@ -1327,15 +1599,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 174,
-      "end": 175,
+      "start": 803,
+      "end": 804,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 25,
           "column": 4
         },
         "end": {
-          "line": 15,
+          "line": 25,
           "column": 5
         }
       }
@@ -1353,15 +1625,15 @@
         "binop": null
       },
       "value": "newValue",
-      "start": 175,
-      "end": 183,
+      "start": 804,
+      "end": 812,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 25,
           "column": 5
         },
         "end": {
-          "line": 15,
+          "line": 25,
           "column": 13
         }
       }
@@ -1379,15 +1651,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 183,
-      "end": 184,
+      "start": 812,
+      "end": 813,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 25,
           "column": 13
         },
         "end": {
-          "line": 15,
+          "line": 25,
           "column": 14
         }
       }
@@ -1405,15 +1677,15 @@
         "binop": null
       },
       "value": "options",
-      "start": 185,
-      "end": 192,
+      "start": 814,
+      "end": 821,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 25,
           "column": 15
         },
         "end": {
-          "line": 15,
+          "line": 25,
           "column": 22
         }
       }
@@ -1430,15 +1702,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 192,
-      "end": 193,
+      "start": 821,
+      "end": 822,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 25,
           "column": 22
         },
         "end": {
-          "line": 15,
+          "line": 25,
           "column": 23
         }
       }
@@ -1455,32 +1727,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 194,
-      "end": 195,
+      "start": 823,
+      "end": 824,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 25,
           "column": 24
         },
         "end": {
-          "line": 15,
+          "line": 25,
           "column": 25
-        }
-      }
-    },
-    {
-      "type": "CommentLine",
-      "value": " to be implemented in subclasses",
-      "start": 198,
-      "end": 232,
-      "loc": {
-        "start": {
-          "line": 16,
-          "column": 2
-        },
-        "end": {
-          "line": 16,
-          "column": 36
         }
       }
     },
@@ -1496,16 +1752,48 @@
         "postfix": false,
         "binop": null
       },
-      "start": 234,
-      "end": 235,
+      "start": 824,
+      "end": 825,
       "loc": {
         "start": {
-          "line": 17,
+          "line": 25,
+          "column": 25
+        },
+        "end": {
+          "line": 25,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " to be implemented in subclasses",
+      "start": 826,
+      "end": 860,
+      "loc": {
+        "start": {
+          "line": 25,
+          "column": 27
+        },
+        "end": {
+          "line": 25,
+          "column": 61
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n  * Remove a specific entity from this field.\n  * @param {Entity}   oldValue - the entity to be removed from this field\n  * @param {Object}  [options={}]\n  * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only\n  * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality\n  ",
+      "start": 863,
+      "end": 1235,
+      "loc": {
+        "start": {
+          "line": 27,
           "column": 1
         },
         "end": {
-          "line": 17,
-          "column": 2
+          "line": 33,
+          "column": 4
         }
       }
     },
@@ -1524,15 +1812,15 @@
         "updateContext": null
       },
       "value": "delete",
-      "start": 238,
-      "end": 244,
+      "start": 1237,
+      "end": 1243,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 34,
           "column": 1
         },
         "end": {
-          "line": 19,
+          "line": 34,
           "column": 7
         }
       }
@@ -1549,15 +1837,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 244,
-      "end": 245,
+      "start": 1243,
+      "end": 1244,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 34,
           "column": 7
         },
         "end": {
-          "line": 19,
+          "line": 34,
           "column": 8
         }
       }
@@ -1575,15 +1863,15 @@
         "binop": null
       },
       "value": "oldValue",
-      "start": 245,
-      "end": 253,
+      "start": 1244,
+      "end": 1252,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 34,
           "column": 8
         },
         "end": {
-          "line": 19,
+          "line": 34,
           "column": 16
         }
       }
@@ -1601,15 +1889,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 253,
-      "end": 254,
+      "start": 1252,
+      "end": 1253,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 34,
           "column": 16
         },
         "end": {
-          "line": 19,
+          "line": 34,
           "column": 17
         }
       }
@@ -1627,15 +1915,15 @@
         "binop": null
       },
       "value": "options",
-      "start": 255,
-      "end": 262,
+      "start": 1254,
+      "end": 1261,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 34,
           "column": 18
         },
         "end": {
-          "line": 19,
+          "line": 34,
           "column": 25
         }
       }
@@ -1652,15 +1940,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 262,
-      "end": 263,
+      "start": 1261,
+      "end": 1262,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 34,
           "column": 25
         },
         "end": {
-          "line": 19,
+          "line": 34,
           "column": 26
         }
       }
@@ -1677,32 +1965,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 264,
-      "end": 265,
+      "start": 1263,
+      "end": 1264,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 34,
           "column": 27
         },
         "end": {
-          "line": 19,
+          "line": 34,
           "column": 28
-        }
-      }
-    },
-    {
-      "type": "CommentLine",
-      "value": " to be implemented in subclasses",
-      "start": 268,
-      "end": 302,
-      "loc": {
-        "start": {
-          "line": 20,
-          "column": 2
-        },
-        "end": {
-          "line": 20,
-          "column": 36
         }
       }
     },
@@ -1718,16 +1990,48 @@
         "postfix": false,
         "binop": null
       },
-      "start": 304,
-      "end": 305,
+      "start": 1264,
+      "end": 1265,
       "loc": {
         "start": {
-          "line": 21,
+          "line": 34,
+          "column": 28
+        },
+        "end": {
+          "line": 34,
+          "column": 29
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " to be implemented in subclasses",
+      "start": 1266,
+      "end": 1300,
+      "loc": {
+        "start": {
+          "line": 34,
+          "column": 30
+        },
+        "end": {
+          "line": 34,
+          "column": 64
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n  * Validate a specific entity as appropriate to be included in this field.\n  * Throws an exception if the entity is invalid. Otherwise does nothing.\n  * @param {Entity} entity     - the entity to test\n  * @param {Array} [stages=[]] - the validation stages to validate for (e.g., 'commit')\n  ",
+      "start": 1303,
+      "end": 1601,
+      "loc": {
+        "start": {
+          "line": 36,
           "column": 1
         },
         "end": {
-          "line": 21,
-          "column": 2
+          "line": 41,
+          "column": 4
         }
       }
     },
@@ -1744,15 +2048,15 @@
         "binop": null
       },
       "value": "validateElement",
-      "start": 308,
-      "end": 323,
+      "start": 1603,
+      "end": 1618,
       "loc": {
         "start": {
-          "line": 23,
+          "line": 42,
           "column": 1
         },
         "end": {
-          "line": 23,
+          "line": 42,
           "column": 16
         }
       }
@@ -1769,15 +2073,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 323,
-      "end": 324,
+      "start": 1618,
+      "end": 1619,
       "loc": {
         "start": {
-          "line": 23,
+          "line": 42,
           "column": 16
         },
         "end": {
-          "line": 23,
+          "line": 42,
           "column": 17
         }
       }
@@ -1794,17 +2098,17 @@
         "postfix": false,
         "binop": null
       },
-      "value": "element",
-      "start": 324,
-      "end": 331,
+      "value": "entity",
+      "start": 1619,
+      "end": 1625,
       "loc": {
         "start": {
-          "line": 23,
+          "line": 42,
           "column": 17
         },
         "end": {
-          "line": 23,
-          "column": 24
+          "line": 42,
+          "column": 23
         }
       }
     },
@@ -1821,16 +2125,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 331,
-      "end": 332,
+      "start": 1625,
+      "end": 1626,
       "loc": {
         "start": {
-          "line": 23,
-          "column": 24
+          "line": 42,
+          "column": 23
         },
         "end": {
-          "line": 23,
-          "column": 25
+          "line": 42,
+          "column": 24
         }
       }
     },
@@ -1846,17 +2150,17 @@
         "postfix": false,
         "binop": null
       },
-      "value": "options",
-      "start": 333,
-      "end": 340,
+      "value": "stages",
+      "start": 1627,
+      "end": 1633,
       "loc": {
         "start": {
-          "line": 23,
-          "column": 26
+          "line": 42,
+          "column": 25
         },
         "end": {
-          "line": 23,
-          "column": 33
+          "line": 42,
+          "column": 31
         }
       }
     },
@@ -1872,16 +2176,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 340,
-      "end": 341,
+      "start": 1633,
+      "end": 1634,
       "loc": {
         "start": {
-          "line": 23,
-          "column": 33
+          "line": 42,
+          "column": 31
         },
         "end": {
-          "line": 23,
-          "column": 34
+          "line": 42,
+          "column": 32
         }
       }
     },
@@ -1897,57 +2201,57 @@
         "postfix": false,
         "binop": null
       },
-      "start": 342,
-      "end": 343,
+      "start": 1635,
+      "end": 1636,
       "loc": {
         "start": {
-          "line": 23,
-          "column": 35
+          "line": 42,
+          "column": 33
         },
         "end": {
-          "line": 23,
-          "column": 36
+          "line": 42,
+          "column": 34
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1636,
+      "end": 1637,
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 34
+        },
+        "end": {
+          "line": 42,
+          "column": 35
         }
       }
     },
     {
       "type": "CommentLine",
       "value": " to be implemented in subclasses",
-      "start": 346,
-      "end": 380,
+      "start": 1638,
+      "end": 1672,
       "loc": {
         "start": {
-          "line": 24,
-          "column": 2
-        },
-        "end": {
-          "line": 24,
+          "line": 42,
           "column": 36
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "}",
-        "beforeExpr": false,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "start": 382,
-      "end": 383,
-      "loc": {
-        "start": {
-          "line": 25,
-          "column": 1
         },
         "end": {
-          "line": 25,
-          "column": 2
+          "line": 42,
+          "column": 70
         }
       }
     },
@@ -1963,15 +2267,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 385,
-      "end": 386,
+      "start": 1674,
+      "end": 1675,
       "loc": {
         "start": {
-          "line": 27,
+          "line": 44,
           "column": 0
         },
         "end": {
-          "line": 27,
+          "line": 44,
           "column": 1
         }
       }
@@ -1989,15 +2293,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 386,
-      "end": 386,
+      "start": 1675,
+      "end": 1675,
       "loc": {
         "start": {
-          "line": 27,
+          "line": 44,
           "column": 1
         },
         "end": {
-          "line": 27,
+          "line": 44,
           "column": 1
         }
       }

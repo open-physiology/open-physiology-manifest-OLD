@@ -33,14 +33,19 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Environment.html">Environment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/util/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-constraint">constraint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parseCardinality">parseCardinality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setEquals">setEquals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stringifyCardinality">stringifyCardinality</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -48,7 +53,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/modules/processes.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {wrapInArray} from &apos;utilities&apos;;
 
-import TypedModule       from &apos;../TypedModule.js&apos;;
+import TypedModule       from &apos;./TypedModule.js&apos;;
 import {enumArraySchema} from &apos;../util/schemas.js&apos;;
 import resources         from &apos;./resources.js&apos;;
 import typed             from &apos;./typed.js&apos;;
@@ -72,13 +77,12 @@ export default TypedModule.create(&apos;processes&apos;, [
 		singular: &quot;process&quot;,
 		plural:   &quot;processes&quot;,
 				
-		icon: &apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QQDEQMY01xpewAAA4JJREFUWMO1lk1vI0UQht+3ptvO5h4hcd6PHBBEkKxxEsXWev7BHrmCEAjxN7juhQ8JzhwQSNyZg73yZteBRJhbMJyQ2AN7s5SV4nEVB88448nMxMl6W2rZU6ruqq7qeroYhu0As2HJr2S+X7dsSlwx2u1975zLLmYyVyITkkOSJiImIkZyPkVk1O32J6/LOACCxCXj2W8A2Nl512HFw8zY6bQcUoN541kHAFzSq4jasrJvAcAl3qRGsh4Web2gl9W5rgzAhwDOQaLw5KkMABqNbb/K8Nfrtc3Expgkfyf5Tomnf6rqvUypruQSRlE3TtPrzGyrKtwHB3su2WTVFQAAcGHYdjkQ5ZVf2XgUdeP9/ff92tpa9lLDzBYotfI6V1VGUTcWkR/6/WeTjN5FBJbZdDKJrdfrx9ch5vn5OVVVROSZmTVyNuYplmVC3Ov1Y5J/V9T0X3linpwM3zg8PPonYxwZGxej02nJ06e/SNnJUgoWGc8DKwzbwenpr/Te74uIZp3M7um9v5esG8/CIPJNGbnSRWXGs3pmxiAIPi/Q05L9v3Yi8qWZfVxGrioS5nVPTh4TgBbpFZDwOzP7BCTGJK1er28WGW0279fSFFxFzDBsOzOjc8FuWSSzjnc6rYCzTQBVY8KEMnKNSN4uIeZIVe+mxCTJweB4YzweDwFspOkJw7bPX3S5KIJyHhwc7Dkzu6OqVFWa2XwmsrsJMQGAZsatrbf+295+700AR5mw56sMDiByKb9UkrWaR5H3VcSs1WoWBAHNrEHyp5IDqizKV0vCIAgQhm2vqg93dxuuSE9yXLiWobOzl4ii7vQqvTBsB+vrt4qAR0nasrIcVTp0eDiIReTHKOrGqnqjqLnZ/5TIN3pSH4rI0dnZy13vHev1+jySk8kEvd6TadUbIstcwgpZWtM7g8Fv/x4fDzc4u/I2e0OexCRHZX0iySGStsi895s3aa9yG5r3vpnUfLAUwkl+VUa4Jbtcza8Vkc/MjKkDVRR1ZvapiDgz+6iI2dfocrNyjaKfORNd0XF3Oi15/vyUN+1w8yfy3jcfPfpC0lav6v0gOec/btrriUh6yhfr67febjbvv0j1oqg7FZERgNtFUVPVP9wr9oRpOI8ePNjdi+NFvVZr3/V6/Ttlz3raE04TEKRp0BzXq2QA8L2ZfaAaOO9lQc97h6Qa8mvnJPwfyvu4MadSbbcAAAAASUVORK5CYII=&apos;,
+		icon: require(&apos;./icons/process.png&apos;),
 		
 		properties: {
 			&apos;transportPhenomenon&apos;: {
 				...enumArraySchema(&apos;advection&apos;, &apos;diffusion&apos;),
 				default: [&apos;advection&apos;, &apos;diffusion&apos;],
-				required: true,
 				isRefinement(a, b) {
 					a = new Set(a ? wrapInArray(a) : []);
 					b = new Set(b ? wrapInArray(b) : []);
@@ -100,8 +104,8 @@ export default TypedModule.create(&apos;processes&apos;, [
 		singular: &quot;is source for&quot;,
 		plural:   &quot;are source for&quot;,
 		
-		1: [Node,    &apos;0..*&apos;, {                key: &apos;outgoingProcesses&apos; }],
-		2: [Process, &apos;0..1&apos;, { anchors: true, key: &apos;source&apos;            }],
+		1: [Node,    &apos;0..*&apos;, { key: &apos;outgoingProcesses&apos; }],
+		2: [Process, &apos;1..1&apos;, { key: &apos;source&apos;            }],
 		
 	});
 	
@@ -114,8 +118,8 @@ export default TypedModule.create(&apos;processes&apos;, [
 		singular: &quot;has target&quot;,
 		plural:   &quot;have target&quot;,
 		
-		1: [Process, &apos;0..1&apos;, { anchors: true, key: &apos;target&apos;            }],
-		2: [Node,    &apos;0..*&apos;, {                key: &apos;incomingProcesses&apos; }],
+		1: [Process, &apos;1..1&apos;, { key: &apos;target&apos;            }],
+		2: [Node,    &apos;0..*&apos;, { key: &apos;incomingProcesses&apos; }],
 		
 	});
 	
@@ -129,8 +133,8 @@ export default TypedModule.create(&apos;processes&apos;, [
 		singular: &quot;conveys&quot;,
 		plural: &quot;convey&quot;,
 		
-		1: [Lyph,    &apos;0..*&apos;, { anchors: true, key: &apos;processes&apos;     }],
-		2: [Process, &apos;0..*&apos;, {                key: &apos;conveyingLyph&apos; }],
+		1: [Lyph,    &apos;0..*&apos;, { key: &apos;processes&apos;     }],
+		2: [Process, &apos;0..*&apos;, { key: &apos;conveyingLyph&apos; }],
 		
 	});
 	
@@ -144,8 +148,8 @@ export default TypedModule.create(&apos;processes&apos;, [
 		singular: &quot;transports&quot;,
 		plural: &quot;transport&quot;,
 		
-		1: [Process,       &apos;0..*&apos;, { anchors: true, key: &apos;materials&apos; }],
-		2: [Material.Type, &apos;0..*&apos;,                                    ],
+		1: [Process,       &apos;0..*&apos;, { key: &apos;materials&apos; }],
+		2: [Material.Type, &apos;0..*&apos;,                     ],
 		
 	});
 	
@@ -158,8 +162,8 @@ export default TypedModule.create(&apos;processes&apos;, [
 		singular: &quot;has segment&quot;,
 		plural:   &quot;have segment&quot;,
 		
-		1: [Process, &apos;0..*&apos;, { anchors: true, key: &apos;segments&apos; }],
-		2: [Process, &apos;0..*&apos;,                                   ],
+		1: [Process, &apos;0..*&apos;, { key: &apos;segments&apos; }],
+		2: [Process, &apos;0..*&apos;,                    ],
 		
 	});
 	
@@ -173,8 +177,8 @@ export default TypedModule.create(&apos;processes&apos;, [
 		singular: &quot;has channel&quot;,
 		plural:   &quot;have channel&quot;,
 		
-		1: [Process, &apos;0..*&apos;, { anchors: true, key: &apos;channels&apos; }],
-		2: [Process, &apos;0..*&apos;,                                   ],
+		1: [Process, &apos;0..*&apos;, { key: &apos;channels&apos; }],
+		2: [Process, &apos;0..*&apos;,                    ],
 		
 	});
 	
@@ -188,8 +192,8 @@ export default TypedModule.create(&apos;processes&apos;, [
 		singular: &quot;has channel&quot;,
 		plural:   &quot;have channel&quot;,
 		
-		1: [Node, &apos;0..*&apos;, { anchors: true, key: &apos;channels&apos; }],
-		2: [Node, &apos;0..*&apos;,                                   ],
+		1: [Node, &apos;0..*&apos;, { key: &apos;channels&apos; }],
+		2: [Node, &apos;0..*&apos;,                    ],
 		
 	});
 	

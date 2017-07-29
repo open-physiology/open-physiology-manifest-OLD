@@ -17,7 +17,7 @@ import Graph from 'graph.js/dist/graph.js';
 
 import {assign, defineProperty} from 'bound-native-methods';
 
-import {parseCardinality} from './util/misc';
+import {parseCardinality} from '../util/misc';
 
 import {
 	humanMsg,
@@ -28,50 +28,67 @@ import {
 
 
 
-import Entity_factory from './Entity.js';
-import fields_factory from './fields/fields.js';
+import Entity_factory from '../Entity.js';
+import fields_factory from '../fields/fields.js';
 
 const $$processedFor              = Symbol('$$processedFor');
 const $$relationshipSpecs         = Symbol('$$relationshipSpecs');
 const $$relevantDomains           = Symbol('$$relevantDomains');
-const $$processRelationshipDomain = Symbol('$$processRelationshipDomain');
 
 
 ////////////////////////////////////////////////////////////////////////////////
 // Environment class                                                          //
 ////////////////////////////////////////////////////////////////////////////////
 
-class Environment {
+/**
+ * An `Environment` encompasses a group of modules. There should be only one
+ * per application (though it is recreated for every unit test).
+ * The environment is available pretty much everywhere in the manifest code,
+ * and provides access to all resource classes.
+ */
+export class Environment {
 	
 	// vertices: name                   -> class
 	// edges:    [superclass, subclass] -> undefined
-	classes: Graph;
-	Entity:  Class;
-	Field:   Class;
 	
-	constructor(env) {
-		/* if the passed object is already an environment, return it now */
-		if (env instanceof Environment) { return env }
-		
-		/* start tracking modules and classes */
+	/**
+	 * a `Graph` of all entity classes, where the edges represent the 'superclass of' relation;
+	 * it also maps all of the classes by name as a normal js object
+	 */
+	classes: Graph;
+	
+	/** a reference to the Field class         */ Field:         Class;
+	/** a reference to the PropertyField class */ PropertyField: Class;
+	/** a reference to the RelField class      */ RelField:      Class;
+	/** a reference to the Rel1Field class     */ Rel1Field:     Class;
+	/** a reference to the Rel$Field class     */ Rel$Field:     Class;
+	
+	/** @private */
+	constructor() {
+		/* start tracking modules, classes and make the field classes available from this environment */
 		this::definePropertiesByValue({
 			modules: new Map,
 			classes: new Graph,
-			Entity:  Entity_factory(this),
 			...fields_factory(this)
 		});
 		
-		// /* create a version of the Entity class */
-		// this::definePropertyByValue('Entity', );
-		// this::definePropertyByValue('Field',  );
-		
 		/* make Entity behave more like all its subclasses */
-		this.classes.ensureVertex('Entity', this.Entity);
-		this.classes['Entity'] = this.Entity;
-		this.Entity.extends    = new Set;
-		this.Entity.extendedBy = new Set;
+		const Entity = Entity_factory(this);
+		this.classes.ensureVertex('Entity', Entity);
+		this.classes['Entity'] = Entity;
+		Entity.extends    = new Set;
+		Entity.extendedBy = new Set;
 	}
 	
+	/**
+	 * Register a new module in this environment.
+	 * This is actually the method that runs the functions
+	 * exported from the `/modules/someModule.js` files.
+	 * Does nothing if the environment already knows the module.
+	 * @param {Module}                            module       - the module to register
+	 * @param {Array<Module>}                     dependencies - the dependencies of the new module
+	 * @param {Function<{[string]: Class}, void>} fn           - the function that defines the classes in the module
+	 */
 	registerModule(module, dependencies, fn) {
 		/* only register each module once */
 		if (this.modules.has(module.name)) { return }
@@ -81,7 +98,7 @@ class Environment {
 		module::definePropertiesByValue({
 			environment: this,
 			classes:     this.classes,
-			Entity:      this.Entity
+			Entity:      this.classes.Entity
 		});
 		/* creating dependency modules */
 		for (let dep of dependencies) { dep(this) }
@@ -96,23 +113,41 @@ class Environment {
 // Module / Resource / Relationship Factory                                   //
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * A `Module` is a grouping of entity class definitions.
+ */
 export default class Module {
 	
+	/**
+	 * Define a new module (independent of any environment).
+	 * @param {string}                            name         - the name of the new module
+	 * @param {Array<Module>}                     dependencies - the dependencies of the new module
+	 * @param {Function<{[string]: Class}, void>} fn           - the function that defines the classes in the module
+	 * @return {Function<?Environment>} a function to instantiate this module with either an existing or new environment
+	 */
 	static create(name, dependencies, fn) {
-		return (env = {}) => {
-			env  = new Environment(env);
+		return (env) => {
+			if (!env) { env = new Environment }
 			const module = new this(name);
 			env.registerModule(module, dependencies, fn);
 			return env;
 		};
 	}
 	
+	/** the name of this module, e.g., 'measurables' */
 	name: string;
 	
+	/** @private */
 	constructor(name) {
 		this::definePropertyByValue('name', name);
 	}
 	
+	/**
+	 * Declare a resource class.
+	 * @param {Object} config      - the traits of the new class
+	 * @param {string} config.name - the name of the new class
+	 * @return {Class} the new `Resource` subclass
+	 */
 	RESOURCE(config) {
 		config.isResource = true;
 		this.basicNormalization                      (config);
@@ -124,6 +159,12 @@ export default class Module {
 		return constructor;
 	}
 
+	/**
+	 * Declare a relationship class.
+	 * @param {Object} config      - the traits of the new class
+	 * @param {string} config.name - the name of the new class
+	 * @return {Class} the new `Relationship` subclass
+	 */
 	RELATIONSHIP(config) {
 		config.isRelationship = true;
 		this.basicNormalization                      (config);
@@ -137,6 +178,9 @@ export default class Module {
 	
 	////////////////////////////////////////////////////////////////////////////
 	
+	/**
+	 * Normalize the aspects of the given entity configuration.
+	 */
 	basicNormalization(config) : void {
 		/* normalizing grammar stuff */
 		if (config.singular && !config.plural) {
@@ -204,6 +248,9 @@ export default class Module {
 		}
 	}
 	
+	/**
+	 * Normalize the `1` and `2` keys of the given relationship class.
+	 */
 	normalizeRelationshipSides(cls) : void {
 		// - 1 is left-hand side, and
 		// - 2 is right-hand side of the relationship;
@@ -226,11 +273,6 @@ export default class Module {
 			});
 		}
 		
-		/* indices for shorthand array notation and side keys */
-		const CLASS       = 0,
-		      CARDINALITY = 1,
-		      OPTIONS     = 2;
-		
 		/* normalizing all domainPairs */
 		cls.keyInResource = {
 			1: `-->${cls.name}`,
@@ -238,9 +280,9 @@ export default class Module {
 		};
 		cls.domainPairs = cls.domainPairs.map((givenDomainPair) => {
 			let pair = { [1]: {}, [2]: {} };
-			for (let [  [domainKey, domain ],  [codomainKey, codomain]  ] of
-				   [ [  [1        , pair[1]],  [2          , pair[2] ]  ] ,
-			         [  [2        , pair[2]],  [1          , pair[1] ]  ] ]) {
+			for (let [ domainKey, domain ,  codomain ] of
+				   [ [ 1        , pair[1],  pair[2]  ] ,
+			         [ 2        , pair[2],  pair[1]  ] ]) {
 				let [resourceClass, cardinality, options = {}] = givenDomainPair[domainKey];
 				domain::definePropertiesByValue({
 					codomain         : codomain,
@@ -272,34 +314,39 @@ export default class Module {
 		delete cls[2];
 	}
 	
+	/**
+	 * Register a given a relationship class with the resource classes involved.
+	 */
 	resolveRelationshipDomains(cls) {
 		for (let domainPair of cls.domainPairs) {
-			for (let domain of domainPair::values()) {
-				this[$$processRelationshipDomain](domain);
+			for (let referenceDomain of domainPair::values()) {
+				
+				const {
+					resourceClass,
+					keyInResource,
+					shortcutKey
+				} = referenceDomain;
+				
+				// NOTE: This was the location of a whole lot of unfinished code we
+				//     : may yet want to reinstate in the future. See commented code
+				//     : at the bottom of this file.
+				
+				/* put back-reference in classes */
+				resourceClass.relationships[keyInResource] = referenceDomain;
+				if (!shortcutKey::isUndefined()) {
+					resourceClass.relationshipShortcuts[shortcutKey] = referenceDomain;
+				}
+				this.environment.Field.augmentClass(resourceClass, keyInResource);
+				
 			}
 		}
 	}
 	
-	/** @private */
-	[$$processRelationshipDomain](referenceDomain) {
-		const {
-			resourceClass,
-			keyInResource,
-			shortcutKey
-		} = referenceDomain;
-		
-		// NOTE: This was the location of a whole lot of unfinished code we
-		//     : may yet want to reinstate in the future. See commented code
-		//     : at the bottom of this file.
-		
-		/* put back-reference in classes */
-		resourceClass.relationships[keyInResource] = referenceDomain;
-		if (!shortcutKey::isUndefined()) {
-			resourceClass.relationshipShortcuts[shortcutKey] = referenceDomain;
-		}
-		this.environment.Field.augmentClass(resourceClass, keyInResource);
-	}
-	
+	/**
+	 * Register an entity class `cls` with the module.
+	 * In particular, put it in the `classes` graph.
+	 * @param {Class} cls - the entity class to register
+	 */
 	register(cls) {
 		/* register the class in this module */
 		this.classes.ensureVertex(cls.name, cls);
@@ -329,10 +376,15 @@ export default class Module {
 				${[...cycle, cycle[0]].join(' --> ')}.
 			`);
 		}
-		
-		return cls;
 	}
 	
+	/**
+	 * Merge superclass fields into the given class,
+	 * and fields of the given class into its existing subclasses.
+	 * (Since our homebrew class hierarchy can't count on JavaScript
+	 *  prototype inheritance.)
+	 * @param cls
+	 */
 	mergeSuperclassFields(cls) : void {
 		const mergeFieldKind = (cls, newCls, kind, customMerge) => {
 			if (cls[kind]::isUndefined()) { return }
@@ -398,17 +450,23 @@ export default class Module {
 		mergeFieldKind(cls, cls, 'relationshipShortcuts');
 	}
 	
-	mergeSameNameResources(NewClass) : Class {
-		const OldClass = this.classes.vertexValue(NewClass.name);
-		if (!OldClass) { return NewClass }
-		return OldClass::assignWith(NewClass, (vOld, vNew, key) => {
+	/**
+	 * If the same resource is declared more than once,
+	 * intelligently merge their aspects.
+	 * @param {Class} cls - the resource class to merge with others of the same name
+	 * @return {Class} the class that gets to survive and represent its name (an existing class is prioritized over the new class)
+	 */
+	mergeSameNameResources(cls) : Class {
+		const oldClass = this.classes.vertexValue(cls.name);
+		if (!oldClass) { return cls }
+		return oldClass::assignWith(cls, (vOld, vNew, key) => {
 			switch (key) {
 				case 'extends':
 				case 'extendedBy': return new Set([...vOld, ...vNew]);
 				case 'properties':
 				case 'patternProperties': return {}::assignWith(vOld, vNew, (pOld, pNew, pKey) => {
 					assert(pOld::isUndefined() || _isEqual(pOld, pNew), humanMsg`
-						Cannot merge property descriptions for ${OldClass.name}#${key}.
+						Cannot merge property descriptions for ${oldClass.name}#${key}.
 						
 						1) ${JSON.stringify(pOld)}
 						
@@ -419,7 +477,7 @@ export default class Module {
 				default: {
 					if (!vOld::isUndefined() && !vNew::isUndefined() && !_isEqual(vOld, vNew)) {
 						throw new Error(humanMsg`
-							Cannot merge ${OldClass.name}.${key} = ${JSON.stringify(vOld)}
+							Cannot merge ${oldClass.name}.${key} = ${JSON.stringify(vOld)}
 							        with ${JSON.stringify(vNew)}.
 						`);
 					}
@@ -429,30 +487,32 @@ export default class Module {
 		});
 	}
 	
-	mergeSameNameRelationships(NewClass) : Class {
-		const OldClass = this.classes.vertexValue(NewClass.name);
-		if (!OldClass) { return NewClass }
+	/**
+	 * If the same relationship is declared more than once,
+	 * intelligently merge their aspects.
+	 * @param {Class} cls - the relationship class to merge with others of the same name
+	 * @return {Class} the class that gets to survive and represent its name (an existing class is prioritized over the new class)
+	 */
+	mergeSameNameRelationships(cls) : Class {
+		const oldClass = this.classes.vertexValue(cls.name);
+		if (!oldClass) { return cls }
 		
 		function chooseOne(o, n, sep, key) {
 			assert(o::isUndefined() || n::isUndefined() || _isEqual(o, n), humanMsg`
-				Cannot merge values for ${OldClass.name}${sep}${key}.
+				Cannot merge values for ${oldClass.name}${sep}${key}.
 				(1) ${JSON.stringify(o)}
 				(2) ${JSON.stringify(n)}
 			`);
 			return o::isUndefined() ? n : o;
 		}
 		
-		return OldClass::assignWith(NewClass, (vOld, vNew, key) => {
+		return oldClass::assignWith(cls, (vOld, vNew, key) => {
 			switch (key) {
 				case 'extends':
 				case 'extendedBy':
 					return new Set([...vOld, ...vNew]);
 				case 'domainPairs':
 					return [...vOld, ...vNew];
-				case 'properties':
-				case 'patternProperties':
-				case 'behavior':
-					return {}::assignWith(vOld, vNew, (pOld, pNew, pKey) => chooseOne(pOld, pNew, '#', pKey));
 				default:
 					return chooseOne(vOld, vNew, '.', key);
 			}

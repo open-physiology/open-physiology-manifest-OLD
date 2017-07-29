@@ -77,7 +77,7 @@ import {
 
 
 import Entity_factory from &apos;./Entity.js&apos;;
-import Field_factory  from &apos;./fields/fields.js&apos;;
+import fields_factory from &apos;./fields/fields.js&apos;;
 
 const $$processedFor              = Symbol(&apos;$$processedFor&apos;);
 const $$relationshipSpecs         = Symbol(&apos;$$relationshipSpecs&apos;);
@@ -106,7 +106,7 @@ class Environment {
 			modules: new Map,
 			classes: new Graph,
 			Entity:  Entity_factory(this),
-			Field:   Field_factory(this)
+			...fields_factory(this)
 		});
 		
 		// /* create a version of the Entity class */
@@ -205,7 +205,8 @@ export default class Module {
 		
 		if (config.isResource) {
 			config::defaults({
-				relationships: {}
+				relationships:         {},
+				relationshipShortcuts: {}
 			});
 		}
 		
@@ -341,6 +342,9 @@ export default class Module {
 		
 		/* put back-reference in classes */
 		resourceClass.relationships[keyInResource] = referenceDomain;
+		if (!shortcutKey::isUndefined()) {
+			resourceClass.relationshipShortcuts[shortcutKey] = referenceDomain;
+		}
 		this.environment.Field.augmentClass(resourceClass, keyInResource);
 	}
 	
@@ -438,10 +442,8 @@ export default class Module {
 			return singleSuperDesc;
 		});
 		
-		mergeFieldKind(cls, cls, &apos;relationships&apos;, (superDesc, subDesc) =&gt; {
-			assert(superDesc.resourceClass.hasSubclass(subDesc.resourceClass));
-			return subDesc;
-		});
+		mergeFieldKind(cls, cls, &apos;relationships&apos;);
+		mergeFieldKind(cls, cls, &apos;relationshipShortcuts&apos;);
 	}
 	
 	mergeSameNameResources(NewClass) : Class {

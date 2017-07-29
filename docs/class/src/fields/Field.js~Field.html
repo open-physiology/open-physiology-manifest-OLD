@@ -33,14 +33,19 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Module.js~Module.html">Module</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">fields</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html">Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/PropertyField.js~PropertyField.html">PropertyField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Environment.html">Environment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/util/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-constraint">constraint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parseCardinality">parseCardinality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setEquals">setEquals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stringifyCardinality">stringifyCardinality</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -103,13 +108,15 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#static-method-augmentClass">augmentClass</a></span></span><span data-ice="signature">(cls: <span>*</span>, onlyForKey: <span>*</span>)</span>
+          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#static-method-augmentClass">augmentClass</a></span></span><span data-ice="signature">(cls: <span>Class</span>, onlyForKey: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Equip an <code>Entity</code> subclass <code>cls</code> with its particular fields,
+optionally only for a particular key.</p>
+</div>
       </div>
     </td>
     <td>
@@ -130,13 +137,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#static-method-destructEntity">destructEntity</a></span></span><span data-ice="signature">(owner: <span>*</span>)</span>
+          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#static-method-initializeEntity">initializeEntity</a></span></span><span data-ice="signature">(owner: <span><a href="class/src/Entity.js~Entity.html">Entity</a></span>, initialValues: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, valueTrackerOptions: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Initialize the fields of a particular <code>Entity</code> instance.</p>
+</div>
       </div>
     </td>
     <td>
@@ -157,13 +165,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#static-method-initializeEntity">initializeEntity</a></span></span><span data-ice="signature">(owner: <span>*</span>, initialValues: <span>*</span>)</span>
+          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#static-method-isEqual">isEqual</a></span></span><span data-ice="signature">(a: <span>*</span>, b: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>The function used for testing the values of this field for equality.</p>
+</div>
       </div>
     </td>
     <td>
@@ -184,13 +193,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#static-method-isEqual">isEqual</a></span></span><span data-ice="signature">(a: <span>*</span>, b: <span>*</span>): <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#static-method-jsonToValue">jsonToValue</a></span></span><span data-ice="signature">(json: <span>*</span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>How to properly convert a JSON value to a value appropriate for this type of field.</p>
+</div>
       </div>
     </td>
     <td>
@@ -203,7 +213,7 @@
       <span class="access" data-ice="access">public</span>
       <span data-ice="static">static</span>
       
-      
+      <span class="abstract" data-ice="abstract">abstract</span>
       <span class="override" data-ice="override"></span>
     </td>
     <td>
@@ -211,13 +221,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#static-method-valueToJSON">valueToJSON</a></span></span><span data-ice="signature">()</span>
+          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#static-method-valueToJSON">valueToJSON</a></span></span><span data-ice="signature">(value: <span>*</span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>How to properly convert a value in this field to JSON (plain data).</p>
+</div>
       </div>
     </td>
     <td>
@@ -228,7 +239,41 @@
 </tbody>
 </table>
 </div>
-
+<div data-ice="constructorSummary"><h2>Constructor Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Protected Constructor</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">protected</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Create a new instance of this field on a specific entity.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
 <div data-ice="memberSummary"><h2>Member Summary</h2><table class="summary" data-ice="summary">
   <thead><tr><td data-ice="title" colspan="3">Public Members</td></tr></thead>
   <tbody>
@@ -246,40 +291,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#instance-get-[Symbol.toStringTag]">[Symbol.toStringTag]</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#instance-get-[Symbol.toStringTag]">[Symbol.toStringTag]</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#instance-member-isPlaceholder">isPlaceholder</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Making this field recognizable when converted to a string.</p>
+</div>
       </div>
     </td>
     <td>
@@ -334,13 +353,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#instance-method-set">set</a></span></span><span data-ice="signature">(newValue: <span>*</span>, options: {})</span>
+          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#instance-method-set">set</a></span></span><span data-ice="signature">(newValue: <span>*</span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Set this field to a new value.</p>
+</div>
       </div>
     </td>
     <td>
@@ -361,13 +381,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#instance-method-validate">validate</a></span></span><span data-ice="signature">(val: <span>*</span>, stages: <span><span>*</span><span>[]</span></span>)</span>
+          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#instance-method-validate">validate</a></span></span><span data-ice="signature">(val: <span>*</span>, stages: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Validate a certain value as appropriate for this field.</p>
+</div>
       </div>
     </td>
     <td>
@@ -388,13 +409,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#instance-method-valueToJSON">valueToJSON</a></span></span><span data-ice="signature">(options: {}): <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/fields/Field.js~Field.html#instance-method-valueToJSON">valueToJSON</a></span></span><span data-ice="signature">(options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Convert this field&apos;s value to JSON (plain data).</p>
+</div>
       </div>
     </td>
     <td>
@@ -419,18 +441,20 @@
     
     
     
-    <span data-ice="name">augmentClass</span><span data-ice="signature">(cls: <span>*</span>, onlyForKey: <span>*</span>)</span>
+    <span data-ice="name">augmentClass</span><span data-ice="signature">(cls: <span>Class</span>, onlyForKey: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber29">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber35">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Equip an <code>Entity</code> subclass <code>cls</code> with its particular fields,
+optionally only for a particular key.</p>
+</div>
 
   
 
@@ -444,74 +468,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">cls</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span>Class</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>a subclass of <code>Entity</code> still under construction</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">onlyForKey</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-method-destructEntity">
-    <span class="access" data-ice="access">public</span>
-    <span data-ice="static">static</span>
-    
-    
-    
-    
-    <span data-ice="name">destructEntity</span><span data-ice="signature">(owner: <span>*</span>)</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber97">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">owner</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>the only key for which to initialize the field</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -543,18 +510,19 @@
     
     
     
-    <span data-ice="name">initializeEntity</span><span data-ice="signature">(owner: <span>*</span>, initialValues: <span>*</span>)</span>
+    <span data-ice="name">initializeEntity</span><span data-ice="signature">(owner: <span><a href="class/src/Entity.js~Entity.html">Entity</a></span>, initialValues: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, valueTrackerOptions: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber47">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber59">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Initialize the fields of a particular <code>Entity</code> instance.</p>
+</div>
 
   
 
@@ -568,15 +536,25 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">owner</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the entity to initialize</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">initialValues</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the initial values for the entity&apos;s fields</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">valueTrackerOptions</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: {}</li></ul></td>
+      <td data-ice="description"><p>the <code>ValueTracker</code> options to use for each field&apos;s observable properties</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -608,18 +586,20 @@
     
     
     
-    <span data-ice="name">isEqual</span><span data-ice="signature">(a: <span>*</span>, b: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">isEqual</span><span data-ice="signature">(a: <span>*</span>, b: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber105">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber116">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>The function used for testing the values of this field for equality.
+Can be overwritten by specific field classes (e.g., <code>Rel$Field</code>).</p>
+</div>
 
   
 
@@ -653,8 +633,9 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>whether <code>a</code> and <code>b</code> are considered equal values</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -678,29 +659,144 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-method-valueToJSON">
+  <h3 data-ice="anchor" id="static-method-jsonToValue">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
     
     
     
     
-    <span data-ice="name">valueToJSON</span><span data-ice="signature">()</span>
+    <span data-ice="name">jsonToValue</span><span data-ice="signature">(json: <span>*</span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber157">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber203">source</a></span></span>
     </span>
   </h3>
 
   
   
   
+  <div data-ice="description"><p>How to properly convert a JSON value to a value appropriate for this type of field.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">json</td>
+      <td data-ice="type"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the JSON value to convert</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">options</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.flattenFieldValues</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: false</li></ul></td>
+      <td data-ice="description"><p>whether field values are strings that should be run through <code>JSON.parse</code></p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.getEntity</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>a function that returns an entity corresponding to a given address</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
   
 
   
 
-  <div data-ice="properties">
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-method-valueToJSON">
+    <span class="access" data-ice="access">public</span>
+    <span data-ice="static">static</span>
+    
+    <span class="abstract" data-ice="abstract">abstract</span>
+    
+    
+    <span data-ice="name">valueToJSON</span><span data-ice="signature">(value: <span>*</span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber192">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>How to properly convert a value in this field to JSON (plain data).</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">value</td>
+      <td data-ice="type"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the value to convert to JSON</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">options</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: {}</li></ul></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.flattenFieldValues</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: false</li></ul></td>
+      <td data-ice="description"><p>whether <code>Object</code> or <code>Array</code> field values should be avoided in the output (for example, Neo4j does not accept nested objects)</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
 </div>
 
   
@@ -721,7 +817,114 @@
   
 </div>
 </div>
+<div data-ice="constructorDetails"><h2 data-ice="title">Protected Constructors</h2>
 
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-constructor-constructor">
+    <span class="access" data-ice="access">protected</span>
+    
+    
+    
+    
+    
+    <span data-ice="name">constructor</span><span data-ice="signature">(options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber153">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Create a new instance of this field on a specific entity.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">options</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.owner</td>
+      <td data-ice="type"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the entity on which to create this field</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.key</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the key on that entity corresponding to this field</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.desc</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the descriptor for what kind of field this is</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.aliases</td>
+      <td data-ice="type"><span>Iterable</span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: []</li></ul></td>
+      <td data-ice="description"><p>other keys to which this field should answer</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.setValueThroughSignal</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: true</li></ul></td>
+      <td data-ice="description"><p>whether signals sent to <code>field.p(&apos;value&apos;)</code> should be accepted</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.valueTrackerOptions</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: {}</li></ul></td>
+      <td data-ice="description"><p>the <code>ValueTracker</code> options to use for each field&apos;s observable properties</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
@@ -732,68 +935,39 @@
     
     
     
-    <span data-ice="name">[Symbol.toStringTag]</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span data-ice="name">[Symbol.toStringTag]</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber118">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber138">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Making this field recognizable when converted to a string.</p>
+</div>
 
   
 
   <div data-ice="properties">
 </div>
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a string like <code>Field: Lyph#name = &quot;Heart&quot;</code></p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
 </div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-isPlaceholder">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span data-ice="name">isPlaceholder</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber154">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
+  </div>
 
   
 
@@ -825,7 +999,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber165">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber210">source</a></span></span>
     </span>
   </h3>
 
@@ -845,7 +1019,8 @@
       <tbody>
         <tr>
           <td class="return-type" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>this field&apos;s value</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -876,18 +1051,19 @@
     
     
     
-    <span data-ice="name">set</span><span data-ice="signature">(newValue: <span>*</span>, options: {})</span>
+    <span data-ice="name">set</span><span data-ice="signature">(newValue: <span>*</span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber169">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber221">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Set this field to a new value.</p>
+</div>
 
   
 
@@ -903,14 +1079,31 @@
       <td data-ice="name" data-depth="0">newValue</td>
       <td data-ice="type"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the new value for this field</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">options</td>
-      <td data-ice="type">{}</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: {}</li></ul></td>
       <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.ignoreReadonly</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: false</li></ul></td>
+      <td data-ice="description"><p>allow this field&apos;s value to be changed even if it is read-only</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.ignoreValidation</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: false</li></ul></td>
+      <td data-ice="description"><p>don&apos;t validate the new value</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -942,18 +1135,21 @@
     
     
     
-    <span data-ice="name">validate</span><span data-ice="signature">(val: <span>*</span>, stages: <span><span>*</span><span>[]</span></span>)</span>
+    <span data-ice="name">validate</span><span data-ice="signature">(val: <span>*</span>, stages: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber187">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber246">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Validate a certain value as appropriate for this field.
+Throws an exception if the value is invalid. Otherwise does nothing.
+Should be overwritten by specific <code>Field</code> subclasses.</p>
+</div>
 
   
 
@@ -969,14 +1165,15 @@
       <td data-ice="name" data-depth="0">val</td>
       <td data-ice="type"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the value to test</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">stages</td>
-      <td data-ice="type"><span><span>*</span><span>[]</span></span></td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: []</li></ul></td>
-      <td data-ice="description"></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the validation stages to validate for (e.g., &apos;commit&apos;)</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1008,18 +1205,19 @@
     
     
     
-    <span data-ice="name">valueToJSON</span><span data-ice="signature">(options: {}): <span>*</span></span>
+    <span data-ice="name">valueToJSON</span><span data-ice="signature">(options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber161">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/fields/Field.js.html#lineNumber181">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Convert this field&apos;s value to JSON (plain data).</p>
+</div>
 
   
 
@@ -1033,7 +1231,7 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">options</td>
-      <td data-ice="type">{}</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: {}</li></ul></td>
       <td data-ice="description"></td>
