@@ -1,4 +1,4 @@
-import {inRange, size, entries, isFunction} from 'lodash-bound';
+import {inRange, size, entries, isFunction, pick} from 'lodash-bound';
 
 import {defineProperty} from 'bound-native-methods';
 
@@ -226,17 +226,13 @@ export default (env) => {
 		
 		/**
 		 * How to properly convert a value in this field to JSON (plain data).
-		 * @param {*}       value                 - the value to convert to JSON
+		 * @param {*}       value               - the value to convert to JSON
 		 * @param {Object} [options={}]
-		 * @param {Class}  [options.requireClass] - the only `Entity` subclass accepted into the output, optionally
+		 * @param {Class}  [options.getAddress] - a function that returns an address corresponding to a given entity
 		 */
 		static valueToJSON(value, options = {}) {
-			let requireClass;
-			({requireClass, ...options} = options);
-			return [...value].map(e => {
-				if (requireClass && requireClass !== e.class) { return undefined }
-				return env.Entity.normalizeAddress(e, options);
-			}).filter(v=>!!v);
+			const { getAddress = e=>e::pick('class', 'id') } = options;
+			return [...value].map(getAddress).filter(v=>!!v);
 		}
 		
 		/**
@@ -250,7 +246,7 @@ export default (env) => {
 			const {getEntity} = options;
 			for (let thing of json) {
 				let entity;
-				if (thing instanceof env.Entity) {
+				if (thing instanceof env.classes.Entity) {
 					entity = thing;
 				} else if (getEntity::isFunction()) {
 					entity = getEntity(thing, options);

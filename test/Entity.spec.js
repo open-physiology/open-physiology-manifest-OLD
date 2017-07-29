@@ -18,6 +18,21 @@ describe("Entity classes", () => {
 		expect([...resourceSubclasses]).to.contain(Lyph);
 	});
 	
+	it("can be used as a base to instantiate subclasses", () => {
+		const {Entity, Material, Lyph} = environment.classes;
+	
+		let materialFromEntity = Entity.new({ class: 'Material' });
+		expect(materialFromEntity).to.be.an.instanceOf(Material);
+		
+		let lyphFromEntity = Entity.new({ class: 'Lyph' });
+		expect(lyphFromEntity).to.be.an.instanceOf(Lyph);
+		
+		let lyphFromMaterial = Material.new({ class: 'Lyph' });
+		expect(lyphFromMaterial).to.be.an.instanceOf(Lyph);
+		
+		expect(() => Lyph.new({ class: Material })).to.throw();
+	});
+	
 	it("has resources that can be deleted", () => {
 		const {Lyph} = environment.classes;
 		

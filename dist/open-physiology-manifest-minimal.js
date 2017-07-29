@@ -1417,7 +1417,7 @@ exports.tryCatch = tryCatch;
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(71),
+var Symbol = __webpack_require__(70),
     getRawTag = __webpack_require__(813),
     objectToString = __webpack_require__(844);
 
@@ -1940,7 +1940,7 @@ module.exports = last;
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(71),
+var Symbol = __webpack_require__(70),
     arrayMap = __webpack_require__(10),
     isArray = __webpack_require__(7),
     isSymbol = __webpack_require__(38);
@@ -3084,7 +3084,7 @@ var Stack = __webpack_require__(131),
     initCloneByTag = __webpack_require__(823),
     initCloneObject = __webpack_require__(609),
     isArray = __webpack_require__(7),
-    isBuffer = __webpack_require__(77),
+    isBuffer = __webpack_require__(76),
     isObject = __webpack_require__(12),
     keys = __webpack_require__(16);
 
@@ -3623,7 +3623,6 @@ exports.default = _Module2.default.create('resources', [], function (M) {
 		singular: "resource",
 
 		icon: __webpack_require__(1393),
-		// icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QQDEQYKXZLsdgAABrZJREFUWMPtln9wFGcZxz+7e7t7d7k7QhISUkJoQlNoQX7IUGisUjuIKBUiSG2x/lGr6IAdW2aojmU6/hrtCFJ+VaCKgv0pDMXSotDqQNFiCg2WiiIFQ4CEJEdyd8nt3u3v1z8uCRaBdrTUccZn5pndd/d9v8/3efbd7/vA/+1qWdWKwdy04f2PK03dCBPXT5q68IXu/1ryi578y8GZS18WUv3jc78hxBXnht7LwNr0TdBj1R+fcP3kxLFOCOvrHpGk5660Rn4vCTi/vZeGr07b+DsnhKMoiIheGZr+8wXvSwW0hicosezpxyeMHosP+VAIdI0gxBrg6ateAedXn6fuzg+tO2IAjiCvKBAOERRFS7U5T9zzrgksu8zEZVcIHv/cs9Tc/dQnm2uqR2G7YDnkZQU0DTQNPxZf9Y4E+gOchOu2zp79s9dWr247smWLOLh2bfv2+fN/cRpuvByR7FN3on14/Pq2nA+OC7aHpcgQDkE4hB+PJcILnl102Qz6QdffcMPKlpdeEp5hiHwyOeBuNita9+8Xj0+YsPFSJKq+vG1e4sWUYGda8EJa8GJGjFjxhuBrrwx40X17cpfUjf6bR1R145eamhZGKysxWlpA/tftIQnB1lumPbPo/uEL1a7YYg1lnummny6fvOWB5LAx1QingChJVDafo73DGFgbUWWKs51L2tfMfvRtmMsAAfWTpk59deaOHajxON2HD+Nk0hd2uKTQbeXY2f1XXmn7M8moTCA8zhtpUkaGvJ2B4g9A5Wyo+ASE45ScaSPVbV6IJKAm7HqnHqpXE4u30fvYfACU/cAc2DyqoaEmUVdHd9MhjOa/45lZ/J4sz58/wi7pDC/HzqFUFSGX68gJHyeaw41ZOPEcVsKGaCd4++D8Buj9E0FewZdqQFUgVHA5GpVr6xvc1h/O/v3bdECB2+xUilTT65inm1EUmQQqdVM2MbpkBPkuB1u4BJkAV3h4socX9fHCLl6xjxR4iH9OVewnVNKIZ1n4b70OUh6AlCe4/pqK7wHfH7z0OdLL56LcA0VV8M14ZSXJxj+gF0UQuR5UI4s8YxpfGHUHlPq0y+cg6tOmN2MV5XBiFl7cJoi7kHAhYXHdkFrKy4tRqyFd0kXgAt33gepDSAY1hBuOSlNmzJOOPTRz38AmXAMiUVKKn+mmbMxIikdey2BkvvigxHfGfJ0wOk7g0pg5RJed4oQ4QTLeTpN9gEl6PcPNEWR6TQ4aTeTkXtBk0AJIhqCrGfKZvkgSBIJZQzx2za1TSh/eGUgAK+FMBIbrakE7dE2iNBpj647FJMo0PjroIxiuie05BEFAey5JW28H44pv5NtHVnDWPQm6BiqgigverYDWDoEBVkEfEIKqmMqt9pnlT941+UEZIAdrNV3H8yDwwfMEuXSWFuMMEyPjONB1EMMxMR2TdL4HyZcZqpXzWvthzqZOgxsBSwZLgrwEebngViFjBKCrMCgCsTCtroSoGLoU5ulyn7As73GcjsHjxuMJBccBx4bdrbs51nOCTL4XwzLJ2iaGncO0THotA9txwJXABhwKV7tvbEngSAWt7XcJkGXqhxdRV6wxatXC22WAJcBvYMrZo0eNqllzqJ77WeJjJoKn8YOjq6mL1vJq5yFydh7DMcm6BoZvkJPMQqklwJcKZNw+Mg6Fsa6CpoKqcXOZxt2RZIe8d+t3v/XBiqHH7//49gEl1CDswOgH4OHRZWWfHjV+Mrfe9QZEHUZGa7h92Ax63SyxUBF24OD4DueVJLv+tgdk9cIviASSAAXoCaGM62Ck3UVt8q19e7c985i9fd2evlq5gJAuUtsIUArE58DY538ydCsJB4TPxypvQ0KmOjYMM2zgxPKk/BR7s3uhKwxppVAFqY+EANI6Y+3N644u/cwGnOxpSdUs4TreJc+Ci57JgM/mcsFguwAW8plf00Cb1EZZqAxbOPR4GRqzjSCFQBZgyGDK4EkFlK4I3NvRjxe8245IAD4A4QAifuE7hwS/Tu9mUnwiKTeFAHJevlBMqU8HlQAGBYVKOBLoAzGDf68jOhX5EWldEPLBB9Mzac6dotPuxPQM8l4eAqkA3+8+oPiQ0QUt+pp3bOMv+0aVwQ1kUGMsvuYr3GwuYWS2AgJG6NfiCgcZmVantZBHP9LJeJID0VX8uH09uFmKwz4Z6z9u+WRA5VO1d7CprJEDYaG9GRGlb1YIjiiCP4YFPy09xKzaBUC4cL5dDYuqMqBRXXMTjw75ZXjPEMHKsu1UV98CRNCUqxT4YlNkCdCBYqAIWZL5X7V/AC3K9MnQdPk5AAAAAElFTkSuQmCC',
 
 		properties: {
 			'id': _extends({}, _schemas.idSchema, { readonly: true }),
@@ -3657,7 +3656,6 @@ exports.default = _Module2.default.create('resources', [], function (M) {
 		singular: "external resource",
 
 		icon: __webpack_require__(1385),
-		// icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QQDEREV1RllFQAAA25JREFUWMPFl11sDFEYhp8zM7uLlrQRNITQNLgQCTd0kbouF2jFhaa1liYNvfCTiEjcE3EjqtmNTYuQKBJCJBKhIUgq/tIgLkhRfy1t7Xa77ezOuDiz25Z2O7O7+JK5mnPO+34/5/3OJ3BqteYc4CM5Mi3rE8wM9ogcEVAETJ0MQtjHjRsQjuWCgAEzCyFQBZNd9raoCrz6DLvOAWq2BBT40gM/+qGm1P62wimj06ZkAK0DkeTubSFofmh/c8IYXQPOCQTEN6Ac6EqROA1NDzIOZAYWEPeAHUC3TC74zzqLRHYEpA0A0eRV1BTojWaiA7WPDzm8+CbMngZsBuYlCTRuBZ83MyE67Ex18oFZSuoG6XBpN1Qsz1wJ3fbB84BFsoxNqQWX62HTshxIsSKgME9jkibGDHpXxIOeWJgCd2sQrE4Pfu05dPZCXdlEBEwoyNO4UV/Civl5fyx60QkbG+Btt1ybPwmOVkD1yvEPPvsIqoPg8oBLBf+qsSU7dQsM0yQ8kPhjwa2XsO4EvP1GyvOjFem9OtUK/jPyeuo67GmB4H3LY2W0EqaV4tY3sL0ZOr9bVA0Z9nSeN9yFA1dAj1uKJyAShX0t8n/RNJvdsK0DNjRAb7/VOPSJC67pIextgUE9BZIAvqMwMxKT/9zqcCMal0B4EFYfgaG45XkMTvpgYxrwy0/BFxr22uoZK2XcuIOgoH8Q+u0o4VQPNFaBqlr58sChq/D8w/jglSes0wTAENDlJyCeEBDPgErgPfAT6Bv5jZsCn1d2rj0XITIAvWFYexyu1kHZwtFh94UA18hm+Q74GR3RO25Ta64DSqyI2CvCHavBMGUBRQagLwJbghCqgfIlsuD2tlhem4A5BEoHELaUBag1ISAgINqBdsdvwp1r5FF15yGegK99sPsClBbDzXar4AC3ZlA84wuvP/WlsC3vs+uGwopEsMqqaQHvuuFCG/REk+Bwvd5kcZEuQ/Y32vE2LzT5hzNomjLsHhc8OgjeYgvb4SvZ0XugphRCPimtxGF6PrTuh2Vz5Wv3n8wFPq/Uh1OtcKwSViz4D4OJbxWsXwqzC3I4GQlAVexNGG4V5vwGrqnC9oAyJoG4Aa8+xyicopEwnM9bkUGDnmgcpyy0pPvhWIJd5zpkFYsM46kI0EQWNaAK/rUp/Gf7BTnyF+pF5ztFAAAAAElFTkSuQmCC',
 
 		properties: {
 			'uri': _extends({}, _schemas.uriSchema),
@@ -3743,7 +3741,7 @@ module.exports = arrayFilter;
 /* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseForOwn = __webpack_require__(73),
+var baseForOwn = __webpack_require__(72),
     createBaseEach = __webpack_require__(591);
 
 /**
@@ -4051,119 +4049,6 @@ exports.EmptyObservable = EmptyObservable;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); ////////////////////////////////////////////////////////////////////////////////
-
-exports.parseCardinality = parseCardinality;
-exports.stringifyCardinality = stringifyCardinality;
-exports.setEquals = setEquals;
-exports.constraint = constraint;
-
-var _lodashBound = __webpack_require__(47);
-
-// export * from 'utilities';
-
-////////////////////////////////////////////////////////////////////////////////
-
-/**
- * Transform a string representation of a cardinality range into an object.
- * @private
- * @param cardinality {string} a string representation of minimum and maximum cardinality `"min..max"`,
- *                     where `min` is a natural number and `max` is a natural number greater or
- *                     equal to `min` or an asterisk symbol `*` to represent an unbounded maximum
- * @returns {{min: number, max: number}} an object with `min` and `max` fields
- */
-function parseCardinality(cardinality) {
-  var match = cardinality.match(/^(\d+)\.\.(\d+|\*)$/);
-
-  var _match = _slicedToArray(match, 3),
-      min = _match[1],
-      max = _match[2];
-
-  if (max === '*') {
-    max = Infinity;
-  } else {
-    max = parseInt(max, 10);
-  }
-  min = parseInt(min, 10);
-  return { min: min, max: max };
-}
-
-/**
- * Transform an object representation of a cardinality range into a representative string.
- * @private
- * @param cardinality {{min: number, max: number}} an object representation of minimum and maximum cardinality `{min, max}`
- * @param abbreviate  {boolean} whether or not to collapse the resulting string if `min === max`
- * @returns {string} a string representing the given cardinality range, possibly collapsed if `min === max` and `abbreviate === true`
- */
-function stringifyCardinality(cardinality) {
-  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-      abbreviate = _ref.abbreviate;
-
-  return cardinality.min === cardinality.max && abbreviate ? '   ' + cardinality.min : cardinality.min + '..' + (cardinality.max === Infinity ? '*' : cardinality.max);
-}
-
-/**
- * Compare two sets for equality.
- * @private
- * @param setA {Iterable<T>}
- * @param setB {Iterable<T>}
- * @returns {boolean} `true`, if both sets have the same elements; `false`, otherwise
- */
-function setEquals(setA, setB) {
-  setA = new Set(setA);
-  setB = new Set(setB);
-  if (setA.size !== setB.size) return false;
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = setA[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var a = _step.value;
-      if (!setB.has(a)) return false;
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
-
-  return true;
-}
-
-/**
- * Express an assertion that's tied to outside input.
- * We may later replace this with a more sophisticated mechanism.
- * @private
- * @param {boolean} constraint - the condition to check
- * @param {string}  message    - the message to display if the condition fails
- */
-function constraint(constraint, message) {
-  if (!constraint) {
-    throw new Error('Constraint Failure: ' + (message || '(no message)'));
-  }
-}
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 exports.__esModule = true;
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
@@ -4203,7 +4088,7 @@ var _jsonJs = __webpack_require__(716);
 _defaults(exports, _interopRequireWildcard(_jsonJs));
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var root = __webpack_require__(15);
@@ -4215,7 +4100,7 @@ module.exports = Symbol;
 
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, exports) {
 
 /**
@@ -4243,7 +4128,7 @@ module.exports = baseClamp;
 
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseFor = __webpack_require__(187),
@@ -4265,7 +4150,7 @@ module.exports = baseForOwn;
 
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var SetCache = __webpack_require__(130),
@@ -4343,7 +4228,7 @@ module.exports = baseUniq;
 
 
 /***/ }),
-/* 75 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseIsNative = __webpack_require__(568),
@@ -4366,7 +4251,7 @@ module.exports = getNative;
 
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, exports) {
 
 /** Used as the internal argument placeholder. */
@@ -4401,7 +4286,7 @@ module.exports = replaceHolders;
 
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(15),
@@ -4446,8 +4331,8 @@ module.exports = isBuffer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(165)(module)))
 
 /***/ }),
-/* 78 */,
-/* 79 */
+/* 77 */,
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4487,6 +4372,7 @@ exports.default = _Module2.default.create('typed', [_resources2.default], functi
 		singular: "type",
 
 		icon: __webpack_require__(1394)
+
 	}); /////////////////////////////////////////////////////////////////////////
 
 
@@ -4611,6 +4497,113 @@ exports.default = _Module2.default.create('typed', [_resources2.default], functi
 
 	});
 });
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); ////////////////////////////////////////////////////////////////////////////////
+
+exports.parseCardinality = parseCardinality;
+exports.stringifyCardinality = stringifyCardinality;
+exports.setEquals = setEquals;
+exports.constraint = constraint;
+
+var _lodashBound = __webpack_require__(47);
+
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Transform a string representation of a cardinality range into an object.
+ * @param cardinality {string} a string representation of minimum and maximum cardinality `"min..max"`,
+ *                     where `min` is a natural number and `max` is a natural number greater or
+ *                     equal to `min` or an asterisk symbol `*` to represent an unbounded maximum
+ * @returns {{min: number, max: number}} an object with `min` and `max` fields
+ */
+function parseCardinality(cardinality) {
+	var match = cardinality.match(/^(\d+)\.\.(\d+|\*)$/);
+
+	var _match = _slicedToArray(match, 3),
+	    min = _match[1],
+	    max = _match[2];
+
+	if (max === '*') {
+		max = Infinity;
+	} else {
+		max = parseInt(max, 10);
+	}
+	min = parseInt(min, 10);
+	return { min: min, max: max };
+}
+
+/**
+ * Transform an object representation of a cardinality range into a representative string.
+ * @param cardinality {{min: number, max: number}} an object representation of minimum and maximum cardinality `{min, max}`
+ * @param abbreviate  {boolean} whether or not to collapse the resulting string if `min === max`
+ * @returns {string} a string representing the given cardinality range, possibly collapsed if `min === max` and `abbreviate === true`
+ */
+function stringifyCardinality(cardinality) {
+	var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+	    abbreviate = _ref.abbreviate;
+
+	return cardinality.min === cardinality.max && abbreviate ? '   ' + cardinality.min : cardinality.min + '..' + (cardinality.max === Infinity ? '*' : cardinality.max);
+}
+
+/**
+ * Compare two sets for equality.
+ * @param setA {Iterable<T>}
+ * @param setB {Iterable<T>}
+ * @returns {boolean} `true`, if both sets have the same elements; `false`, otherwise
+ */
+function setEquals(setA, setB) {
+	setA = new Set(setA);
+	setB = new Set(setB);
+	if (setA.size !== setB.size) return false;
+	var _iteratorNormalCompletion = true;
+	var _didIteratorError = false;
+	var _iteratorError = undefined;
+
+	try {
+		for (var _iterator = setA[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+			var a = _step.value;
+			if (!setB.has(a)) return false;
+		}
+	} catch (err) {
+		_didIteratorError = true;
+		_iteratorError = err;
+	} finally {
+		try {
+			if (!_iteratorNormalCompletion && _iterator.return) {
+				_iterator.return();
+			}
+		} finally {
+			if (_didIteratorError) {
+				throw _iteratorError;
+			}
+		}
+	}
+
+	return true;
+}
+
+/**
+ * Express an assertion that's tied to outside input.
+ * We may later replace this with a more sophisticated mechanism.
+ * @param {boolean} constraint - the condition to check
+ * @param {string}  message    - the message to display if the condition fails
+ */
+function constraint(constraint, message) {
+	if (!constraint) {
+		throw new Error('Constraint Failure: ' + (message || '(no message)'));
+	}
+}
 
 /***/ }),
 /* 80 */,
@@ -5130,7 +5123,7 @@ exports.MulticastOperator = MulticastOperator;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.default = undefined;
+exports.default = exports.Environment = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -5152,9 +5145,9 @@ var _graph = __webpack_require__(747);
 
 var _graph2 = _interopRequireDefault(_graph);
 
-var _boundNativeMethods = __webpack_require__(70);
+var _boundNativeMethods = __webpack_require__(69);
 
-var _misc = __webpack_require__(69);
+var _misc = __webpack_require__(79);
 
 var _utilities = __webpack_require__(32);
 
@@ -5168,55 +5161,76 @@ var _fields2 = _interopRequireDefault(_fields);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return _instanceof(left, right); } }
+
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return _instanceof(left, right); } }
-
 function _classCallCheck(instance, Constructor) { if (!_instanceof(instance, Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var $$processedFor = Symbol('$$processedFor');
 var $$relationshipSpecs = Symbol('$$relationshipSpecs');
 var $$relevantDomains = Symbol('$$relevantDomains');
-var $$processRelationshipDomain = Symbol('$$processRelationshipDomain');
 
 ////////////////////////////////////////////////////////////////////////////////
 // Environment class                                                          //
 ////////////////////////////////////////////////////////////////////////////////
 
-var Environment = function () {
-	function Environment(env) {
-		_classCallCheck(this, Environment);
+/**
+ * An `Environment` encompasses a group of modules. There should be only one
+ * per application (though it is recreated for every unit test).
+ * The environment is available pretty much everywhere in the manifest code,
+ * and provides access to all resource classes.
+ */
 
-		/* if the passed object is already an environment, return it now */
-		if (_instanceof(env, Environment)) {
-			return env;
-		}
+var Environment = exports.Environment = function () {
 
-		/* start tracking modules and classes */
-		_utilities.definePropertiesByValue.call(this, _extends({
-			modules: new Map(),
-			classes: new _graph2.default(),
-			Entity: (0, _Entity2.default)(this)
-		}, (0, _fields2.default)(this)));
+	/** @private */
 
-		// /* create a version of the Entity class */
-		// this::definePropertyByValue('Entity', );
-		// this::definePropertyByValue('Field',  );
-
-		/* make Entity behave more like all its subclasses */
-		this.classes.ensureVertex('Entity', this.Entity);
-		this.classes['Entity'] = this.Entity;
-		this.Entity.extends = new Set();
-		this.Entity.extendedBy = new Set();
-	}
+	/** a reference to the Rel1Field class     */
+	/** a reference to the PropertyField class */
 
 	// vertices: name                   -> class
 	// edges:    [superclass, subclass] -> undefined
 
+	/**
+  * a `Graph` of all entity classes, where the edges represent the 'superclass of' relation;
+  * it also maps all of the classes by name as a normal js object
+  */
+	function Environment() {
+		_classCallCheck(this, Environment);
+
+		/* start tracking modules, classes and make the field classes available from this environment */
+		_utilities.definePropertiesByValue.call(this, _extends({
+			modules: new Map(),
+			classes: new _graph2.default()
+		}, (0, _fields2.default)(this)));
+
+		/* make Entity behave more like all its subclasses */
+		var Entity = (0, _Entity2.default)(this);
+		this.classes.ensureVertex('Entity', Entity);
+		this.classes['Entity'] = Entity;
+		Entity.extends = new Set();
+		Entity.extendedBy = new Set();
+	}
+
+	/**
+  * Register a new module in this environment.
+  * This is actually the method that runs the functions
+  * exported from the `/modules/someModule.js` files.
+  * Does nothing if the environment already knows the module.
+  * @param {Module}                            module       - the module to register
+  * @param {Array<Module>}                     dependencies - the dependencies of the new module
+  * @param {Function<{[string]: Class}, void>} fn           - the function that defines the classes in the module
+  */
+
+	/** a reference to the Rel$Field class     */
+	/** a reference to the RelField class      */
+
+	/** a reference to the Field class         */
 
 	_createClass(Environment, [{
 		key: 'registerModule',
@@ -5231,7 +5245,7 @@ var Environment = function () {
 			_utilities.definePropertiesByValue.call(module, {
 				environment: this,
 				classes: this.classes,
-				Entity: this.Entity
+				Entity: this.classes.Entity
 			});
 			/* creating dependency modules */
 			var _iteratorNormalCompletion = true;
@@ -5274,28 +5288,54 @@ var Environment = function () {
 // Module / Resource / Relationship Factory                                   //
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * A `Module` is a grouping of entity class definitions.
+ */
+
+
 var Module = function () {
 	_createClass(Module, null, [{
 		key: 'create',
+
+
+		/**
+   * Define a new module (independent of any environment).
+   * @param {string}                            name         - the name of the new module
+   * @param {Array<Module>}                     dependencies - the dependencies of the new module
+   * @param {Function<{[string]: Class}, void>} fn           - the function that defines the classes in the module
+   * @return {Function<?Environment>} a function to instantiate this module with either an existing or new environment
+   */
 		value: function create(name, dependencies, fn) {
 			var _this = this;
 
-			return function () {
-				var env = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-				env = new Environment(env);
+			return function (env) {
+				if (!env) {
+					env = new Environment();
+				}
 				var module = new _this(name);
 				env.registerModule(module, dependencies, fn);
 				return env;
 			};
 		}
+
+		/** the name of this module, e.g., 'measurables' */
+
 	}]);
 
+	/** @private */
 	function Module(name) {
 		_classCallCheck(this, Module);
 
 		_utilities.definePropertyByValue.call(this, 'name', name);
 	}
+
+	/**
+  * Declare a resource class.
+  * @param {Object} config      - the traits of the new class
+  * @param {string} config.name - the name of the new class
+  * @return {Class} the new `Resource` subclass
+  */
+
 
 	_createClass(Module, [{
 		key: 'RESOURCE',
@@ -5309,6 +5349,14 @@ var Module = function () {
 			this.environment.Field.augmentClass(constructor);
 			return constructor;
 		}
+
+		/**
+   * Declare a relationship class.
+   * @param {Object} config      - the traits of the new class
+   * @param {string} config.name - the name of the new class
+   * @return {Class} the new `Relationship` subclass
+   */
+
 	}, {
 		key: 'RELATIONSHIP',
 		value: function RELATIONSHIP(config) {
@@ -5323,6 +5371,10 @@ var Module = function () {
 		}
 
 		////////////////////////////////////////////////////////////////////////////
+
+		/**
+   * Normalize the aspects of the given entity configuration.
+   */
 
 	}, {
 		key: 'basicNormalization',
@@ -5427,6 +5479,11 @@ var Module = function () {
 				}
 			}
 		}
+
+		/**
+   * Normalize the `1` and `2` keys of the given relationship class.
+   */
+
 	}, {
 		key: 'normalizeRelationshipSides',
 		value: function normalizeRelationshipSides(cls) {
@@ -5447,11 +5504,6 @@ var Module = function () {
 				cls.domainPairs.push((_cls$domainPairs$push = {}, _defineProperty(_cls$domainPairs$push, 1, cls[1]), _defineProperty(_cls$domainPairs$push, 2, cls[2]), _cls$domainPairs$push));
 			}
 
-			/* indices for shorthand array notation and side keys */
-			var CLASS = 0,
-			    CARDINALITY = 1,
-			    OPTIONS = 2;
-
 			/* normalizing all domainPairs */
 			cls.keyInResource = {
 				1: '-->' + cls.name,
@@ -5461,15 +5513,12 @@ var Module = function () {
 				var _pair;
 
 				var pair = (_pair = {}, _defineProperty(_pair, 1, {}), _defineProperty(_pair, 2, {}), _pair);
-				var _arr4 = [[[1, pair[1]], [2, pair[2]]], [[2, pair[2]], [1, pair[1]]]];
+				var _arr4 = [[1, pair[1], pair[2]], [2, pair[2], pair[1]]];
 				for (var _i4 = 0; _i4 < _arr4.length; _i4++) {
-					var _arr4$_i = _slicedToArray(_arr4[_i4], 2),
-					    _arr4$_i$ = _slicedToArray(_arr4$_i[0], 2),
-					    domainKey = _arr4$_i$[0],
-					    domain = _arr4$_i$[1],
-					    _arr4$_i$2 = _slicedToArray(_arr4$_i[1], 2),
-					    codomainKey = _arr4$_i$2[0],
-					    codomain = _arr4$_i$2[1];
+					var _arr4$_i = _slicedToArray(_arr4[_i4], 3),
+					    domainKey = _arr4$_i[0],
+					    domain = _arr4$_i[1],
+					    codomain = _arr4$_i[2];
 
 					var _givenDomainPair$doma = _slicedToArray(givenDomainPair[domainKey], 3),
 					    resourceClass = _givenDomainPair$doma[0],
@@ -5502,6 +5551,11 @@ var Module = function () {
 			delete cls[1];
 			delete cls[2];
 		}
+
+		/**
+   * Register a given a relationship class with the resource classes involved.
+   */
+
 	}, {
 		key: 'resolveRelationshipDomains',
 		value: function resolveRelationshipDomains(cls) {
@@ -5518,9 +5572,22 @@ var Module = function () {
 
 					try {
 						for (var _iterator5 = _lodashBound.values.call(domainPair)[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-							var domain = _step5.value;
+							var referenceDomain = _step5.value;
+							var resourceClass = referenceDomain.resourceClass,
+							    keyInResource = referenceDomain.keyInResource,
+							    shortcutKey = referenceDomain.shortcutKey;
 
-							this[$$processRelationshipDomain](domain);
+							// NOTE: This was the location of a whole lot of unfinished code we
+							//     : may yet want to reinstate in the future. See commented code
+							//     : at the bottom of this file.
+
+							/* put back-reference in classes */
+
+							resourceClass.relationships[keyInResource] = referenceDomain;
+							if (!_lodashBound.isUndefined.call(shortcutKey)) {
+								resourceClass.relationshipShortcuts[shortcutKey] = referenceDomain;
+							}
+							this.environment.Field.augmentClass(resourceClass, keyInResource);
 						}
 					} catch (err) {
 						_didIteratorError5 = true;
@@ -5553,27 +5620,12 @@ var Module = function () {
 			}
 		}
 
-		/** @private */
+		/**
+   * Register an entity class `cls` with the module.
+   * In particular, put it in the `classes` graph.
+   * @param {Class} cls - the entity class to register
+   */
 
-	}, {
-		key: $$processRelationshipDomain,
-		value: function value(referenceDomain) {
-			var resourceClass = referenceDomain.resourceClass,
-			    keyInResource = referenceDomain.keyInResource,
-			    shortcutKey = referenceDomain.shortcutKey;
-
-			// NOTE: This was the location of a whole lot of unfinished code we
-			//     : may yet want to reinstate in the future. See commented code
-			//     : at the bottom of this file.
-
-			/* put back-reference in classes */
-
-			resourceClass.relationships[keyInResource] = referenceDomain;
-			if (!_lodashBound.isUndefined.call(shortcutKey)) {
-				resourceClass.relationshipShortcuts[shortcutKey] = referenceDomain;
-			}
-			this.environment.Field.augmentClass(resourceClass, keyInResource);
-		}
 	}, {
 		key: 'register',
 		value: function register(cls) {
@@ -5645,9 +5697,16 @@ var Module = function () {
 			if (cycle) {
 				throw new Error((0, _utilities.humanMsg)(_templateObject2, cls.name, [].concat(_toConsumableArray(cycle), [cycle[0]]).join(' --> ')));
 			}
-
-			return cls;
 		}
+
+		/**
+   * Merge superclass fields into the given class,
+   * and fields of the given class into its existing subclasses.
+   * (Since our homebrew class hierarchy can't count on JavaScript
+   *  prototype inheritance.)
+   * @param cls
+   */
+
 	}, {
 		key: 'mergeSuperclassFields',
 		value: function mergeSuperclassFields(cls) {
@@ -5810,14 +5869,22 @@ var Module = function () {
 			mergeFieldKind(cls, cls, 'relationships');
 			mergeFieldKind(cls, cls, 'relationshipShortcuts');
 		}
+
+		/**
+   * If the same resource is declared more than once,
+   * intelligently merge their aspects.
+   * @param {Class} cls - the resource class to merge with others of the same name
+   * @return {Class} the class that gets to survive and represent its name (an existing class is prioritized over the new class)
+   */
+
 	}, {
 		key: 'mergeSameNameResources',
-		value: function mergeSameNameResources(NewClass) {
-			var OldClass = this.classes.vertexValue(NewClass.name);
-			if (!OldClass) {
-				return NewClass;
+		value: function mergeSameNameResources(cls) {
+			var oldClass = this.classes.vertexValue(cls.name);
+			if (!oldClass) {
+				return cls;
 			}
-			return _lodashBound.assignWith.call(OldClass, NewClass, function (vOld, vNew, key) {
+			return _lodashBound.assignWith.call(oldClass, cls, function (vOld, vNew, key) {
 				var _context8;
 
 				switch (key) {
@@ -5832,40 +5899,40 @@ var Module = function () {
 					default:
 						{
 							if (!_lodashBound.isUndefined.call(vOld) && !_lodashBound.isUndefined.call(vNew) && !(0, _lodash.isEqual)(vOld, vNew)) {
-								throw new Error((0, _utilities.humanMsg)(_templateObject3, OldClass.name, key, JSON.stringify(vOld), JSON.stringify(vNew)));
+								throw new Error((0, _utilities.humanMsg)(_templateObject3, oldClass.name, key, JSON.stringify(vOld), JSON.stringify(vNew)));
 							}
 							return _lodashBound.isUndefined.call(vOld) ? vNew : vOld;
 						}
 				}
 			});
 		}
+
+		/**
+   * If the same relationship is declared more than once,
+   * intelligently merge their aspects.
+   * @param {Class} cls - the relationship class to merge with others of the same name
+   * @return {Class} the class that gets to survive and represent its name (an existing class is prioritized over the new class)
+   */
+
 	}, {
 		key: 'mergeSameNameRelationships',
-		value: function mergeSameNameRelationships(NewClass) {
-			var OldClass = this.classes.vertexValue(NewClass.name);
-			if (!OldClass) {
-				return NewClass;
+		value: function mergeSameNameRelationships(cls) {
+			var oldClass = this.classes.vertexValue(cls.name);
+			if (!oldClass) {
+				return cls;
 			}
 
 			function chooseOne(o, n, sep, key) {
 				return _lodashBound.isUndefined.call(o) ? n : o;
 			}
 
-			return _lodashBound.assignWith.call(OldClass, NewClass, function (vOld, vNew, key) {
-				var _context9;
-
+			return _lodashBound.assignWith.call(oldClass, cls, function (vOld, vNew, key) {
 				switch (key) {
 					case 'extends':
 					case 'extendedBy':
 						return new Set([].concat(_toConsumableArray(vOld), _toConsumableArray(vNew)));
 					case 'domainPairs':
 						return [].concat(_toConsumableArray(vOld), _toConsumableArray(vNew));
-					case 'properties':
-					case 'patternProperties':
-					case 'behavior':
-						return (_context9 = {}, _lodashBound.assignWith).call(_context9, vOld, vNew, function (pOld, pNew, pKey) {
-							return chooseOne(pOld, pNew, '#', pKey);
-						});
 					default:
 						return chooseOne(vOld, vNew, '.', key);
 				}
@@ -6045,7 +6112,7 @@ var _defaults = __webpack_require__(180);
 
 var _defaults2 = _interopRequireDefault(_defaults);
 
-var _boundNativeMethods = __webpack_require__(70);
+var _boundNativeMethods = __webpack_require__(69);
 
 var _utilities = __webpack_require__(32);
 
@@ -6065,10 +6132,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /**
  * Typed Modules allow to more easily create related
- * Type, Template and HasType classes. For example,
+ * Type, Template and HasType subclasses. For example,
  * to create LyphType and LyphTemplate resources and
  * their HasType relationship from one description.
- **/
+ * NOTE: The current version of the project creates
+ * just the Template subclass, and using just the
+ * `Type` class for all types.
+ */
 var TypedModule = function (_Module) {
 	_inherits(TypedModule, _Module);
 
@@ -6080,6 +6150,14 @@ var TypedModule = function (_Module) {
 
 	_createClass(TypedModule, [{
 		key: 'TYPED_RESOURCE',
+
+
+		/**
+   * Declare a typed resource class, which is a subclass of `Template` and gets special treatment.
+   * @param {Object} config      - the traits of the new class
+   * @param {string} config.name - the name of the new class
+   * @return {Class} the new `Template` subclass
+   */
 		value: function TYPED_RESOURCE(config) {
 			var _this2 = this;
 
@@ -7042,7 +7120,6 @@ Object.defineProperty(exports, "__esModule", {
 /** @private */var $$value = exports.$$value = Symbol('$$value');
 /** @private */var $$initSet = exports.$$initSet = Symbol('$$initSet');
 /** @private */var $$entriesIn = exports.$$entriesIn = Symbol('$$entriesIn');
-/** @private */var $$destruct = exports.$$destruct = Symbol('$$destruct');
 
 /***/ }),
 /* 124 */
@@ -7069,7 +7146,7 @@ var _resources = __webpack_require__(56);
 
 var _resources2 = _interopRequireDefault(_resources);
 
-var _typed = __webpack_require__(79);
+var _typed = __webpack_require__(78);
 
 var _typed2 = _interopRequireDefault(_typed);
 
@@ -8025,7 +8102,7 @@ module.exports = mapToArray;
 /* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(75);
+var getNative = __webpack_require__(74);
 
 /* Built-in method references that are verified to be native. */
 var nativeCreate = getNative(Object, 'create');
@@ -8667,13 +8744,13 @@ var _templateObject = _taggedTemplateLiteral(['\n\t\t\t\t\t\tYou cannot set the 
 
 var _lodashBound = __webpack_require__(47);
 
-var _boundNativeMethods = __webpack_require__(70);
+var _boundNativeMethods = __webpack_require__(69);
 
 var _utilities = __webpack_require__(32);
 
 var _symbols = __webpack_require__(123);
 
-var _misc = __webpack_require__(69);
+var _misc = __webpack_require__(79);
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return _instanceof(left, right); } }
 
@@ -8752,21 +8829,24 @@ exports.default = function (env) {
 			// instance //
 			//////////////
 
-			//noinspection JSDuplicatedDeclaration // (to suppress Webstorm bug)
+			/**
+    * Making this field recognizable when converted to a string.
+    * @returns {string} a string like `Field: Lyph#name = "Heart"`
+    */
 			get: function get() {
-				return 'Field: ' + this[_symbols.$$owner].constructor.name + '#' + this[_symbols.$$key];
+				return 'Field: ' + this[_symbols.$$owner].constructor.name + '#' + this[_symbols.$$key] + ' = ' + this.valueToJSON();
 			}
 
 			/**
-    *
-    * @private
-    * @param {Object} options
-    * @param options.owner
-    * @param options.key
-    * @param options.desc
-    * @param options.aliases
-    * @param options.setValueThroughSignal
-    * @param options.valueTrackerOptions
+    * Create a new instance of this field on a specific entity.
+    * @protected
+    * @param {Object}    options
+    * @param {Entity}    options.owner                       - the entity on which to create this field
+    * @param {string}    options.key                         - the key on that entity corresponding to this field
+    * @param {Object}    options.desc                        - the descriptor for what kind of field this is
+    * @param {Iterable} [options.aliases=[]]                 - other keys to which this field should answer
+    * @param {boolean}  [options.setValueThroughSignal=true] - whether signals sent to `field.p('value')` should be accepted
+    * @param {Object}   [options.valueTrackerOptions={}]     - the `ValueTracker` options to use for each field's observable properties
     */
 
 		}], [{
@@ -8777,6 +8857,12 @@ exports.default = function (env) {
 			// static //
 			////////////
 
+			/**
+    * Equip an `Entity` subclass `cls` with its particular fields,
+    * optionally only for a particular key.
+    * @param {Class}   cls         - a subclass of `Entity` still under construction
+    * @param {string} [onlyForKey] - the only key for which to initialize the field
+    */
 			value: function augmentClass(cls, onlyForKey) {
 				/* allow each kind of field to perform its initializations */
 				var _iteratorNormalCompletion = true;
@@ -8837,6 +8923,14 @@ exports.default = function (env) {
 					}
 				}
 			}
+
+			/**
+    * Initialize the fields of a particular `Entity` instance.
+    * @param {Entity} owner                    - the entity to initialize
+    * @param {Object} initialValues            - the initial values for the entity's fields
+    * @param {Object} [valueTrackerOptions={}] - the `ValueTracker` options to use for each field's observable properties
+    */
+
 		}, {
 			key: 'initializeEntity',
 			value: function initializeEntity(owner, initialValues) {
@@ -8903,7 +8997,7 @@ exports.default = function (env) {
 						}
 					}
 
-					/* add related descriptions to each description */
+					/* add related initial values to each description */
 				} catch (err) {
 					_didIteratorError3 = true;
 					_iteratorError3 = err;
@@ -8925,9 +9019,13 @@ exports.default = function (env) {
 
 				try {
 					for (var _iterator4 = _lodashBound.values.call(keyDescs)[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+						var _context4;
+
 						var _entry = _step4.value;
 
-						_entry.related = _lodashBound.pick.call(keyDescs, _entry.relatedKeys);
+						_entry.aliasInitialValues = (_context4 = _lodashBound.pick.call(keyDescs, _entry.relatedKeys), _lodashBound.mapValues).call(_context4, function (d) {
+							return d.initialValue;
+						});
 					}
 
 					/* create a field for each description */
@@ -8956,7 +9054,7 @@ exports.default = function (env) {
 						var _FieldClass = _entry2.FieldClass;
 
 						delete _entry2.FieldClass;
-						var newField = new _FieldClass(_extends({}, _entry2, { valueTrackerOptions: valueTrackerOptions }));
+						new _FieldClass(_extends({}, _entry2, { valueTrackerOptions: valueTrackerOptions }));
 					}
 
 					/* notify completion of field initialization */
@@ -8977,36 +9075,13 @@ exports.default = function (env) {
 
 				owner.pSubject('fieldsInitialized').next(true);
 			}
-		}, {
-			key: 'destructEntity',
-			value: function destructEntity(owner) {
-				var _iteratorNormalCompletion7 = true;
-				var _didIteratorError7 = false;
-				var _iteratorError7 = undefined;
 
-				try {
-					for (var _iterator7 = (_context4 = owner.fields, _lodashBound.values).call(_context4)[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-						var _context4;
+			/**
+    * The function used for testing the values of this field for equality.
+    * Can be overwritten by specific field classes (e.g., `Rel$Field`).
+    * @returns {boolean} - whether `a` and `b` are considered equal values
+    */
 
-						var field = _step7.value;
-
-						field[_symbols.$$destruct]();
-					}
-				} catch (err) {
-					_didIteratorError7 = true;
-					_iteratorError7 = err;
-				} finally {
-					try {
-						if (!_iteratorNormalCompletion7 && _iterator7.return) {
-							_iterator7.return();
-						}
-					} finally {
-						if (_didIteratorError7) {
-							throw _iteratorError7;
-						}
-					}
-				}
-			}
 		}, {
 			key: 'isEqual',
 			value: function isEqual(a, b) {
@@ -9016,6 +9091,11 @@ exports.default = function (env) {
 			/////////////////////////
 			// events & properties //
 			/////////////////////////
+
+			/**
+    * The current value of this field. It can be read and written to
+    * directly, or observed with `field.p('value')`.
+    */
 
 		}]);
 
@@ -9036,28 +9116,28 @@ exports.default = function (env) {
 			    setValueThroughSignal = _options$setValueThro === undefined ? true : _options$setValueThro;
 
 			owner.fields[key] = _this;
-			var _iteratorNormalCompletion8 = true;
-			var _didIteratorError8 = false;
-			var _iteratorError8 = undefined;
+			var _iteratorNormalCompletion7 = true;
+			var _didIteratorError7 = false;
+			var _iteratorError7 = undefined;
 
 			try {
-				for (var _iterator8 = aliases[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-					var alias = _step8.value;
+				for (var _iterator7 = aliases[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+					var alias = _step7.value;
 
 					owner.fields[alias] = _this;
 				}
 				/** @private */
 			} catch (err) {
-				_didIteratorError8 = true;
-				_iteratorError8 = err;
+				_didIteratorError7 = true;
+				_iteratorError7 = err;
 			} finally {
 				try {
-					if (!_iteratorNormalCompletion8 && _iterator8.return) {
-						_iterator8.return();
+					if (!_iteratorNormalCompletion7 && _iterator7.return) {
+						_iterator7.return();
 					}
 				} finally {
-					if (_didIteratorError8) {
-						throw _iteratorError8;
+					if (_didIteratorError7) {
+						throw _iteratorError7;
 					}
 				}
 			}
@@ -9072,17 +9152,47 @@ exports.default = function (env) {
 			return _this;
 		}
 
+		/**
+   * Convert this field's value to JSON (plain data).
+   * @param {Object} [options={}]
+   * @returns {*}
+   */
+
+
 		_createClass(Field, [{
 			key: 'valueToJSON',
 			value: function valueToJSON() {
 				var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 				return this.constructor.valueToJSON(this.value, options);
 			}
+
+			/**
+    * How to properly convert a value in this field to JSON (plain data).
+    * @param {*}        value                             - the value to convert to JSON
+    * @param {Object}  [options={}]
+    * @param {boolean} [options.flattenFieldValues=false] - whether `Object` or `Array` field values should be avoided in the output (for example, Neo4j does not accept nested objects)
+    * @abstract
+    */
+
 		}, {
 			key: 'get',
+
+
+			/**
+    * @returns {*} this field's value
+    */
 			value: function get() {
 				return this[_symbols.$$value];
 			}
+
+			/**
+    * Set this field to a new value.
+    * @param {*}        newValue - the new value for this field
+    * @param {Object}  [options={}]
+    * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only
+    * @param {boolean} [options.ignoreValidation=false] - don't validate the new value
+    */
+
 		}, {
 			key: 'set',
 			value: function set(newValue) {
@@ -9102,21 +9212,20 @@ exports.default = function (env) {
 					this.pSubject('value').next(newValue);
 				}
 			}
+
+			/**
+    * Validate a certain value as appropriate for this field.
+    * Throws an exception if the value is invalid. Otherwise does nothing.
+    * Should be overwritten by specific `Field` subclasses.
+    * @param {*}     val    - the value to test
+    * @param {Array} stages - the validation stages to validate for (e.g., 'commit')
+    */
+
 		}, {
 			key: 'validate',
 			value: function validate(val) {
 				var stages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-			}
-			// to be implemented in subclasses
-
-
-			/** @private */
-
-		}, {
-			key: _symbols.$$destruct,
-			value: function value() {}
-			// to be implemented in subclasses
-
+			} // to be implemented in subclasses
 
 			/** @private */
 
@@ -9127,15 +9236,15 @@ exports.default = function (env) {
 					alternatives[_key] = arguments[_key];
 				}
 
-				var _iteratorNormalCompletion9 = true;
-				var _didIteratorError9 = false;
-				var _iteratorError9 = undefined;
+				var _iteratorNormalCompletion8 = true;
+				var _didIteratorError8 = false;
+				var _iteratorError8 = undefined;
 
 				try {
-					for (var _iterator9 = alternatives[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-						var _step9$value = _slicedToArray(_step9.value, 2),
-						    guard = _step9$value[0],
-						    value = _step9$value[1];
+					for (var _iterator8 = alternatives[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+						var _step8$value = _slicedToArray(_step8.value, 2),
+						    guard = _step8$value[0],
+						    value = _step8$value[1];
 
 						if (_utilities.callOrReturn.call(guard, this)) {
 							var _context5;
@@ -9153,23 +9262,35 @@ exports.default = function (env) {
 						}
 					}
 				} catch (err) {
-					_didIteratorError9 = true;
-					_iteratorError9 = err;
+					_didIteratorError8 = true;
+					_iteratorError8 = err;
 				} finally {
 					try {
-						if (!_iteratorNormalCompletion9 && _iterator9.return) {
-							_iterator9.return();
+						if (!_iteratorNormalCompletion8 && _iterator8.return) {
+							_iterator8.return();
 						}
 					} finally {
-						if (_didIteratorError9) {
-							throw _iteratorError9;
+						if (_didIteratorError8) {
+							throw _iteratorError8;
 						}
 					}
 				}
 			}
 		}], [{
 			key: 'valueToJSON',
-			value: function valueToJSON() {}
+			value: function valueToJSON(value, options) {}
+
+			/**
+    * How to properly convert a JSON value to a value appropriate for this type of field.
+    * @param {*}         json              - the JSON value to convert
+    * @param {Object}    options
+    * @param {boolean}  [options.flattenFieldValues=false] - whether field values are strings that should be run through `JSON.parse`
+    * @param {Function}  options.getEntity                 - a function that returns an entity corresponding to a given address
+    */
+
+		}, {
+			key: 'jsonToValue',
+			value: function jsonToValue(json, options) {}
 		}]);
 
 		return Field;
@@ -9215,7 +9336,7 @@ exports.default = function (env) {
 	var Field = (0, _Field3.default)(env);
 
 	/**
-  *
+  * A field on an `Entity` representing one side of a relationship.
   */
 
 	var RelField = function (_Field) {
@@ -9229,24 +9350,50 @@ exports.default = function (env) {
 
 		_createClass(RelField, [{
 			key: 'getAll',
-			value: function getAll() {
-				// to be implemented in subclasses
-			}
+
+
+			/**
+    * @return {Set} A new `Set` data-structure populated with
+    *               the entities related through this field.
+    */
+			value: function getAll() {} // to be implemented in subclasses
+
+
+			/**
+    * Add an additional entity to this field, or replace the current entity if this is a `Rel1Field`.
+    * @param {Entity}   newValue - the new entity to be added into this field
+    * @param {Object}  [options={}]
+    * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only
+    * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality or value
+    */
+
 		}, {
 			key: 'add',
-			value: function add(newValue, options) {
-				// to be implemented in subclasses
-			}
+			value: function add(newValue, options) {} // to be implemented in subclasses
+
+			/**
+    * Remove a specific entity from this field.
+    * @param {Entity}   oldValue - the entity to be removed from this field
+    * @param {Object}  [options={}]
+    * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only
+    * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality
+    */
+
 		}, {
 			key: 'delete',
-			value: function _delete(oldValue, options) {
-				// to be implemented in subclasses
-			}
+			value: function _delete(oldValue, options) {} // to be implemented in subclasses
+
+			/**
+    * Validate a specific entity as appropriate to be included in this field.
+    * Throws an exception if the entity is invalid. Otherwise does nothing.
+    * @param {Entity} entity     - the entity to test
+    * @param {Array} [stages=[]] - the validation stages to validate for (e.g., 'commit')
+    */
+
 		}, {
 			key: 'validateElement',
-			value: function validateElement(element, options) {
-				// to be implemented in subclasses
-			}
+			value: function validateElement(entity, stages) {} // to be implemented in subclasses
+
 		}]);
 
 		return RelField;
@@ -9344,7 +9491,7 @@ module.exports = LodashWrapper;
 /* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(75),
+var getNative = __webpack_require__(74),
     root = __webpack_require__(15);
 
 /* Built-in method references that are verified to be native. */
@@ -10108,7 +10255,7 @@ module.exports = baseValues;
 
 var baseDifference = __webpack_require__(109),
     baseFlatten = __webpack_require__(19),
-    baseUniq = __webpack_require__(74);
+    baseUniq = __webpack_require__(73);
 
 /**
  * The base implementation of methods like `_.xor`, without support for
@@ -11991,7 +12138,7 @@ var _rearg = __webpack_require__(1102);
 
 var _rearg2 = _interopRequireDefault(_rearg);
 
-var _boundNativeMethods = __webpack_require__(70);
+var _boundNativeMethods = __webpack_require__(69);
 
 var _zip2 = __webpack_require__(655);
 
@@ -12251,7 +12398,7 @@ var _resources = __webpack_require__(56);
 
 var _resources2 = _interopRequireDefault(_resources);
 
-var _typed = __webpack_require__(79);
+var _typed = __webpack_require__(78);
 
 var _typed2 = _interopRequireDefault(_typed);
 
@@ -12272,6 +12419,7 @@ exports.default = _TypedModule2.default.create('groups', [_resources2.default, _
 		singular: "group",
 
 		icon: __webpack_require__(1386)
+
 	}); /////////////////////////////////////////////////////////////////////////////
 
 
@@ -12309,7 +12457,7 @@ var _resources = __webpack_require__(56);
 
 var _resources2 = _interopRequireDefault(_resources);
 
-var _typed = __webpack_require__(79);
+var _typed = __webpack_require__(78);
 
 var _typed2 = _interopRequireDefault(_typed);
 
@@ -12347,7 +12495,6 @@ exports.default = _TypedModule2.default.create('measurables', [_resources2.defau
 		singular: "measurable",
 
 		icon: __webpack_require__(1389),
-		// icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAdCAIAAABE/PnQAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAB3RJTUUH4QQDEQM2D4pktAAAA01JREFUSMfNVltsVFUUXWuf++jQsZVHfLRpBZSAqamhgYRGTaQx0cQY6od8EKIJD2NSo0kbAoUYQT404YcPSNOAiT+mP3xgVNIoCm20MuIPLQqi4EggEEOs8hBm7j1n+zEMmabTO1OsCSfn656zz1pn7X3WvlTVgcHh9z785JeL4woBFP95GKeLmuZuW9e55oV2Hhw61tm9l2EKajkTpwOA0tGDc0P93SbrNV4cvyUaTbWZUIE6KiZNUQeasjGEU+GXh4fM5ZqFOjVvAo6eRpFGFrErnZKLEKaJPCDlY2mvRcZzKgnKKKDKzWuf++DtV29GOVEDaET6Nh9JeF/baqmrn1ooIavIKoHdB0aef2NHyg9D3wS+lzY6MPhNyyubUD+XWiHcq5gw0Tiy/GJ4FICCgALe4LGx83/8beiUJpmiVFERALR4iAIAFTAAqilrwf887kkAva0cZxQgHZZCzK6vg7oZA3CKra+tcihyJvt616f8qmINm5ZW3OQzf6T/HQIgi7TczX+uD584b+CUSVpR2tdVoA/z8vLGx5vmqWLOrLCnawNUAZCsW7HmBmtBd/cABFzsosx+UxTzTtnT5fZ9lnn9/Y9F7N3nwAFH+npI0YIvlSxZU7Nx1TMPpsFEiZJyIKoaR08233989NR3P5xobVnie6aEmipkWcuCjz7PkD5gp+dFBGJJnT6wffEjzYUv8URfK/jSymVPPPZAbfbKnw7+9CRykNZ5dlFTIwBVuIL7lKlg/ap/s+qs6efAxTt738z8+Ou3Y6fHr16fypYJND/8UEtDTaHLVSuRAk+3Pvri8iWOEAWSXUF1ZGDXnJVd1tmqbqAQyd863NerxqN4IkZEEq2Jtb7X0bbQlqMr5YrHdbS3nTxzbvTUmZM/n02uwjsYn+7uSftukn7lAGw+1726Ix0E6SCs9b0qHdYzWLygoVRMQgF6njGxnahdEBz9frTjrbWBb4rmVvkSv13+68KlK6Vv0ZLG5vjU+neP/5SN4ZWuqUJvXJ0/vyEIAoFLFscpf89m80xJ4E+UGrNTwoNHM51b9htaLfNj46CQRN9XUklooT9P9GDw631bqGoPjYy91LXTIQTjyVmaXqO7/YZMaKJDe3qfXbH0Xwd+XDVfm2gVAAAAAElFTkSuQmCC',
 
 		properties: {
 			'quality': {
@@ -12414,6 +12561,7 @@ exports.default = _TypedModule2.default.create('measurables', [_resources2.defau
 		plural: "causalities",
 
 		icon: __webpack_require__(1381)
+
 	}); /////////////////////////////////////////////////////////////////////////
 
 
@@ -12471,7 +12619,7 @@ var _resources = __webpack_require__(56);
 
 var _resources2 = _interopRequireDefault(_resources);
 
-var _typed = __webpack_require__(79);
+var _typed = __webpack_require__(78);
 
 var _typed2 = _interopRequireDefault(_typed);
 
@@ -12500,7 +12648,6 @@ exports.default = _TypedModule2.default.create('processes', [_resources2.default
 		plural: "processes",
 
 		icon: __webpack_require__(1391),
-		// icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QQDEQMY01xpewAAA4JJREFUWMO1lk1vI0UQht+3ptvO5h4hcd6PHBBEkKxxEsXWev7BHrmCEAjxN7juhQ8JzhwQSNyZg73yZteBRJhbMJyQ2AN7s5SV4nEVB88448nMxMl6W2rZU6ruqq7qeroYhu0As2HJr2S+X7dsSlwx2u1975zLLmYyVyITkkOSJiImIkZyPkVk1O32J6/LOACCxCXj2W8A2Nl512HFw8zY6bQcUoN541kHAFzSq4jasrJvAcAl3qRGsh4Web2gl9W5rgzAhwDOQaLw5KkMABqNbb/K8Nfrtc3Expgkfyf5Tomnf6rqvUypruQSRlE3TtPrzGyrKtwHB3su2WTVFQAAcGHYdjkQ5ZVf2XgUdeP9/ff92tpa9lLDzBYotfI6V1VGUTcWkR/6/WeTjN5FBJbZdDKJrdfrx9ch5vn5OVVVROSZmTVyNuYplmVC3Ov1Y5J/V9T0X3linpwM3zg8PPonYxwZGxej02nJ06e/SNnJUgoWGc8DKwzbwenpr/Te74uIZp3M7um9v5esG8/CIPJNGbnSRWXGs3pmxiAIPi/Q05L9v3Yi8qWZfVxGrioS5nVPTh4TgBbpFZDwOzP7BCTGJK1er28WGW0279fSFFxFzDBsOzOjc8FuWSSzjnc6rYCzTQBVY8KEMnKNSN4uIeZIVe+mxCTJweB4YzweDwFspOkJw7bPX3S5KIJyHhwc7Dkzu6OqVFWa2XwmsrsJMQGAZsatrbf+295+700AR5mw56sMDiByKb9UkrWaR5H3VcSs1WoWBAHNrEHyp5IDqizKV0vCIAgQhm2vqg93dxuuSE9yXLiWobOzl4ii7vQqvTBsB+vrt4qAR0nasrIcVTp0eDiIReTHKOrGqnqjqLnZ/5TIN3pSH4rI0dnZy13vHev1+jySk8kEvd6TadUbIstcwgpZWtM7g8Fv/x4fDzc4u/I2e0OexCRHZX0iySGStsi895s3aa9yG5r3vpnUfLAUwkl+VUa4Jbtcza8Vkc/MjKkDVRR1ZvapiDgz+6iI2dfocrNyjaKfORNd0XF3Oi15/vyUN+1w8yfy3jcfPfpC0lav6v0gOec/btrriUh6yhfr67febjbvv0j1oqg7FZERgNtFUVPVP9wr9oRpOI8ePNjdi+NFvVZr3/V6/Ttlz3raE04TEKRp0BzXq2QA8L2ZfaAaOO9lQc97h6Qa8mvnJPwfyvu4MadSbbcAAAAASUVORK5CYII=',
 
 		properties: {
 			'transportPhenomenon': _extends({}, (0, _schemas.enumArraySchema)('advection', 'diffusion'), {
@@ -14193,7 +14340,7 @@ module.exports = function isBoolean() {
 "use strict";
 
 
-var fn = __webpack_require__(77);
+var fn = __webpack_require__(76);
 
 module.exports = function isBuffer() {
   return fn.apply(undefined, [this].concat(Array.prototype.slice.apply(arguments)));
@@ -16850,7 +16997,7 @@ module.exports = function zipWith() {
 /* 551 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(75),
+var getNative = __webpack_require__(74),
     root = __webpack_require__(15);
 
 /* Built-in method references that are verified to be native. */
@@ -16875,7 +17022,7 @@ module.exports = Uint8Array;
 /* 553 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(75),
+var getNative = __webpack_require__(74),
     root = __webpack_require__(15);
 
 /* Built-in method references that are verified to be native. */
@@ -16920,7 +17067,7 @@ module.exports = arrayEvery;
 var baseTimes = __webpack_require__(203),
     isArguments = __webpack_require__(96),
     isArray = __webpack_require__(7),
-    isBuffer = __webpack_require__(77),
+    isBuffer = __webpack_require__(76),
     isIndex = __webpack_require__(64),
     isTypedArray = __webpack_require__(97);
 
@@ -18269,7 +18416,7 @@ var composeArgs = __webpack_require__(588),
     createRecurry = __webpack_require__(599),
     getHolder = __webpack_require__(92),
     reorder = __webpack_require__(848),
-    replaceHolders = __webpack_require__(76),
+    replaceHolders = __webpack_require__(75),
     root = __webpack_require__(15);
 
 /** Used to compose bitmasks for function metadata. */
@@ -18552,7 +18699,7 @@ module.exports = customDefaultsAssignIn;
 /* 602 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(75);
+var getNative = __webpack_require__(74);
 
 var defineProperty = (function() {
   try {
@@ -19349,7 +19496,7 @@ module.exports = before;
 var baseRest = __webpack_require__(4),
     createWrap = __webpack_require__(50),
     getHolder = __webpack_require__(92),
-    replaceHolders = __webpack_require__(76);
+    replaceHolders = __webpack_require__(75);
 
 /** Used to compose bitmasks for function metadata. */
 var WRAP_BIND_FLAG = 1,
@@ -37330,7 +37477,7 @@ module.exports = now;
 var baseRest = __webpack_require__(4),
     createWrap = __webpack_require__(50),
     getHolder = __webpack_require__(92),
-    replaceHolders = __webpack_require__(76);
+    replaceHolders = __webpack_require__(75);
 
 /** Used to compose bitmasks for function metadata. */
 var WRAP_PARTIAL_FLAG = 32;
@@ -37499,7 +37646,7 @@ module.exports = pullAll;
 /* 648 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseClamp = __webpack_require__(72),
+var baseClamp = __webpack_require__(71),
     toInteger = __webpack_require__(8);
 
 /** Used as references for the maximum length and index of an array. */
@@ -40487,7 +40634,7 @@ var _resources = __webpack_require__(56);
 
 var _resources2 = _interopRequireDefault(_resources);
 
-var _typed = __webpack_require__(79);
+var _typed = __webpack_require__(78);
 
 var _typed2 = _interopRequireDefault(_typed);
 
@@ -40521,10 +40668,7 @@ var _Module2 = _interopRequireDefault(_Module);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _Module2.default.create('all', [_resources2.default, _typed2.default, _lyphs2.default, _groups2.default, _measurables2.default, _processes2.default, _research2.default,
-// visualisations,
-_canonicalTrees2.default]);
-// import visualisations from './modules/OLD_visualisations';
+exports.default = _Module2.default.create('all', [_resources2.default, _typed2.default, _lyphs2.default, _groups2.default, _measurables2.default, _processes2.default, _research2.default, _canonicalTrees2.default]);
 
 /***/ }),
 /* 688 */,
@@ -41393,14 +41537,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _templateObject = _taggedTemplateLiteral(['\n\t\t\t\t\tYou cannot instantiate ', ',\n\t\t\t\t\tbecause it is a Relationship subclass.\n\t\t\t\t'], ['\n\t\t\t\t\tYou cannot instantiate ', ',\n\t\t\t\t\tbecause it is a Relationship subclass.\n\t\t\t\t']),
-    _templateObject2 = _taggedTemplateLiteral(['\n\t\t\t\tDo not use \'new ', '(...args)\'.\n\t\t\t\tInstead, use \'', '.new(...args)\'\n\t\t\t\t          or \'', '.get(...args)\'.\n\t\t\t'], ['\n\t\t\t\tDo not use \'new ', '(...args)\'.\n\t\t\t\tInstead, use \'', '.new(...args)\'\n\t\t\t\t          or \'', '.get(...args)\'.\n\t\t\t']);
-
 var _lodashBound = __webpack_require__(47);
 
 var _utilities = __webpack_require__(32);
-
-var _misc = __webpack_require__(69);
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return _instanceof(left, right); } }
 
@@ -41415,8 +41554,6 @@ function _initDefineProp(target, property, descriptor, context) {
 }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -41474,37 +41611,32 @@ exports.default = function (env) {
   * The base-class of all entities described in the manifest.
   * @public
   */
-	var Entity = (_dec = (0, _utilities.property)({ readonly: true }), _dec2 = (0, _utilities.property)({ initial: false, readonly: true }), _dec3 = (0, _utilities.property)({ initial: false, allowSynchronousAccess: true, isValid: function isValid(v) {
+	var Entity = (_dec = (0, _utilities.property)({ readonly: true }), _dec2 = (0, _utilities.property)({ initial: false, readonly: true, isValid: function isValid(v) {
+			return !this.isPlaceholder || v === false;
+		}
+	}), _dec3 = (0, _utilities.property)({ initial: false, readonly: true, allowSynchronousAccess: true, isValid: function isValid(v) {
 			return v === false || !this.isPlaceholder;
 		}
-	}), _dec4 = (0, _utilities.property)({ initial: false, allowSynchronousAccess: true, isValid: function isValid(v) {
-			return v === false || !this.isPlaceholder;
+	}), _dec4 = (0, _utilities.property)({ initial: false, readonly: true, allowSynchronousAccess: true, isValid: function isValid(v) {
+			return !this.isPlaceholder || v === false;
 		}
 	}), (_class = function (_ValueTracker) {
 		_inherits(Entity, _ValueTracker);
 
 		_createClass(Entity, null, [{
-			key: 'normalizeAddress',
-			value: function normalizeAddress(address) {
-				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-				var _options$entityToTemp = options.entityToTemporaryId,
-				    entityToTemporaryId = _options$entityToTemp === undefined ? new Map() : _options$entityToTemp;
+			key: 'createClass',
 
-				if (_lodashBound.isInteger.call(address)) {
-					return { class: this.name, id: address };
-				}
-				if (_lodashBound.isObject.call(address)) {
-					var id = address.id || entityToTemporaryId.get(address);
-					return { class: address.class || this.name, id: id };
-				}
-			}
 
 			////////////////////////////////////////////////////////////
 			////////// STATIC (building Entity-based classes) //////////
 			////////////////////////////////////////////////////////////
 
-		}, {
-			key: 'createClass',
+			/**
+    * Create a new `Entity` subclass with the given configuration.
+    * @param {Object} config      - a set of static properties for the new class
+    * @param {string} config.name - the name of the new class
+    * @return {Class} a new subclass of `Entity`
+    */
 			value: function createClass(config) {
 				/* create the class with the right name, constructor and static content */
 				var name = config.name,
@@ -41518,10 +41650,10 @@ exports.default = function (env) {
 
 
 				var EntitySubclass = new Function('Entity', '\n\t\t\t\t\'use strict\';\n\t\t\t\t' + _utilities.babelHelpers + ';\n\t\t\t\treturn function (_Entity) {\n\t\t\t\t\t_inherits(' + name + ', _Entity);\n\t\t\t\t\tfunction ' + name + '() {\n\t\t\t\t\t\t_classCallCheck(this, ' + name + ');\n\t\t\t\t\t\treturn _possibleConstructorReturn(this, Object.getPrototypeOf(' + name + ').apply(this, arguments));\n\t\t\t\t\t}\n\t\t\t\t\treturn ' + name + ';\n\t\t\t\t}(Entity);\n\t\t\t')(Entity);
-
-				/* populate it with the necessary data and behavior */
-				_lodashBound.assign.call(EntitySubclass, rest);
 				_utilities.definePropertiesByValue.call(EntitySubclass, { name: name });
+
+				/* populate it with the requested data and behavior */
+				_lodashBound.assign.call(EntitySubclass, rest);
 
 				/***/
 				return EntitySubclass;
@@ -41531,14 +41663,29 @@ exports.default = function (env) {
 			////////// STATIC CLASS ANALYSIS METHODS //////////
 			///////////////////////////////////////////////////
 
+			/**
+    * Test whether the given entity is an instance of this class.
+    * This is a polymorphic check; call it on `Entity` subclasses.
+    * @param {Entity} entity - the entity to test
+    * @return {boolean} whether the given entity is an instance of this class
+    */
+
 		}, {
 			key: 'hasInstance',
-			value: function hasInstance(instance) {
-				if (!instance) {
+			value: function hasInstance(entity) {
+				if (!entity) {
 					return false;
 				}
-				return this.hasSubclass(instance.constructor);
+				return this.hasSubclass(entity.constructor);
 			}
+
+			/**
+    * Test whether the given class is a subclass of this class.
+    * This is a polymorphic check; call it on `Entity` subclasses.
+    * @param {Class} otherClass - the class to test
+    * @return {boolean} whether the given class is subclass of this class
+    */
+
 		}, {
 			key: 'hasSubclass',
 			value: function hasSubclass(otherClass) {
@@ -41580,6 +41727,13 @@ exports.default = function (env) {
 
 				return false;
 			}
+
+			/**
+    * Returns all the subclasses of this class, both direct and indirect.
+    * This is a polymorphic check; call it on `Entity` subclasses.
+    * @return {Set<Class>} the set of subclasses of this class
+    */
+
 		}, {
 			key: 'allSubclasses',
 			value: function allSubclasses() {
@@ -41611,15 +41765,33 @@ exports.default = function (env) {
 
 				return new Set(result);
 			}
+
+			/**
+    * Overwriting the JavaScript `instanceof` operator to work with our improvised class hierarchy.
+    * @param {Entity} entity - the entity to test
+    * @return {boolean} whether the given entity is an instance of this class
+    * @see Entity.hasInstance
+    */
+
 		}, {
 			key: Symbol.hasInstance,
-			value: function value(instance) {
-				return this.hasInstance(instance);
+			value: function value(entity) {
+				return this.hasInstance(entity);
 			}
 
 			///////////////////////////////
 			////////// INSTANCES //////////
 			///////////////////////////////
+
+			/**
+    * A factory function for creating a new entity of some Entity subclass.
+    * This subclass can be determined polymorphically (e.g., by calling `Lyph.new()`),
+    * or by specifying `initialValues.class` (e.g., by calling `Entity.new({ class: 'Lyph' })`.
+    * @param {Object} [initialValues={}] - the initial values of (some of) the entity's fields
+    * @param {Object}  options
+    * @param {boolean} [options.isPlaceholder=false] - whether this new entity should be a placeholder
+    * @return {Entity} the new entity
+    */
 
 		}, {
 			key: 'new',
@@ -41627,23 +41799,71 @@ exports.default = function (env) {
 				var initialValues = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-				if (this.isRelationship) {
-					throw new Error((0, _utilities.humanMsg)(_templateObject, this.name));
+
+				/* Determine the class. */
+				var cls = void 0;
+				if (initialValues.class) {
+					cls = env.classes[initialValues.class];
+				} else {
+					cls = this;
+					initialValues = _extends({}, initialValues, {
+						class: this.name
+					});
 				}
-				return new this(initialValues, _extends({}, options, _defineProperty({}, $$allowInvokingConstructor, true)));
+
+				/* Make sure we're not instantiating a relationship. */
+				// Note that while relationships are still classes (for accessing
+				// information about them statically), they were downgraded from
+				// the status of first-class citizens. They should not be instantiated.
+				// Perhaps the code-base can be simplified by not having them be classes
+				// anymore. Any such change would mostly happen in `Module.js`.
+
+
+				/* Instantiate the class. */
+				return new cls(initialValues, _extends({}, options, _defineProperty({}, $$allowInvokingConstructor, true)));
 			}
-		}, {
-			key: 'environment',
-			get: function get() {
-				return env;
-			}
+
+			/**
+    * Whether this entity is considered a placeholder, i.e., an entity that has not (yet) loaded. Once it is `false`, it stays `false`.
+    * @type {boolean}
+    */
+
+
+			/**
+    * Whether the fields of this entity have been initialized. Once it is `true`, it stays `true`.
+    * @type {boolean}
+    */
+
+
+			/**
+    * Whether this entity has been deleted. Note that the entity can be 'undeleted'.
+    * @type {boolean}
+    */
+
+
+			/**
+    * Whether any `ValueTracker` based signals will still be emitted from this entity. Once it is set to `true`, it stays `true`.
+    * This should be done before discarding the entity for good.
+    * @type {boolean}
+    */
+
 		}, {
 			key: 'Entity',
+
+
+			/** access to the `Entity` base class (to be used from any of its subclasses) */
 			get: function get() {
 				return Entity;
 			}
 		}]);
 
+		/**
+   * The constructor is private. From the outside, call `Entity.new` instead.
+   * @private
+   * @param {Object}   initialValues
+   * @param {Object}   options
+   * @param {boolean} [options.isPlaceholder=false] - whether this new entity should be a placeholder
+   */
 		function Entity() {
 			var initialValues = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 			var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -41663,11 +41883,13 @@ exports.default = function (env) {
 
 			_initDefineProp(_this, 'silent', _descriptor4, _this);
 
-			(0, _misc.constraint)(options[$$allowInvokingConstructor], (0, _utilities.humanMsg)(_templateObject2, _this.constructor.name, _this.constructor.name, _this.constructor.name));
 			delete options[$$allowInvokingConstructor];
 
 			/* init placeholder property */
-			_this.pSubject('isPlaceholder').next(options.isPlaceholder);
+			var _options$isPlaceholde = options.isPlaceholder,
+			    isPlaceholder = _options$isPlaceholde === undefined ? false : _options$isPlaceholde;
+
+			_this.pSubject('isPlaceholder').next(isPlaceholder);
 
 			/* stop signals after this entity is deleted */
 			var valueTrackerOptions = {
@@ -41677,22 +41899,22 @@ exports.default = function (env) {
 			};
 			_this.setValueTrackerOptions(valueTrackerOptions);
 
-			/* set defaults for the core initial field values */
-			_lodashBound.defaults.call(initialValues, {
-				class: _this.constructor.name
-			});
-
 			/* initialize all fields in this entity */
-			_this.constructor.environment.Field.initializeEntity(_this, initialValues, valueTrackerOptions);
+			env.Field.initializeEntity(_this, initialValues, valueTrackerOptions);
 			return _this;
 		}
+
+		/**
+   * Turn this from a placeholder into a fully realized entity,
+   * and set fields to the given initial values.
+   * @param {Object} [initialValues={}] - initial fields values
+   */
+
 
 		_createClass(Entity, [{
 			key: 'loadIntoPlaceholder',
 			value: function loadIntoPlaceholder() {
 				var initialValues = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-				//assert(this.isPlaceholder); // TODO: fix ValueTracker, so that this.isPlaceholder is available
 				var _iteratorNormalCompletion3 = true;
 				var _didIteratorError3 = false;
 				var _iteratorError3 = undefined;
@@ -41725,14 +41947,31 @@ exports.default = function (env) {
 
 				this.pSubject('isPlaceholder').next(false);
 			}
+
+			/**
+    * Convey some useful information when converting this entity to a string.
+    * @return {string}
+    */
+
 		}, {
 			key: 'p',
+
+
+			/**
+    * Augmented version of `ValueTracker#p` that also understands entity field-names.
+    * @example
+    *     let th1 = lyph.fields.thickness.p('value');
+    *     let th2 = lyph.p('thickness');
+    *     assert(th1 === th2);
+    * @param args
+    * @return {BehaviorSubject|Observable}
+    */
 			value: function p() {
 				for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 					args[_key] = arguments[_key];
 				}
 
-				if (!!this.fields && !!this.fields[args[0]]) {
+				if (!!this.fields && typeof args[0] === 'string' && !!this.fields[args[0]]) {
 					return this.fields[args[0]].p('value');
 				} else if (this.hasProperty.apply(this, args)) {
 					var _get2;
@@ -41743,16 +41982,46 @@ exports.default = function (env) {
 
 			//// Deleting
 
+			/**
+    * Delete this entity.
+    * @see Entity#undelete
+    * @example
+    *     assert( !lyph.deleted );
+    *     lyph.delete();
+    *     assert(  lyph.deleted );
+    */
+
 		}, {
 			key: 'delete',
 			value: function _delete() {
 				this.pSubject('deleted').next(true);
 			}
+
+			/**
+    * Delete this entity.
+    * @see Entity#delete
+    * @example
+    *     assert(  lyph.deleted );
+    *     lyph.undelete();
+    *     assert( !lyph.deleted );
+    */
+
 		}, {
 			key: 'undelete',
 			value: function undelete() {
 				this.pSubject('deleted').next(false);
 			}
+
+			/**
+    * Silence this entity, so `ValueTracker` based events are no longer broadcast from this entity.
+    * Once this is done on an entity, it cannot be undone. It should be done before discarding
+    * an entity for good.
+    * @example
+    *     assert( !lyph.deleted );
+    *     lyph.delete();
+    *     assert(  lyph.deleted );
+    */
+
 		}, {
 			key: 'silence',
 			value: function silence() {
@@ -41761,12 +42030,27 @@ exports.default = function (env) {
 
 			//// Transforming to/from JSON
 
+			/** @private */
+
 		}, {
 			key: 'toJSON',
+
+
+			/**
+    * Get a JSON (plain data) object of this entity and the values of all its fields.
+    * @param {Object}   options
+    * @param {boolean} [options.flattenFieldValues=false] - whether `Object` or `Array` property values should be flattened to a string in the output (for Neo4j, for example, which does not accept nested objects)
+    * @param {Class}   [options.getAddress] - a function that returns an address corresponding to a given entity; defaults to `{ class, id }`
+    * @return {Object} the JSON representation of this entity
+    */
 			value: function toJSON() {
 				var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 				var result = {};
+				var _env$classes = env.classes,
+				    RelField = _env$classes.RelField,
+				    Rel$Field = _env$classes.Rel$Field,
+				    Rel1Field = _env$classes.Rel1Field;
 				var _iteratorNormalCompletion4 = true;
 				var _didIteratorError4 = false;
 				var _iteratorError4 = undefined;
@@ -41779,8 +42063,25 @@ exports.default = function (env) {
 						    key = _step4$value[0],
 						    field = _step4$value[1];
 
-						result[key] = field.value;
+						if (_instanceof(field, RelField)) {
+							if (key[0] !== '<' && key[0] !== '-') {
+								continue;
+							} // no shortcuts
+							if (env.classes[key.slice(3)].abstract) {
+								continue;
+							} // no abstract relationship fields
+						}
+						var valueJSON = field.constructor.valueToJSON(field.get(), options);
+						if (_instanceof(field, Rel$Field) && valueJSON.length === 0) {
+							continue;
+						}
+						if (_instanceof(field, Rel1Field) && valueJSON.length === null) {
+							continue;
+						}
+						result[key] = valueJSON;
 					}
+					// TODO: we can still remove more redundant info from the result here,
+					//     : e.g., entities in result['-->HasLayer'] don't also have to appear in result['-->HasPart']
 				} catch (err) {
 					_didIteratorError4 = true;
 					_iteratorError4 = err;
@@ -41796,21 +42097,36 @@ exports.default = function (env) {
 					}
 				}
 
-				return this.constructor.objectToJSON(result, _extends({}, options, { sourceEntity: this }));
+				return result;
 			}
 
 			//// Setting / getting of fields
+
+			/**
+    * Synchronously access a field value.
+    * @param {string} key - the key of the field
+    */
 
 		}, {
 			key: 'get',
 			value: function get(key) {
 				return this.fields[key].get();
 			}
+
+			/**
+    * Synchronously set a field to a new value.
+    * @param {string}   key      - the key of the field
+    * @param {*}        newValue - the new value for this field
+    * @param {Object}  [options={}]
+    * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only
+    * @param {boolean} [options.ignoreValidation=false] - don't validate the new value
+    */
+
 		}, {
 			key: 'set',
-			value: function set(key, val) {
+			value: function set(key, newValue) {
 				var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-				return this.fields[key].set(val, options);
+				return this.fields[key].set(newValue, options);
 			}
 		}, {
 			key: Symbol.toStringTag,
@@ -41826,57 +42142,6 @@ exports.default = function (env) {
 				// TODO: rather than sourceEntity, accept an entity CLASS,
 				//     : which should have a good description of the fields
 				//     : This is issue open-physiology/open-physiology-model#10
-
-				var result = {};
-				var _iteratorNormalCompletion5 = true;
-				var _didIteratorError5 = false;
-				var _iteratorError5 = undefined;
-
-				try {
-					for (var _iterator5 = _lodashBound.entries.call(obj)[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-						var _step5$value = _slicedToArray(_step5.value, 2),
-						    key = _step5$value[0],
-						    value = _step5$value[1];
-
-						var field = sourceEntity.fields[key];
-						var opts = void 0;
-						switch (field.constructor.name) {
-							case 'Rel$Field':case 'Rel1Field':
-								{
-									opts = _extends({}, options, { requireClass: key.substring(3) });
-								}break;
-							case 'SideField':case 'PropertyField':
-								{
-									opts = options;
-								}break;
-							default:
-								continue; // Don't put shortcut fields in JSON
-						}
-						var valueJSON = field.constructor.valueToJSON(value, opts);
-						if (field.constructor.name === 'Rel$Field' && valueJSON.length === 0) {
-							continue;
-						}
-						if (field.constructor.name === 'Rel1Field' && valueJSON === null) {
-							continue;
-						}
-						result[key] = valueJSON;
-					}
-				} catch (err) {
-					_didIteratorError5 = true;
-					_iteratorError5 = err;
-				} finally {
-					try {
-						if (!_iteratorNormalCompletion5 && _iterator5.return) {
-							_iterator5.return();
-						}
-					} finally {
-						if (_didIteratorError5) {
-							throw _iteratorError5;
-						}
-					}
-				}
-
-				return result;
 			}
 		}]);
 
@@ -41896,7 +42161,7 @@ exports.default = function (env) {
 	})), _class));
 
 
-	return env.Entity || Entity;
+	return env.classes['Entity'] || Entity;
 };
 
 /***/ }),
@@ -41920,11 +42185,11 @@ var _templateObject = _taggedTemplateLiteral(['\n\t\t\t\t    No value given for 
 
 var _lodashBound = __webpack_require__(47);
 
-var _boundNativeMethods = __webpack_require__(70);
+var _boundNativeMethods = __webpack_require__(69);
 
 var _utilities = __webpack_require__(32);
 
-var _misc = __webpack_require__(69);
+var _misc = __webpack_require__(79);
 
 var _Field2 = __webpack_require__(169);
 
@@ -41971,16 +42236,26 @@ exports.default = function (env) {
 			// static //
 			////////////
 
-			value: function initClass(_ref) {
+			/**
+    * Equip an `Entity` subclass `cls` with a particular property field.
+    * @param {Object}   options
+    * @param {Class}    options.cls - a subclass of `Entity` still under construction
+    * @param {string}   options.key - the key for the field to put in
+    * @param {Object}  [options.desc]
+    * @param {boolean} [options.desc.readonly] - whether this field should be read-only
+    */
+			value: function initClass(options) {
 				var _context;
 
-				var cls = _ref.cls,
-				    key = _ref.key,
-				    readonly = _ref.desc.readonly;
+				var cls = options.cls,
+				    key = options.key,
+				    desc = options.desc;
 
 				if (cls.prototype.hasOwnProperty(key)) {
 					return;
 				}
+				var readonly = desc.readonly;
+
 				(_context = cls.prototype, _boundNativeMethods.defineProperty).call(_context, key, _extends({
 					get: function get() {
 						return this.fields[key].get();
@@ -42002,10 +42277,10 @@ exports.default = function (env) {
 			value: function value(cls) {
 				var _context2;
 
-				return (_context2 = cls.properties, _lodashBound.entries).call(_context2).map(function (_ref2) {
-					var _ref3 = _slicedToArray(_ref2, 2),
-					    key = _ref3[0],
-					    desc = _ref3[1];
+				return (_context2 = cls.properties, _lodashBound.entries).call(_context2).map(function (_ref) {
+					var _ref2 = _slicedToArray(_ref, 2),
+					    key = _ref2[0],
+					    desc = _ref2[1];
 
 					return {
 						key: key,
@@ -42017,6 +42292,19 @@ exports.default = function (env) {
 			//////////////
 			// instance //
 			//////////////
+
+			/**
+    * Create a new instance of this field on a specific entity.
+    * @protected
+    * @param {Object}    options
+    * @param {Entity}    options.owner                       - the entity on which to create this field
+    * @param {string}    options.key                         - the key on that entity corresponding to this field
+    * @param {Object}    options.desc                        - the descriptor for what kind of field this is
+    * @param {string}   [options.initialValue]               - the initial value for this field
+    * @param {Iterable} [options.aliases=[]]                 - other keys to which this field should answer
+    * @param {boolean}  [options.setValueThroughSignal=true] - whether signals sent to `field.p('value')` should be accepted
+    * @param {Object}   [options.valueTrackerOptions={}]     - the `ValueTracker` options to use for each field's observable properties
+    */
 
 		}]);
 
@@ -42047,8 +42335,25 @@ exports.default = function (env) {
 			return _this;
 		}
 
+		/**
+   * How to properly convert a value in this field to JSON (plain data).
+   * @param {*}        value                             - the value to convert to JSON
+   * @param {Object}  [options={}]
+   * @param {boolean} [options.flattenFieldValues=false] - whether `Object` or `Array` field values should be avoided in the output (for example, Neo4j does not accept nested objects)
+   * @returns {*} a plain-data value representing `value` that can go inside a JSON object
+   */
+
+
 		_createClass(PropertyField, [{
 			key: 'validate',
+
+
+			/**
+    * Validate a certain value as appropriate for this field.
+    * Throws an exception if the value is invalid. Otherwise does nothing.
+    * @param {*}     val    - the value to test
+    * @param {Array} stages - the validation stages to validate for (e.g., 'commit')
+    */
 			value: function validate(val) {
 				var stages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
@@ -42059,26 +42364,34 @@ exports.default = function (env) {
 
 				// TODO: CHECK CONSTRAINT: given property value conforms to JSON schema
 				// TODO: CHECK ADDITIONAL (PROPERTY-SPECIFIC) CONSTRAINTS:
-				//     : e.g., if this is a template, does it conform to its corresponding type?
+				//     : e.g., if this is a template, does it conform to the specs of its corresponding type?
 			}
 		}], [{
 			key: 'valueToJSON',
 			value: function valueToJSON(value) {
-				var _ref4 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-				    _ref4$flattenFieldVal = _ref4.flattenFieldValues,
-				    flattenFieldValues = _ref4$flattenFieldVal === undefined ? false : _ref4$flattenFieldVal;
+				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+				var _options$flattenField = options.flattenFieldValues,
+				    flattenFieldValues = _options$flattenField === undefined ? false : _options$flattenField;
 
 				if (flattenFieldValues) {
 					value = JSON.stringify(value);
 				}
 				return value;
 			}
+
+			/**
+    * How to properly convert a JSON value to a value appropriate for this type of field.
+    * @param {*}        json                              - the JSON value to convert
+    * @param {Object}  [options={}]
+    * @param {boolean} [options.flattenFieldValues=false] - whether field values are strings that should be run through `JSON.parse`
+    */
+
 		}, {
 			key: 'jsonToValue',
 			value: function jsonToValue(json) {
-				var _ref5 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-				    _ref5$flattenFieldVal = _ref5.flattenFieldValues,
-				    flattenFieldValues = _ref5$flattenFieldVal === undefined ? false : _ref5$flattenFieldVal;
+				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+				var _options$flattenField2 = options.flattenFieldValues,
+				    flattenFieldValues = _options$flattenField2 === undefined ? false : _options$flattenField2;
 
 				if (flattenFieldValues) {
 					json = JSON.parse(value);
@@ -42108,8 +42421,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _templateObject = _taggedTemplateLiteral(['\n\t\t\t\tYou cannot set the fields \'', '\' and \'', '\'\n\t\t\t\tat the same time for a ', '.\n\t\t\t'], ['\n\t\t\t\tYou cannot set the fields \'', '\' and \'', '\'\n\t\t\t\tat the same time for a ', '.\n\t\t\t']),
@@ -42119,7 +42430,7 @@ var _templateObject = _taggedTemplateLiteral(['\n\t\t\t\tYou cannot set the fiel
 
 var _lodashBound = __webpack_require__(47);
 
-var _boundNativeMethods = __webpack_require__(70);
+var _boundNativeMethods = __webpack_require__(69);
 
 var _ObservableSet = __webpack_require__(712);
 
@@ -42127,7 +42438,7 @@ var _ObservableSet2 = _interopRequireDefault(_ObservableSet);
 
 var _utilities = __webpack_require__(32);
 
-var _misc = __webpack_require__(69);
+var _misc = __webpack_require__(79);
 
 var _RelField2 = __webpack_require__(170);
 
@@ -42136,8 +42447,6 @@ var _RelField3 = _interopRequireDefault(_RelField2);
 var _symbols = __webpack_require__(123);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return _instanceof(left, right); } }
 
@@ -42153,16 +42462,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /** @wrapper */
 exports.default = function (env) {
+	var _class, _temp;
 
 	var RelField = (0, _RelField3.default)(env);
 
 	/**
-  * A field on an `Entity` representing the 'many-side'
+  * A field on an `Entity` representing the 'many'-side
   * of a many-to-many or many-to-one relationship.
-  * Therefore,
+  * Therefore, its value is always a `Set`.
   */
-
-	var Rel$Field = function (_RelField) {
+	var Rel$Field = (_temp = _class = function (_RelField) {
 		_inherits(Rel$Field, _RelField);
 
 		_createClass(Rel$Field, null, [{
@@ -42177,11 +42486,20 @@ exports.default = function (env) {
 			// static //
 			////////////
 
-			value: function initClass(_ref) {
-				var cls = _ref.cls,
-				    key = _ref.key,
-				    aliases = _ref.aliases,
-				    readonly = _ref.desc.readonly;
+			/**
+    * Equip an `Entity` subclass `cls` with a particular property field.
+    * @param {Object}   options
+    * @param {Class}    options.cls     - a subclass of `Entity` still under construction
+    * @param {string}   options.key     - the key for the field to put in
+    * @param {string}   options.aliases - additional keys for this field
+    * @param {Object}  [options.desc]
+    * @param {boolean} [options.desc.readonly] - whether this field should be read-only
+    */
+			value: function initClass(options) {
+				var cls = options.cls,
+				    key = options.key,
+				    aliases = options.aliases,
+				    readonly = options.desc.readonly;
 
 				if (cls.prototype.hasOwnProperty(key)) {
 					return;
@@ -42222,15 +42540,15 @@ exports.default = function (env) {
 				if (!cls.isResource) {
 					return [];
 				}
-				return (_context2 = cls.relationships, _lodashBound.entries).call(_context2).filter(function (_ref2) {
-					var _ref3 = _slicedToArray(_ref2, 2),
-					    rel = _ref3[1];
+				return (_context2 = cls.relationships, _lodashBound.entries).call(_context2).filter(function (_ref) {
+					var _ref2 = _slicedToArray(_ref, 2),
+					    rel = _ref2[1];
 
 					return rel.cardinality.max > 1;
-				}).map(function (_ref4) {
-					var _ref5 = _slicedToArray(_ref4, 2),
-					    key = _ref5[0],
-					    desc = _ref5[1];
+				}).map(function (_ref3) {
+					var _ref4 = _slicedToArray(_ref3, 2),
+					    key = _ref4[0],
+					    desc = _ref4[1];
 
 					return {
 						key: key,
@@ -42239,12 +42557,33 @@ exports.default = function (env) {
 					};
 				});
 			}
+
+			/**
+    * The function used for testing the values of this field for set-equality.
+    * @param a
+    * @param b
+    * @returns {boolean}
+    */
+
 		}]);
 
 		//////////////
 		// instance //
 		//////////////
 
+		/**
+   * Create a new instance of this field on a specific entity.
+   * @protected
+   * @param {Object}    options
+   * @param {Entity}    options.owner                       - the entity on which to create this field
+   * @param {string}    options.key                         - the key on that entity corresponding to this field
+   * @param {Object}    options.desc                        - the descriptor for what kind of field this is
+   * @param {string}   [options.initialValue]               - the initial value for this field
+   * @param {Iterable} [options.aliases=[]]                 - other keys to which this field should answer
+   * @param {Object}   [options.aliasInitialValues=[]]      - other keys to which this field should answer
+   * @param {boolean}  [options.setValueThroughSignal=true] - whether signals sent to `field.p('value')` should be accepted
+   * @param {Object}   [options.valueTrackerOptions={}]     - the `ValueTracker` options to use for each field's observable properties
+   */
 		function Rel$Field(options) {
 			_classCallCheck(this, Rel$Field);
 
@@ -42253,14 +42592,14 @@ exports.default = function (env) {
 			var owner = options.owner,
 			    desc = options.desc,
 			    initialValue = options.initialValue,
-			    related = options.related;
+			    aliasInitialValues = options.aliasInitialValues;
 
 			/* initialize an empty observable set */
 
 			_boundNativeMethods.defineProperty.call(_this, _symbols.$$value, { value: new _ObservableSet2.default() });
 
 			/* set the initial value */
-			var initialScValue = _lodashBound.get.call(related, [desc.shortcutKey, 'initialValue']);
+			var initialScValue = aliasInitialValues[desc.shortcutKey];
 			(0, _misc.constraint)(!initialValue || !initialScValue, (0, _utilities.humanMsg)(_templateObject, desc.keyInResource, desc.shortcutKey, _this.constructor.singular));
 			_this[_symbols.$$initSet]([initialValue && initialValue[Symbol.iterator], function () {
 				return _utilities.callOrReturn.call(initialValue, owner);
@@ -42308,10 +42647,10 @@ exports.default = function (env) {
 							subField.get().e('delete').subscribe(_this.get().e('delete'));
 						} else {
 							// Rel1Field
-							subField.p('value').startWith(null).pairwise().subscribe(function (_ref6) {
-								var _ref7 = _slicedToArray(_ref6, 2),
-								    prev = _ref7[0],
-								    curr = _ref7[1];
+							subField.p('value').startWith(null).pairwise().subscribe(function (_ref5) {
+								var _ref6 = _slicedToArray(_ref5, 2),
+								    prev = _ref6[0],
+								    curr = _ref6[1];
 
 								if (prev) {
 									_this.get().delete(prev);
@@ -42346,19 +42685,34 @@ exports.default = function (env) {
 			return _this;
 		}
 
+		/**
+   * @return {Set} A new `Set` data-structure populated with
+   *               the entities in this field.
+   */
+
+
 		_createClass(Rel$Field, [{
 			key: 'getAll',
 			value: function getAll() {
 				return new Set(this.get());
 			}
+
+			/**
+    * Set this field to a new collection of related entities.
+    * @param {Iterable} newValue - the new collection of entities to be put in this field
+    * @param {Object}  [options={}]
+    * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only
+    * @param {boolean} [options.ignoreValidation=false] - don't validate the new value
+    */
+
 		}, {
 			key: 'set',
 			value: function set(newValue) {
-				var _ref8 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-				    _ref8$ignoreReadonly = _ref8.ignoreReadonly,
-				    ignoreReadonly = _ref8$ignoreReadonly === undefined ? false : _ref8$ignoreReadonly,
-				    _ref8$ignoreValidatio = _ref8.ignoreValidation,
-				    ignoreValidation = _ref8$ignoreValidatio === undefined ? false : _ref8$ignoreValidatio;
+				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+				var _options$ignoreReadon = options.ignoreReadonly,
+				    ignoreReadonly = _options$ignoreReadon === undefined ? false : _options$ignoreReadon,
+				    _options$ignoreValida = options.ignoreValidation,
+				    ignoreValidation = _options$ignoreValida === undefined ? false : _options$ignoreValida;
 
 				(0, _misc.constraint)(ignoreReadonly || !this[_symbols.$$desc].readonly);
 				newValue = new Set(newValue);
@@ -42367,14 +42721,23 @@ exports.default = function (env) {
 				}
 				this[_symbols.$$value].overwrite(newValue);
 			}
+
+			/**
+    * Add an additional entity to this field.
+    * @param {Entity}   newSubValue - the new entity to be added into this field
+    * @param {Object}  [options={}]
+    * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only
+    * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality or value
+    */
+
 		}, {
 			key: 'add',
 			value: function add(newSubValue) {
-				var _ref9 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-				    _ref9$ignoreReadonly = _ref9.ignoreReadonly,
-				    ignoreReadonly = _ref9$ignoreReadonly === undefined ? false : _ref9$ignoreReadonly,
-				    _ref9$ignoreValidatio = _ref9.ignoreValidation,
-				    ignoreValidation = _ref9$ignoreValidatio === undefined ? false : _ref9$ignoreValidatio;
+				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+				var _options$ignoreReadon2 = options.ignoreReadonly,
+				    ignoreReadonly = _options$ignoreReadon2 === undefined ? false : _options$ignoreReadon2,
+				    _options$ignoreValida2 = options.ignoreValidation,
+				    ignoreValidation = _options$ignoreValida2 === undefined ? false : _options$ignoreValida2;
 
 				(0, _misc.constraint)(ignoreReadonly || !this[_symbols.$$desc].readonly);
 				if (!ignoreValidation) {
@@ -42385,35 +42748,52 @@ exports.default = function (env) {
 				}
 				this.get().add(newSubValue);
 			}
+
+			/**
+    * Remove a specific entity from this field.
+    * @param {Entity}   subValue - the entity to be removed from this field
+    * @param {Object}  [options={}]
+    * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only
+    * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality
+    */
+
 		}, {
 			key: 'delete',
 			value: function _delete(subValue) {
-				var _ref10 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-				    _ref10$ignoreReadonly = _ref10.ignoreReadonly,
-				    ignoreReadonly = _ref10$ignoreReadonly === undefined ? false : _ref10$ignoreReadonly,
-				    _ref10$ignoreValidati = _ref10.ignoreValidation,
-				    ignoreValidation = _ref10$ignoreValidati === undefined ? false : _ref10$ignoreValidati;
+				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+				var _options$ignoreReadon3 = options.ignoreReadonly,
+				    ignoreReadonly = _options$ignoreReadon3 === undefined ? false : _options$ignoreReadon3,
+				    _options$ignoreValida3 = options.ignoreValidation,
+				    ignoreValidation = _options$ignoreValida3 === undefined ? false : _options$ignoreValida3;
 
 				(0, _misc.constraint)(ignoreReadonly || !this[_symbols.$$desc].readonly);
 				if (!ignoreValidation) {
-					var _context4;
+					if (this[_symbols.$$value].has(subValue)) {
+						var _context4;
 
-					this.validateCardinality((_context4 = this[_symbols.$$value], _lodashBound.size).call(_context4) - 1, ['set']);
+						this.validateCardinality((_context4 = this[_symbols.$$value], _lodashBound.size).call(_context4) - 1, ['set']);
+					}
 				}
 				this.get().delete(subValue);
 			}
-		}, {
-			key: _symbols.$$destruct,
-			value: function value() {
-				this.set(new Set(), {
-					ignoreReadonly: true,
-					ignoreValidation: true,
-					createEditCommand: false
-				});
-				_get(Rel$Field.prototype.__proto__ || Object.getPrototypeOf(Rel$Field.prototype), _symbols.$$destruct, this).call(this);
-			}
+
+			/**
+    * How to properly convert a value in this field to JSON (plain data).
+    * @param {*}       value               - the value to convert to JSON
+    * @param {Object} [options={}]
+    * @param {Class}  [options.getAddress] - a function that returns an address corresponding to a given entity
+    */
+
 		}, {
 			key: 'validate',
+
+
+			/**
+    * Validate a certain value as appropriate for this field.
+    * Throws an exception if the value is invalid. Otherwise does nothing.
+    * @param {*}     val    - the value to test
+    * @param {Array} stages - the validation stages to validate for (e.g., 'commit')
+    */
 			value: function validate(val) {
 				var stages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
@@ -42421,6 +42801,14 @@ exports.default = function (env) {
 				this.validateCardinality(_lodashBound.size.call(val), stages);
 				val.forEach(this.validateElement.bind(this), stages);
 			}
+
+			/**
+    * Validate a certain cardinality as appropriate for this field.
+    * Throws an exception if the cardinality is invalid. Otherwise does nothing.
+    * @param {number} cardinality - the cardinality to test
+    * @param {Array}  stages      - the validation stages to validate for (e.g., 'commit')
+    */
+
 		}, {
 			key: 'validateCardinality',
 			value: function validateCardinality(cardinality) {
@@ -42434,33 +42822,45 @@ exports.default = function (env) {
 					(0, _misc.constraint)(_lodashBound.inRange.call(cardinality, min, max + 1), (0, _utilities.humanMsg)(_templateObject3, this[_symbols.$$owner].constructor.name, this[_symbols.$$key], min, max));
 				}
 			}
+
+			/**
+    * Validate a specific entity as appropriate to be included in this field.
+    * Throws an exception if the entity is invalid. Otherwise does nothing.
+    * @param {Entity} entity     - the entity to test
+    * @param {Array} [stages=[]] - the validation stages to validate for (e.g., 'commit')
+    */
+
 		}, {
 			key: 'validateElement',
-			value: function validateElement(element) {
+			value: function validateElement(entity) {
 				var stages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
 				/* the value must be of the proper domain */
-				if (!this[_symbols.$$desc].codomain.resourceClass.hasInstance(element)) {
-					throw new Error((0, _utilities.humanMsg)(_templateObject4, element, this[_symbols.$$owner].constructor.name, this[_symbols.$$key]));
+				if (!this[_symbols.$$desc].codomain.resourceClass.hasInstance(entity)) {
+					throw new Error((0, _utilities.humanMsg)(_templateObject4, entity, this[_symbols.$$owner].constructor.name, this[_symbols.$$key]));
 				}
 			}
 		}], [{
 			key: 'valueToJSON',
 			value: function valueToJSON(value) {
-				var _ref11 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+				var _options$getAddress = options.getAddress,
+				    getAddress = _options$getAddress === undefined ? function (e) {
+					return _lodashBound.pick.call(e, 'class', 'id');
+				} : _options$getAddress;
 
-				var requireClass = _ref11.requireClass,
-				    options = _objectWithoutProperties(_ref11, ['requireClass']);
-
-				return [].concat(_toConsumableArray(value)).map(function (e) {
-					if (requireClass && requireClass !== e.class) {
-						return undefined;
-					}
-					return env.Entity.normalizeAddress(e, options);
-				}).filter(function (v) {
+				return [].concat(_toConsumableArray(value)).map(getAddress).filter(function (v) {
 					return !!v;
 				});
 			}
+
+			/**
+    * How to properly convert a JSON value to a value appropriate for this type of field.
+    * @param {*}         json               - the JSON value to convert
+    * @param {Object}   [options={}]
+    * @param {Function} [options.getEntity] - a function that returns an entity corresponding to a given address
+    */
+
 		}, {
 			key: 'jsonToValue',
 			value: function jsonToValue(json) {
@@ -42477,9 +42877,9 @@ exports.default = function (env) {
 						var thing = _step2.value;
 
 						var entity = void 0;
-						if (_instanceof(thing, env.Entity)) {
+						if (_instanceof(thing, env.classes.Entity)) {
 							entity = thing;
-						} else if (isFunction.call(getEntity)) {
+						} else if (_lodashBound.isFunction.call(getEntity)) {
 							entity = getEntity(thing, options);
 						}
 						result.add(entity);
@@ -42504,7 +42904,8 @@ exports.default = function (env) {
 		}]);
 
 		return Rel$Field;
-	}(RelField);
+	}(RelField), _class.isEqual = _misc.setEquals, _temp);
+
 
 	return env.registerFieldClass('Rel$Field', Rel$Field);
 };
@@ -42524,8 +42925,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _templateObject = _taggedTemplateLiteral(['\n\t\t\t\tYou cannot set the fields \'', '\' and \'', '\'\n\t\t\t\tat the same time for a ', '.\n\t\t\t'], ['\n\t\t\t\tYou cannot set the fields \'', '\' and \'', '\'\n\t\t\t\tat the same time for a ', '.\n\t\t\t']),
@@ -42534,11 +42933,11 @@ var _templateObject = _taggedTemplateLiteral(['\n\t\t\t\tYou cannot set the fiel
 
 var _lodashBound = __webpack_require__(47);
 
-var _boundNativeMethods = __webpack_require__(70);
+var _boundNativeMethods = __webpack_require__(69);
 
 var _utilities = __webpack_require__(32);
 
-var _misc = __webpack_require__(69);
+var _misc = __webpack_require__(79);
 
 var _RelField2 = __webpack_require__(170);
 
@@ -42549,8 +42948,6 @@ var _symbols = __webpack_require__(123);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return _instanceof(left, right); } }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -42568,7 +42965,9 @@ exports.default = function (env) {
 	var RelField = (0, _RelField3.default)(env);
 
 	/**
-  * 
+  * A field on an `Entity` representing the 'one'-side
+  * of a one-to-one or one-to-many relationship.
+  * Therefore, its value is always an `Entity` or `null`.
   */
 
 	var Rel1Field = function (_RelField) {
@@ -42586,11 +42985,20 @@ exports.default = function (env) {
 			// static //
 			////////////
 
-			value: function initClass(_ref) {
-				var cls = _ref.cls,
-				    key = _ref.key,
-				    aliases = _ref.aliases,
-				    readonly = _ref.desc.readonly;
+			/**
+    * Equip an `Entity` subclass `cls` with a particular property field.
+    * @param {Object}   options
+    * @param {Class}    options.cls     - a subclass of `Entity` still under construction
+    * @param {string}   options.key     - the key for the field to put in
+    * @param {string}   options.aliases - additional keys for this field
+    * @param {Object}  [options.desc]
+    * @param {boolean} [options.desc.readonly] - whether this field should be read-only
+    */
+			value: function initClass(options) {
+				var cls = options.cls,
+				    key = options.key,
+				    aliases = options.aliases,
+				    readonly = options.desc.readonly;
 
 				if (cls.prototype.hasOwnProperty(key)) {
 					return;
@@ -42631,15 +43039,15 @@ exports.default = function (env) {
 				if (!cls.isResource) {
 					return [];
 				}
-				return (_context2 = cls.relationships, _lodashBound.entries).call(_context2).filter(function (_ref2) {
-					var _ref3 = _slicedToArray(_ref2, 2),
-					    desc = _ref3[1];
+				return (_context2 = cls.relationships, _lodashBound.entries).call(_context2).filter(function (_ref) {
+					var _ref2 = _slicedToArray(_ref, 2),
+					    desc = _ref2[1];
 
 					return desc.cardinality.max === 1;
-				}).map(function (_ref4) {
-					var _ref5 = _slicedToArray(_ref4, 2),
-					    key = _ref5[0],
-					    desc = _ref5[1];
+				}).map(function (_ref3) {
+					var _ref4 = _slicedToArray(_ref3, 2),
+					    key = _ref4[0],
+					    desc = _ref4[1];
 
 					return {
 						key: key,
@@ -42653,6 +43061,20 @@ exports.default = function (env) {
 			// instance //
 			//////////////
 
+			/**
+    * Create a new instance of this field on a specific entity.
+    * @protected
+    * @param {Object}    options
+    * @param {Entity}    options.owner                       - the entity on which to create this field
+    * @param {string}    options.key                         - the key on that entity corresponding to this field
+    * @param {Object}    options.desc                        - the descriptor for what kind of field this is
+    * @param {string}   [options.initialValue]               - the initial value for this field
+    * @param {Iterable} [options.aliases=[]]                 - other keys to which this field should answer
+    * @param {Object}   [options.aliasInitialValues=[]]      - other keys to which this field should answer
+    * @param {boolean}  [options.setValueThroughSignal=true] - whether signals sent to `field.p('value')` should be accepted
+    * @param {Object}   [options.valueTrackerOptions={}]     - the `ValueTracker` options to use for each field's observable properties
+    */
+
 		}]);
 
 		function Rel1Field(options) {
@@ -42664,11 +43086,11 @@ exports.default = function (env) {
 			    key = options.key,
 			    desc = options.desc,
 			    initialValue = options.initialValue,
-			    related = options.related;
+			    aliasInitialValues = options.aliasInitialValues;
 
 			/* set the initial value */
 
-			var initialShortcutValue = _lodashBound.get.call(related, [desc.shortcutKey, 'initialValue']);
+			var initialShortcutValue = aliasInitialValues[desc.shortcutKey];
 			(0, _misc.constraint)(!initialValue || !initialShortcutValue, (0, _utilities.humanMsg)(_templateObject, key, desc.shortcutKey, _this.constructor.singular));
 			_this[_symbols.$$initSet]([!_lodashBound.isUndefined.call(initialValue), function () {
 				return _utilities.callOrReturn.call(initialValue, owner);
@@ -42683,10 +43105,10 @@ exports.default = function (env) {
 			}).take(1).subscribe(function () {
 
 				/* synchronize with the other side */
-				_this.p('value').startWith(null).distinctUntilChanged().pairwise().subscribe(function (_ref6) {
-					var _ref7 = _slicedToArray(_ref6, 2),
-					    prev = _ref7[0],
-					    curr = _ref7[1];
+				_this.p('value').startWith(null).distinctUntilChanged().pairwise().subscribe(function (_ref5) {
+					var _ref6 = _slicedToArray(_ref5, 2),
+					    prev = _ref6[0],
+					    curr = _ref6[1];
 
 					if (prev) {
 						prev.fields[desc.codomain.keyInResource].delete(owner);
@@ -42730,26 +43152,41 @@ exports.default = function (env) {
 			return _this;
 		}
 
+		/**
+   * @return {Set} A new `Set` data-structure populated with
+   *               the entity in this field, or empty.
+   */
+
+
 		_createClass(Rel1Field, [{
-			key: _symbols.$$destruct,
-			value: function value() {
-				this.set(null, {
-					ignoreReadonly: true,
-					ignoreValidation: true
-				});
-				_get(Rel1Field.prototype.__proto__ || Object.getPrototypeOf(Rel1Field.prototype), _symbols.$$destruct, this).call(this);
-			}
-		}, {
 			key: 'getAll',
 			value: function getAll() {
 				var val = this.get();
 				return new Set(val === null ? [] : [val]);
 			}
+
+			/**
+    * Set this field to a new entity, removing the previous one.
+    * @param {Entity}   newValue - the new entity to be put in this field
+    * @param {Object}  [options={}]
+    * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only
+    * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality or value
+    */
+
 		}, {
 			key: 'add',
 			value: function add(newValue, options) {
 				this.set(newValue, options);
 			}
+
+			/**
+    * Set this field to `null` if the given entity corresponds to the entity currently in this field.
+    * @param {Entity}   oldValue - the entity to be removed from this field
+    * @param {Object}  [options={}]
+    * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only
+    * @param {boolean} [options.ignoreValidation=false] - don't validate the new cardinality
+    */
+
 		}, {
 			key: 'delete',
 			value: function _delete(oldValue, options) {
@@ -42757,8 +43194,24 @@ exports.default = function (env) {
 					this.set(null, options);
 				}
 			}
+
+			/**
+    * How to properly convert a value in this field to JSON (plain data).
+    * @param {*}       value               - the value to convert to JSON
+    * @param {Object} [options={}]
+    * @param {Class}  [options.getAddress] - a function that returns an address corresponding to a given entity
+    */
+
 		}, {
 			key: 'validate',
+
+
+			/**
+    * Validate a certain value as appropriate for this field.
+    * Throws an exception if the value is invalid. Otherwise does nothing.
+    * @param {*}      val        - the value to test
+    * @param {Array} [stages=[]] - the validation stages to validate for (e.g., 'commit')
+    */
 			value: function validate(val) {
 				var stages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
@@ -42775,27 +43228,44 @@ exports.default = function (env) {
 				var hasCompatibleType = expectedResourceClass.hasInstance(val);
 				(0, _misc.constraint)(notGiven || hasCompatibleType, (0, _utilities.humanMsg)(_templateObject3, val, this[_symbols.$$owner].constructor.name, this[_symbols.$$key]));
 			}
+
+			/**
+    * Validate a certain value as appropriate for this field.
+    * Throws an exception if the value is invalid. Otherwise does nothing.
+    * @param {Entity}  element    - the value to test
+    * @param {Array}  [stages=[]] - the validation stages to validate for (e.g., 'commit')
+    */
+
 		}, {
 			key: 'validateElement',
-			value: function validateElement(element, options) {
-				return this.validate(element, options);
+			value: function validateElement(element) {
+				var stages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+				return this.validate(element, stages);
 			}
 		}], [{
 			key: 'valueToJSON',
 			value: function valueToJSON(value) {
-				var _ref8 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-				var requireClass = _ref8.requireClass,
-				    options = _objectWithoutProperties(_ref8, ['requireClass']);
+				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 				if (!value) {
-					return value;
+					return null;
 				}
-				if (requireClass && requireClass !== value.class) {
-					return undefined;
-				}
-				return env.Entity.normalizeAddress(value, options);
+				var _options$getAddress = options.getAddress,
+				    getAddress = _options$getAddress === undefined ? function (e) {
+					return pick.call(e, 'class', 'id');
+				} : _options$getAddress;
+
+				return getAddress(value);
 			}
+
+			/**
+    * How to properly convert a JSON value to a value appropriate for this type of field.
+    * @param {*}         json               - the JSON value to convert
+    * @param {Object}   [options={}]
+    * @param {Function} [options.getEntity] - a function that returns an entity corresponding to a given address
+    */
+
 		}, {
 			key: 'jsonToValue',
 			value: function jsonToValue(json) {
@@ -42806,7 +43276,7 @@ exports.default = function (env) {
 				}
 				var getEntity = options.getEntity;
 
-				if (_instanceof(json, env.Entity)) {
+				if (_instanceof(json, env.classes.Entity)) {
 					return json;
 				} else if (_lodashBound.isFunction.call(getEntity)) {
 					return getEntity(json);
@@ -42886,7 +43356,7 @@ exports.BehaviorSubject = exports.Subject = exports.Observable = undefined;
 
 var _utilities = __webpack_require__(32);
 
-var Rx = _utilities.global.Rx;
+/** @private */var Rx = _utilities.global.Rx;
 /** @private */exports.default = Rx;
 /** @private */
 var Observable = exports.Observable = Rx.Observable;
@@ -42912,7 +43382,7 @@ var _resources = __webpack_require__(56);
 
 var _resources2 = _interopRequireDefault(_resources);
 
-var _typed = __webpack_require__(79);
+var _typed = __webpack_require__(78);
 
 var _typed2 = _interopRequireDefault(_typed);
 
@@ -42945,6 +43415,7 @@ exports.default = _TypedModule2.default.create('canonicalTrees', [_resources2.de
 		singular: "canonical tree",
 
 		icon: __webpack_require__(686)
+
 	}); /////////////////////////////////////////////////////////////////////////
 
 	var CanonicalTreeBranch = M.TYPED_RESOURCE({ //////////////////////////////
@@ -42957,6 +43428,7 @@ exports.default = _TypedModule2.default.create('canonicalTrees', [_resources2.de
 		plural: "canonical tree branches",
 
 		icon: __webpack_require__(1380)
+
 	}); /////////////////////////////////////////////////////////////////////////
 
 	var HasBranch = M.RELATIONSHIP({
@@ -43042,7 +43514,6 @@ exports.default = _Module2.default.create('research', [_resources2.default, _mea
 		singular: "correlation",
 
 		icon: __webpack_require__(1384),
-		// icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAB3RJTUUH4QQDEQ0f07vRVgAAA+BJREFUWMPtll1sFFUUx393dvthmRpbpTbV+FFnaaIGCdFqkWqA3SYlKgZM0AC2U4M12BB88I3EhMTomzEWkkbsbPWFEGiDoQ24tTW1EQ2J+PWA7NKqRKgobSrTLm67c3zYr+nuVrD1yfQ83bn3nPv/33vO/Z+BJVuy/6s5213j5vn9vP8paBNoXYmxKmCjmDwIxIHvgFC+GLVYUNkB6qPk2KQO4VVgWx7XOPCKCnJwDtEFA7eBagcxuR1oQ9gFlN9A6PsqyMupD+3fgJav8LvP45cWvkYYQ9ibBe6g6EDjKRSbUBx2re2UZnYsKAW6L7AcobXUM/v0ipKp2vKCGI1lV9hZdSHlEgL2K4tjqZqAxHU7JluUcCTpN6WC6P9IoMQIMB1J1I1u+F8E2oBHcgpPFMs8cSoLY5u//2G4xzFBs+ZJWzN9QCOACKu1Ls7MmwIN6nUjcEg3/AJ0pcAdwI57mJUEd00JUUdj9Fpxt+5r2DgfuNMEKLrTV6/xQN4a0H2BBt3w/wEyBLLVvVZVFHPevDfCxOMDRNeH3rJniu5EqWOZI0pv2f1+L1Vbchl4sp694OQQ0A3/HkROAre6pmdBHbCjuvHjmqHuPXf8xC3eGSTOO0bJ5K92OPQsqCOpXWdi6nUuHs290U5A2J7hyrfpGrjZF8ARqQW+cknEMIq37XCoNx1k8hnCkwAqmIgtqd6AKG+ZR8XHk3Gn7EhojVsFtSCIyW6Ed5PTv6sgFekb+DMcAuhwEX7DjoTqFfRmHWQ0TaaFOseE6ZFPiZ4/OQHMJFfumqN0GpvF5AsXOCia5+jAMmOdDqxKzo3Ykf59AFfDGfWcfQ5Q9LhyaGkWSEt61wIB7HjBb/IaNWJyUEwcHI4i1KXDFPuURd+cXqDwrHSRPpy3aSSy/LGYXESoQqiRZs4DrZU16x8q9V5jW8UlWqsurGaCs3lEfwx4SbPocz9Vb5KVKOG66igmAGuBkeRUNQ6hS2sHMmqf22k+BNqVxek0gEUWWNz5xhX2AkBRdUMOgeLBRpTFaM945apf/irOUI1ngSuG0XheWShl0SSSAZ+3G+qG/zTwcPLzPTvSvztR5X6mR/pTGrE10e2kfjruYdPyyzxTfpnbCmPUlk4OVhTGjgMfKIvJVLO6nqlEEQZQyEpIvM3k0lmQDqXUFRE2AE0guT1WtFPR2cK9/Hx8YCFdVWUJkQl03kDcGLAftAN25JPxm4x1RCODLJpAksRjwCHg7jzunUC7HQmdASjxPcF0eGhRPzQ5v2Qezfvl5LkT9+hGwAc8ClIkSp2bCoc+B9DvC6R9Fwu+ZEu2ZAB/A+SFXu5DKZ4BAAAAAElFTkSuQmCC',
 
 		properties: {
 			'comment': { type: 'string' }
@@ -43075,6 +43546,7 @@ exports.default = _Module2.default.create('research', [_resources2.default, _mea
 		plural: "clinical indices",
 
 		icon: __webpack_require__(1382)
+
 	}); /////////////////////////////////////////////////////////////////////////
 
 
@@ -43117,6 +43589,7 @@ exports.default = _Module2.default.create('research', [_resources2.default, _mea
 		singular: "publication",
 
 		icon: __webpack_require__(1392)
+
 	}); /////////////////////////////////////////////////////////////////////////
 
 
@@ -43158,7 +43631,7 @@ var _rxjs = __webpack_require__(709);
 
 var _utilities = __webpack_require__(32);
 
-var _misc = __webpack_require__(69);
+var _misc = __webpack_require__(79);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -47169,7 +47642,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 748 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(75),
+var getNative = __webpack_require__(74),
     root = __webpack_require__(15);
 
 /* Built-in method references that are verified to be native. */
@@ -47220,7 +47693,7 @@ module.exports = Hash;
 /* 750 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(75),
+var getNative = __webpack_require__(74),
     root = __webpack_require__(15);
 
 /* Built-in method references that are verified to be native. */
@@ -47360,7 +47833,7 @@ module.exports = arrayReduceRight;
 /* 756 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseClamp = __webpack_require__(72),
+var baseClamp = __webpack_require__(71),
     copyArray = __webpack_require__(37),
     shuffleSelf = __webpack_require__(150);
 
@@ -47697,7 +48170,7 @@ module.exports = baseIndexOfWith;
 /* 770 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseForOwn = __webpack_require__(73);
+var baseForOwn = __webpack_require__(72);
 
 /**
  * The base implementation of `_.invert` and `_.invertBy` which inverts
@@ -47801,7 +48274,7 @@ var Stack = __webpack_require__(131),
     equalObjects = __webpack_require__(810),
     getTag = __webpack_require__(51),
     isArray = __webpack_require__(7),
-    isBuffer = __webpack_require__(77),
+    isBuffer = __webpack_require__(76),
     isTypedArray = __webpack_require__(97);
 
 /** Used to compose bitmasks for value comparisons. */
@@ -48069,7 +48542,7 @@ var assignMergeValue = __webpack_require__(557),
     isArguments = __webpack_require__(96),
     isArray = __webpack_require__(7),
     isArrayLikeObject = __webpack_require__(26),
-    isBuffer = __webpack_require__(77),
+    isBuffer = __webpack_require__(76),
     isFunction = __webpack_require__(52),
     isObject = __webpack_require__(12),
     isPlainObject = __webpack_require__(113),
@@ -48262,7 +48735,7 @@ module.exports = baseSample;
 /* 785 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseClamp = __webpack_require__(72),
+var baseClamp = __webpack_require__(71),
     shuffleSelf = __webpack_require__(150),
     values = __webpack_require__(98);
 
@@ -48565,7 +49038,7 @@ module.exports = cloneSet;
 /* 797 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(71);
+var Symbol = __webpack_require__(70);
 
 /** Used to convert symbols to primitives and strings. */
 var symbolProto = Symbol ? Symbol.prototype : undefined,
@@ -48749,7 +49222,7 @@ var apply = __webpack_require__(28),
     createHybrid = __webpack_require__(596),
     createRecurry = __webpack_require__(599),
     getHolder = __webpack_require__(92),
-    replaceHolders = __webpack_require__(76),
+    replaceHolders = __webpack_require__(75),
     root = __webpack_require__(15);
 
 /**
@@ -49003,7 +49476,7 @@ module.exports = deburrLetter;
 /* 809 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(71),
+var Symbol = __webpack_require__(70),
     Uint8Array = __webpack_require__(552),
     eq = __webpack_require__(46),
     equalArrays = __webpack_require__(603),
@@ -49271,7 +49744,7 @@ module.exports = escapeStringChar;
 /* 813 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(71);
+var Symbol = __webpack_require__(70);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -49671,7 +50144,7 @@ module.exports = insertWrapDetails;
 /* 825 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(71),
+var Symbol = __webpack_require__(70),
     isArguments = __webpack_require__(96),
     isArray = __webpack_require__(7);
 
@@ -50084,7 +50557,7 @@ module.exports = memoizeCapped;
 
 var composeArgs = __webpack_require__(588),
     composeArgsRight = __webpack_require__(589),
-    replaceHolders = __webpack_require__(76);
+    replaceHolders = __webpack_require__(75);
 
 /** Used as the internal argument placeholder. */
 var PLACEHOLDER = '__lodash_placeholder__';
@@ -51100,7 +51573,7 @@ module.exports = bindAll;
 var baseRest = __webpack_require__(4),
     createWrap = __webpack_require__(50),
     getHolder = __webpack_require__(92),
-    replaceHolders = __webpack_require__(76);
+    replaceHolders = __webpack_require__(75);
 
 /** Used to compose bitmasks for function metadata. */
 var WRAP_BIND_FLAG = 1,
@@ -51388,7 +51861,7 @@ module.exports = chunk;
 /* 877 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseClamp = __webpack_require__(72),
+var baseClamp = __webpack_require__(71),
     toNumber = __webpack_require__(66);
 
 /**
@@ -52592,7 +53065,7 @@ module.exports = __webpack_require__(636);
 /* 906 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseClamp = __webpack_require__(72),
+var baseClamp = __webpack_require__(71),
     baseToString = __webpack_require__(42),
     toInteger = __webpack_require__(8),
     toString = __webpack_require__(9);
@@ -52923,7 +53396,7 @@ module.exports = find;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseFindKey = __webpack_require__(564),
-    baseForOwn = __webpack_require__(73),
+    baseForOwn = __webpack_require__(72),
     baseIteratee = __webpack_require__(3);
 
 /**
@@ -53458,7 +53931,7 @@ module.exports = forInRight;
 /* 931 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseForOwn = __webpack_require__(73),
+var baseForOwn = __webpack_require__(72),
     castFunction = __webpack_require__(43);
 
 /**
@@ -54434,7 +54907,7 @@ var baseKeys = __webpack_require__(193),
     isArguments = __webpack_require__(96),
     isArray = __webpack_require__(7),
     isArrayLike = __webpack_require__(25),
-    isBuffer = __webpack_require__(77),
+    isBuffer = __webpack_require__(76),
     isPrototype = __webpack_require__(111),
     isTypedArray = __webpack_require__(97);
 
@@ -55437,7 +55910,7 @@ module.exports = lte;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseAssignValue = __webpack_require__(48),
-    baseForOwn = __webpack_require__(73),
+    baseForOwn = __webpack_require__(72),
     baseIteratee = __webpack_require__(3);
 
 /**
@@ -55479,7 +55952,7 @@ module.exports = mapKeys;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseAssignValue = __webpack_require__(48),
-    baseForOwn = __webpack_require__(73),
+    baseForOwn = __webpack_require__(72),
     baseIteratee = __webpack_require__(3);
 
 /**
@@ -56683,7 +57156,7 @@ module.exports = parseInt;
 var baseRest = __webpack_require__(4),
     createWrap = __webpack_require__(50),
     getHolder = __webpack_require__(92),
-    replaceHolders = __webpack_require__(76);
+    replaceHolders = __webpack_require__(75);
 
 /** Used to compose bitmasks for function metadata. */
 var WRAP_PARTIAL_RIGHT_FLAG = 64;
@@ -58566,7 +59039,7 @@ module.exports = startCase;
 /* 1052 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseClamp = __webpack_require__(72),
+var baseClamp = __webpack_require__(71),
     baseToString = __webpack_require__(42),
     toInteger = __webpack_require__(8),
     toString = __webpack_require__(9);
@@ -59521,7 +59994,7 @@ module.exports = times;
 /* 1070 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(71),
+var Symbol = __webpack_require__(70),
     copyArray = __webpack_require__(37),
     getTag = __webpack_require__(51),
     isArrayLike = __webpack_require__(25),
@@ -59658,7 +60131,7 @@ module.exports = toPath;
 /* 1073 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseClamp = __webpack_require__(72),
+var baseClamp = __webpack_require__(71),
     toInteger = __webpack_require__(8);
 
 /** Used as references for various `Number` constants. */
@@ -59737,11 +60210,11 @@ module.exports = toUpper;
 
 var arrayEach = __webpack_require__(85),
     baseCreate = __webpack_require__(87),
-    baseForOwn = __webpack_require__(73),
+    baseForOwn = __webpack_require__(72),
     baseIteratee = __webpack_require__(3),
     getPrototype = __webpack_require__(147),
     isArray = __webpack_require__(7),
-    isBuffer = __webpack_require__(77),
+    isBuffer = __webpack_require__(76),
     isFunction = __webpack_require__(52),
     isObject = __webpack_require__(12),
     isTypedArray = __webpack_require__(97);
@@ -60146,7 +60619,7 @@ module.exports = unescape;
 
 var baseFlatten = __webpack_require__(19),
     baseRest = __webpack_require__(4),
-    baseUniq = __webpack_require__(74),
+    baseUniq = __webpack_require__(73),
     isArrayLikeObject = __webpack_require__(26);
 
 /**
@@ -60179,7 +60652,7 @@ module.exports = union;
 var baseFlatten = __webpack_require__(19),
     baseIteratee = __webpack_require__(3),
     baseRest = __webpack_require__(4),
-    baseUniq = __webpack_require__(74),
+    baseUniq = __webpack_require__(73),
     isArrayLikeObject = __webpack_require__(26),
     last = __webpack_require__(39);
 
@@ -60223,7 +60696,7 @@ module.exports = unionBy;
 
 var baseFlatten = __webpack_require__(19),
     baseRest = __webpack_require__(4),
-    baseUniq = __webpack_require__(74),
+    baseUniq = __webpack_require__(73),
     isArrayLikeObject = __webpack_require__(26),
     last = __webpack_require__(39);
 
@@ -60261,7 +60734,7 @@ module.exports = unionWith;
 /* 1085 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseUniq = __webpack_require__(74);
+var baseUniq = __webpack_require__(73);
 
 /**
  * Creates a duplicate-free version of an array, using
@@ -60293,7 +60766,7 @@ module.exports = uniq;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseIteratee = __webpack_require__(3),
-    baseUniq = __webpack_require__(74);
+    baseUniq = __webpack_require__(73);
 
 /**
  * This method is like `_.uniq` except that it accepts `iteratee` which is
@@ -60329,7 +60802,7 @@ module.exports = uniqBy;
 /* 1087 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseUniq = __webpack_require__(74);
+var baseUniq = __webpack_require__(73);
 
 /**
  * This method is like `_.uniq` except that it accepts `comparator` which

@@ -197,7 +197,7 @@ export default (env) => {
 		
 		/**
 		 * Set this field to a new value.
-		 * @param newValue - the new value for this field
+		 * @param {*}        newValue - the new value for this field
 		 * @param {Object}  [options={}]
 		 * @param {boolean} [options.ignoreReadonly=false]   - allow this field's value to be changed even if it is read-only
 		 * @param {boolean} [options.ignoreValidation=false] - don't validate the new value

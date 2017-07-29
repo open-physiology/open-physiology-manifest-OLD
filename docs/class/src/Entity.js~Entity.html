@@ -38,21 +38,26 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Environment.html">Environment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Module.html">Module</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/util/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-constraint">constraint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parseCardinality">parseCardinality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setEquals">setEquals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stringifyCardinality">stringifyCardinality</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Entity from &apos;<span><a href="file/src/Entity.js.html#lineNumber22">open-physiology-manifest/src/Entity.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Entity from &apos;<span><a href="file/src/Entity.js.html#lineNumber20">open-physiology-manifest/src/Entity.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/Entity.js.html#lineNumber22">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/Entity.js.html#lineNumber20">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -108,34 +113,8 @@
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      <span data-ice="static">static</span>
-      <span class="kind" data-ice="kind">get</span>
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#static-get-environment">environment</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>access to the <code>Entity</code> base class (to be used from any of its subclasses)</p>
+</div>
       </div>
     </td>
     <td>
@@ -303,68 +282,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#static-method-new">new</a></span></span><span data-ice="signature">(initialValues: <span>*</span>, options: <span>*</span>): <span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span>
+          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#static-method-new">new</a></span></span><span data-ice="signature">(initialValues: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Create a new entity of this (polymorphically determined) Entity subclass.</p>
+        <div data-ice="description"><p>A factory function for creating a new entity of some Entity subclass.</p>
 </div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      <span data-ice="static">static</span>
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#static-method-normalizeAddress">normalizeAddress</a></span></span><span data-ice="signature">(address: <span>*</span>, options: {}): {&quot;class&quot;: <span>*</span>, &quot;id&quot;: <span>*</span>}</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      <span data-ice="static">static</span>
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#static-method-objectToJSON">objectToJSON</a></span></span><span data-ice="signature">(obj: <span>*</span>, options: {}): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
       </div>
     </td>
     <td>
@@ -375,40 +300,7 @@
 </tbody>
 </table>
 </div>
-<div data-ice="constructorSummary"><h2>Constructor Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Constructor</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(initialValues: {}, options: {})</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
+
 <div data-ice="memberSummary"><h2>Member Summary</h2><table class="summary" data-ice="summary">
   <thead><tr><td data-ice="title" colspan="3">Public Members</td></tr></thead>
   <tbody>
@@ -426,13 +318,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-get-[Symbol.toStringTag]">[Symbol.toStringTag]</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-get-[Symbol.toStringTag]">[Symbol.toStringTag]</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Convey some useful information when converting this entity to a string.</p>
+</div>
       </div>
     </td>
     <td>
@@ -466,7 +359,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Delete this entity.</p>
+</div>
       </div>
     </td>
     <td>
@@ -487,13 +381,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-method-get">get</a></span></span><span data-ice="signature">(key: <span>*</span>): <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-method-get">get</a></span></span><span data-ice="signature">(key: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Synchronously access a field value.</p>
+</div>
       </div>
     </td>
     <td>
@@ -514,13 +409,15 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-method-loadIntoPlaceholder">loadIntoPlaceholder</a></span></span><span data-ice="signature">(initialValues: {})</span>
+          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-method-loadIntoPlaceholder">loadIntoPlaceholder</a></span></span><span data-ice="signature">(initialValues: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Turn this from a placeholder into a fully realized entity,
+and set fields to the given initial values.</p>
+</div>
       </div>
     </td>
     <td>
@@ -541,13 +438,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-method-p">p</a></span></span><span data-ice="signature">(args: ...<span>*</span>): <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-method-p">p</a></span></span><span data-ice="signature">(args: <span>*</span>): <span>BehaviorSubject</span> | <span>Observable</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Augmented version of <code>ValueTracker#p</code> that also understands entity field-names.</p>
+</div>
       </div>
     </td>
     <td>
@@ -568,13 +466,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-method-set">set</a></span></span><span data-ice="signature">(key: <span>*</span>, val: <span>*</span>, options: {}): <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-method-set">set</a></span></span><span data-ice="signature">(key: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, newValue: <span>*</span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Synchronously set a field to a new value.</p>
+</div>
       </div>
     </td>
     <td>
@@ -601,7 +500,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Silence this entity, so <code>ValueTracker</code> based events are no longer broadcast from this entity.</p>
+</div>
       </div>
     </td>
     <td>
@@ -622,13 +522,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-method-toJSON">toJSON</a></span></span><span data-ice="signature">(options: {}): <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/Entity.js~Entity.html#instance-method-toJSON">toJSON</a></span></span><span data-ice="signature">(options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Get a JSON (plain data) object of this entity and the values of all its fields.</p>
+</div>
       </div>
     </td>
     <td>
@@ -655,7 +556,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Delete this entity.</p>
+</div>
       </div>
     </td>
     <td>
@@ -683,57 +585,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber28">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber23">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
-
-  
-
-  <div data-ice="properties">
+  <div data-ice="description"><p>access to the <code>Entity</code> base class (to be used from any of its subclasses)</p>
 </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-get-environment">
-    <span class="access" data-ice="access">public</span>
-    <span data-ice="static">static</span>
-    <span class="kind" data-ice="kind">get</span>
-    
-    
-    
-    <span data-ice="name">environment</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber24">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
 
   
 
@@ -772,7 +632,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber145">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber128">source</a></span></span>
     </span>
   </h3>
 
@@ -846,7 +706,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber131">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber114">source</a></span></span>
     </span>
   </h3>
 
@@ -904,7 +764,7 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber54">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber37">source</a></span></span>
     </span>
   </h3>
 
@@ -985,7 +845,7 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber95">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber78">source</a></span></span>
     </span>
   </h3>
 
@@ -1060,7 +920,7 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber108">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
@@ -1131,18 +991,20 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     
     
-    <span data-ice="name">new</span><span data-ice="signature">(initialValues: <span>*</span>, options: <span>*</span>): <span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span>
+    <span data-ice="name">new</span><span data-ice="signature">(initialValues: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="class/src/Entity.js~Entity.html">Entity</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber159">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber145">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Create a new entity of this (polymorphically determined) Entity subclass.</p>
+  <div data-ice="description"><p>A factory function for creating a new entity of some Entity subclass.
+This subclass can be determined polymorphically (e.g., by calling <code>Lyph.new()</code>),
+or by specifying <code>initialValues.class</code> (e.g., by calling <code>Entity.new({ class: &apos;Lyph&apos; })</code>.</p>
 </div>
 
   
@@ -1157,15 +1019,25 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">initialValues</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: {}</li></ul></td>
+      <td data-ice="description"><p>the initial values of (some of) the entity&apos;s fields</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">options</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.isPlaceholder</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: false</li></ul></td>
+      <td data-ice="description"><p>whether this new entity should be a placeholder</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1178,163 +1050,8 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
       <tbody>
         <tr>
           <td class="return-type" data-ice="returnType"><span><a href="class/src/Entity.js~Entity.html">Entity</a></span></td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-method-normalizeAddress">
-    <span class="access" data-ice="access">public</span>
-    <span data-ice="static">static</span>
-    
-    
-    
-    
-    <span data-ice="name">normalizeAddress</span><span data-ice="signature">(address: <span>*</span>, options: {}): {&quot;class&quot;: <span>*</span>, &quot;id&quot;: <span>*</span>}</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber32">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">address</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">options</td>
-      <td data-ice="type">{}</td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: {}</li></ul></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type" data-ice="returnType">{&quot;class&quot;: <span>*</span>, &quot;id&quot;: <span>*</span>}</td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-method-objectToJSON">
-    <span class="access" data-ice="access">public</span>
-    <span data-ice="static">static</span>
-    
-    
-    
-    
-    <span data-ice="name">objectToJSON</span><span data-ice="signature">(obj: <span>*</span>, options: {}): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber239">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">obj</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">options</td>
-      <td data-ice="type">{}</td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: {}</li></ul></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>the new entity</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1358,76 +1075,7 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
   
 </div>
 </div>
-<div data-ice="constructorDetails"><h2 data-ice="title">Public Constructors</h2>
 
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-constructor-constructor">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span data-ice="name">constructor</span><span data-ice="signature">(initialValues: {}, options: {})</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber171">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">initialValues</td>
-      <td data-ice="type">{}</td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: {}</li></ul></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">options</td>
-      <td data-ice="type">{}</td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: {}</li></ul></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
@@ -1438,25 +1086,38 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     
     
-    <span data-ice="name">[Symbol.toStringTag]</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span data-ice="name">[Symbol.toStringTag]</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber212">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber258">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Convey some useful information when converting this entity to a string.</p>
+</div>
 
   
 
   <div data-ice="properties">
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -1488,14 +1149,15 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber226">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber290">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Delete this entity.</p>
+</div>
 
   
 
@@ -1512,11 +1174,20 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
 
   
 
-  
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">    assert( !lyph.deleted );
+    lyph.delete();
+    assert(  lyph.deleted );</code></pre>
+    </div>
+</div>
 
   
 
-  
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="Entity#undelete">Entity#undelete</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1527,18 +1198,19 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     
     
-    <span data-ice="name">get</span><span data-ice="signature">(key: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">get</span><span data-ice="signature">(key: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber284">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber370">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Synchronously access a field value.</p>
+</div>
 
   
 
@@ -1552,9 +1224,10 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">key</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the key of the field</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1598,18 +1271,20 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     
     
-    <span data-ice="name">loadIntoPlaceholder</span><span data-ice="signature">(initialValues: {})</span>
+    <span data-ice="name">loadIntoPlaceholder</span><span data-ice="signature">(initialValues: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber201">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber243">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Turn this from a placeholder into a fully realized entity,
+and set fields to the given initial values.</p>
+</div>
 
   
 
@@ -1623,10 +1298,11 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">initialValues</td>
-      <td data-ice="type">{}</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: {}</li></ul></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>initial fields values</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1658,18 +1334,19 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     
     
-    <span data-ice="name">p</span><span data-ice="signature">(args: ...<span>*</span>): <span>*</span></span>
+    <span data-ice="name">p</span><span data-ice="signature">(args: <span>*</span>): <span>BehaviorSubject</span> | <span>Observable</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber217">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber272">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Augmented version of <code>ValueTracker#p</code> that also understands entity field-names.</p>
+</div>
 
   
 
@@ -1683,7 +1360,7 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">args</td>
-      <td data-ice="type">...<span>*</span></td>
+      <td data-ice="type"><span>*</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -1697,7 +1374,7 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          <td class="return-type" data-ice="returnType"><span>BehaviorSubject</span> | <span>Observable</span></td>
           
         </tr>
       </tbody>
@@ -1714,7 +1391,16 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
 
   
 
-  
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">    let th1 = lyph.fields.thickness.p(&apos;value&apos;);
+    let th2 = lyph.p(&apos;thickness&apos;);
+    assert(th1 === th2);</code></pre>
+    </div>
+</div>
 
   
 
@@ -1729,18 +1415,19 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     
     
-    <span data-ice="name">set</span><span data-ice="signature">(key: <span>*</span>, val: <span>*</span>, options: {}): <span>*</span></span>
+    <span data-ice="name">set</span><span data-ice="signature">(key: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, newValue: <span>*</span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber287">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber382">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Synchronously set a field to a new value.</p>
+</div>
 
   
 
@@ -1754,22 +1441,40 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">key</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the key of the field</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">val</td>
+      <td data-ice="name" data-depth="0">newValue</td>
       <td data-ice="type"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the new value for this field</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">options</td>
-      <td data-ice="type">{}</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: {}</li></ul></td>
       <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.ignoreReadonly</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: false</li></ul></td>
+      <td data-ice="description"><p>allow this field&apos;s value to be changed even if it is read-only</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.ignoreValidation</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: false</li></ul></td>
+      <td data-ice="description"><p>don&apos;t validate the new value</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1817,14 +1522,17 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber233">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber315">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Silence this entity, so <code>ValueTracker</code> based events are no longer broadcast from this entity.
+Once this is done on an entity, it cannot be undone. It should be done before discarding
+an entity for good.</p>
+</div>
 
   
 
@@ -1841,7 +1549,16 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
 
   
 
-  
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">    assert( !lyph.deleted );
+    lyph.delete();
+    assert(  lyph.deleted );</code></pre>
+    </div>
+</div>
 
   
 
@@ -1856,18 +1573,19 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     
     
-    <span data-ice="name">toJSON</span><span data-ice="signature">(options: {}): <span>*</span></span>
+    <span data-ice="name">toJSON</span><span data-ice="signature">(options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber272">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber336">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Get a JSON (plain data) object of this entity and the values of all its fields.</p>
+</div>
 
   
 
@@ -1881,10 +1599,24 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">options</td>
-      <td data-ice="type">{}</td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: {}</li></ul></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
       <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.flattenFieldValues</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: false</li></ul></td>
+      <td data-ice="description"><p>whether <code>Object</code> or <code>Array</code> property values should be flattened to a string in the output (for Neo4j, for example, which does not accept nested objects)</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.getAddress</td>
+      <td data-ice="type"><span>Class</span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>a function that returns an address corresponding to a given entity; defaults to <code>{ class, id }</code></p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1896,8 +1628,9 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the JSON representation of this entity</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1932,14 +1665,15 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber229">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Entity.js.html#lineNumber302">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Delete this entity.</p>
+</div>
 
   
 
@@ -1956,11 +1690,20 @@ This is a polymorphic check; call it on <code>Entity</code> subclasses.</p>
 
   
 
-  
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">    assert(  lyph.deleted );
+    lyph.undelete();
+    assert( !lyph.deleted );</code></pre>
+    </div>
+</div>
 
   
 
-  
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="Entity#delete">Entity#delete</a></span></li></ul></div>
   
 </div>
 </div>

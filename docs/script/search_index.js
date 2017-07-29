@@ -150,6 +150,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "open-physiology-manifest/src/modules/module.js~environment",
+    "class/src/modules/Module.js~Environment.html",
+    "<span>Environment</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/modules/Module.js</span>",
+    "class"
+  ],
+  [
     "open-physiology-manifest/src/fields/field.js~field",
     "class/src/fields/Field.js~Field.html",
     "<span>Field</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/fields/Field.js</span>",
@@ -196,6 +202,30 @@ window.esdocSearchIndex = [
     "class/src/modules/TypedModule.js~TypedModule.html",
     "<span>TypedModule</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/modules/TypedModule.js</span>",
     "class"
+  ],
+  [
+    "open-physiology-manifest/src/util/misc.js~constraint",
+    "function/index.html#static-function-constraint",
+    "<span>constraint</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/util/misc.js</span>",
+    "function"
+  ],
+  [
+    "open-physiology-manifest/src/util/misc.js~parsecardinality",
+    "function/index.html#static-function-parseCardinality",
+    "<span>parseCardinality</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/util/misc.js</span>",
+    "function"
+  ],
+  [
+    "open-physiology-manifest/src/util/misc.js~setequals",
+    "function/index.html#static-function-setEquals",
+    "<span>setEquals</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/util/misc.js</span>",
+    "function"
+  ],
+  [
+    "open-physiology-manifest/src/util/misc.js~stringifycardinality",
+    "function/index.html#static-function-stringifyCardinality",
+    "<span>stringifyCardinality</span> <span class=\"search-result-import-path\">open-physiology-manifest/src/util/misc.js</span>",
+    "function"
   ],
   [
     "builtinexternal/ecmascriptexternal.js~array",
@@ -535,25 +565,31 @@ window.esdocSearchIndex = [
   ],
   [
     "",
+    "test-file/test/Entity.spec.js.html#lineNumber23",
+    "Entity classes can be used as a base to instantiate subclasses",
+    "test"
+  ],
+  [
+    "",
     "test-file/test/Entity.spec.js.html#lineNumber12",
     "Entity classes can list its possible subclasses",
     "test"
   ],
   [
     "",
-    "test-file/test/Entity.spec.js.html#lineNumber23",
+    "test-file/test/Entity.spec.js.html#lineNumber38",
     "Entity classes has resources that can be deleted",
     "test"
   ],
   [
     "",
-    "test-file/test/Entity.spec.js.html#lineNumber60",
+    "test-file/test/Entity.spec.js.html#lineNumber75",
     "Entity classes has resources that can be placeholders",
     "test"
   ],
   [
     "",
-    "test-file/test/Entity.spec.js.html#lineNumber43",
+    "test-file/test/Entity.spec.js.html#lineNumber58",
     "Entity classes has resources that can be silenced",
     "test"
   ],
@@ -648,12 +684,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/entity.js~entity#constructor",
-    "class/src/Entity.js~Entity.html#instance-constructor-constructor",
-    "src/Entity.js~Entity#constructor",
-    "method"
-  ],
-  [
     "src/entity.js~entity#delete",
     "class/src/Entity.js~Entity.html#instance-method-delete",
     "src/Entity.js~Entity#delete",
@@ -726,12 +756,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/entity.js~entity.environment",
-    "class/src/Entity.js~Entity.html#static-get-environment",
-    "src/Entity.js~Entity.environment",
-    "member"
-  ],
-  [
     "src/entity.js~entity.hasinstance",
     "class/src/Entity.js~Entity.html#static-method-hasInstance",
     "src/Entity.js~Entity.hasInstance",
@@ -747,18 +771,6 @@ window.esdocSearchIndex = [
     "src/entity.js~entity.new",
     "class/src/Entity.js~Entity.html#static-method-new",
     "src/Entity.js~Entity.new",
-    "method"
-  ],
-  [
-    "src/entity.js~entity.normalizeaddress",
-    "class/src/Entity.js~Entity.html#static-method-normalizeAddress",
-    "src/Entity.js~Entity.normalizeAddress",
-    "method"
-  ],
-  [
-    "src/entity.js~entity.objecttojson",
-    "class/src/Entity.js~Entity.html#static-method-objectToJSON",
-    "src/Entity.js~Entity.objectToJSON",
     "method"
   ],
   [
@@ -1062,6 +1074,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/modules/module.js~environment#constructor",
+    "class/src/modules/Module.js~Environment.html#instance-constructor-constructor",
+    "src/modules/Module.js~Environment#constructor",
+    "method"
+  ],
+  [
+    "src/modules/module.js~environment#registermodule",
+    "class/src/modules/Module.js~Environment.html#instance-method-registerModule",
+    "src/modules/Module.js~Environment#registerModule",
+    "method"
+  ],
+  [
     "src/modules/module.js~module#relationship",
     "class/src/modules/Module.js~Module.html#instance-method-RELATIONSHIP",
     "src/modules/Module.js~Module#RELATIONSHIP",
@@ -1077,12 +1101,6 @@ window.esdocSearchIndex = [
     "src/modules/module.js~module#basicnormalization",
     "class/src/modules/Module.js~Module.html#instance-method-basicNormalization",
     "src/modules/Module.js~Module#basicNormalization",
-    "method"
-  ],
-  [
-    "src/modules/module.js~module#constructor",
-    "class/src/modules/Module.js~Module.html#instance-constructor-constructor",
-    "src/modules/Module.js~Module#constructor",
     "method"
   ],
   [

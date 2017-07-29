@@ -38,15 +38,20 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel$Field.js~Rel$Field.html">Rel$Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/Rel1Field.js~Rel1Field.html">Rel1Field</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/fields/RelField.js~RelField.html">RelField</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Module.html">Module</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Environment.html">Environment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/Module.js~Module.html">Module</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/TypedModule.js~TypedModule.html">TypedModule</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/util/ObservableSet.js~ObservableSet.html">ObservableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-constraint">constraint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parseCardinality">parseCardinality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setEquals">setEquals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stringifyCardinality">stringifyCardinality</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/fields/Rel$Field.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {inRange, size, entries, isFunction} from &apos;lodash-bound&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {inRange, size, entries, isFunction, pick} from &apos;lodash-bound&apos;;
 
 import {defineProperty} from &apos;bound-native-methods&apos;;
 
@@ -274,17 +279,13 @@ export default (env) =&gt; {
 		
 		/**
 		 * How to properly convert a value in this field to JSON (plain data).
-		 * @param {*}       value                 - the value to convert to JSON
+		 * @param {*}       value               - the value to convert to JSON
 		 * @param {Object} [options={}]
-		 * @param {Class}  [options.requireClass] - the only `Entity` subclass accepted into the output, optionally
+		 * @param {Class}  [options.getAddress] - a function that returns an address corresponding to a given entity
 		 */
 		static valueToJSON(value, options = {}) {
-			let requireClass;
-			({requireClass, ...options} = options);
-			return [...value].map(e =&gt; {
-				if (requireClass &amp;&amp; requireClass !== e.class) { return undefined }
-				return env.Entity.normalizeAddress(e, options);
-			}).filter(v=&gt;!!v);
+			const { getAddress = e=&gt;e::pick(&apos;class&apos;, &apos;id&apos;) } = options;
+			return [...value].map(getAddress).filter(v=&gt;!!v);
 		}
 		
 		/**
@@ -298,7 +299,7 @@ export default (env) =&gt; {
 			const {getEntity} = options;
 			for (let thing of json) {
 				let entity;
-				if (thing instanceof env.Entity) {
+				if (thing instanceof env.classes.Entity) {
 					entity = thing;
 				} else if (getEntity::isFunction()) {
 					entity = getEntity(thing, options);

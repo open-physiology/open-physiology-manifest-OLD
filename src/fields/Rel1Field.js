@@ -164,16 +164,14 @@ export default (env) => {
 		
 		/**
 		 * How to properly convert a value in this field to JSON (plain data).
-		 * @param {*}       value                 - the value to convert to JSON
+		 * @param {*}       value               - the value to convert to JSON
 		 * @param {Object} [options={}]
-		 * @param {Class}  [options.requireClass] - the only `Entity` subclass accepted for the output, optionally
+		 * @param {Class}  [options.getAddress] - a function that returns an address corresponding to a given entity
 		 */
 		static valueToJSON(value, options = {}) {
-			let requireClass;
-			({requireClass, ...options} = options);
-			if (!value) { return value }
-			if (requireClass && requireClass !== value.class) { return undefined }
-			return env.Entity.normalizeAddress(value, options);
+			if (!value) { return null }
+			const { getAddress = e=>e::pick('class', 'id') } = options;
+			return getAddress(value);
 		}
 		
 		/**
@@ -185,7 +183,7 @@ export default (env) => {
 		static jsonToValue(json, options = {}) {
 			if (json === null) { return null }
 			const {getEntity} = options;
-			if (json instanceof env.Entity) {
+			if (json instanceof env.classes.Entity) {
 				return json;
 			} else if (getEntity::isFunction()) {
 				return getEntity(json);

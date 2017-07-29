@@ -6,7 +6,6 @@ import measurables    from './modules/measurables';
 import processes      from './modules/processes';
 import canonicalTrees from './modules/canonicalTrees';
 import research       from './modules/research';
-// import visualisations from './modules/OLD_visualisations';
 
 import Module from './modules/Module.js';
 
@@ -18,6 +17,5 @@ export default Module.create('all', [
 	measurables,
 	processes,
 	research,
-	// visualisations,
 	canonicalTrees,
 ]);

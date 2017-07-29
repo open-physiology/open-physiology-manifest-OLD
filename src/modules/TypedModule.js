@@ -14,12 +14,21 @@ import Module from './Module.js';
 
 /**
  * Typed Modules allow to more easily create related
- * Type, Template and HasType classes. For example,
+ * Type, Template and HasType subclasses. For example,
  * to create LyphType and LyphTemplate resources and
  * their HasType relationship from one description.
- **/
+ * NOTE: The current version of the project creates
+ * just the Template subclass, and using just the
+ * `Type` class for all types.
+ */
 export default class TypedModule extends Module {
-
+	
+	/**
+	 * Declare a typed resource class, which is a subclass of `Template` and gets special treatment.
+	 * @param {Object} config      - the traits of the new class
+	 * @param {string} config.name - the name of the new class
+	 * @return {Class} the new `Template` subclass
+	 */
 	TYPED_RESOURCE(config) {
 		return mapOptionalArray(config, (conf) => {
 			

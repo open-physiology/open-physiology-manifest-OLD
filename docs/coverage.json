@@ -1,50 +1,22 @@
 {
-  "coverage": "71.27%",
-  "expectCount": 94,
-  "actualCount": 67,
+  "coverage": "100%",
+  "expectCount": 96,
+  "actualCount": 96,
   "files": {
     "src/Entity.js": {
-      "expectCount": 21,
-      "actualCount": 7,
-      "undocumentLines": [
-        28,
-        212,
-        171,
-        226,
-        24,
-        284,
-        201,
-        32,
-        239,
-        217,
-        287,
-        233,
-        272,
-        229
-      ]
+      "expectCount": 17,
+      "actualCount": 17,
+      "undocumentLines": []
+    },
+    "src/modules/Module.js": {
+      "expectCount": 14,
+      "actualCount": 14,
+      "undocumentLines": []
     },
     "src/fields/Field.js": {
       "expectCount": 12,
       "actualCount": 12,
       "undocumentLines": []
-    },
-    "src/modules/Module.js": {
-      "expectCount": 12,
-      "actualCount": 0,
-      "undocumentLines": [
-        90,
-        116,
-        105,
-        129,
-        101,
-        92,
-        438,
-        400,
-        323,
-        195,
-        290,
-        262
-      ]
     },
     "src/util/ObservableSet.js": {
       "expectCount": 14,
@@ -73,10 +45,13 @@
     },
     "src/modules/TypedModule.js": {
       "expectCount": 2,
-      "actualCount": 1,
-      "undocumentLines": [
-        15
-      ]
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/util/misc.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
     }
   }
 }
