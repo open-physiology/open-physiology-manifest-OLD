@@ -1,6 +1,6 @@
 {
   "name": "open-physiology-manifest",
-  "version": "0.10.0",
+  "version": "0.12.0",
   "description": "smart data types for all open-physiology concepts (e.g., Lyph, Process)",
   "main": "src/index.js",
   "scripts": {
